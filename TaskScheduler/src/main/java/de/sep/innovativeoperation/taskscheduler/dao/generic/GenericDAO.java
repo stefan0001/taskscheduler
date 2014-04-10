@@ -2,8 +2,6 @@ package de.sep.innovativeoperation.taskscheduler.dao.generic;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 /**
  * 
  * @author Stefan

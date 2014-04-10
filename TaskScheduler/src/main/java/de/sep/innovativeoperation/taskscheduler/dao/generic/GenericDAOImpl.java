@@ -1,6 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.dao.generic;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,16 +44,24 @@ public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 
 	public List<E> fetchAll() {
 		EntityManager em = this.emf.createEntityManager();
-		
-		List<E> list = (List<E>)em.createQuery("SELECT e FROM " + getClassName() + " e" );
+		//CREATE QUERY AND EXECUTE NA DGET THE LIST
+		List<E> list = (List<E>)( (em.createQuery("SELECT e FROM " + getClassName() + " e" )).getResultList() );
 		em.close();
 		
 		return list;
-		
 	}
 
 	public void deleteAll() {
-		throw new UnsupportedOperationException("not implementet.");
+		EntityManager em = this.emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		//EXECUTE UPDATE QUERY
+		(em.createQuery("DELETE FROM " + getClassName() + " e")).executeUpdate();
+		em.getTransaction().commit();
+		
+		em.close();
+		
+
 	}
 
 }
