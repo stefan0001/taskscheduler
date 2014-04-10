@@ -10,8 +10,29 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
 	<context:component-scan base-package="de.sep.innovativeoperation.taskscheduler" />
-	
+
 	<mvc:annotation-driven />
+
+
+
+	<bean id="myEmf"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="loadTimeWeaver">
+			<bean
+				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:tcp://localhost//sep/database/databases/database1;INIT=CREATE SCHEMA IF NOT EXISTS TASKSCHEDULER" />
+		<property name="username" value="h2" />
+		<property name="password" value="h2" />
+	</bean>
+
+
 
 </beans>
 

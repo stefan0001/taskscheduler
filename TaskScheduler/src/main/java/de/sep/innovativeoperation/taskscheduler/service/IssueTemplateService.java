@@ -2,6 +2,11 @@ package de.sep.innovativeoperation.taskscheduler.service;
 
 import java.util.List;
 
+import javax.management.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +21,21 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
 @Service
 public class IssueTemplateService {
 	@Autowired
-	IssueTemplateDAO issueTemplateDAO;
+
+	private EntityManagerFactory emf;
+
+	@PersistenceUnit
+	public void setEntityManagerFactory(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
 	
 	public List<IssueTemplate> fetchAllIssueTemplates(){
-		return issueTemplateDAO.fetchAll();
+		EntityManager em = this.emf.createEntityManager();
+		
+		List<IssueTemplate> list = (List<IssueTemplate>) (em.createQuery("SELECT e FROM IssueTemplate e").getResultList());
+	    
+		 em.close();
+		 
+		 return list;
 	}
 }

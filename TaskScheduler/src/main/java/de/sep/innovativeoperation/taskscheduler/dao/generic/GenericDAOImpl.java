@@ -4,6 +4,8 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 
 /**
  * 
@@ -13,15 +15,18 @@ import javax.persistence.EntityManager;
  */
 
 public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
-	EntityManager em;
+	private EntityManagerFactory emf;
+
+	@PersistenceUnit
+	public void setEntityManagerFactory(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
 
 	private final Class<E> persistentClass;
 
 	protected GenericDAOImpl() {
-		ParameterizedType parameterizedType = (ParameterizedType) getClass()
-				.getGenericSuperclass();
-		this.persistentClass = (Class<E>) parameterizedType
-				.getActualTypeArguments()[0];
+		ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
+		this.persistentClass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
 
 	}
 
@@ -41,7 +46,13 @@ public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 	}
 
 	public List<E> fetchAll() {
-		throw new UnsupportedOperationException("not implementet.");
+		EntityManager em = this.emf.createEntityManager();
+		
+		List<E> list = (List<E>)em.createQuery("SELECT e FROM " + getPersClassName() + " e" );
+		em.close();
+		
+		return list;
+		
 	}
 
 	public void deleteAll() {
