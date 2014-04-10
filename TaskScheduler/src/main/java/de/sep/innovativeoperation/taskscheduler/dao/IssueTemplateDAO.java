@@ -8,4 +8,8 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
 @Component
 public class IssueTemplateDAO extends GenericDAOImpl<IssueTemplate> {
 
+	@Override
+	protected String getClassName() {
+		return "IssueTemplate";
+	}
 }

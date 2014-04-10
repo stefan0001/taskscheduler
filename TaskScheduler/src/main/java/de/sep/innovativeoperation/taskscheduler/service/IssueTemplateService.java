@@ -10,6 +10,7 @@ import javax.persistence.PersistenceUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.dao.IssueTemplateDAO;
 import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
 
@@ -21,21 +22,10 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
 @Service
 public class IssueTemplateService {
 	@Autowired
+	IssueTemplateDAO issueTemplateDAO;
 
-	private EntityManagerFactory emf;
-
-	@PersistenceUnit
-	public void setEntityManagerFactory(EntityManagerFactory emf) {
-		this.emf = emf;
-	}
 	
 	public List<IssueTemplate> fetchAllIssueTemplates(){
-		EntityManager em = this.emf.createEntityManager();
-		
-		List<IssueTemplate> list = (List<IssueTemplate>) (em.createQuery("SELECT e FROM IssueTemplate e").getResultList());
-	    
-		 em.close();
-		 
-		 return list;
+		return issueTemplateDAO.fetchAll();
 	}
 }

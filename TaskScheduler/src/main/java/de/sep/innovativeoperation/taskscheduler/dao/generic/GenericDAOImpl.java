@@ -22,20 +22,18 @@ public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 		this.emf = emf;
 	}
 
-	private final Class<E> persistentClass;
 
 	protected GenericDAOImpl() {
-		ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
-		this.persistentClass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
+
 
 	}
 
+	protected abstract String getClassName();
+	
 	/*
 	 * get Name of the Table
 	 */
-	protected String getPersClassName() {
-		return persistentClass.getSimpleName().toUpperCase();
-	}
+
 
 	public E findById(int id) {
 		throw new UnsupportedOperationException("not implementet.");
@@ -48,7 +46,7 @@ public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 	public List<E> fetchAll() {
 		EntityManager em = this.emf.createEntityManager();
 		
-		List<E> list = (List<E>)em.createQuery("SELECT e FROM " + getPersClassName() + " e" );
+		List<E> list = (List<E>)em.createQuery("SELECT e FROM " + getClassName() + " e" );
 		em.close();
 		
 		return list;
