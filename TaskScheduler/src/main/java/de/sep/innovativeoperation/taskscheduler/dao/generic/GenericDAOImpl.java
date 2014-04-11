@@ -3,8 +3,9 @@ package de.sep.innovativeoperation.taskscheduler.dao.generic;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 
@@ -13,13 +14,12 @@ import javax.persistence.PersistenceUnit;
  * @param <E>
  */
 
-public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
-	private EntityManagerFactory emf;
 
-	@PersistenceUnit
-	public void setEntityManagerFactory(EntityManagerFactory emf) {
-		this.emf = emf;
-	}
+public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
+	@PersistenceContext(unitName = "Test")
+	private EntityManager em;
+
+
 
 
 	protected GenericDAOImpl() {
@@ -42,25 +42,21 @@ public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 		throw new UnsupportedOperationException("not implementet.");
 	}
 
+	@Transactional
 	public List<E> fetchAll() {
-		EntityManager em = this.emf.createEntityManager();
-		//CREATE QUERY AND EXECUTE NA DGET THE LIST
+
+		//CREATE QUERY AND EXECUTE THE QUERY
 		List<E> list = (List<E>)( (em.createQuery("SELECT e FROM " + getClassName() + " e" )).getResultList() );
-		em.close();
 		
 		return list;
 	}
-
+	
+	
+	@Transactional
 	public void deleteAll() {
-		EntityManager em = this.emf.createEntityManager();
-		
-		em.getTransaction().begin();
+
 		//EXECUTE UPDATE QUERY
 		(em.createQuery("DELETE FROM " + getClassName() + " e")).executeUpdate();
-		em.getTransaction().commit();
-		
-		em.close();
-		
 
 	}
 

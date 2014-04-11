@@ -14,7 +14,7 @@
 	<mvc:annotation-driven />
 
 
-
+	<!-- EntityManagerFactory -->
 	<bean id="myEmf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -24,13 +24,22 @@
 		</property>
 	</bean>
 
+	<!-- Database Connection -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.h2.Driver" />
-		<property name="url" value="jdbc:h2:tcp://localhost//sep/database/databases/database1;INIT=CREATE SCHEMA IF NOT EXISTS TASKSCHEDULER" />
+		<property name="url"
+			value="jdbc:h2:tcp://localhost//sep/database/databases/database1;INIT=CREATE SCHEMA IF NOT EXISTS TASKSCHEDULER" />
 		<property name="username" value="h2" />
 		<property name="password" value="h2" />
 	</bean>
+
+	<!-- Transaction Manager für die Datenbankverbindung -->
+	<!-- Damit wird getTransaction().begin() und getTransaction().commit() automatische aufgrerufen -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="myEmf" />
+	</bean>
+
 
 
 

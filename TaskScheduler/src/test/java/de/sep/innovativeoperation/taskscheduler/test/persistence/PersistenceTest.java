@@ -16,14 +16,14 @@ import org.junit.BeforeClass;
  */
 
 public abstract class PersistenceTest {
-	protected EntityManagerFactory emf;
-	protected EntityManager em;
+	protected static EntityManagerFactory emf;
+	protected static EntityManager em;
 	
 	/**
 	 * Create Persistence Manger for Tests
 	 */
 	@BeforeClass
-	public void setupPersistenceManager() {
+	public static void setupPersistenceManager() {
 		emf = Persistence.createEntityManagerFactory( "Test" );
 		em = emf.createEntityManager();
 	}
@@ -39,7 +39,7 @@ public abstract class PersistenceTest {
 	 * Close Connection to the Persistence Manager
 	 */
 	@AfterClass
-	public void destoryPersistenceManager() {
+	public static void destoryPersistenceManager() {
 		em.close();
 		emf.close();
 	}

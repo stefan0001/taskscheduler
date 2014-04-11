@@ -1,6 +1,7 @@
 package de.sep.innovativeoperation.taskscheduler.test.persistence.issuetemplate;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
 import de.sep.innovativeoperation.taskscheduler.model.IssueType;
@@ -11,7 +12,8 @@ import de.sep.innovativeoperation.taskscheduler.test.persistence.PersistenceTest
  * 
  */
 public class IssueTemplatePersistenceTest extends PersistenceTest{
-	
+
+
 	public void TestWriteAndReading(){
 		IssueTemplate issueTemplate = new IssueTemplate("TEST","TEST",IssueType.BUG);
 		

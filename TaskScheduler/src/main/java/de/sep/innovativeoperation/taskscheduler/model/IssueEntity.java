@@ -34,6 +34,8 @@ public class IssueEntity implements Serializable {
 	@NotNull
 	@ManyToOne
 	private IssueTemplate issueTemplate;
+	
+
 
 	/**
 	 * Blank Constructor for this IssueEntity
