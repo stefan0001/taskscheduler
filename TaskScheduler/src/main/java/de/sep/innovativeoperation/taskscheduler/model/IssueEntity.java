@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonUnwrapped;
+
 /**
  * 
  * @author Stefan
@@ -33,6 +35,7 @@ public class IssueEntity implements Serializable {
 
 	@NotNull
 	@ManyToOne
+	@JsonUnwrapped
 	private IssueTemplate issueTemplate;
 
 	/**
@@ -67,5 +70,6 @@ public class IssueEntity implements Serializable {
 	public IssueTemplate getIssueTemplate() {
 		return issueTemplate;
 	}
+	
 
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
+
 /**
  * 
  * @author Stefan
@@ -13,9 +15,9 @@ import javax.persistence.EntityManager;
  */
 
 public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
-	EntityManager em;
+	protected EntityManager em;
 
-	private final Class<E> persistentClass;
+	protected final Class<E> persistentClass;
 
 	protected GenericDAOImpl() {
 		ParameterizedType parameterizedType = (ParameterizedType) getClass()
@@ -33,7 +35,8 @@ public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 	}
 
 	public E findById(int id) {
-		throw new UnsupportedOperationException("not implementet.");
+		
+		return em.find(persistentClass, id);
 	}
 
 	public E save(E entity) {
