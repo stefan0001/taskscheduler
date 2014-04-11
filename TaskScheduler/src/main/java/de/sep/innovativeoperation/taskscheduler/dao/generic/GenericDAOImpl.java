@@ -16,15 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
-	@PersistenceContext(unitName = "Test")
+	@PersistenceContext(unitName = "H2Connection")
 	private EntityManager em;
 
 
 
 
 	protected GenericDAOImpl() {
-
-
 	}
 
 	protected abstract String getClassName();
@@ -33,18 +31,20 @@ public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 	 * get Name of the Table
 	 */
 
-
+	//TODO
+	@Transactional
 	public E findById(int id) {
-		throw new UnsupportedOperationException("not implementet.");
+		return null;
 	}
 
+	@Transactional
 	public E save(E entity) {
-		throw new UnsupportedOperationException("not implementet.");
+		em.persist(entity);
+		return entity;
 	}
 
 	@Transactional
 	public List<E> fetchAll() {
-
 		//CREATE QUERY AND EXECUTE THE QUERY
 		List<E> list = (List<E>)( (em.createQuery("SELECT e FROM " + getClassName() + " e" )).getResultList() );
 		
@@ -54,10 +54,10 @@ public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
 	
 	@Transactional
 	public void deleteAll() {
-
 		//EXECUTE UPDATE QUERY
 		(em.createQuery("DELETE FROM " + getClassName() + " e")).executeUpdate();
 
 	}
 
 }
+	

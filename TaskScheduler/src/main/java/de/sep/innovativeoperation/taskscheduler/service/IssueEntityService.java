@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.service.deprecated;
+package de.sep.innovativeoperation.taskscheduler.service;
 
 import org.springframework.stereotype.Service;
 
