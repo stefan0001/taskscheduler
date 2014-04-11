@@ -41,7 +41,7 @@
 	</bean>
 
 
-
+	 <mvc:resources mapping="/pages/**" location="/static/" />
 
 </beans>
 

@@ -11,6 +11,6 @@ public class DefaultController {
 	
     @RequestMapping(method = RequestMethod.GET)
     public String getDefault() {
-        return "redirect:/issueentities";
+        return "redirect:/pages/Test.html";
     }
 }
