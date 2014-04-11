@@ -20,20 +20,5 @@ import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 @RequestMapping(value = "/issueentities")
 public class IssueEntityController {
 
-	@Autowired
-	private IssueEntityService issueEntityService;
 	
-	@Autowired
-	private IssueEntityDAO entityDAO;
-	
-	@Autowired
-	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody IssueEntity getIssueListJSON() {
-		
-		IssueEntity entity = entityDAO.findById(1);
-		
-		
-		return entity;
-	}
-
 }
