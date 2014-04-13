@@ -19,8 +19,8 @@ import javax.validation.constraints.NotNull;
 @SuppressWarnings("serial")
 @Entity
 public class IssueEntity implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@NotNull
@@ -50,6 +50,14 @@ public class IssueEntity implements Serializable {
 		this.issueTemplate = issueTemplate;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId (){
+		return id;
+	}
+	
 	public IssueStatus getIssueStatus() {
 		return issueStatus;
 	}

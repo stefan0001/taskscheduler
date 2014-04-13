@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 public class Test {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory( "Test" );
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory( "H2Connection" );
 		EntityManager em = emf.createEntityManager();
 
 

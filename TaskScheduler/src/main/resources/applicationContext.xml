@@ -9,14 +9,25 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
+	<context:component-scan base-package="de.sep.innovativeoperation.taskscheduler" />
 
-	<!--  Statischedateien errecihbar machen -->
-	 <mvc:resources mapping="/static/**" location="/static/" />
+	<mvc:annotation-driven />
 
 
-    <!--Einbindung der Konfiguration für die darunter liegenden Schichten. -->
-    <import resource="classpath:applicationContext.xml" />
-    
+	<!-- EntityManagerFactory -->
+   <bean id="myEmf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+      <property name="persistenceUnitName" value="H2Connection"/>
+   </bean>
+
+
+	<!-- Transaction Manager für die Datenbankverbindung -->
+	<!-- Damit wird getTransaction().begin() und getTransaction().commit() automatische aufgrerufen -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="myEmf" />
+	</bean>
+
+
+
 </beans>
 
 

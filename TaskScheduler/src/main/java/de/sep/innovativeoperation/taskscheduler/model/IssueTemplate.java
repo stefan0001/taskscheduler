@@ -52,6 +52,10 @@ public class IssueTemplate implements Serializable {
 		this.issueType = issueType;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public int getId() {
 		return id;
 	}

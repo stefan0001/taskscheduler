@@ -8,9 +8,7 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 @Repository
 public class IssueEntityDAO extends GenericDAOImpl<IssueEntity> {
 
-	@Override
-	protected String getClassName() {
-		return "IssueEntity";
-	}
+
+	
 
 }

@@ -1,10 +1,13 @@
 package de.sep.innovativeoperation.taskscheduler.dao.generic;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
 
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -14,50 +17,50 @@ import org.springframework.transaction.annotation.Transactional;
  * @param <E>
  */
 
-
 public abstract class GenericDAOImpl<E> implements GenericDAO<E> {
+	/**
+	 * Inject the EntityManager
+	 */
 	@PersistenceContext(unitName = "H2Connection")
-	private EntityManager em;
+	protected EntityManager em;
 
-
-
+	/**
+	 * the name of the persistent class (IssueEntity, IssueEntity.... )
+	 */
+	private final Class<E> persistentClass;
 
 	protected GenericDAOImpl() {
+		// Initial the persistent class
+		ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
+		this.persistentClass = (Class<E>) parameterizedType.getActualTypeArguments()[0];
 	}
 
-	protected abstract String getClassName();
-	
-	/*
-	 * get Name of the Table
-	 */
-
-	//TODO
 	@Transactional
 	public E findById(int id) {
-		return null;
+		return em.find(persistentClass, id);
 	}
 
-	@Transactional
+
+	@Transactional(propagation = Propagation.REQUIRED)
 	public E save(E entity) {
-		em.persist(entity);
-		return entity;
+		return em.merge(entity);
+
 	}
+
 
 	@Transactional
 	public List<E> fetchAll() {
-		//CREATE QUERY AND EXECUTE THE QUERY
-		List<E> list = (List<E>)( (em.createQuery("SELECT e FROM " + getClassName() + " e" )).getResultList() );
-		
-		return list;
+		// CREATE QUERY AND EXECUTE THE QUERY
+		CriteriaQuery<E> selectQuery = em.getCriteriaBuilder().createQuery(
+				persistentClass);
+		selectQuery.from(persistentClass);
+		return em.createQuery(selectQuery).getResultList();
 	}
-	
-	
-	@Transactional
+
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteAll() {
-		//EXECUTE UPDATE QUERY
-		(em.createQuery("DELETE FROM " + getClassName() + " e")).executeUpdate();
+		throw new UnsupportedOperationException();
 
 	}
 
 }
-	
