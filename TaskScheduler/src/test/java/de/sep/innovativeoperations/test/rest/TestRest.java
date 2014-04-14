@@ -6,8 +6,13 @@
 
 package de.sep.innovativeoperations.test.rest;
 
+import java.util.List;
+
 import com.jayway.restassured.RestAssured;
-import static com.jayway.restassured.RestAssured.expect;
+import static com.jayway.restassured.path.json.JsonPath.from;
+import static com.jayway.restassured.RestAssured.*;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,8 +48,6 @@ public class TestRest {
 	public void getRessourcesByPathIssuetemplatesShouldReturn200()
 			throws Exception {
 		expect().statusCode(200).when().get("/issuetemplates");
-
-		// get("/issueentities").then().assertThat().statusCode(200);
 	}
 
 	@Test
@@ -54,8 +57,18 @@ public class TestRest {
 	}
 	
 	@Test
-	public void getIssuetemplatesAndCompareWithJSON()
+	public void getIssuetemplatesAndCheckIssueNames()
 			throws Exception {
-		expect().statusCode(200).when().get("/static/Test.html");
+//		get("/issuetemplates").then().statusCode(200).assertThat().body("get(0).issueName", is("TEST"));
+		String json = get("/issuetemplates").asString();
+		List<String> issues = from(json).get("issueName");
+		for (String issue: issues){
+			assertTrue(issue.equals("TEST"));
+		}
+	}
+	
+	@Test
+	public void checkIfRequestedJsonMatchesJsonSchema() throws Exception {
+		//TODO
 	}
 }
