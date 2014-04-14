@@ -8,7 +8,6 @@ package de.sep.innovativeoperations.test.rest;
 
 import com.jayway.restassured.RestAssured;
 import static com.jayway.restassured.RestAssured.expect;
-import com.jayway.restassured.builder.RequestSpecBuilder;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
