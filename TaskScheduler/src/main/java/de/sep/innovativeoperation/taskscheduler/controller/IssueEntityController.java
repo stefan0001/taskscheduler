@@ -30,8 +30,8 @@ public class IssueEntityController {
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)
-	public @ResponseBody void delteIssueEntities() {
+	public @ResponseBody void deleteAllIssueEntities() {
 		issueEntityDAO.deleteAll();
 	}
-
+	
 }

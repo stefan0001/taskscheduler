@@ -13,7 +13,6 @@ public class Test {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory( "H2Connection" );
 		EntityManager em = emf.createEntityManager();
 
-
 	    em.getTransaction().begin();
 
 	    IssueTemplate issueTemplate = new IssueTemplate("TEST","TEST",IssueType.BUG);
@@ -22,12 +21,9 @@ public class Test {
 	    em.persist(issueTemplate);
 	    em.persist(issueEntity);
 
-
 	    em.getTransaction().commit();
 
 		em.close();
-		emf.close();
-		
+		emf.close();		
 	}
-
 }

@@ -23,7 +23,7 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueStatus;
 import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
 import de.sep.innovativeoperation.taskscheduler.model.IssueType;
 
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:applicationContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -51,6 +51,6 @@ public class TestPersistenceIssueEntity {
 		IssueEntity ie2 = issueEntityDAO.findById(ie.getId());
 		System.out.println(ie.getId());
 		assertTrue(ie.getId() == ie2.getId());
-
+		
 	}
 }
