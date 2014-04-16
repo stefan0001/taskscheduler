@@ -18,19 +18,19 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
  * 
  */
 @Controller
-@RequestMapping(value = "/issuetemplates")
-public class IssueTemplateController {
+@RequestMapping(value = "/issuedraft")
+public class IssueDraftController {
 
 	@Autowired
-	private IssueDraftDAO issueTemplateDAO;
+	private IssueDraftDAO issueDraftDAO;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<IssueDraft> getIssueTemplates() {
+	public @ResponseBody List<IssueDraft> getIssueDrafts() {
 		return issueDraftDAO.fetchAll();
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)
-	public @ResponseBody void delteIssueTemplates() {
+	public @ResponseBody void delteIssueDrafts() {
 		issueDraftDAO.deleteAll();
 	}
 
