@@ -8,7 +8,6 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 @Repository
 public class IssueEntityDAO extends GenericDAOImpl<IssueEntity> {
 
-
 	
 
 }

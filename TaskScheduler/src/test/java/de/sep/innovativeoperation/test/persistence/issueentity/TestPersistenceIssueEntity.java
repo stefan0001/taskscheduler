@@ -3,6 +3,7 @@ package de.sep.innovativeoperation.test.persistence.issueentity;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,13 +16,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
-import de.sep.innovativeoperation.taskscheduler.dao.IssueTemplateDAO;
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.IssueResolution;
 import de.sep.innovativeoperation.taskscheduler.model.IssueStatus;
-import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
+import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.IssueType;
+import de.sep.innovativeoperation.taskscheduler.model.Task;
 
 @TransactionConfiguration(defaultRollback = false)
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -32,7 +34,7 @@ public class TestPersistenceIssueEntity {
 	@Autowired
 	protected IssueEntityDAO issueEntityDAO;
 	@Autowired
-	protected IssueTemplateDAO issueTemplateDAO;
+	protected IssueDraftDAO issueTemplateDAO;
 
 	@PersistenceContext(unitName = "H2Connection")
 	protected EntityManager em;
@@ -40,7 +42,10 @@ public class TestPersistenceIssueEntity {
 	@Test
 	public void testEntity() {
 
-		IssueTemplate it = new IssueTemplate("TEST", "TEST", IssueType.BUG);
+		   Task task = new Task("TEST");
+		   HashSet<Task> h2 = new HashSet<Task>();
+		   h2.add(task);
+		   IssueTemplate it = new IssueTemplate("TEST","TEST",IssueType.BUG, h2);
 		it = issueTemplateDAO.save(it);
 
 		IssueEntity ie = new IssueEntity(IssueStatus.NEW, IssueResolution.DONE,

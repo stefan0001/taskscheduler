@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.sep.innovativeoperation.taskscheduler.dao.IssueTemplateDAO;
-import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
+import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
+import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 
 /**
  * Controller for CRUD operations on Issue Templates
@@ -22,16 +22,16 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueTemplate;
 public class IssueTemplateController {
 
 	@Autowired
-	private IssueTemplateDAO issueTemplateDAO;
+	private IssueDraftDAO issueTemplateDAO;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<IssueTemplate> getIssueTemplates() {
-		return issueTemplateDAO.fetchAll();
+	public @ResponseBody List<IssueDraft> getIssueTemplates() {
+		return issueDraftDAO.fetchAll();
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)
 	public @ResponseBody void delteIssueTemplates() {
-		issueTemplateDAO.deleteAll();
+		issueDraftDAO.deleteAll();
 	}
 
 }

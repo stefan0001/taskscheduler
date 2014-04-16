@@ -2,6 +2,7 @@ package de.sep.innovativeoperation.taskscheduler.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,6 +20,30 @@ import javax.validation.constraints.NotNull;
 @SuppressWarnings("serial")
 @Entity
 public class IssueEntity implements Serializable {
+	
+
+	public IssueEntity() {
+	}
+	
+	/**
+	 * 
+	 * @param issueStatus
+	 * @param issueResolution
+	 * @param issueDraft
+	 */
+	public IssueEntity(IssueStatus issueStatus,
+			IssueResolution issueResolution, IssueDraft issueDraft) {
+		this.issueStatus = issueStatus;
+		this.issueResolution = issueResolution;
+		this.issueDraft = issueDraft;
+	}
+	
+	
+	
+	
+	/*
+	 * Automatisch vortlaufende, von der Datenbank generierte ID
+	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -31,25 +56,12 @@ public class IssueEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private IssueResolution issueResolution;
 
-	@NotNull
-	@ManyToOne
-	private IssueTemplate issueTemplate;
+
+	/*Owner of the IssueDraft <--> IssueEntity relationship*/
+	@NotNull 
+	@ManyToOne(cascade = {CascadeType.ALL})
+	private IssueDraft issueDraft;
 	
-
-
-	/**
-	 * Blank Constructor for this IssueEntity
-	 */
-	public IssueEntity() {
-	}
-
-	public IssueEntity(IssueStatus issueStatus,
-			IssueResolution issueResolution, IssueTemplate issueTemplate) {
-		this.issueStatus = issueStatus;
-		this.issueResolution = issueResolution;
-		this.issueTemplate = issueTemplate;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -74,8 +86,12 @@ public class IssueEntity implements Serializable {
 		this.issueResolution = issueResolution;
 	}
 
-	public IssueTemplate getIssueTemplate() {
-		return issueTemplate;
+	public IssueDraft getIssueTemplate() {
+		return issueDraft;
+	}
+	
+	public void setIssueTemplate(IssueDraft issueTemplate) {
+		this.issueDraft = issueTemplate;
 	}
 
 }
