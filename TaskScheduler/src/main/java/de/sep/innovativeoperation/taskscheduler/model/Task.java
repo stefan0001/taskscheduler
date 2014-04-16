@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,9 +41,9 @@ public class Task {
 	
 	@NotNull
 	private String name = "not specified yet";
-	
 	/*Owner of the Task <--> IssueDraft relationship*/
-	@ManyToMany(cascade = {CascadeType.ALL})
+	
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
 	
 

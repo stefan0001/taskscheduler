@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,11 +54,11 @@ public class IssueDraft implements Serializable {
 	private IssueType issueType;
 
 	/*Child of the IssueEntity <--> IssueDraft relationship */
-	@OneToMany(mappedBy="issueDraft")
+	@OneToMany(mappedBy="issueDraft", fetch=FetchType.EAGER )
 	private Set<IssueEntity> issueEntites = new HashSet<IssueEntity>();
 	
 	/*Child of the Task <--> IssueDraft relationship */
-	@ManyToMany(mappedBy="issueDrafts")
+	@ManyToMany(mappedBy="issueDrafts", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE )
 	private Set<Task> tasks = new HashSet<Task>();
 	
 
