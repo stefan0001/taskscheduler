@@ -22,25 +22,43 @@ public class Test {
 	
 	
 	
+	/*
+	IssueDraft id1 = new IssueDraft("Kaffemaschine", "Satzbehälter leeren", IssueType.TASK);
 	
-	IssueDraft id1 = new IssueDraft("Berg", "Mittwoch", IssueType.BUG);
-	IssueDraft id2 = new IssueDraft("Putze", "Lol", IssueType.BUG);
-	IssueDraft id3 = new IssueDraft("Flach", "Dienstag", IssueType.BUG);
-	
-	Set<IssueDraft> h1 = new HashSet<IssueDraft>();
-	
-	h1.add(id1);
-	h1.add(id2);
-	h1.add(id3);
-	
-	Task task1 = new Task("alterSchwedeHut", h1);
+	Task task1 = new Task("Jeden Montag");
+	Task task2 = new Task("Jeden Dienstag");
+	Task task3 = new Task("Jedem Mittwoch");
 	
 	
 	id1.getTasks().add(task1);
-	id2.getTasks().add(task1);
-	id3.getTasks().add(task1);
+	id1.getTasks().add(task2);
+	id1.getTasks().add(task3);
 	
-	em.merge(task1);
+	IssueEntity ent1 = new IssueEntity(IssueStatus.NEW, IssueResolution.UNRESOLVED, id1);
+	IssueEntity ent2 = new IssueEntity(IssueStatus.CLOSED, IssueResolution.FIXED, id1);
+	
+	id1.getIssueEntites().add(ent1);
+	id1.getIssueEntites().add(ent2);
+	
+	em.merge(ent1);
+	em.merge(ent2);
+	*/
+	 
+	TestA a1 = new TestA();
+	a1.setName("Original");
+	TestB b1 = new TestB();
+	TestB b2 = new TestB();
+	TestB b3 = new TestB();
+	
+	a1.getMyB().add(b1);
+	a1.getMyB().add(b2);
+	a1.getMyB().add(b3);
+	b1.setMyA(a1);
+	b2.setMyA(a1);
+	b3.setMyA(a1);
+	
+	em.persist(b1);
+
 	
 	em.getTransaction().commit();
 	em.close();

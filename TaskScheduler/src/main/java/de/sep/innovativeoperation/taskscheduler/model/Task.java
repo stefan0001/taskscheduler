@@ -25,7 +25,7 @@ public class Task {
 	 * @param name Name of this Task
 	 * @param issueDrafts Set of issueDrafts
 	 */
-	public Task(String name, Set<IssueDraft> issueDrafts) {
+	public Task(String name) {
 		this.name = name;
 		this.issueDrafts = issueDrafts;
 	}
@@ -38,8 +38,8 @@ public class Task {
 	@NotNull
 	private String name;
 	
-	/*Owner of the Task <--> IssueDraft relationship*/
-	@ManyToMany(cascade = {CascadeType.ALL})
+	/*Child of the Task <--> IssueDraft relationship*/
+	@ManyToMany(mappedBy="tasks")
 	private Set<IssueDraft> issueDrafts;
 	
 

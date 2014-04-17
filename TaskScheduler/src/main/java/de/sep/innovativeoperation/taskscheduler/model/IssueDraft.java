@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -53,11 +54,11 @@ public class IssueDraft implements Serializable {
 	private IssueType issueType;
 
 	/*Child of the IssueEntity <--> IssueDraft relationship */
-	@OneToMany(mappedBy="issueDraft")
+	@OneToMany(mappedBy = "issueDraft")
 	private Set<IssueEntity> issueEntites = new HashSet<IssueEntity>();
 	
-	/*Child of the Task <--> IssueDraft relationship */
-	@ManyToMany(mappedBy="issueDrafts")
+	/*Owner of the Task <--> IssueDraft relationship */
+	@ManyToMany(cascade = {CascadeType.ALL})
 	private Set<Task> tasks = new HashSet<Task>();
 	
 
@@ -94,10 +95,6 @@ public class IssueDraft implements Serializable {
 		this.issueType = issueType;
 	}
 	
-	public void setIssueEntities(Set<IssueEntity> issueEntities){
-		this.issueEntites = issueEntities;
-		
-	}
 	
 	public void setTasks(Set<Task> tasks){
 		this.tasks = tasks;
@@ -106,6 +103,16 @@ public class IssueDraft implements Serializable {
 	
 	public Set<Task> getTasks(){
 		return this.tasks;
+	}
+
+
+	public Set<IssueEntity> getIssueEntites() {
+		return issueEntites;
+	}
+
+
+	public void setIssueEntites(Set<IssueEntity> issueEntites) {
+		this.issueEntites = issueEntites;
 	}
 
 }

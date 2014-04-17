@@ -58,7 +58,7 @@ public class IssueEntity implements Serializable {
 
 
 	/*Owner of the IssueDraft <--> IssueEntity relationship*/
-	@NotNull 
+	@NotNull
 	@ManyToOne(cascade = {CascadeType.ALL})
 	private IssueDraft issueDraft;
 	
