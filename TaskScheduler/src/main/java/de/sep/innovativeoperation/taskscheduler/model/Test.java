@@ -42,10 +42,11 @@ public class Test {
 	
 	em.merge(ent1);
 	em.merge(ent2);
-	*/
-	 
+	
+
+
 	TestA a1 = new TestA();
-	a1.setName("Original");
+	a1.setName("Lampe");
 	TestB b1 = new TestB();
 	TestB b2 = new TestB();
 	TestB b3 = new TestB();
@@ -57,10 +58,43 @@ public class Test {
 	b2.setMyA(a1);
 	b3.setMyA(a1);
 	
-	em.persist(b1);
-
+	em.merge(a1);
+	
+	
+	TestA a1 = em.find(TestA.class, 12);
+	em.remove(a1);
+	a1 = em.find(TestA.class, 13);
+	em.remove(a1);
+	a1 = em.find(TestA.class, 14);
+	em.remove(a1);
+	*/
+	
+	TestC c1 = new TestC();
+	c1.setName("Task1");
+	
+	TestC c2 = new TestC();
+	c2.setName("Task1");
+	
+	TestA a1 = new TestA();
+	a1.setName("Lampe");
+	TestA a2 = new TestA();
+	a2.setName("Flasche");
+	
+	c1.getSetA().add(a1);
+	c1.getSetA().add(a2);
+	
+	c2.getSetA().add(a1);
+	c2.getSetA().add(a2);
+	
+	a1.getSetC().add(c1);
+	a1.getSetC().add(c2);
+	a2.getSetC().add(c1);
+	a2.getSetC().add(c2);
+	
+	em.merge(c1);
 	
 	em.getTransaction().commit();
+	
 	em.close();
 	emf.close();
 		

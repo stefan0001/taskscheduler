@@ -17,7 +17,8 @@ public class TestB {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+	//Owner
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "A_ID")
 	private TestA mya = new TestA();
 	

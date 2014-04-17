@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,8 +24,12 @@ public class TestA {
 	
 	private String name;
 	
+	//Child
 	@OneToMany(mappedBy="mya", cascade = {CascadeType.ALL})
 	private Set<TestB> myb = new HashSet<TestB>();
+	
+	@ManyToMany(mappedBy = "setA", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Set<TestC> setC = new HashSet<TestC>();
 
 	public Set<TestB> getMyB() {
 		return myb;
@@ -40,6 +45,14 @@ public class TestA {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<TestC> getSetC() {
+		return setC;
+	}
+
+	public void setSetC(Set<TestC> setC) {
+		this.setC = setC;
 	}
 
 }
