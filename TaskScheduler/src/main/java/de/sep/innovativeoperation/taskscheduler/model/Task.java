@@ -1,6 +1,7 @@
 package de.sep.innovativeoperation.taskscheduler.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,11 +15,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Task {
 	
-	
-	/**
-	 * It shall not be possible to  instantiate a Task without
-	 * any reference to an IssueDraft.
-	 */
+
 	public Task() {	
 		
 	}
@@ -39,11 +36,11 @@ public class Task {
 	private int id;
 	
 	@NotNull
-	private String name = "not specified yet";
+	private String name;
 	
 	/*Owner of the Task <--> IssueDraft relationship*/
 	@ManyToMany(cascade = {CascadeType.ALL})
-	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
+	private Set<IssueDraft> issueDrafts;
 	
 
 	
