@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -20,27 +21,7 @@ import javax.validation.constraints.NotNull;
 @SuppressWarnings("serial")
 @Entity
 public class IssueEntity implements Serializable {
-	
 
-	public IssueEntity() {
-	}
-	
-	/**
-	 * 
-	 * @param issueStatus
-	 * @param issueResolution
-	 * @param issueDraft
-	 */
-	public IssueEntity(IssueStatus issueStatus,
-			IssueResolution issueResolution, IssueDraft issueDraft) {
-		this.issueStatus = issueStatus;
-		this.issueResolution = issueResolution;
-		this.issueDraft = issueDraft;
-	}
-	
-	
-	
-	
 	/*
 	 * Automatisch vortlaufende, von der Datenbank generierte ID
 	 */
@@ -58,9 +39,25 @@ public class IssueEntity implements Serializable {
 
 
 	/*Owner of the IssueDraft <--> IssueEntity relationship*/
-	@NotNull
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "ISSUEDRAFT_ID")
 	private IssueDraft issueDraft;
+	
+	public IssueEntity() {
+	}
+	
+	/**
+	 * 
+	 * @param issueStatus
+	 * @param issueResolution
+	 * @param issueDraft
+	 */
+	public IssueEntity(IssueStatus issueStatus,
+			IssueResolution issueResolution, IssueDraft issueDraft) {
+		this.issueStatus = issueStatus;
+		this.issueResolution = issueResolution;
+		this.issueDraft = issueDraft;
+	}
 	
 	public void setId(int id) {
 		this.id = id;
@@ -86,12 +83,12 @@ public class IssueEntity implements Serializable {
 		this.issueResolution = issueResolution;
 	}
 
-	public IssueDraft getIssueTemplate() {
+	public IssueDraft getIssueDraft() {
 		return issueDraft;
 	}
 	
-	public void setIssueTemplate(IssueDraft issueTemplate) {
-		this.issueDraft = issueTemplate;
+	public void setIssueDraft(IssueDraft issueDraft) {
+		this.issueDraft = issueDraft;
 	}
 
 }

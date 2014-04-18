@@ -19,26 +19,8 @@ import javax.validation.constraints.NotNull;
 @SuppressWarnings("serial")
 @Entity
 public class IssueDraft implements Serializable {
-	
-	
-	public IssueDraft() {
-	}
 
-	
-	/**
-	 * @param issuename 
-	 * @param issueDescription Description of what is to do.
-	 * @param issueType is an enum, look up the list for valid values
-	 */
-	public IssueDraft(String issuename, String issueDescription,
-			IssueType issueType) {
-		this.issueName = issuename;
-		this.issueDescription = issueDescription;
-		this.issueType = issueType;
-	}
-	
-	
-	
+	/*Auto-generated ID*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
@@ -54,13 +36,16 @@ public class IssueDraft implements Serializable {
 	private IssueType issueType;
 
 	/*Child of the IssueEntity <--> IssueDraft relationship */
-	@OneToMany(mappedBy = "issueDraft")
+	@OneToMany(mappedBy = "issueDraft", cascade = {CascadeType.ALL})
 	private Set<IssueEntity> issueEntites = new HashSet<IssueEntity>();
 	
-	/*Owner of the Task <--> IssueDraft relationship */
-	@ManyToMany(cascade = {CascadeType.ALL})
+	/*Child  of the Task <--> IssueDraft relationship */
+	@ManyToMany(mappedBy = "issueDrafts", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Set<Task> tasks = new HashSet<Task>();
 	
+	public IssueDraft(){
+		
+	}
 
 
 	public void setId(int id) {

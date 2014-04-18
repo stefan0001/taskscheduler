@@ -1,8 +1,7 @@
 package de.sep.innovativeoperation.taskscheduler.model;
 
-import java.util.ArrayList;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,7 +27,9 @@ public class TestA {
 	@OneToMany(mappedBy="mya", cascade = {CascadeType.ALL})
 	private Set<TestB> myb = new HashSet<TestB>();
 	
-	@ManyToMany(mappedBy = "setA", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToMany(mappedBy = "setA", cascade = {	CascadeType.MERGE, 
+												CascadeType.PERSIST, 
+												CascadeType.REMOVE})
 	private Set<TestC> setC = new HashSet<TestC>();
 
 	public Set<TestB> getMyB() {

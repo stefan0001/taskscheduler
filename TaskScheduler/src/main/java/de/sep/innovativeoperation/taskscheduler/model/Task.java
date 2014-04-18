@@ -15,22 +15,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Task {
 	
-
-	public Task() {	
-		
-	}
-	
-	/**
-	 * 
-	 * @param name Name of this Task
-	 * @param issueDrafts Set of issueDrafts
-	 */
-	public Task(String name) {
-		this.name = name;
-		this.issueDrafts = issueDrafts;
-	}
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -38,11 +22,21 @@ public class Task {
 	@NotNull
 	private String name;
 	
-	/*Child of the Task <--> IssueDraft relationship*/
-	@ManyToMany(mappedBy="tasks")
-	private Set<IssueDraft> issueDrafts;
+	/*Owner of the Task <--> IssueDraft relationship*/
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
 	
-
+	public Task() {	
+		
+	}
+	
+	/**
+	 * 
+	 * @param name Name of this Task
+	 */
+	public Task(String name) {
+		this.name = name;
+	}
 	
 
 	public Set<IssueDraft> getIssueDrafts() {
