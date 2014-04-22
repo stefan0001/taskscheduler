@@ -2,6 +2,9 @@ package de.sep.innovativeoperation.taskscheduler.model;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -21,8 +24,19 @@ public class Test {
 	EntityManager em = emf.createEntityManager();
 	em.getTransaction().begin();
 	
+	TimeTask tt = new TimeTask();
+	tt.setName("Boden reinigen");
+	tt.setFirstFireTime(2014, 3, 23, 9, 30);
+	tt.setIntervall(1);
 	
+	IssueDraft id = new IssueDraft();
+	id.setIssueName("Boden reinigen");
+	id.setIssueDescription("Bitte den Boden mit Shmierseife reinigen!");
+	id.setIssueType(IssueType.TASK);
 	
+	tt.getIssueDrafts().add(id);
+	
+	em.merge(tt);
 	
 	em.getTransaction().commit();
 	

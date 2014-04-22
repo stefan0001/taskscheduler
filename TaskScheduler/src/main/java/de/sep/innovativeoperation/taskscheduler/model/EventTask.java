@@ -20,9 +20,12 @@ public class EventTask {
 	@NotNull
 	private String name;
 	
-	/*Owner of the Task <--> IssueDraft relationship*/
+	/*Owner of the EventTask <--> IssueDraft relationship*/
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
+	
+	@NotNull
+	private String event;
 	
 	public EventTask() {	
 		
@@ -59,6 +62,14 @@ public class EventTask {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
 	}
 
 }
