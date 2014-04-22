@@ -1,7 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.model;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,8 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Task {
-	
+public class EventTask {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,7 +24,7 @@ public class Task {
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
 	
-	public Task() {	
+	public EventTask() {	
 		
 	}
 	
@@ -34,7 +32,7 @@ public class Task {
 	 * 
 	 * @param name Name of this Task
 	 */
-	public Task(String name) {
+	public EventTask(String name) {
 		this.name = name;
 	}
 	
@@ -62,5 +60,5 @@ public class Task {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 }

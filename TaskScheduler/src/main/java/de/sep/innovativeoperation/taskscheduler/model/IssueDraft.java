@@ -2,7 +2,6 @@ package de.sep.innovativeoperation.taskscheduler.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -39,9 +38,13 @@ public class IssueDraft implements Serializable {
 	@OneToMany(mappedBy = "issueDraft", cascade = {CascadeType.ALL})
 	private Set<IssueEntity> issueEntites = new HashSet<IssueEntity>();
 	
-	/*Child  of the Task <--> IssueDraft relationship */
+	/*Child  of the TimeTask <--> IssueDraft relationship */
 	@ManyToMany(mappedBy = "issueDrafts", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private Set<Task> tasks = new HashSet<Task>();
+	private Set<TimeTask> timeTasks = new HashSet<TimeTask>();
+	
+	/*Child  of the EventTask <--> IssueDraft relationship */
+	@ManyToMany(mappedBy = "issueDrafts", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<EventTask> eventTasks = new HashSet<EventTask>();
 	
 	public IssueDraft(){
 		
@@ -81,13 +84,22 @@ public class IssueDraft implements Serializable {
 	}
 	
 	
-	public void setTasks(Set<Task> tasks){
-		this.tasks = tasks;
+	public void setTimeTasks(Set<TimeTask> timeTasks){
+		this.timeTasks = timeTasks;
 		
 	}
 	
-	public Set<Task> getTasks(){
-		return this.tasks;
+	public Set<TimeTask> getTimeTasks(){
+		return this.timeTasks;
+	}
+	
+	public void setEventTasks(Set<EventTask> eventTasks){
+		this.eventTasks = eventTasks;
+		
+	}
+	
+	public Set<EventTask> getTasks(){
+		return this.eventTasks;
 	}
 
 

@@ -22,29 +22,8 @@ public class Test {
 	em.getTransaction().begin();
 	
 	
-	/*
-	Task t1 = new Task();
-	t1.setName("Kaffemaschine");
-	
-	IssueDraft id1 = new IssueDraft();
-	id1.setIssueType(IssueType.TASK);
-	id1.setIssueDescription("Satzbehälter der Kaffeemaschine reinigen");
-	id1.setIssueName("Kaffeemaschine: Satzbehälter");
-	
-	t1.getIssueDrafts().add(id1);
-	
-	em.merge(t1);
 	
 	
-	Iterator<IssueDraft> h1 = em.find(Task.class, 5).getIssueDrafts().iterator();
-	
-	if(h1.hasNext()){
-		IssueDraft next = h1.next();
-		if(next.getId()==3) em.find(Task.class, 5).getIssueDrafts().remove(next);
-	}
-	*/
-	
-	em.remove(em.find(IssueDraft.class, 3));
 	em.getTransaction().commit();
 	
 	em.close();
