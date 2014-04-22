@@ -24,7 +24,7 @@ public class Test {
 	EntityManager em = emf.createEntityManager();
 	em.getTransaction().begin();
 	
-	/*
+	
 	IssueDraft id = new IssueDraft();
 	id.setIssueDescription("TestEntity");
 	id.setIssueName("t");
@@ -36,7 +36,7 @@ public class Test {
 	it.setIssueDraft(id);
 	
 	em.merge(it);
-	*/
+	/*
 	
 	EventTask eventTask = new EventTask();
 	eventTask.setName("TestTask");
@@ -46,7 +46,7 @@ public class Test {
 	eventTask.setEvent(ev);
 	
 	em.merge(eventTask);
-	
+	*/
 	em.getTransaction().commit();
 	
 	em.close();
