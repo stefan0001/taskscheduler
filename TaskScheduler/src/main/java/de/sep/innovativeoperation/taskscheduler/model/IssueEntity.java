@@ -24,7 +24,7 @@ public class IssueEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int issueEntityId;
+	private int id;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -36,6 +36,7 @@ public class IssueEntity implements Serializable {
 
 
 	/*Owner of the IssueDraft <--> IssueEntity relationship*/
+	@NotNull
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "ISSUEDRAFT_ISSUEDRAFTID")
 	private IssueDraft issueDraft;
@@ -49,19 +50,18 @@ public class IssueEntity implements Serializable {
 	 * @param issueResolution
 	 * @param issueDraft
 	 */
-	public IssueEntity(IssueStatus issueStatus,
-			IssueResolution issueResolution, IssueDraft issueDraft) {
+	public IssueEntity(IssueStatus issueStatus,IssueResolution issueResolution, IssueDraft issueDraft) {
 		this.issueStatus = issueStatus;
 		this.issueResolution = issueResolution;
 		this.issueDraft = issueDraft;
 	}
 	
-	public void setId(int issueEntityId) {
-		this.issueEntityId = issueEntityId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public int getId (){
-		return issueEntityId;
+		return id;
 	}
 	
 	public IssueStatus getIssueStatus() {

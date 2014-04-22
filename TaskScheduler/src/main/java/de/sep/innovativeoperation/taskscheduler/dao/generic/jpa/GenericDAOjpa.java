@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.dao.generic;
+package de.sep.innovativeoperation.taskscheduler.dao.generic.jpa;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import de.sep.innovativeoperation.taskscheduler.dao.generic.GenericDAO;
 
 import java.lang.reflect.ParameterizedType;;
 
