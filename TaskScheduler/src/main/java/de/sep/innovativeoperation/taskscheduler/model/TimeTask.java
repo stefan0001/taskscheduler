@@ -34,7 +34,7 @@ public class TimeTask {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar firstFireTime = new GregorianCalendar();
 	
-	/*Intervall in Tage*/
+	/*Interval in days*/
 	@NotNull
 	private int intervall;
 	
