@@ -8,14 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class EventTask {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int eventTaskId;
 	
 	@NotNull
 	private String name;
@@ -24,8 +26,10 @@ public class EventTask {
 	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
 	
-	@NotNull
-	private String event;
+	/*Owner of the EventTask <--> Event relationship*/
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "EVENT_EVENTID")
+	private Event event;
 	
 	public EventTask() {	
 		
@@ -57,18 +61,18 @@ public class EventTask {
 	}
 
 	public int getId() {
-		return id;
+		return eventTaskId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int eventTaskId) {
+		this.eventTaskId = eventTaskId;
 	}
 
-	public String getEvent() {
+	public Event getEvent() {
 		return event;
 	}
 
-	public void setEvent(String event) {
+	public void setEvent(Event event) {
 		this.event = event;
 	}
 

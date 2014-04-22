@@ -22,7 +22,7 @@ public class IssueDraft implements Serializable {
 	/*Auto-generated ID*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	int issueDraftId;
 
 	@NotNull
 	private String issueName;
@@ -51,12 +51,12 @@ public class IssueDraft implements Serializable {
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int issueDraftId) {
+		this.issueDraftId = issueDraftId;
 	}
 
 	public int getId() {
-		return id;
+		return issueDraftId;
 	}
 
 	public void setIssueName(String issueName) {

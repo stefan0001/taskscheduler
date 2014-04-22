@@ -24,19 +24,28 @@ public class Test {
 	EntityManager em = emf.createEntityManager();
 	em.getTransaction().begin();
 	
-	TimeTask tt = new TimeTask();
-	tt.setName("Boden reinigen");
-	tt.setFirstFireTime(2014, 3, 23, 9, 30);
-	tt.setIntervall(1);
-	
+	/*
 	IssueDraft id = new IssueDraft();
-	id.setIssueName("Boden reinigen");
-	id.setIssueDescription("Bitte den Boden mit Shmierseife reinigen!");
-	id.setIssueType(IssueType.TASK);
+	id.setIssueDescription("TestEntity");
+	id.setIssueName("t");
+	id.setIssueType(IssueType.BUG);
 	
-	tt.getIssueDrafts().add(id);
+	IssueEntity it = new IssueEntity();
+	it.setIssueStatus(IssueStatus.NEW);
+	it.setIssueResolution(IssueResolution.FIXED);
+	it.setIssueDraft(id);
 	
-	em.merge(tt);
+	em.merge(it);
+	*/
+	
+	EventTask eventTask = new EventTask();
+	eventTask.setName("TestTask");
+	
+	Event ev = new Event();
+	ev.setName("Hallo ich bin ein event!");
+	eventTask.setEvent(ev);
+	
+	em.merge(eventTask);
 	
 	em.getTransaction().commit();
 	

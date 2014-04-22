@@ -22,12 +22,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class IssueEntity implements Serializable {
 
-	/*
-	 * Automatisch vortlaufende, von der Datenbank generierte ID
-	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int issueEntityId;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -40,7 +37,7 @@ public class IssueEntity implements Serializable {
 
 	/*Owner of the IssueDraft <--> IssueEntity relationship*/
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name = "ISSUEDRAFT_ID")
+	@JoinColumn(name = "ISSUEDRAFT_ISSUEDRAFTID")
 	private IssueDraft issueDraft;
 	
 	public IssueEntity() {
@@ -59,12 +56,12 @@ public class IssueEntity implements Serializable {
 		this.issueDraft = issueDraft;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int issueEntityId) {
+		this.issueEntityId = issueEntityId;
 	}
 	
 	public int getId (){
-		return id;
+		return issueEntityId;
 	}
 	
 	public IssueStatus getIssueStatus() {

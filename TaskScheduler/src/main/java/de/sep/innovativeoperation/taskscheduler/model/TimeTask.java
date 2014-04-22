@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 public class TimeTask {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int timeTaskId;
 	
 	@NotNull
 	private String name;
@@ -69,11 +69,11 @@ public class TimeTask {
 	}
 
 	public int getId() {
-		return id;
+		return timeTaskId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int timeTaskId) {
+		this.timeTaskId = timeTaskId;
 	}
 
 	public Calendar getFirstFireTime() {
@@ -99,5 +99,6 @@ public class TimeTask {
 	public void setIntervall(int intervall) {
 		this.intervall = intervall;
 	}
+
 	
 }

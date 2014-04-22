@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.lang.reflect.ParameterizedType;;
 
 
-public class GenericDAOjpa <T> implements GenericDAO <T>{
+public abstract class GenericDAOjpa <T> implements GenericDAO <T>{
 	
 	/**
 	 * Inject the EntityManager
