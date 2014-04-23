@@ -2,6 +2,8 @@ package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 
 import java.util.List;
 
+import javax.persistence.criteria.Root;
+
 import org.springframework.stereotype.Repository;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
@@ -17,11 +19,15 @@ public class IssueEntityDAOjpa extends GenericDAOjpa<IssueEntity> implements Iss
 		return null;
 	}
 
-	public IssueEntity findByIdWithRelations(int id) {
+
+
+	@Override
+	public void addJoinsToRoot(Root<IssueEntity> root) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
-	
+
+
 	/*Concrete JPA implementation */
 	
 

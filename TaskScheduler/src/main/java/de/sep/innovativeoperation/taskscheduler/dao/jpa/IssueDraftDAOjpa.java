@@ -20,33 +20,7 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements IssueDraftDAO {
 	
 
-	@Transactional
-	public IssueDraft findByIdWithRelations(int id) {
-		// CREATE QUERY AND EXECUTE THE QUERY
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		CriteriaQuery<IssueDraft> query = criteriaBuilder.createQuery(IssueDraft.class);
-		Root<IssueDraft> root = query.from(IssueDraft.class);
-		
-		//Fetch Entities and join them
-		root.fetch("issueEntites", JoinType.LEFT);
-		//Fetch EventTasks and join them
-		root.fetch("eventTasks", JoinType.LEFT);
-		//Fetch EventTasks and join them
-		root.fetch("timeTasks", JoinType.LEFT);
-		
-		//Search for id
-		query.where(criteriaBuilder.equal(root.get("id"), id));
-		
-		
-		TypedQuery<IssueDraft> result = em.createQuery(query);
-		
-		
-		if(result.getResultList().size() > 0 ){
-			return result.getResultList().get(0);
-		}
-		//no result was found return null
-		return null;
-	}
+
 	
 	@Transactional
 	public List<IssueDraft> fetchAllWithRelations(){
@@ -55,7 +29,7 @@ public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements Issue
 		CriteriaQuery<IssueDraft> query = criteriaBuilder.createQuery(IssueDraft.class);
 		Root<IssueDraft> root = query.from(IssueDraft.class);
 		//Fetch Entities and join them
-		root.fetch("issueEntites", JoinType.LEFT);
+		root.fetch("issueEntities", JoinType.LEFT);
 		//Fetch EventTasks and join them
 		root.fetch("eventTasks", JoinType.LEFT);
 		//Fetch EventTasks and join them
@@ -65,6 +39,17 @@ public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements Issue
 		TypedQuery<IssueDraft> result = em.createQuery(query);
 		
 		return result.getResultList();
+		
+	}
+
+	@Override
+	public void addJoinsToRoot(Root<IssueDraft> root) {
+		//Fetch Entities and join them
+		root.fetch("issueEntities", JoinType.LEFT);
+		//Fetch EventTasks and join them
+		root.fetch("eventTasks", JoinType.LEFT);
+		//Fetch EventTasks and join them
+		root.fetch("timeTasks", JoinType.LEFT);
 		
 	}
 

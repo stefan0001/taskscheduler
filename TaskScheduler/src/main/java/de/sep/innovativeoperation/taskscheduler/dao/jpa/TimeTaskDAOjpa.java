@@ -2,6 +2,8 @@ package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 
 import java.util.List;
 
+import javax.persistence.criteria.Root;
+
 import org.springframework.stereotype.Repository;
 
 import de.sep.innovativeoperation.taskscheduler.dao.TimeTaskDAO;
@@ -18,8 +20,12 @@ public class TimeTaskDAOjpa extends GenericDAOjpa<TimeTask> implements TimeTaskD
 	}
 	/*Concrete JPA implementation */
 
-	public TimeTask findByIdWithRelations(int id) {
+
+	@Override
+	public void addJoinsToRoot(Root<TimeTask> root) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
+
+
 }

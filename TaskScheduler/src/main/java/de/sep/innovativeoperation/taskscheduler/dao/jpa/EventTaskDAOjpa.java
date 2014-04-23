@@ -2,6 +2,8 @@ package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 
 import java.util.List;
 
+import javax.persistence.criteria.Root;
+
 import org.springframework.stereotype.Repository;
 
 import de.sep.innovativeoperation.taskscheduler.dao.EventTaskDAO;
@@ -18,9 +20,12 @@ public class EventTaskDAOjpa extends GenericDAOjpa<EventTask> implements EventTa
 		return null;
 	}
 
-	public EventTask findByIdWithRelations(int id) {
+
+	@Override
+	public void addJoinsToRoot(Root<EventTask> root) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
+
 
 }

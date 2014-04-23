@@ -25,7 +25,7 @@ public class TestIssueDraftDAO {
 	public void testOneIssueDraft() {
 
 		System.out.println("-----------------------------------------");
-		IssueDraft id = issueDraftDAO.findById(1);
+		IssueDraft id = issueDraftDAO.findByIdWithRelations(1);
 		if(id != null){
 			Iterator<IssueEntity> it = id.getIssueEntities().iterator();
 			it.next().getIssueDraft();
@@ -38,7 +38,7 @@ public class TestIssueDraftDAO {
 	public void testIssueDraftList() {
 
 		System.out.println("-----------------------------------------");
-		List<IssueDraft> ids = issueDraftDAO.fetchAll();
+		List<IssueDraft> ids = issueDraftDAO.fetchAllWithRelations();
 		
 		for(int i = 0; i < ids.size(); i++){
 			IssueDraft id = ids.get(i);
