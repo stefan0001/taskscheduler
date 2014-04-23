@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Event {
 	@NotNull
 	private String name;
 
-	@OneToMany(mappedBy = "event", cascade = {CascadeType.ALL})
+	@OneToMany( mappedBy = "event", cascade = {CascadeType.ALL})
 	private Set<EventTask> eventTasks = new HashSet<EventTask>();
 	
 	

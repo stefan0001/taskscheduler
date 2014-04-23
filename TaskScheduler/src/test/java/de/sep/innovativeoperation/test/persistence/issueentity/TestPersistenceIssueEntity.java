@@ -31,7 +31,7 @@ public class TestPersistenceIssueEntity {
 
 
 
-	@Test
+
 	public void testEntity() {
 		IssueDraft id = new IssueDraft("TEST", "TEST", IssueType.BUG);
 		

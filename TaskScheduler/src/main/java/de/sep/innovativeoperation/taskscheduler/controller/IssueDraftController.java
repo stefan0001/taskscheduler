@@ -27,7 +27,6 @@ public class IssueDraftController {
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<IssueDraft> getIssueDrafts() {
 		List<IssueDraft> list = issueDraftDAO.fetchAll();
-		System.out.println( list.get(0).getIssueEntites().size() );
 		return list;
 	}
 	

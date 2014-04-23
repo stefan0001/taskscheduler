@@ -17,6 +17,7 @@ public interface GenericDAO <T> {
 	public List<T> fetchAll();
 	public List<T> fetchAllWithRelations();
 
+
 	
 	
 	//DELETE

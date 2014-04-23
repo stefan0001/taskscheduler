@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class IssueDraft implements Serializable {
 
 	/*Child of the IssueEntity <--> IssueDraft relationship */
 	@OneToMany(mappedBy = "issueDraft", cascade = {CascadeType.ALL})
-	private Set<IssueEntity> issueEntites = new HashSet<IssueEntity>();
+	private Set<IssueEntity> issueEntities = new HashSet<IssueEntity>();
 	
 
 	/*Child  of the TimeTask <--> IssueDraft relationship */
@@ -115,13 +116,13 @@ public class IssueDraft implements Serializable {
 	}
 
 	@JsonIgnore
-	public Set<IssueEntity> getIssueEntites() {
-		return issueEntites;
+	public Set<IssueEntity> getIssueEntities() {
+		return issueEntities;
 	}
 
 	@JsonIgnore
-	public void setIssueEntites(Set<IssueEntity> issueEntites) {
-		this.issueEntites = issueEntites;
+	public void setIssueEntities(Set<IssueEntity> issueEntites) {
+		this.issueEntities = issueEntites;
 	}
 
 }
