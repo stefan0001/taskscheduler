@@ -32,7 +32,7 @@ public class IssueEntityController {
 	
 	@RequestMapping(method = RequestMethod.DELETE)
 	public @ResponseBody void delteIssueEntities() {
-		issueEntityService.deleteAll();
+		issueEntityService.deleteAllIssueEntities();
 	}
 
 }

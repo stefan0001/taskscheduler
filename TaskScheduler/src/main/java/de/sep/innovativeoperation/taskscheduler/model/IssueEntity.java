@@ -24,7 +24,7 @@ public class IssueEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int issueEntityId;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -56,12 +56,12 @@ public class IssueEntity implements Serializable {
 		this.issueDraft = issueDraft;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setIssueEntityId(int issueEntityId) {
+		this.issueEntityId = issueEntityId;
 	}
 	
-	public int getId (){
-		return id;
+	public int getIssueEntityId (){
+		return issueEntityId;
 	}
 	
 	public IssueStatus getIssueStatus() {

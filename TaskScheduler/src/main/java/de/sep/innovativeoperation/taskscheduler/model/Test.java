@@ -1,13 +1,11 @@
 package de.sep.innovativeoperation.taskscheduler.model;
 
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -25,18 +23,6 @@ public class Test {
 	em.getTransaction().begin();
 	
 	
-	IssueDraft id = new IssueDraft();
-	id.setIssueDescription("TestEntity");
-	id.setIssueName("t");
-	id.setIssueType(IssueType.BUG);
-	
-	IssueEntity it = new IssueEntity();
-	it.setIssueStatus(IssueStatus.NEW);
-	it.setIssueResolution(IssueResolution.FIXED);
-	it.setIssueDraft(id);
-	
-	em.merge(it);
-	/*
 	
 	EventTask eventTask = new EventTask();
 	eventTask.setName("TestTask");
@@ -45,8 +31,10 @@ public class Test {
 	ev.setName("Hallo ich bin ein event!");
 	eventTask.setEvent(ev);
 	
+	
+	
 	em.merge(eventTask);
-	*/
+	
 	em.getTransaction().commit();
 	
 	em.close();

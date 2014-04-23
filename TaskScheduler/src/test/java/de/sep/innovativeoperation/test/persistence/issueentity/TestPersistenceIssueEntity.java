@@ -40,9 +40,9 @@ public class TestPersistenceIssueEntity {
 		
 
 
-		IssueEntity ie2 = issueEntityDAO.findById( ie.getId() );
-		System.out.println(ie.getId());
-		assertTrue(ie.getId() == ie2.getId());
+		IssueEntity ie2 = issueEntityDAO.findById( ie.getIssueEntityId() );
+		System.out.println(ie.getIssueEntityId());
+		assertTrue(ie.getIssueEntityId() == ie2.getIssueEntityId());
 
 	}
 }

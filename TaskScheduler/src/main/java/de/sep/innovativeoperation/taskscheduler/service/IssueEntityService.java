@@ -11,10 +11,9 @@ import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 
 /**
- * Logic for IssueEntity management
+ * Business logic for IssueEntity management
  * 
- * @author Stefan
- * 
+ * @author InnovativeOperation
  */
 @Service
 public class IssueEntityService {
@@ -26,17 +25,20 @@ public class IssueEntityService {
 	
 	public IssueEntity getIssueEntityById(int id){
 		IssueEntity entity;
-		
 		entity = issueEntityDAO.findById(id);
-		
 		return entity;
 	}
+	
 	
 	public List<IssueEntity> getAllIssueEntities(){
 		return issueEntityDAO.fetchAll();
 	}
 	
-	public void deleteAll(){
+	public void deleteById(int id){
+		issueEntityDAO.deleteById(id);
+	}
+	
+	public void deleteAllIssueEntities(){
 		issueEntityDAO.deleteAll();
 	}
 	

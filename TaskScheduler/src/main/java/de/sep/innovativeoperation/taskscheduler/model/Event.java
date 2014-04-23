@@ -11,6 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+
+/**
+ * 
+ * @author InnovativeOperation
+ * Represents a possible situation, e.g. "New employee arrives"
+ * 
+ *
+ */
 @Entity
 public class Event {
 	
