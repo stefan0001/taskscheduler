@@ -1,5 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,8 @@ public class EventTaskDAOjpa extends GenericDAOjpa<EventTask> implements EventTa
 
 	@Override
 	protected void addJoinsToRoot(Root<EventTask> root) {
-		// TODO Auto-generated method stub
-		
+		// Fetch Entities and join them
+		root.fetch("issueDrafts", JoinType.LEFT);
 	}
 
 

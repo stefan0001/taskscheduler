@@ -1,5 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,9 @@ public class TimeTaskDAOjpa extends GenericDAOjpa<TimeTask> implements TimeTaskD
 
 	@Override
 	protected void addJoinsToRoot(Root<TimeTask> root) {
+		// Fetch Entities and join them
+		root.fetch("issueDrafts", JoinType.LEFT);
 
-		
 	}
 
 
