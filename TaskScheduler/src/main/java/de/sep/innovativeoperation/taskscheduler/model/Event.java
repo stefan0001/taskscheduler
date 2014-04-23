@@ -13,10 +13,8 @@ import javax.validation.constraints.NotNull;
 
 
 /**
- * 
- * @author InnovativeOperation
  * Represents a possible situation, e.g. "New employee arrives"
- * 
+ * @author InnovativeOperation
  *
  */
 @Entity

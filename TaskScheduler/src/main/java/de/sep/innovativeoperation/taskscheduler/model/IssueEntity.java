@@ -14,9 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
+ * Represents concrete Issues which has been created by Tasks.
+ * Sets settings users can change.
  * 
- * @author Stefan
- * 
+ * @author innovative Operation
  */
 @SuppressWarnings("serial")
 @Entity

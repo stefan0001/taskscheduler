@@ -15,11 +15,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 
+/**
+ * A draft for Issues. Sets basic, unchangeable informations of future Issues
+ * which have been produced by Tasks.
+ * 
+ * @author Innovative Operation
+ *
+ */
 @SuppressWarnings("serial")
 @Entity
-
 public class IssueDraft implements Serializable {
 
 	/*Auto-generated ID*/
@@ -95,31 +100,31 @@ public class IssueDraft implements Serializable {
 		this.issueType = issueType;
 	}
 	
-	@JsonIgnore
+	
 	public void setTimeTasks(Set<TimeTask> timeTasks){
 		this.timeTasks = timeTasks;
 		
 	}
-	@JsonIgnore
+	
 	public Set<TimeTask> getTimeTasks(){
 		return this.timeTasks;
 	}
-	@JsonIgnore
+	
 	public void setEventTasks(Set<EventTask> eventTasks){
 		this.eventTasks = eventTasks;
 		
 	}
-	@JsonIgnore
+	
 	public Set<EventTask> getTasks(){
 		return this.eventTasks;
 	}
 
-	@JsonIgnore
+	
 	public Set<IssueEntity> getIssueEntites() {
 		return issueEntites;
 	}
 
-	@JsonIgnore
+	
 	public void setIssueEntites(Set<IssueEntity> issueEntites) {
 		this.issueEntites = issueEntites;
 	}

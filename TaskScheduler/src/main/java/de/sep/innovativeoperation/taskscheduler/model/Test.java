@@ -31,8 +31,6 @@ public class Test {
 	ev.setName("Hallo ich bin ein event!");
 	eventTask.setEvent(ev);
 	
-	
-	
 	em.merge(eventTask);
 	
 	em.getTransaction().commit();

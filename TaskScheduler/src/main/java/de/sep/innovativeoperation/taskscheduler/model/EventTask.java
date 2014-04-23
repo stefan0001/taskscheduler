@@ -13,6 +13,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 
+ * @author Innovative Operation
+ * A Task which creates issues when a specific event was triggered.
+ */
 @Entity
 public class EventTask {
 	@Id
