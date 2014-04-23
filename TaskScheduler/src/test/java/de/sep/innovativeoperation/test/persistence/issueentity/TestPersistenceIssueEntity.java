@@ -19,8 +19,8 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueStatus;
 import de.sep.innovativeoperation.taskscheduler.model.IssueType;
 
 @TransactionConfiguration(defaultRollback = false)
-@ContextConfiguration({ "classpath:applicationContext.xml" })
 @Transactional
+@ContextConfiguration({ "classpath:applicationContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestPersistenceIssueEntity {
 

@@ -23,10 +23,12 @@ public class IssueDraftController {
 
 	@Autowired
 	private IssueDraftDAO issueDraftDAO;
-
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<IssueDraft> getIssueDrafts() {
-		return issueDraftDAO.fetchAll();
+		List<IssueDraft> list = issueDraftDAO.fetchAll();
+		System.out.println( list.get(0).getIssueEntites().size() );
+		return list;
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)

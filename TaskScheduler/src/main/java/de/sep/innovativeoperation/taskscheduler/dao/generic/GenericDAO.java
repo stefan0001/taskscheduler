@@ -12,8 +12,11 @@ public interface GenericDAO <T> {
 	
 	//READ
 	public T findById(int id);
+	public T findByIdWithRelations(int id);
 	
 	public List<T> fetchAll();
+	public List<T> fetchAllWithRelations();
+
 	
 	
 	//DELETE

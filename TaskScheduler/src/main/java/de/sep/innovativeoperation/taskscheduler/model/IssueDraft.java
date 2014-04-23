@@ -110,7 +110,7 @@ public class IssueDraft implements Serializable {
 		
 	}
 	@JsonIgnore
-	public Set<EventTask> getTasks(){
+	public Set<EventTask> getEventTasks(){
 		return this.eventTasks;
 	}
 
