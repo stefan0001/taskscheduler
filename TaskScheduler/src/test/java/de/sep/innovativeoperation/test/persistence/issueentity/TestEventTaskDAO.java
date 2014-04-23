@@ -21,7 +21,7 @@
 //	@Autowired
 //	EventTaskDAO eventTaskDAO;
 //
-//
+//	@Test
 //	public void testOneEvent() {
 //
 //		System.out.println("-----------------------------------------");

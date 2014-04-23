@@ -29,18 +29,14 @@ public class TestPersistenceIssueEntity {
 	@Autowired
 	protected IssueDraftDAO issueDraftDAO;
 
-
-
 	@Test
 	public void testEntity() {
 		IssueDraft id = new IssueDraft("TEST", "TEST", IssueType.BUG);
-		
-		IssueEntity ie = new IssueEntity(IssueStatus.NEW, IssueResolution.DONE, id);
+
+		IssueEntity ie = new IssueEntity(IssueStatus.NEW, IssueResolution.DONE,id);
 		ie = issueEntityDAO.save(ie);
-		
 
-
-		IssueEntity ie2 = issueEntityDAO.findById( ie.getId() );
+		IssueEntity ie2 = issueEntityDAO.findById(ie.getId());
 		System.out.println(ie.getId());
 		assertTrue(ie.getId() == ie2.getId());
 

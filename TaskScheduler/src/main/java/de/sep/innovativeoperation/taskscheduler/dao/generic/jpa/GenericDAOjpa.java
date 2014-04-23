@@ -1,5 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.dao.generic.jpa;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,16 +11,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.generic.GenericDAO;
 import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 
-import java.lang.reflect.ParameterizedType;;
-
-
+@Repository
 public abstract class GenericDAOjpa <T> implements GenericDAO <T>{
 	
 	/**
@@ -74,15 +73,15 @@ public abstract class GenericDAOjpa <T> implements GenericDAO <T>{
 
 	}
 	
-	public abstract void addJoinsToRoot(Root<T> root);
+	
+	
+	protected abstract void addJoinsToRoot(Root<T> root);
 	
 	
 	
 	//TODO
 	@Transactional
 	public T findByIdWithRelations(int id) {
-
-		
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		
 		CriteriaQuery<T> query = criteriaBuilder.createQuery(persistentClass);
@@ -90,7 +89,6 @@ public abstract class GenericDAOjpa <T> implements GenericDAO <T>{
 		
 		//ADD ALL JOINS
 		this.addJoinsToRoot(root);
-
 		
 		//Search for id
 		query.where(criteriaBuilder.equal(root.get("id"), id));
@@ -104,6 +102,21 @@ public abstract class GenericDAOjpa <T> implements GenericDAO <T>{
 		}
 		//no result was found return null
 		return null;
+	}
+	
+	//TODo
+	@Transactional
+	public List<T> fetchAllWithRelations(){
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<T> query = criteriaBuilder.createQuery(persistentClass);
+		Root<T> root = query.from(persistentClass);
+		
+		//ADD ALL JOINS
+		this.addJoinsToRoot(root);
+		
+		TypedQuery<T> result = em.createQuery(query);
+		
+		return result.getResultList();
 	}
 	
 	

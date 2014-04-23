@@ -2,9 +2,9 @@ package de.sep.innovativeoperation.taskscheduler.dao.generic;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public interface GenericDAO <T> {
 	//CREATE
 	public T save(T entity);
