@@ -41,7 +41,11 @@ public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements Issue
 		TypedQuery<IssueDraft> result = em.createQuery(query);
 		
 		
-		return result.getSingleResult();
+		if(result.getResultList().size() > 0 ){
+			return result.getResultList().get(0);
+		}
+		//no result was found return null
+		return null;
 	}
 	
 	@Transactional

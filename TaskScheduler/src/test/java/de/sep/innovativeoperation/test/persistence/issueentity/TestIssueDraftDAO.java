@@ -1,5 +1,7 @@
 package de.sep.innovativeoperation.test.persistence.issueentity;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +20,24 @@ public class TestIssueDraftDAO {
 	IssueDraftDAO issueDraftDAO;
 
 	@Test
-	public void test() {
+	public void testOneIssueDraft() {
 
 		System.out.println("-----------------------------------------");
 		IssueDraft id = issueDraftDAO.findByIdWithRelations(1);
 		if(id != null){
 			System.out.println(id.getIssueEntites().size());
+		}
+		System.out.println("-----------------------------------------");
+	}
+	
+	public void testIssueDraftList() {
+
+		System.out.println("-----------------------------------------");
+		List<IssueDraft> ids = issueDraftDAO.fetchAllWithRelations();
+		
+		for(int i = 0; i < ids.size(); i++){
+			IssueDraft id = ids.get(i);
+			System.out.println(id.getIssueEntites().size() );
 		}
 		System.out.println("-----------------------------------------");
 	}
