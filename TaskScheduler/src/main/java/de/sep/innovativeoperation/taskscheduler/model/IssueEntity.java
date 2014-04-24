@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 
  * @author Stefan
@@ -20,6 +22,7 @@ import javax.validation.constraints.NotNull;
  */
 @SuppressWarnings("serial")
 @Entity
+@JsonIgnoreProperties({"issueDraft"})
 public class IssueEntity implements Serializable {
 
     @Id

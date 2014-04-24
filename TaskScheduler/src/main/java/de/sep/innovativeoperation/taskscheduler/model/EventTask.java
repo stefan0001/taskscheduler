@@ -13,7 +13,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"issueDrafts","event"})
 public class EventTask {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

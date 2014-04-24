@@ -16,7 +16,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"issueDrafts"})
 public class TimeTask {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
