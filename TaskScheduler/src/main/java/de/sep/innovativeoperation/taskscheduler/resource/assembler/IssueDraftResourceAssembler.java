@@ -21,8 +21,10 @@ public class IssueDraftResourceAssembler extends AbstractAssembler<IssueDraft, I
 
 	public IssueDraftResource toResource(IssueDraft issueDraft) {
 		IssueDraftResource resource = new IssueDraftResource(issueDraft);
-	
-		resource.add(linkTo(methodOn(IssueDraftController.class).getIssueEntitiesforIssueDrafts(issueDraft.getId())).withRel("issueentities"));
+		//self link
+		resource.add(linkTo(methodOn(IssueDraftController.class).getIssueEntitiesforIssueDrafts(issueDraft.getId())).withSelfRel());
+		//link to issueentities
+		resource.add(linkTo(methodOn(IssueDraftController.class).getIssueDraft(issueDraft.getId())).withRel("issueentities"));
 		
 		return resource;
 	}

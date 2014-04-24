@@ -1,5 +1,8 @@
 package de.sep.innovativeoperation.taskscheduler.resource.assembler;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import org.springframework.stereotype.Component;
 
 import de.sep.innovativeoperation.taskscheduler.controller.IssueEntityController;
@@ -20,6 +23,8 @@ public class IssueEntityResourceAssembler extends AbstractAssembler<IssueEntity,
 
 	public IssueEntityResource toResource(IssueEntity entity) {
 		IssueEntityResource resource = new IssueEntityResource(entity);
+		//self link
+		resource.add(linkTo(methodOn(IssueEntityController.class).getIssueEntity(entity.getId())).withSelfRel());
 		
 		return resource;
 	}
