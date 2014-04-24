@@ -2,20 +2,27 @@ package de.sep.innovativeoperation.taskscheduler.dao.generic;
 
 import java.util.List;
 
-/**
- * 
- * @author Stefan
- * 
- * @param <E>
- */
+import org.springframework.stereotype.Repository;
 
-public interface GenericDAO<E> {
+@Repository
+public interface GenericDAO <T> {
+	//CREATE
+	public T save(T entity);
+	
+	
+	//READ
+	public T findById(int id);
+	public T findByIdWithRelations(int id);
+	
+	public List<T> fetchAll();
+	public List<T> fetchAllWithRelations();
 
-	public E findById(int id);
 
-	public E save(E entity);
-
-	public List<E> fetchAll();
-
+	
+	
+	//DELETE
+	public void deleteById(int id);
+	
 	public void deleteAll();
+	
 }

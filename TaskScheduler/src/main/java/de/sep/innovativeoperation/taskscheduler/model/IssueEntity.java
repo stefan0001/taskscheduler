@@ -2,14 +2,18 @@ package de.sep.innovativeoperation.taskscheduler.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 
@@ -18,7 +22,9 @@ import javax.validation.constraints.NotNull;
  */
 @SuppressWarnings("serial")
 @Entity
+@JsonIgnoreProperties({"issueDraft"})
 public class IssueEntity implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -31,25 +37,28 @@ public class IssueEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private IssueResolution issueResolution;
 
+
+	/*Owner of the IssueDraft <--> IssueEntity relationship*/
 	@NotNull
-	@ManyToOne
-	private IssueTemplate issueTemplate;
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "ISSUEDRAFT_ISSUEDRAFTID")
+	private IssueDraft issueDraft;
 	
-
-
-	/**
-	 * Blank Constructor for this IssueEntity
-	 */
 	public IssueEntity() {
 	}
-
-	public IssueEntity(IssueStatus issueStatus,
-			IssueResolution issueResolution, IssueTemplate issueTemplate) {
+	
+	/**
+	 * 
+	 * @param issueStatus
+	 * @param issueResolution
+	 * @param issueDraft
+	 */
+	public IssueEntity(IssueStatus issueStatus,IssueResolution issueResolution, IssueDraft issueDraft) {
 		this.issueStatus = issueStatus;
 		this.issueResolution = issueResolution;
-		this.issueTemplate = issueTemplate;
+		this.issueDraft = issueDraft;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -74,8 +83,12 @@ public class IssueEntity implements Serializable {
 		this.issueResolution = issueResolution;
 	}
 
-	public IssueTemplate getIssueTemplate() {
-		return issueTemplate;
+	public IssueDraft getIssueDraft() {
+		return issueDraft;
+	}
+	
+	public void setIssueDraft(IssueDraft issueDraft) {
+		this.issueDraft = issueDraft;
 	}
 
 }
