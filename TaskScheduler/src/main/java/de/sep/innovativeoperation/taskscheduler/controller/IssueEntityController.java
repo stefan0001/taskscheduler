@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
+import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
+import de.sep.innovativeoperation.taskscheduler.resource.assembler.IssueEntityResourceAssembler;
+import de.sep.innovativeoperation.taskscheduler.resource.model.IssueEntityResource;
 
 /**
  * Controller for CRUD operations on Issue Entities
@@ -24,17 +25,20 @@ import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 public class IssueEntityController {
 
 	@Autowired
-	private IssueEntityService issueEntityService;
+	private IssueEntityDAO issueEntityDAO;
+	
+	@Autowired
+	private IssueEntityResourceAssembler issueEntityResourceAssembler;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<IssueEntity> getIssueEntities() {
-		return issueEntityService.getAllIssueEntities();
+	public @ResponseBody List<IssueEntityResource> getIssueEntities() {
+		return issueEntityResourceAssembler.toResources(issueEntityDAO.fetchAll());
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.DELETE)
 	public @ResponseBody void delteIssueEntities() {
-		issueEntityService.deleteAll();
+		
 	}
 
 }

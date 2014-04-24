@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,11 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
 @Entity
-
+@JsonIgnoreProperties({"issueEntities","timeTasks","eventTasks"})
 public class IssueDraft implements Serializable {
 
 	/*Auto-generated ID*/
@@ -96,31 +95,31 @@ public class IssueDraft implements Serializable {
 		this.issueType = issueType;
 	}
 	
-	@JsonIgnore
+
 	public void setTimeTasks(Set<TimeTask> timeTasks){
 		this.timeTasks = timeTasks;
 		
 	}
-	@JsonIgnore
+
 	public Set<TimeTask> getTimeTasks(){
 		return this.timeTasks;
 	}
-	@JsonIgnore
+
 	public void setEventTasks(Set<EventTask> eventTasks){
 		this.eventTasks = eventTasks;
 		
 	}
-	@JsonIgnore
+
 	public Set<EventTask> getEventTasks(){
 		return this.eventTasks;
 	}
 
-	@JsonIgnore
+
 	public Set<IssueEntity> getIssueEntities() {
 		return issueEntities;
 	}
 
-	@JsonIgnore
+
 	public void setIssueEntities(Set<IssueEntity> issueEntites) {
 		this.issueEntities = issueEntites;
 	}

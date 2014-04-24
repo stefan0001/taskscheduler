@@ -1,13 +1,18 @@
 package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
 import de.sep.innovativeoperation.taskscheduler.dao.generic.jpa.GenericDAOjpa;
 import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
+import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 
 @Repository
 public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements IssueDraftDAO {
@@ -22,4 +27,18 @@ public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements Issue
 
 	}
 
+	@Transactional
+	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int id) {
+		IssueDraft issueDraft = this.findByIdWithRelations(id);
+		
+		if( issueDraft != null ){
+			
+			return issueDraft.getIssueEntities();
+		}
+		
+		return new HashSet<IssueEntity>();
+
+	}
+
+	
 }
