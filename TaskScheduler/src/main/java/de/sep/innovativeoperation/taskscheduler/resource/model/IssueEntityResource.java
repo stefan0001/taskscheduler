@@ -9,5 +9,7 @@ public class IssueEntityResource extends AbstractResource<IssueEntity> {
 		super(content);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 }

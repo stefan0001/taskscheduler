@@ -6,6 +6,7 @@ public abstract class AbstractResource<T> extends ResourceSupport {
 
 	protected T content;
 
+
 	public AbstractResource(T content) {
 		this.content = content;
 	}
@@ -13,4 +14,6 @@ public abstract class AbstractResource<T> extends ResourceSupport {
 	public T getContent() {
 		return content;
 	}
+	
+
 }

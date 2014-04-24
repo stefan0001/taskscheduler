@@ -8,6 +8,8 @@ public abstract class AbstractAssembler<T,R extends ResourceSupport> extends Res
 	public AbstractAssembler(Class<?> controllerClass, Class<R> resourceType) {
 		super(controllerClass, resourceType);
 	}
+	
+	
 
 
 
