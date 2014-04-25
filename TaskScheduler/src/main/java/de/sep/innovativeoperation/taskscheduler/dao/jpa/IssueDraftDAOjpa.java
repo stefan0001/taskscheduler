@@ -2,10 +2,12 @@ package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 
 import java.util.Set;
 
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;

@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,7 @@ public abstract class GenericDAOjpa <T> implements GenericDAO <T>{
 	 */
 	private final Class<T> persistentClass;
 
+	@SuppressWarnings("unchecked")
 	protected GenericDAOjpa() {
 		// Initial the persistent class
 		ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
@@ -42,7 +44,7 @@ public abstract class GenericDAOjpa <T> implements GenericDAO <T>{
 	}
 
 
-	@Transactional(propagation = Propagation.REQUIRED)
+	@Transactional
 	public T save(T entity) {
 		return em.merge(entity);
 

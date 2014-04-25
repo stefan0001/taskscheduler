@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.resource;
+package de.sep.innovativeoperation.taskscheduler.model.resource.assembler;
 
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;

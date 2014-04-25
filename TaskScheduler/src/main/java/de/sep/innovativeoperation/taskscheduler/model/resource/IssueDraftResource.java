@@ -1,7 +1,6 @@
-package de.sep.innovativeoperation.taskscheduler.resource.model;
+package de.sep.innovativeoperation.taskscheduler.model.resource;
 
 import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.resource.AbstractResource;
 
 
 public class IssueDraftResource extends AbstractResource<IssueDraft>{

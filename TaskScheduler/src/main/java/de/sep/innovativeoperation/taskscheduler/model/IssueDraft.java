@@ -17,10 +17,13 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @SuppressWarnings("serial")
 @Entity
 @JsonIgnoreProperties({"issueEntities","timeTasks","eventTasks"})
 public class IssueDraft implements Serializable {
+
+
 
 	/*Auto-generated ID*/
 	@Id

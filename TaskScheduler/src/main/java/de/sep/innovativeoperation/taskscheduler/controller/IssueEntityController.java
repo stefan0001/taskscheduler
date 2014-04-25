@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.ResourceNotFoundExecption;
+import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.resource.assembler.IssueEntityResourceAssembler;
-import de.sep.innovativeoperation.taskscheduler.resource.model.IssueEntityResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEntityResourceAssembler;
 
 /**
  * Controller for CRUD operations on Issue Entities
@@ -52,7 +52,7 @@ public class IssueEntityController {
 		IssueEntity issueEntity = issueEntityDAO.findById(id);
 		
 		if(issueEntity == null){
-			throw new ResourceNotFoundExecption();
+			throw new ResourceNotFoundException();
 		}
 		
 		return issueEntityResourceAssembler.toResource( issueEntity );

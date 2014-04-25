@@ -1,7 +1,6 @@
-package de.sep.innovativeoperation.taskscheduler.resource.model;
+package de.sep.innovativeoperation.taskscheduler.model.resource;
 
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.resource.AbstractResource;
 
 public class IssueEntityResource extends AbstractResource<IssueEntity> {
 

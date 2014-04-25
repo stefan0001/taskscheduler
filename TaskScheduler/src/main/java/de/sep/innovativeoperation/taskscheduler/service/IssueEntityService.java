@@ -1,11 +1,9 @@
 package de.sep.innovativeoperation.taskscheduler.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
@@ -23,7 +21,7 @@ public class IssueEntityService {
 	private IssueEntityDAO issueEntityDAO;
 	
 	
-	
+
 	public IssueEntity getIssueEntityById(int id){
 		IssueEntity entity;
 		

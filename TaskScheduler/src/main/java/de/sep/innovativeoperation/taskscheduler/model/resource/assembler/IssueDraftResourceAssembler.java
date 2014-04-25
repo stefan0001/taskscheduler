@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.resource.assembler;
+package de.sep.innovativeoperation.taskscheduler.model.resource.assembler;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 
 import de.sep.innovativeoperation.taskscheduler.controller.IssueDraftController;
 import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.resource.AbstractAssembler;
-import de.sep.innovativeoperation.taskscheduler.resource.model.IssueDraftResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 
 @Component
 public class IssueDraftResourceAssembler extends AbstractAssembler<IssueDraft, IssueDraftResource> {

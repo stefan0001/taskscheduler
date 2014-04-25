@@ -1,6 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -12,18 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.ResourceNotFoundExecption;
+import de.sep.innovativeoperation.taskscheduler.exception.http.BadRequestException;
+import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
+import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
 import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.resource.assembler.IssueDraftResourceAssembler;
-import de.sep.innovativeoperation.taskscheduler.resource.assembler.IssueEntityResourceAssembler;
-import de.sep.innovativeoperation.taskscheduler.resource.model.IssueDraftResource;
-import de.sep.innovativeoperation.taskscheduler.resource.model.IssueEntityResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueDraftResourceAssembler;
+import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEntityResourceAssembler;
+import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
 
 /**
  * Controller for CRUD operations on Issue Templates
@@ -37,6 +35,9 @@ public class IssueDraftController {
 
 	@Autowired
 	private IssueDraftDAO issueDraftDAO;
+	
+	@Autowired
+	private IssueDraftService issueDraftService;
 	
 	@Autowired
 	private IssueDraftResourceAssembler issueDraftResourceAssembler;
@@ -65,7 +66,7 @@ public class IssueDraftController {
 	public @ResponseBody IssueDraftResource getIssueDraft( @PathVariable("issuedraftid") int id) {
 		IssueDraft issueDraft = issueDraftDAO.findById(id);
 		if(issueDraft == null){
-			throw new ResourceNotFoundExecption();
+			throw new ResourceNotFoundException();
 		}
 
 		return issueDraftResourceAssembler.toResource(issueDraft);
@@ -81,7 +82,7 @@ public class IssueDraftController {
 	public @ResponseBody List<IssueEntityResource> getIssueEntitiesforIssueDrafts( @PathVariable("issuedraftid") int id) {
 		Set<IssueEntity> issueEntities = issueDraftDAO.getIssueEntitiesForIssueDraft(id);
 		if(issueEntities == null){
-			throw new ResourceNotFoundExecption();
+			throw new ResourceNotFoundException();
 		}
 		return issueEntityResourceAssembler.toResources(issueEntities);
 	}
@@ -90,6 +91,13 @@ public class IssueDraftController {
 	//TODO
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public @ResponseBody IssueDraftResource createIssueDraft( @RequestBody IssueDraft issueDraft) {
+		System.out.println("TEST1");
+		try {
+			issueDraft = issueDraftService.saveIssueDraft(issueDraft);
+		} catch (ValidationFailureException e) {
+			throw new BadRequestException(e);
+		}
+		System.out.println("TEST2");
 
 		return issueDraftResourceAssembler.toResource(issueDraft);
 		
