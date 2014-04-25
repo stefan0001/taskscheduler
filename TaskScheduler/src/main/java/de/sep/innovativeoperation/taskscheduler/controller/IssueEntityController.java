@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
+import de.sep.innovativeoperation.taskscheduler.exception.ResourceNotFoundExecption;
+import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.resource.assembler.IssueEntityResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.resource.model.IssueEntityResource;
 
@@ -47,7 +49,13 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(value="/{issueentityid}",method = RequestMethod.GET)
 	public @ResponseBody IssueEntityResource getIssueEntity( @PathVariable("issueentityid") int id) {
-		return issueEntityResourceAssembler.toResource(issueEntityDAO.findById(id) );
+		IssueEntity issueEntity = issueEntityDAO.findById(id);
+		
+		if(issueEntity == null){
+			throw new ResourceNotFoundExecption();
+		}
+		
+		return issueEntityResourceAssembler.toResource( issueEntity );
 	}
 	
 	

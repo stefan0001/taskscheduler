@@ -1,6 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.criteria.JoinType;
@@ -36,7 +35,7 @@ public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements Issue
 			return issueDraft.getIssueEntities();
 		}
 		
-		return new HashSet<IssueEntity>();
+		return null;
 
 	}
 
