@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.http.BadRequestException;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
 import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
@@ -92,11 +90,9 @@ public class IssueDraftController {
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public @ResponseBody IssueDraftResource createIssueDraft( @RequestBody IssueDraft issueDraft) {
 		System.out.println("TEST1");
-		try {
-			issueDraft = issueDraftService.createIssueDraft(issueDraft);
-		} catch (ValidationFailureException e) {
-			throw new BadRequestException(e);
-		}
+
+		issueDraft = issueDraftService.createIssueDraft(issueDraft);
+
 		System.out.println("TEST2");
 
 		return issueDraftResourceAssembler.toResource(issueDraft);

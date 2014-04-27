@@ -1,6 +1,10 @@
 package de.sep.innovativeoperation.taskscheduler.exception.validation;
 
-public class ValidationFailureException extends Exception {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+public class ValidationFailureException extends RuntimeException {
 
 	/**
 	 * SerialVersionUID

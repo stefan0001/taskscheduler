@@ -29,7 +29,7 @@ public class IssueDraftService  {
 
 	//TODO id should be 0
 	@Transactional(rollbackFor=ValidationFailureException.class)
-	public IssueDraft createIssueDraft(IssueDraft issueDraft) throws ValidationFailureException {
+	public IssueDraft createIssueDraft(IssueDraft issueDraft) {
 		
 		//set id to 0
 		issueDraft.setId(0);
@@ -42,7 +42,7 @@ public class IssueDraftService  {
 	//TODO id should be != 0
 	
 	@Transactional(rollbackFor=ValidationFailureException.class)
-	public IssueDraft updateIssueDraft(int id, IssueDraft issueDraft) throws ValidationFailureException {
+	public IssueDraft updateIssueDraft(int id, IssueDraft issueDraft) {
 		
 		//id change is not allowed
 		issueDraft.setId(id);
@@ -56,11 +56,11 @@ public class IssueDraftService  {
 			throw new ResourceNotFoundException();
 		}
 		
+		issueDraftDAO.save(issueDraft);
 		
+		return issueDraft;
 
 		
-		
-		return null;
 		
 	}
 	
