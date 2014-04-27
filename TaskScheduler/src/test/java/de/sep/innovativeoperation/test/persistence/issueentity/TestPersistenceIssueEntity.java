@@ -39,6 +39,10 @@
 //		IssueEntity ie2 = issueEntityDAO.findById(ie.getId());
 //		System.out.println(ie.getId());
 //		assertTrue(ie.getId() == ie2.getId());
-//
+//	}
+//	
+//	@Test
+//	public void testLoad(){
+//		issueDraftDAO.test();
 //	}
 //}

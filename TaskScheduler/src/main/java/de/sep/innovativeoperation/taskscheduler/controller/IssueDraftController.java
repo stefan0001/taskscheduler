@@ -93,7 +93,7 @@ public class IssueDraftController {
 	public @ResponseBody IssueDraftResource createIssueDraft( @RequestBody IssueDraft issueDraft) {
 		System.out.println("TEST1");
 		try {
-			issueDraft = issueDraftService.saveIssueDraft(issueDraft);
+			issueDraft = issueDraftService.createIssueDraft(issueDraft);
 		} catch (ValidationFailureException e) {
 			throw new BadRequestException(e);
 		}

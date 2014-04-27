@@ -13,4 +13,5 @@ public interface IssueDraftDAO extends GenericDAO<IssueDraft>{
 	
 	
 	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int id);
+
 }
