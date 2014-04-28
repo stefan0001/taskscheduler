@@ -110,13 +110,13 @@ public class IssueDraftController {
 	
 	
 	/**
-	 * Load all IssueEntities for a given IssueDraft
+	 * Create new IssueEntity for a IssueDraft
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value="/{issuedraftid}/issueentity",method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody IssueEntityResource createIssueEntityforIssueDrafts( @PathVariable("issuedraftid") int id, IssueEntity issueEntity) {
-		
+	public @ResponseBody IssueEntityResource createIssueEntityforIssueDrafts( @PathVariable("issuedraftid") int id, @RequestBody IssueEntity issueEntity) {
+
 		IssueEntity createdIssueEntity = issueEntityService.createIssueEntity(id, issueEntity);
 
 		return issueEntityResourceAssembler.toResource(createdIssueEntity);

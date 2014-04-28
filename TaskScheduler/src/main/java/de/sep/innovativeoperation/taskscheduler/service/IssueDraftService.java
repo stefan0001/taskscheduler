@@ -61,7 +61,11 @@ public class IssueDraftService {
 		return issueDraft;
 
 	}
-
+	
+	/**
+	 * Delete a IssueDraft with a given id
+	 * @param id
+	 */
 	public void deleteIssueDraft(int id) {
 
 		//find issuedraft
@@ -129,7 +133,7 @@ public class IssueDraftService {
 	public void test() throws ValidationFailureException {
 		IssueDraft id1 = new IssueDraft("OMG1", "OMG", IssueType.BUG);
 		this.createIssueDraft(id1);
-		IssueDraft id2 = new IssueDraft("OMG2", "", IssueType.BUG);
+		IssueDraft id2 = new IssueDraft("OMG2", null, IssueType.BUG);
 		this.createIssueDraft(id2);
 	}
 

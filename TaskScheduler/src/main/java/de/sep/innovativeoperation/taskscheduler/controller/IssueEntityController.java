@@ -47,6 +47,7 @@ public class IssueEntityController {
 	
 	/**
 	 * Load one IssueEntity
+	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value="/{issueentityid}",method = RequestMethod.GET)
@@ -57,6 +58,26 @@ public class IssueEntityController {
 		return issueEntityResourceAssembler.toResource( issueEntity );
 	}
 	
-
+	//TODo
+	/**
+	 * Update one issueEntity
+	 * @return
+	 */
+	@RequestMapping(value="/{issueentityid}",method = RequestMethod.PUT)
+	public @ResponseBody IssueEntityResource updateIssueEntity( @PathVariable("issueentityid") int id) {
+		return null;
+	}
+	
+	/**
+	 * Delete a IssueEntity with a given id
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/{issueentityid}",method = RequestMethod.DELETE)
+	public @ResponseBody void deleteIssueEntity( @PathVariable("issueentityid") int id) {
+		issueEntityService.deleteIssueEntity(id);
+	}
+	
+	
 
 }

@@ -28,4 +28,5 @@ public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements
 	}
 
 
+
 }

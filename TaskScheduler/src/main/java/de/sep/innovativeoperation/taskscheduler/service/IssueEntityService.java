@@ -61,28 +61,40 @@ public class IssueEntityService {
 	
 	//TODO
 	public IssueEntity createIssueEntity(int issueDraftId, IssueEntity issueEntity) {
-		//set id to 0 to tell the database it should be a new entity
-		issueEntity.setId( 0 );
-		
-		issueEntityValidationService.checkObject(issueEntity);
-				
 		//find the issueDraft
 		IssueDraft issueDraft = issueDraftService.getIssueDraft(issueDraftId);
 		
+		System.out.println(issueDraft);
 		if(issueDraft == null){
 			throw new ResourceNotFoundException();
 		}
 		
+		//set id to 0 to tell the database it should be a new entity
+		issueEntity.setId( 0 );
 		issueEntity.setIssueDraft(issueDraft);
-		
-		issueEntityDAO.save(issueEntity);
+
+		issueEntityValidationService.checkObject(issueEntity);
+				
+
+		issueEntity = issueEntityDAO.save(issueEntity);
 		
 		return issueEntity;
 	}
 	
-	
+	/**
+	 * Delete a IssueEntity with a given id
+	 * @param id
+	 */
+	public void deleteIssueEntity(int id){
+		//find issueentity
+		IssueEntity issueEntity = issueEntityDAO.findById(id);
 
-	
+		if (issueEntity == null) {
+			throw new ResourceNotFoundException();
+		}
+
+		issueEntityDAO.remove(issueEntity);
+	}
 	
 	
 	
