@@ -15,6 +15,7 @@ import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundE
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEntityResourceAssembler;
+import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 
 /**
  * Controller for CRUD operations on Issue Entities
@@ -27,8 +28,10 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEn
 @Transactional
 public class IssueEntityController {
 
+
+	
 	@Autowired
-	private IssueEntityDAO issueEntityDAO;
+	private IssueEntityService issueEntityService;
 	
 	@Autowired
 	private IssueEntityResourceAssembler issueEntityResourceAssembler;
@@ -40,7 +43,7 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<IssueEntityResource> getIssueEntities() {
-		return issueEntityResourceAssembler.toResources(issueEntityDAO.fetchAll());
+		return issueEntityResourceAssembler.toResources(issueEntityService.getAllIssueEntities());
 	}
 	
 	/**
@@ -49,19 +52,12 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(value="/{issueentityid}",method = RequestMethod.GET)
 	public @ResponseBody IssueEntityResource getIssueEntity( @PathVariable("issueentityid") int id) {
-		IssueEntity issueEntity = issueEntityDAO.findById(id);
+		IssueEntity issueEntity = issueEntityService.getIssueEntity(id);
 		
-		if(issueEntity == null){
-			throw new ResourceNotFoundException();
-		}
 		
 		return issueEntityResourceAssembler.toResource( issueEntity );
 	}
 	
-	
-	@RequestMapping(method = RequestMethod.DELETE)
-	public @ResponseBody void delteIssueEntities() {
-		
-	}
+
 
 }

@@ -37,7 +37,7 @@ public class IssueDraftService  {
 	@Transactional(rollbackFor=ValidationFailureException.class)
 	public IssueDraft createIssueDraft(IssueDraft issueDraft) {
 		
-		//set id to 0
+		//set id to 0 to tell the database it should be a new entity
 		issueDraft.setId(0);
 		
 		issueDraftValidationService.checkObject(issueDraft);
@@ -69,41 +69,6 @@ public class IssueDraftService  {
 		
 	}
 	
-	/**
-	 * load all IssueEntities for one IssueDraft
-	 * @param issueDraftId
-	 * @return
-	 */
-	@Transactional
-	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int issueDraftId){
-		IssueDraft issueDraft = issueDraftDAO.findById(issueDraftId);
-		
-		if(issueDraft == null){
-			throw new ResourceNotFoundException();
-		}
-		Set<IssueEntity> issueEntities = issueDraft.getIssueEntities();
-		
-		if(issueEntities == null){
-			throw new ResourceNotFoundException();
-		}
-		return issueEntities;
-	}
-	
-	/**
-	 * load IssueDraft for a given IssueDraftId
-	 * @param issueDraftId
-	 * @return
-	 */
-	@Transactional
-	public IssueDraft getIssueDraft(int issueDraftId){
-		IssueDraft issueDraft = issueDraftDAO.findById(issueDraftId);
-		
-		if(issueDraft == null){
-			throw new ResourceNotFoundException();
-		}
-
-		return issueDraft;
-	}
 	
 	
 	/**
@@ -120,6 +85,43 @@ public class IssueDraftService  {
 	}
 	
 	
+	/**
+	 * load one IssueDraft
+	 * @param issueDraftId
+	 * @return
+	 */
+	@Transactional
+	public IssueDraft getIssueDraft(int issueDraftId){
+		IssueDraft issueDraft = issueDraftDAO.findById(issueDraftId);
+		
+		if(issueDraft == null){
+			throw new ResourceNotFoundException();
+		}
+
+		return issueDraft;
+	}
+	
+	
+	/**
+	 * load all IssueEntities for one IssueDraft
+	 * @param issueDraftId
+	 * @return
+	 */
+	@Transactional
+	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int issueDraftId){
+		IssueDraft issueDraft = issueDraftDAO.findById(issueDraftId);
+		
+		if(issueDraft == null){
+			throw new ResourceNotFoundException();
+		}
+		Set<IssueEntity> issueEntities = issueDraftDAO.getIssueEntitiesForIssueDraft(issueDraft);
+		
+		if(issueEntities == null){
+			throw new ResourceNotFoundException();
+		}
+		return issueEntities;
+	}
+
 	
 	
 	

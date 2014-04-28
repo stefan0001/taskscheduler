@@ -6,7 +6,7 @@ import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationF
 import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 
 @Service
-public class IssueDraftValidationService implements AbstractGenericVaildationService<IssueDraft> {
+public class IssueDraftValidationService implements AbstractGenericValidationService<IssueDraft> {
 	
 	//TODO
 	@Override
@@ -18,9 +18,7 @@ public class IssueDraftValidationService implements AbstractGenericVaildationSer
 			throw new ValidationFailureException();
 		} else if (object.getIssueType() == null) {
 			throw new ValidationFailureException();
-		} else if (object.getId() != 0){
-			throw new ValidationFailureException();
-		}
+		} 
 	}
 
 }
