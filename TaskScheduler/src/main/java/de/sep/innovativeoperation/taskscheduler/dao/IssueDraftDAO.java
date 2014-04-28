@@ -12,6 +12,6 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 public interface IssueDraftDAO extends GenericDAO<IssueDraft>{
 	
 	
-	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int id);
+	public Set<IssueEntity> getIssueEntitiesForIssueDraft(IssueDraft issueDraft);
 
 }

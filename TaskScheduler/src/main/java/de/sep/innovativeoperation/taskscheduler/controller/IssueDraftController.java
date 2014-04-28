@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
@@ -31,9 +29,7 @@ import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
 @RequestMapping(value = "/issuedraft")
 public class IssueDraftController {
 
-	@Autowired
-	private IssueDraftDAO issueDraftDAO;
-	
+
 	@Autowired
 	private IssueDraftService issueDraftService;
 	
@@ -49,7 +45,7 @@ public class IssueDraftController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<IssueDraftResource> getIssueDrafts() {
-		List<IssueDraft> issueDrafts = issueDraftDAO.fetchAll();
+		List<IssueDraft> issueDrafts = issueDraftService.getAllIssueDrafts();
 		
 		return issueDraftResourceAssembler.toResources(issueDrafts);
 	}
@@ -62,10 +58,7 @@ public class IssueDraftController {
 	 */
 	@RequestMapping(value="/{issuedraftid}",method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody IssueDraftResource getIssueDraft( @PathVariable("issuedraftid") int id) {
-		IssueDraft issueDraft = issueDraftDAO.findById(id);
-		if(issueDraft == null){
-			throw new ResourceNotFoundException();
-		}
+		IssueDraft issueDraft = issueDraftService.getIssueDraft(id);
 
 		return issueDraftResourceAssembler.toResource(issueDraft);
 	}
@@ -78,10 +71,9 @@ public class IssueDraftController {
 	 */
 	@RequestMapping(value="/{issuedraftid}/issueentity",method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<IssueEntityResource> getIssueEntitiesforIssueDrafts( @PathVariable("issuedraftid") int id) {
-		Set<IssueEntity> issueEntities = issueDraftDAO.getIssueEntitiesForIssueDraft(id);
-		if(issueEntities == null){
-			throw new ResourceNotFoundException();
-		}
+		
+		Set<IssueEntity> issueEntities = issueDraftService.getIssueEntitiesForIssueDraft(id);
+
 		return issueEntityResourceAssembler.toResources(issueEntities);
 	}
 	

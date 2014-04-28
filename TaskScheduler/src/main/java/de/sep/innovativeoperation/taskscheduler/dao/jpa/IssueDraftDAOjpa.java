@@ -3,6 +3,7 @@ package de.sep.innovativeoperation.taskscheduler.dao.jpa;
 import java.util.Set;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
 import de.sep.innovativeoperation.taskscheduler.dao.generic.jpa.GenericDAOjpa;
@@ -13,18 +14,16 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
 public class IssueDraftDAOjpa extends GenericDAOjpa<IssueDraft> implements
 		IssueDraftDAO {
 
-
-	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int id) {
-		IssueDraft issueDraft = this.findById(id);
-
-		if (issueDraft != null) {
-			Set<IssueEntity> issueentities = issueDraft.getIssueEntities();
-			issueentities.size();
-			return issueentities;
-		}
-
-
-		return null;
+	@Transactional
+	public Set<IssueEntity> getIssueEntitiesForIssueDraft(IssueDraft issueDraft) {
+		
+		//get Issueentities
+		Set<IssueEntity> issueEntities = issueDraft.getIssueEntities();
+		
+		//eager initialize collection
+		issueEntities.size();
+		
+		return issueEntities;
 
 	}
 
