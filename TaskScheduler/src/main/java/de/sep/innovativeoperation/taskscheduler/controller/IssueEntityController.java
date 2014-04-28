@@ -34,7 +34,7 @@ public class IssueEntityController {
 	//ASSEMBLER
 	@Autowired
 	private IssueEntityResourceAssembler issueEntityResourceAssembler;
-
+ 
 	
 	/**
 	 * Load all IssueEntities
