@@ -54,8 +54,8 @@ public abstract class GenericDAOjpa <T> implements GenericDAO <T>{
 	}
 	
 
-	public void deleteById(int id) {
-		throw new UnsupportedOperationException();
+	public void remove(T entity) {
+		em.remove(entity);
 
 	}
 	

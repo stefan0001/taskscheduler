@@ -18,6 +18,7 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResour
 import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueDraftResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEntityResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
+import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 
 /**
  * Controller for CRUD operations on Issue Templates
@@ -29,10 +30,14 @@ import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
 @RequestMapping(value = "/issuedraft")
 public class IssueDraftController {
 
-
+	//SERVICES
 	@Autowired
 	private IssueDraftService issueDraftService;
+	@Autowired
+	private IssueEntityService issueEntityService;
 	
+	
+	//ASSEMBLER
 	@Autowired
 	private IssueDraftResourceAssembler issueDraftResourceAssembler;
 	@Autowired
@@ -63,7 +68,33 @@ public class IssueDraftController {
 		return issueDraftResourceAssembler.toResource(issueDraft);
 	}
 	
+	/**
+	 * Update an issuedraft
+	 * @param id			The id of the issuedraft
+	 * @param issueDraft	The updated information of the issuedraft
+	 * @return
+	 */
+	@RequestMapping(value="/{issuedraftid}",method = RequestMethod.PUT, produces = "application/json")
+	public @ResponseBody IssueDraftResource getIssueDraft( @PathVariable("issuedraftid") int id,  @RequestBody IssueDraft issueDraft) {
+		IssueDraft updatedIssueDraft = issueDraftService.updateIssueDraft(id, issueDraft);
+
+		return issueDraftResourceAssembler.toResource(updatedIssueDraft);
+	}
 	
+	
+	/**
+	 * Delete IssueDraft with a given id
+	 * @param id
+	 * @param issueDraft
+	 * @return
+	 */
+	@RequestMapping(value="/{issuedraftid}",method = RequestMethod.DELETE, produces = "application/json")
+	public @ResponseBody void deleteIssueDraft( @PathVariable("issuedraftid") int id) {
+		issueDraftService.deleteIssueDraft(id);
+	}
+	
+	
+	//TODO
 	/**
 	 * Load all IssueEntities for a given IssueDraft
 	 * @param id
@@ -78,18 +109,36 @@ public class IssueDraftController {
 	}
 	
 	
-	//TODO
+	/**
+	 * Load all IssueEntities for a given IssueDraft
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/{issuedraftid}/issueentity",method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody IssueEntityResource createIssueEntityforIssueDrafts( @PathVariable("issuedraftid") int id, IssueEntity issueEntity) {
+		
+		IssueEntity createdIssueEntity = issueEntityService.createIssueEntity(id, issueEntity);
+
+		return issueEntityResourceAssembler.toResource(createdIssueEntity);
+	}
+	
+	
+	
+	
+	/**
+	 * Receive a new Issue Draft and save it
+	 * @param issueDraft
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public @ResponseBody IssueDraftResource createIssueDraft( @RequestBody IssueDraft issueDraft) {
-		System.out.println("TEST1");
 
 		issueDraft = issueDraftService.createIssueDraft(issueDraft);
 
-		System.out.println("TEST2");
-
 		return issueDraftResourceAssembler.toResource(issueDraft);
-		
 	}
+	
+	
 	
 	
 

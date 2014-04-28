@@ -23,118 +23,114 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftVal
  */
 @Service
 @Transactional
-public class IssueDraftService  {
+public class IssueDraftService {
 
-	
 	@Autowired
 	private IssueDraftDAO issueDraftDAO;
-	
-	
+
 	@Autowired
 	private IssueDraftValidationService issueDraftValidationService;
 
-	//TODO id should be 0
-	@Transactional(rollbackFor=ValidationFailureException.class)
+	// TODO id should be 0
 	public IssueDraft createIssueDraft(IssueDraft issueDraft) {
-		
-		//set id to 0 to tell the database it should be a new entity
+
+		// set id to 0 to tell the database it should be a new entity
 		issueDraft.setId(0);
-		
+
 		issueDraftValidationService.checkObject(issueDraft);
 		return issueDraftDAO.save(issueDraft);
 	}
-	
-	
-	//TODO id should be != 0
-	@Transactional(rollbackFor=ValidationFailureException.class)
+
+	// TODO id should be != 0
 	public IssueDraft updateIssueDraft(int id, IssueDraft issueDraft) {
-		
-		//id change is not allowed
+
+		// id change is not allowed
 		issueDraft.setId(id);
-		
+
 		issueDraftValidationService.checkObject(issueDraft);
-		
-		//search for object
+
+		// search for object
 		IssueDraft oldDraft = issueDraftDAO.findById(id);
-		
-		if(oldDraft == null){
+
+		if (oldDraft == null) {
 			throw new ResourceNotFoundException();
 		}
-		
+
 		issueDraftDAO.save(issueDraft);
-		
+
 		return issueDraft;
 
-		
-		
 	}
-	
-	
-	
+
+	public void deleteIssueDraft(int id) {
+
+		//find issuedraft
+
+		IssueDraft issueDraft = issueDraftDAO.findById(id);
+
+		if (issueDraft == null) {
+			throw new ResourceNotFoundException();
+		}
+
+		issueDraftDAO.remove(issueDraft);
+
+	}
+
 	/**
 	 * load all IssueDrafts
+	 * 
 	 * @param issueDraftId
 	 * @return
 	 */
-	@Transactional
-	public List<IssueDraft> getAllIssueDrafts(){
+	public List<IssueDraft> getAllIssueDrafts() {
 		List<IssueDraft> issueDrafts = issueDraftDAO.fetchAll();
-		
 
 		return issueDrafts;
 	}
-	
-	
+
 	/**
 	 * load one IssueDraft
+	 * 
 	 * @param issueDraftId
 	 * @return
 	 */
-	@Transactional
-	public IssueDraft getIssueDraft(int issueDraftId){
+	public IssueDraft getIssueDraft(int issueDraftId) {
 		IssueDraft issueDraft = issueDraftDAO.findById(issueDraftId);
-		
-		if(issueDraft == null){
+
+		if (issueDraft == null) {
 			throw new ResourceNotFoundException();
 		}
 
 		return issueDraft;
 	}
-	
-	
+
 	/**
 	 * load all IssueEntities for one IssueDraft
+	 * 
 	 * @param issueDraftId
 	 * @return
 	 */
-	@Transactional
-	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int issueDraftId){
+	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int issueDraftId) {
 		IssueDraft issueDraft = issueDraftDAO.findById(issueDraftId);
-		
-		if(issueDraft == null){
+
+		if (issueDraft == null) {
 			throw new ResourceNotFoundException();
 		}
-		Set<IssueEntity> issueEntities = issueDraftDAO.getIssueEntitiesForIssueDraft(issueDraft);
-		
-		if(issueEntities == null){
+		Set<IssueEntity> issueEntities = issueDraftDAO
+				.getIssueEntitiesForIssueDraft(issueDraft);
+
+		if (issueEntities == null) {
 			throw new ResourceNotFoundException();
 		}
 		return issueEntities;
 	}
 
-	
-	
-	
-	@Transactional(rollbackFor=ValidationFailureException.class)
-	public void test() throws ValidationFailureException{
-		IssueDraft id1 = new IssueDraft("OMG1","OMG",IssueType.BUG);
+	@Transactional(rollbackFor = ValidationFailureException.class)
+	public void test() throws ValidationFailureException {
+		IssueDraft id1 = new IssueDraft("OMG1", "OMG", IssueType.BUG);
 		this.createIssueDraft(id1);
-		IssueDraft id2 = new IssueDraft("OMG2","",IssueType.BUG);
+		IssueDraft id2 = new IssueDraft("OMG2", "", IssueType.BUG);
 		this.createIssueDraft(id2);
 	}
-
-
-
-
 
 }

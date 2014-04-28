@@ -18,7 +18,7 @@ public interface GenericDAO <T> {
 	
 	
 	//DELETE
-	public void deleteById(int id);
+	public void remove(T entity);
 	
 	public void deleteAll();
 	

@@ -9,7 +9,6 @@ import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
 public class IssueDraftValidationService implements AbstractGenericValidationService<IssueDraft> {
 	
 	//TODO
-	@Override
 	public void checkObject(IssueDraft object) throws ValidationFailureException {
 		
 		if (object.getIssueName() == null) {
