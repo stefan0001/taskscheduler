@@ -21,15 +21,26 @@ server.fetchAllIssueDrafts = function(  ){
 };
 
 server.postNewIssueDraft = function(json) {
-	$.ajax({
+	var jqXHR = $.ajax({
 		type: "POST",
 		dataType: "application/json",
 		contentType: "application/json",
 		url: this.url + "issuedraft",
 		data: json
 	})
-	.complete(display.showCreateStatus(json, true))
+	.complete(display.showResponse)
 	.error(display.showCreateStatus(json, false));
+}
+
+server.createIssueEntityFor = function(id) {
+	var json = JSON.stringify({issueStatus: "NEW", issueResolution: "DONE"});
+	$.ajax({
+		type: "POST",
+		dataType: "application/json",
+		contentType: "application/json",
+		url: this.url + "issuedraft/"+id+"/issueentity",
+		data: json
+	})
 }
 
 

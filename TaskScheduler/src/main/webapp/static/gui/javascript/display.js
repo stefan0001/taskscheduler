@@ -19,14 +19,20 @@ display.showData = function(data) {
 	display.displayAllIssueEntities(data);
 }
 
-display.showCreateStatus = function(json, status) {
+display.showCreateStatus = function() {
 	var text = "Das Issue wurde ";
-	if(status === false) {
-		$('#statusmessage').text(text+'erstellt').animate({'margin-bottom':30},200);
-	} else {
-		$('#statusmessage').text(text+'nicht erstellt').animate({'margin-bottom':30},200);
-	}
+	$('#statusmessage').text(text+'nicht erstellt').animate({'margin-bottom':30},200);
 	setTimeout( function(){
         $('#statusmessage').animate({'margin-bottom':-150},200);
     }, 2*1000);
+}
+
+display.showResponse = function(data) {
+	var text = "Das Issue wurde ";
+	$('#statusmessage').text(text+'erstellt').animate({'margin-bottom':30},200);
+	setTimeout( function(){
+        $('#statusmessage').animate({'margin-bottom':-150},200);
+    }, 2*1000);
+	var json = jQuery.parseJSON(data.responseText);
+	interaction.createIssueEntity(json.content.id);
 }

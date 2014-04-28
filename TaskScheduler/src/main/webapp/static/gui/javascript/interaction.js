@@ -12,3 +12,6 @@ interaction.displayAllIssueDrafts = function() {
 	server.fetchAllIssueDrafts();
 }
 
+interaction.createIssueEntity = function(id) {
+	server.createIssueEntityFor(id);
+}
