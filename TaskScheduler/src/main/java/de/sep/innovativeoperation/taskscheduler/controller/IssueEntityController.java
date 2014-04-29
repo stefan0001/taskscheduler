@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,14 +59,16 @@ public class IssueEntityController {
 		return issueEntityResourceAssembler.toResource( issueEntity );
 	}
 	
-	//TODo
+
 	/**
 	 * Update one issueEntity
 	 * @return
 	 */
 	@RequestMapping(value="/{issueentityid}",method = RequestMethod.PUT)
-	public @ResponseBody IssueEntityResource updateIssueEntity( @PathVariable("issueentityid") int id) {
-		return null;
+	public @ResponseBody IssueEntityResource updateIssueEntity( @PathVariable("issueentityid") int id, @RequestBody IssueEntity issueEntity) {
+		IssueEntity updatedIssueEntity = issueEntityService.updateIssueEntity(id, issueEntity);
+		
+		return issueEntityResourceAssembler.toResource( updatedIssueEntity );
 	}
 	
 	/**

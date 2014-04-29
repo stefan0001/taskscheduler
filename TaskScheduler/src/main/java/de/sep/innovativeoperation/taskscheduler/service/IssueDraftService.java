@@ -56,7 +56,7 @@ public class IssueDraftService {
 			throw new ResourceNotFoundException();
 		}
 
-		issueDraftDAO.save(issueDraft);
+		issueDraft = issueDraftDAO.save(issueDraft);
 
 		return issueDraft;
 

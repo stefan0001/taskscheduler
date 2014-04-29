@@ -82,6 +82,37 @@ public class IssueEntityService {
 	}
 	
 	/**
+	 * Update IssueEntity
+	 * @param id
+	 * @param issueEntity
+	 * @return
+	 */
+	// TODO id should be != 0
+	public IssueEntity updateIssueEntity(int id, IssueEntity issueEntity) {
+
+		// id change is not allowed
+		issueEntity.setId(id);
+
+		issueEntityValidationService.checkObject(issueEntity);
+
+		// search for object
+		IssueEntity oldEntity = issueEntityDAO.findById(id);
+
+		if (oldEntity == null) {
+			throw new ResourceNotFoundException();
+		}
+		
+		//draft change is not allowed
+		issueEntity.setIssueDraft(oldEntity.getIssueDraft());
+
+		issueEntity = issueEntityDAO.save(issueEntity);
+
+		return issueEntity;
+
+	}
+	
+	
+	/**
 	 * Delete a IssueEntity with a given id
 	 * @param id
 	 */
