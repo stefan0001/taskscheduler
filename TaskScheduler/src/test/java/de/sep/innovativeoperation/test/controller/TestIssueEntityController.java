@@ -5,10 +5,13 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -28,23 +31,28 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEn
 import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 import static org.mockito.Mockito.*;
 
-
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
-@ContextConfiguration({ "classpath:applicationContext-test.xml" })
-@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:applicationContext-test.xml" })
+@RunWith(SpringJUnit4ClassRunner.class)// SpringJUnit4ClassRunner //MockitoJUnitRunner
 public class TestIssueEntityController {
-	
+
 	@Mock
 	private IssueEntityController issueEntityController;
 
-		
+	// SERVICES
+	@InjectMocks
+	private IssueEntityService issueEntityService;
+
+	// ASSEMBLER
+	@InjectMocks
+	private IssueEntityResourceAssembler issueEntityResourceAssembler;
+
 	private MockMvc mockMvc;
-	private String url = "/issueentity";		
+	private String url = "/issueentity";
 
 	@Autowired
 	private WebApplicationContext wac;
-
 
 	@Before
 	public void setup() {
@@ -54,12 +62,13 @@ public class TestIssueEntityController {
 
 		// WeppAppContext Setup
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-
+		
 	}
+	
 
 	@Test
 	public void shouldStartSpringContext() {
-
+		System.out.println(MockMvcBuilders.webAppContextSetup(wac).build().toString());
 		Assert.assertNotNull(issueEntityController);
 
 	}
@@ -69,13 +78,31 @@ public class TestIssueEntityController {
 
 		mockMvc.perform(get(url))
 				.andExpect(status().isOk())
-				.andDo(print())
+				// .andDo(print())
 				.andExpect(jsonPath("$[0].content.id", is(1)))
 				.andExpect(jsonPath("$[0].content.issueStatus", is("NEW")))
-				.andExpect(jsonPath("$[0].content.issueResolution", is("FIXED")));
+				.andExpect(
+						jsonPath("$[0].content.issueResolution", is("FIXED")));
 
-        verify(issueEntityController, times(1)).getIssueEntities();
-        verifyNoMoreInteractions(issueEntityController);
+		verify(issueEntityController, times(1)).getIssueEntities();// issueEntityService.getAllIssueEntities()
+		verifyNoMoreInteractions(issueEntityController);
+
+	}
+
+	@Test
+	public void testGetFirstIssueEntityAndCheckID() throws Exception {
+
+		mockMvc.perform(
+				get("/issueentity/1").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				// .andDo(print())
+				.andExpect(jsonPath("$.content.id", is(1)))
+				.andExpect(jsonPath("$.content.issueStatus", is("NEW")))
+				.andExpect(jsonPath("$.content.issueResolution", is("FIXED")));
+
+		// verify(issueEntityController, times(1)).getIssueEntity(1);
+		// //issueEntityService.getAllIssueEntities()
+		// verifyNoMoreInteractions(issueEntityController);
 	}
 
 	@Test
@@ -87,8 +114,7 @@ public class TestIssueEntityController {
 
 	@Test
 	public void testDeleteAllIssueEntitiesExpect405() throws Exception {
-		mockMvc.perform(delete(url))
-			.andExpect(status().isMethodNotAllowed());
+		mockMvc.perform(delete(url)).andExpect(status().isMethodNotAllowed());
 
 	}
 }

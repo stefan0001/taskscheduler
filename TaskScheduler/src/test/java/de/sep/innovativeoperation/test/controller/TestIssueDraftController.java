@@ -1,7 +1,9 @@
 package de.sep.innovativeoperation.test.controller;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +23,19 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import de.sep.innovativeoperation.taskscheduler.controller.IssueDraftController;
-
+import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEntityResourceAssembler;
+import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration({ "classpath:applicationContext-test.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestIssueDraftController {
-	
+
 	@Mock
 	private IssueDraftController issueDraftController;
+
+
 
 	private MockMvc mockMvc;
 	private String url = "/issuedraft";
@@ -51,44 +56,46 @@ public class TestIssueDraftController {
 
 	@Test
 	public void testAccessingIssueDraftExpected200() throws Exception {
-		mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-	
-			mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON))
-					.andExpect(status().isOk())
-//					.andDo(print())
-					.andExpect(jsonPath("$[0].content.id", is(1)))
-					.andExpect(jsonPath("$[0].content.issueName", is("t")))
-					.andExpect(jsonPath("$[0].content.issueDescription", is("TestEntity")))
-					.andExpect(jsonPath("$[0].content.issueType", is("BUG")));
-		}
-	
+		mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON)).andExpect(
+				status().isOk());
 
+		mockMvc.perform(get(url).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				// .andDo(print())
+				.andExpect(jsonPath("$[0].content.id", is(1)))
+				.andExpect(jsonPath("$[0].content.issueName", is("t")))
+				.andExpect(
+						jsonPath("$[0].content.issueDescription",
+								is("TestEntity")))
+				.andExpect(jsonPath("$[0].content.issueType", is("BUG")));
+	}
 
-//
-//	@Test
-//	public void testJSONIssueDraftExpected200() throws Exception {
-//		// when(sampleService.saveFrom(any(SignupForm.class)))
-//		// .thenThrow(new InvalidUserException("For Testing"));
-//		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(url);
-//		// this.mockMvc.perform(requestBuilder).
-//		// andExpect(status().isOk());
-//		
-//		this.mockMvc.perform(requestBuilder)
-//					.andExpect(status().isOk()).andDo(print());
-//		
-//	}
-//
+	//
+	// @Test
+	// public void testJSONIssueDraftExpected200() throws Exception {
+	// // when(sampleService.saveFrom(any(SignupForm.class)))
+	// // .thenThrow(new InvalidUserException("For Testing"));
+	// RequestBuilder requestBuilder = MockMvcRequestBuilders.get(url);
+	// // this.mockMvc.perform(requestBuilder).
+	// // andExpect(status().isOk());
+	//
+	// this.mockMvc.perform(requestBuilder)
+	// .andExpect(status().isOk()).andDo(print());
+	//
+	// }
+	//
 	@Test
 	public void testAccessingWrongResourceExpected404() throws Exception {
-		
-		this.mockMvc.perform(get("/issuedrafts")).andExpect(status().isNotFound());
+
+		this.mockMvc.perform(get("/issuedrafts")).andExpect(
+				status().isNotFound());
 	}
 }
-//	@Test
-//	public void testDeleteAllIssueDraftExpect200() throws Exception {
-//		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete(url);
-//		this.mockMvc.perform(requestBuilder).andExpect(status().isOk());
-//	}
+// @Test
+// public void testDeleteAllIssueDraftExpect200() throws Exception {
+// RequestBuilder requestBuilder = MockMvcRequestBuilders.delete(url);
+// this.mockMvc.perform(requestBuilder).andExpect(status().isOk());
+// }
 
 // .andExpect(content().contentTypeCompatibleWith("application/json;charset=UTF-8")).andDo(MockMvcResultHandlers.print());
 // ;
