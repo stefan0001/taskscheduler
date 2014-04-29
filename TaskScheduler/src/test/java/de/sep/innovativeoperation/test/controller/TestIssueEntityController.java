@@ -34,7 +34,7 @@ import static org.mockito.Mockito.*;
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath:applicationContext-test.xml" })
-@RunWith(SpringJUnit4ClassRunner.class)// SpringJUnit4ClassRunner //MockitoJUnitRunner
+@RunWith(MockitoJUnitRunner.class)// SpringJUnit4ClassRunner //MockitoJUnitRunner
 public class TestIssueEntityController {
 
 	@Mock
