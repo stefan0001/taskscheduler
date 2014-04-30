@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.model;
+package de.sep.innovativeoperation.taskscheduler.model.data;
 
 import java.io.Serializable;
 
@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @SuppressWarnings("serial")
 @Entity
 @JsonIgnoreProperties({"issueDraft"})
-public class IssueEntity implements Serializable {
+public class IssueEntity extends AbstractDataModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

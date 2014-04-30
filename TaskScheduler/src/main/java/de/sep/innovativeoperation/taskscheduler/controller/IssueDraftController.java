@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueDraftResourceAssembler;

@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.model;
+package de.sep.innovativeoperation.taskscheduler.model.data;
 
 import java.io.Serializable;
 import java.util.HashSet;

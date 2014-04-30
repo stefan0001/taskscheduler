@@ -10,9 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
-import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.model.IssueType;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftValidationService;
 
 /**
@@ -31,6 +30,10 @@ public class IssueDraftService {
 	@Autowired
 	private IssueDraftValidationService issueDraftValidationService;
 
+	@Autowired
+	TestService testService;
+	
+	
 	// TODO id should be 0
 	public IssueDraft createIssueDraft(IssueDraft issueDraft) {
 
@@ -104,6 +107,8 @@ public class IssueDraftService {
 		if (issueDraft == null) {
 			throw new ResourceNotFoundException();
 		}
+		
+		testService.test(issueDraft );
 
 		return issueDraft;
 	}
@@ -120,21 +125,21 @@ public class IssueDraftService {
 		if (issueDraft == null) {
 			throw new ResourceNotFoundException();
 		}
-		Set<IssueEntity> issueEntities = issueDraftDAO
-				.getIssueEntitiesForIssueDraft(issueDraft);
+		
+		Set<IssueEntity> issueEntities = issueDraft.getIssueEntities();
 
 		if (issueEntities == null) {
 			throw new ResourceNotFoundException();
 		}
+		
 		return issueEntities;
 	}
 
 	@Transactional(rollbackFor = ValidationFailureException.class)
 	public void test() throws ValidationFailureException {
-		IssueDraft id1 = new IssueDraft("OMG1", "OMG", IssueType.BUG);
-		this.createIssueDraft(id1);
-		IssueDraft id2 = new IssueDraft("OMG2", null, IssueType.BUG);
-		this.createIssueDraft(id2);
+		IssueDraft id1 = this.getIssueDraft(1);
+		System.out.println(id1.getIssueEntities().iterator().next().getIssueDraft().getId());
+		
 	}
 
 }

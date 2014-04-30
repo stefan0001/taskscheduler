@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
-import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.IssueEntity;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueEntityValidationService;
 
 /**
@@ -35,7 +35,6 @@ public class IssueEntityService {
 	private IssueEntityValidationService issueEntityValidationService;
 	
 	
-	
 	/**
 	 * load all IssueEntities
 	 * @return
@@ -55,8 +54,9 @@ public class IssueEntityService {
 		if(issueEntity == null){
 			throw new ResourceNotFoundException();
 		}
-		
 		return issueEntity;
+		
+		
 	}
 	
 	//TODO
@@ -77,6 +77,7 @@ public class IssueEntityService {
 				
 
 		issueEntity = issueEntityDAO.save(issueEntity);
+		
 		
 		return issueEntity;
 	}

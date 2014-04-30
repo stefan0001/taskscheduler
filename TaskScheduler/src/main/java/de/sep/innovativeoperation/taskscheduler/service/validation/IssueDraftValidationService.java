@@ -3,7 +3,7 @@ package de.sep.innovativeoperation.taskscheduler.service.validation;
 import org.springframework.stereotype.Service;
 
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
-import de.sep.innovativeoperation.taskscheduler.model.IssueDraft;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 
 @Service
 public class IssueDraftValidationService implements AbstractGenericValidationService<IssueDraft> {

@@ -1,31 +1,26 @@
 package de.sep.innovativeoperation.taskscheduler.model.resource;
 
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
-
-public class IssueEntityResource extends AbstractGenericResourceModel<IssueEntity> {
-
-	/**
-	 * @param content
-	 * @param links
-	 */
-	public IssueEntityResource(IssueEntity content, Iterable<Link> links) {
-		super(content, links);
-
-		// TODO Auto-generated constructor stub
-	}
+public abstract class AbstractGenericResourceModel<T> extends Resource<T>{
 
 	/**
 	 * @param content
 	 * @param links
 	 */
-	public IssueEntityResource(IssueEntity content, Link... links) {
+	public AbstractGenericResourceModel(T content, Iterable<Link> links) {
 		super(content, links);
 		// TODO Auto-generated constructor stub
 	}
 
-
-	
+	/**
+	 * @param content
+	 * @param links
+	 */
+	public AbstractGenericResourceModel(T content, Link... links) {
+		super(content, links);
+		// TODO Auto-generated constructor stub
+	}
 
 }
