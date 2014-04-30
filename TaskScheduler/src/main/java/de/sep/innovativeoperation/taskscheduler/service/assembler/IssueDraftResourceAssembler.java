@@ -1,3 +1,4 @@
+package de.sep.innovativeoperation.taskscheduler.service.assembler;
 //package de.sep.innovativeoperation.taskscheduler.model.resource.assembler;
 //
 //import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

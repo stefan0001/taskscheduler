@@ -15,8 +15,6 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
-import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueDraftResourceAssembler;
-import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEntityResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
 import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 
@@ -37,11 +35,6 @@ public class IssueDraftController {
 	private IssueEntityService issueEntityService;
 	
 	
-	//ASSEMBLER
-	@Autowired
-	private IssueDraftResourceAssembler issueDraftResourceAssembler;
-	@Autowired
-	private IssueEntityResourceAssembler issueEntityResourceAssembler;
 	
 	
 	/**
@@ -52,7 +45,7 @@ public class IssueDraftController {
 	public @ResponseBody List<IssueDraftResource> getIssueDrafts() {
 		List<IssueDraft> issueDrafts = issueDraftService.getAllIssueDrafts();
 		
-		return issueDraftResourceAssembler.toResources(issueDrafts);
+		return null;
 	}
 	
 	
@@ -65,7 +58,7 @@ public class IssueDraftController {
 	public @ResponseBody IssueDraftResource getIssueDraft( @PathVariable("issuedraftid") int id) {
 		IssueDraft issueDraft = issueDraftService.getIssueDraft(id);
 
-		return issueDraftResourceAssembler.toResource(issueDraft);
+		return null;
 	}
 	
 	/**
@@ -78,7 +71,7 @@ public class IssueDraftController {
 	public @ResponseBody IssueDraftResource getIssueDraft( @PathVariable("issuedraftid") int id,  @RequestBody IssueDraft issueDraft) {
 		IssueDraft updatedIssueDraft = issueDraftService.updateIssueDraft(id, issueDraft);
 
-		return issueDraftResourceAssembler.toResource(updatedIssueDraft);
+		return null;
 	}
 	
 	
@@ -105,7 +98,7 @@ public class IssueDraftController {
 		
 		Set<IssueEntity> issueEntities = issueDraftService.getIssueEntitiesForIssueDraft(id);
 
-		return issueEntityResourceAssembler.toResources(issueEntities);
+		return null;
 	}
 	
 	
@@ -119,7 +112,7 @@ public class IssueDraftController {
 
 		IssueEntity createdIssueEntity = issueEntityService.createIssueEntity(id, issueEntity);
 
-		return issueEntityResourceAssembler.toResource(createdIssueEntity);
+		return null;
 	}
 	
 	
@@ -135,7 +128,7 @@ public class IssueDraftController {
 
 		issueDraft = issueDraftService.createIssueDraft(issueDraft);
 
-		return issueDraftResourceAssembler.toResource(issueDraft);
+		return null;
 	}
 	
 	

@@ -3,7 +3,6 @@ package de.sep.innovativeoperation.taskscheduler.model.resource;
 import org.springframework.hateoas.Link;
 
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 
 
 public class IssueDraftResource extends AbstractGenericResourceModel<IssueDraft>{

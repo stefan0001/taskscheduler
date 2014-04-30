@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
-import de.sep.innovativeoperation.taskscheduler.model.resource.assembler.IssueEntityResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 
 /**
@@ -32,9 +31,6 @@ public class IssueEntityController {
 	@Autowired
 	private IssueEntityService issueEntityService;
 	
-	//ASSEMBLER
-	@Autowired
-	private IssueEntityResourceAssembler issueEntityResourceAssembler;
  
 	
 	/**
@@ -43,7 +39,7 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<IssueEntityResource> getIssueEntities() {
-		return issueEntityResourceAssembler.toResources(issueEntityService.getAllIssueEntities());
+		return null;
 	}
 	
 	/**
@@ -56,7 +52,7 @@ public class IssueEntityController {
 		IssueEntity issueEntity = issueEntityService.getIssueEntity(id);
 		
 		
-		return issueEntityResourceAssembler.toResource( issueEntity );
+		return null;
 	}
 	
 
@@ -68,7 +64,7 @@ public class IssueEntityController {
 	public @ResponseBody IssueEntityResource updateIssueEntity( @PathVariable("issueentityid") int id, @RequestBody IssueEntity issueEntity) {
 		IssueEntity updatedIssueEntity = issueEntityService.updateIssueEntity(id, issueEntity);
 		
-		return issueEntityResourceAssembler.toResource( updatedIssueEntity );
+		return null;
 	}
 	
 	/**
