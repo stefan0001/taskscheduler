@@ -12,8 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 /**
  * 
@@ -23,6 +26,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @SuppressWarnings("serial")
 @Entity
 @JsonIgnoreProperties({"issueDraft"})
+
+//@XmlElement
+//@XmlRootElement
 public class IssueEntity extends AbstractDataModel implements Serializable {
 
     @Id
@@ -90,5 +96,6 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 	public void setIssueDraft(IssueDraft issueDraft) {
 		this.issueDraft = issueDraft;
 	}
+
 
 }
