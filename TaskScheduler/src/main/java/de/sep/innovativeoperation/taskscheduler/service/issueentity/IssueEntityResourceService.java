@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
 import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourcesModel;
@@ -36,9 +33,9 @@ public class IssueEntityResourceService {
 		return issueEntityResourceAssembler.toResource(issueEntity);
 	}
 	
-	public AbstractGenericResourcesModel< ? extends IssueEntity > getAllIssueEntities(){
+	public AbstractGenericResourcesModel< ? extends AbstractGenericResourceModel<IssueEntity> > getAllIssueEntities(){
 		List<IssueEntity> issueEntities = issueEntityDataService.getAllIssueEntities();
-		return new IssueEntitiesResource();
+		return issueEntitiesResourceAssembler.toResource(issueEntityResourceAssembler.toResources(issueEntities));
 	}
 	
 	

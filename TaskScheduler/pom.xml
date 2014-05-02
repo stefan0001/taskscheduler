@@ -135,6 +135,14 @@
 
 	</dependencies>
 	<build>
+
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+
 		<finalName>TaskScheduler</finalName>
 	</build>
 </project>

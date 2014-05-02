@@ -8,8 +8,12 @@ public class IssueEntitiesResource extends AbstractGenericResourcesModel<IssueEn
 
 	public IssueEntitiesResource() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+
+	public IssueEntitiesResource(Iterable<IssueEntityResource> content) {
+		super(content);
+	}
+
 
 
 
