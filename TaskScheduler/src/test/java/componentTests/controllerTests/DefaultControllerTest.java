@@ -10,7 +10,8 @@ import org.junit.Test;
 import de.sep.innovativeoperation.taskscheduler.controller.DefaultController;
 
 public class DefaultControllerTest {
-
+	String path = "redirect:/static/Test.html";
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		DefaultController a = new DefaultController();
@@ -26,7 +27,8 @@ public class DefaultControllerTest {
 
 	@Test
 	public void testGetDefault() {
-		fail("Not yet implemented");
+		DefaultController testController = new DefaultController();
+		assertEquals(testController.getDefault(),path);
 	}
 
 }
