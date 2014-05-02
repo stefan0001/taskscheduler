@@ -1,6 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.model.resource.generic;
 
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;
 
 //TODO

@@ -10,7 +10,7 @@ import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
+import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftDataService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueEntityValidationService;
 
 /**
@@ -30,7 +30,7 @@ public class IssueEntityDataService {
 	
 	//Services
 	@Autowired
-	private IssueDraftService issueDraftService;
+	private IssueDraftDataService issueDraftService;
 	
 	@Autowired
 	private IssueEntityValidationService issueEntityValidationService;

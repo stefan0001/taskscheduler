@@ -1,6 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.controller;
 
-import java.util.List;
+import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
 import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourcesModel;
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
-import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
-
 /**
  * Controller for CRUD operations on Issue Entities
  * 
@@ -29,7 +26,6 @@ import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityD
 public class IssueEntityController {
 
 	
-	public static final String JSON = "application/json";
 	// ResourceService
 	@Autowired
 	private IssueEntityResourceService issueEntityResourceService;

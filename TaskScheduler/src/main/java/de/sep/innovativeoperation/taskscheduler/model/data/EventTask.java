@@ -15,12 +15,14 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@SuppressWarnings("serial")
 @Entity
 @JsonIgnoreProperties({"issueDrafts","event"})
-public class EventTask {
+public class EventTask extends AbstractDataModel {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int eventTaskId;
+	private int id;
 	
 	@NotNull
 	private String name;
@@ -30,22 +32,34 @@ public class EventTask {
 	private Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
 	
 	/*Owner of the EventTask <--> Event relationship*/
+	@NotNull
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "EVENT_EVENTID")
 	private Event event;
 	
-	public EventTask() {	
-		
-	}
+
 	
 	/**
-	 * 
-	 * @param name Name of this Task
+	 * Creates an Event Task with no name, empty issueDraft list and no event
 	 */
-	public EventTask(String name) {
-		this.name = name;
+	public EventTask(){
+		this(null, new HashSet<IssueDraft>(), null );
 	}
 	
+
+
+	//TODO
+	/**
+	 * 
+	 * @param name
+	 * @param issueDrafts
+	 * @param event
+	 */
+	public EventTask(String name, Set<IssueDraft> issueDrafts,Event event) {
+		this.name = name;
+		this.issueDrafts = issueDrafts;
+		this.event = event;
+	}
 
 	public Set<IssueDraft> getIssueDrafts() {
 		return issueDrafts;
@@ -64,11 +78,11 @@ public class EventTask {
 	}
 
 	public int getId() {
-		return eventTaskId;
+		return id;
 	}
 
-	public void setId(int eventTaskId) {
-		this.eventTaskId = eventTaskId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Event getEvent() {

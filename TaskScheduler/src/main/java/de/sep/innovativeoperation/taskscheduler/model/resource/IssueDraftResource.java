@@ -1,5 +1,18 @@
 package de.sep.innovativeoperation.taskscheduler.model.resource;
 
-public class IssueDraftResource {
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
+import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
+
+public class IssueDraftResource extends AbstractGenericResourceModel<IssueDraft> {
+
+	public IssueDraftResource() {
+		super(new IssueDraft());
+	}
+	
+	public IssueDraftResource(IssueDraft content) {
+		super(content);
+	}
+
+
 
 }

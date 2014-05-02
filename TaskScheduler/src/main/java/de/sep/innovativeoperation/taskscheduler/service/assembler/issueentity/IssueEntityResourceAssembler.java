@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.service.assembler;
+package de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;

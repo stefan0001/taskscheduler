@@ -1,9 +1,11 @@
 package de.sep.innovativeoperation.taskscheduler.model.data;
 
+import java.io.Serializable;
 
-public abstract class AbstractDataModel{
 
-	
-	
 
+@SuppressWarnings("serial")
+public abstract class AbstractDataModel implements Serializable{
+
+	public abstract int getId();
 }

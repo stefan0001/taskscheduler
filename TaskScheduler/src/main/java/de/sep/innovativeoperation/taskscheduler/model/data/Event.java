@@ -11,12 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@SuppressWarnings("serial")
 @Entity
-public class Event {
+@JsonIgnoreProperties("eventTasks")
+public class Event extends AbstractDataModel{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int eventId;
+	private int id;
 	
 	@NotNull
 	private String name;
@@ -24,6 +28,21 @@ public class Event {
 	@OneToMany( mappedBy = "event", cascade = {CascadeType.ALL})
 	private Set<EventTask> eventTasks = new HashSet<EventTask>();
 	
+	/**
+	 * Creates an Event with no Name and and no tasks
+	 */
+	public Event() {
+	}
+	
+	/**
+	 * Create a Event with a name and all Tasks that use this event
+	 * @param name
+	 * @param eventTasks
+	 */
+	public Event(String name, Set<EventTask> eventTasks) {
+		this.name = name;
+		this.eventTasks = eventTasks;
+	}
 	
 	public String getName() {
 		return name;
@@ -40,18 +59,19 @@ public class Event {
 	}
 
 
+
 	public void setEventTasks(Set<EventTask> eventTasks) {
 		this.eventTasks = eventTasks;
 	}
 
 
-	public int getEventId() {
-		return eventId;
+	public int getId() {
+		return id;
 	}
 
 
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

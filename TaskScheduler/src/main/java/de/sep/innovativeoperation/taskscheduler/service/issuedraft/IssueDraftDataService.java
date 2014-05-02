@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.service;
+package de.sep.innovativeoperation.taskscheduler.service.issuedraft;
 
 import java.util.List;
 import java.util.Set;
@@ -22,7 +22,7 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftVal
  */
 @Service
 @Transactional
-public class IssueDraftService {
+public class IssueDraftDataService {
 
 	@Autowired
 	private IssueDraftDAO issueDraftDAO;
@@ -30,9 +30,6 @@ public class IssueDraftService {
 	@Autowired
 	private IssueDraftValidationService issueDraftValidationService;
 
-	@Autowired
-	TestService testService;
-	
 	
 	// TODO id should be 0
 	public IssueDraft createIssueDraft(IssueDraft issueDraft) {
@@ -107,8 +104,6 @@ public class IssueDraftService {
 		if (issueDraft == null) {
 			throw new ResourceNotFoundException();
 		}
-		
-		testService.test(issueDraft );
 
 		return issueDraft;
 	}
@@ -135,11 +130,5 @@ public class IssueDraftService {
 		return issueEntities;
 	}
 
-	@Transactional(rollbackFor = ValidationFailureException.class)
-	public void test() throws ValidationFailureException {
-		IssueDraft id1 = this.getIssueDraft(1);
-		System.out.println(id1.getIssueEntities().iterator().next().getIssueDraft().getId());
-		
-	}
 
 }

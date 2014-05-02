@@ -1,6 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.model.data;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @SuppressWarnings("serial")
 @Entity
 @JsonIgnoreProperties({"issueEntities","timeTasks","eventTasks"})
-public class IssueDraft implements Serializable {
+public class IssueDraft extends AbstractDataModel {
 
 
 
@@ -43,28 +42,58 @@ public class IssueDraft implements Serializable {
 
 	/*Child of the IssueEntity <--> IssueDraft relationship */
 	@OneToMany(mappedBy = "issueDraft", cascade = {CascadeType.ALL})
-	private Set<IssueEntity> issueEntities = new HashSet<IssueEntity>();
+	private Set<IssueEntity> issueEntities;
 	
 
 	/*Child  of the TimeTask <--> IssueDraft relationship */
 	@ManyToMany(mappedBy = "issueDrafts", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private Set<TimeTask> timeTasks = new HashSet<TimeTask>();
+	private Set<TimeTask> timeTasks;
 	
 
 	/*Child  of the EventTask <--> IssueDraft relationship */
 	@ManyToMany(mappedBy = "issueDrafts", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private Set<EventTask> eventTasks = new HashSet<EventTask>();
+	private Set<EventTask> eventTasks;
 	
+	
+	/**
+	 * Creates an IssueDraft with no name, no description, no type with empty relations
+	 */
 	public IssueDraft(){
-		
+		this(null, null, null);
 	}
 	
+
+	/**
+	 * Creates an IssueDraftwith with empty relations
+	 * @param issueName
+	 * @param issueDescription
+	 * @param issueType
+	 */
 	public IssueDraft(String issueName, String issueDescription, IssueType issueType){
+		this(issueName, issueDescription, issueType, new HashSet<IssueEntity>(), new HashSet<TimeTask>(), new HashSet<EventTask>());
+	}
+	
+
+	/**
+	 * Creates an IssueDraftwith all Relations
+	 * @param issueName
+	 * @param issueDescription
+	 * @param issueType
+	 * @param issueEntities
+	 * @param timeTasks
+	 * @param eventTasks
+	 */
+
+	public IssueDraft(String issueName, String issueDescription,
+			IssueType issueType, Set<IssueEntity> issueEntities,
+			Set<TimeTask> timeTasks, Set<EventTask> eventTasks) {
 		this.issueName = issueName;
 		this.issueDescription = issueDescription;
 		this.issueType = issueType;
+		this.issueEntities = issueEntities;
+		this.timeTasks = timeTasks;
+		this.eventTasks = eventTasks;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
