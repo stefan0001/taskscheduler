@@ -7,12 +7,10 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractG
 //@XmlSeeAlso({ IssueEntity.class })
 public class IssueEntityResource extends AbstractGenericResourceModel<IssueEntity> {
 
-	public IssueEntityResource() {
-		this( new IssueEntity() );
+	public IssueEntityResource(IssueEntity content) {
+		super(content);
+		// TODO Auto-generated constructor stub
 	}
 
-	public IssueEntityResource(IssueEntity t) {
-		super(t);
-	}
 
 }

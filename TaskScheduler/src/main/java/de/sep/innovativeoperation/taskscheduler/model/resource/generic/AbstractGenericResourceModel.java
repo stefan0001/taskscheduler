@@ -6,9 +6,9 @@ import org.springframework.hateoas.Resource;
 import de.sep.innovativeoperation.taskscheduler.model.data.AbstractDataModel;
 
 //TODO
-public abstract class AbstractGenericResourceModel<T extends AbstractDataModel> extends Resource<T>{
+public abstract class AbstractGenericResourceModel<D extends AbstractDataModel> extends Resource<D>{
 
-	public AbstractGenericResourceModel(T content){
+	public AbstractGenericResourceModel(D content){
 		super(content);
 	}
 

@@ -16,7 +16,7 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
-import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
+import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 
 /**
  * Controller for CRUD operations on Issue Templates
@@ -32,7 +32,7 @@ public class IssueDraftController {
 	@Autowired
 	private IssueDraftService issueDraftService;
 	@Autowired
-	private IssueEntityService issueEntityService;
+	private IssueEntityDataService issueEntityService;
 	
 	
 	

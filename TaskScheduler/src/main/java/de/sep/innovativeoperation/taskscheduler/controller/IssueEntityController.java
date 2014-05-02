@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
-import de.sep.innovativeoperation.taskscheduler.service.IssueEntityResourceService;
-import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
+import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
+import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourcesModel;
+import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
+import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 
 /**
  * Controller for CRUD operations on Issue Entities
@@ -26,10 +28,9 @@ import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 @RequestMapping(value = "/issueentity")
 public class IssueEntityController {
 
-	// SERVICES
-	@Autowired
-	private IssueEntityService issueEntityService;
-
+	
+	public static final String JSON = "application/json";
+	// ResourceService
 	@Autowired
 	private IssueEntityResourceService issueEntityResourceService;
 
@@ -38,8 +39,8 @@ public class IssueEntityController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody IssueEntitiesResource getIssueEntities() {
+	@RequestMapping(method = RequestMethod.GET, produces = JSON)
+	public @ResponseBody AbstractGenericResourcesModel getIssueEntities() {
 		return issueEntityResourceService.getAllIssueEntities();
 	}
 
@@ -49,8 +50,8 @@ public class IssueEntityController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody IssueEntityResource getIssueEntity(@PathVariable("issueentityid") int id) {
+	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.GET, produces = JSON)
+	public @ResponseBody AbstractGenericResourceModel<IssueEntity> getIssueEntity(@PathVariable("issueentityid") int id) {
 		return issueEntityResourceService.getIssueEntity(id);
 
 	}
@@ -60,11 +61,9 @@ public class IssueEntityController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.PUT)
-	public @ResponseBody IssueEntityResource updateIssueEntity(@PathVariable("issueentityid") int id, @RequestBody IssueEntity issueEntity) {
-		IssueEntity updatedIssueEntity = issueEntityService.updateIssueEntity(id, issueEntity);
-
-		return null;
+	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.PUT, produces = JSON)
+	public @ResponseBody AbstractGenericResourceModel<IssueEntity> updateIssueEntity(@PathVariable("issueentityid") int id, @RequestBody IssueEntityResource issueEntityResource) {
+		return issueEntityResourceService.updateIssueEntity(id, issueEntityResource);
 	}
 
 	/**
@@ -73,9 +72,9 @@ public class IssueEntityController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.DELETE, produces = JSON)
 	public void deleteIssueEntity(@PathVariable("issueentityid") int id) {
-		issueEntityService.deleteIssueEntity(id);
+		issueEntityResourceService.deleteIssueEntity(id);
 	}
 
 }

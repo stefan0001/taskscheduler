@@ -1,13 +1,20 @@
 package de.sep.innovativeoperation.taskscheduler.model.resource;
 
+
 import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourcesModel;
 
-
+//TODO
 public class IssueEntitiesResource extends AbstractGenericResourcesModel<IssueEntityResource>{
 
-	public IssueEntitiesResource(Iterable<IssueEntityResource> content) {
-		super(content);
+	public IssueEntitiesResource() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
+
+
+
+
+
 
 
 	

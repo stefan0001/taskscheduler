@@ -7,20 +7,20 @@ import de.sep.innovativeoperation.taskscheduler.model.data.AbstractDataModel;
 import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
 
 
-/**
- * 
- * @author SEP
- *Converts a Data Class to a Resource Class
- * @param <D>The Data Class
- * @param <R>The Resource Class
- */
+
 
 @Service
-public abstract class AbstractGenericDataResourceAssembler<D extends AbstractDataModel, R extends AbstractGenericResourceModel<D> > extends ResourceAssemblerSupport<D,R>{
+public abstract class AbstractGenericDataResourceAssembler<D extends AbstractDataModel, F extends AbstractGenericResourceModel<D>> extends ResourceAssemblerSupport<D,F>{
 
-	public AbstractGenericDataResourceAssembler(Class<?> controllerClass, Class<R> resourceType) {
+	public AbstractGenericDataResourceAssembler(Class<?> controllerClass,
+			Class<F> resourceType) {
 		super(controllerClass, resourceType);
+		// TODO Auto-generated constructor stub
 	}
+
+
+
+
 
 	
 	

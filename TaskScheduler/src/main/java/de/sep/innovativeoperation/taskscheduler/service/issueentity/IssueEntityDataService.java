@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.taskscheduler.service;
+package de.sep.innovativeoperation.taskscheduler.service.issueentity;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
+import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueEntityValidationService;
 
 /**
@@ -20,7 +21,7 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.IssueEntityVa
  */
 @Service
 @Transactional
-public class IssueEntityService {
+public class IssueEntityDataService {
 
 	//DAO's
 	@Autowired

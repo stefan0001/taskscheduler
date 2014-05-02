@@ -2,13 +2,19 @@ package de.sep.innovativeoperation.taskscheduler.model.resource.generic;
 
 import org.springframework.hateoas.Resources;
 
-public abstract class AbstractGenericResourcesModel<T extends AbstractGenericResourceModel<?>> extends Resources<T> {
+
+//TODO
+public abstract class AbstractGenericResourcesModel<R extends AbstractGenericResourceModel<?>> extends Resources<R> {
 
 
 
-	public AbstractGenericResourcesModel(Iterable<T> content) {
-		super(content);
-	}
+
+
+
+
+
+
+
 	
 	
 
