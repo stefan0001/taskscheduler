@@ -3,6 +3,7 @@
 	<name>TaskScheduler</name>
 	<comment></comment>
 	<projects>
+		<project>GuiClient</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
