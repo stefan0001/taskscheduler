@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftValidationService;

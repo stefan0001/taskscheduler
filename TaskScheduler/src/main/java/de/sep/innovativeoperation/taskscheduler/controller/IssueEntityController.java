@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
-import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
-import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourcesModel;
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
 /**
  * Controller for CRUD operations on Issue Entities
@@ -36,7 +34,7 @@ public class IssueEntityController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = JSON)
-	public @ResponseBody AbstractGenericResourcesModel getIssueEntities() {
+	public @ResponseBody IssueEntitiesResource getIssueEntities() {
 		return issueEntityResourceService.getAllIssueEntities();
 	}
 
@@ -47,7 +45,7 @@ public class IssueEntityController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.GET, produces = JSON)
-	public @ResponseBody AbstractGenericResourceModel<IssueEntity> getIssueEntity(@PathVariable("issueentityid") int id) {
+	public @ResponseBody IssueEntityResource getIssueEntity(@PathVariable("issueentityid") int id) {
 		return issueEntityResourceService.getIssueEntity(id);
 
 	}
@@ -58,7 +56,7 @@ public class IssueEntityController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.PUT, produces = JSON)
-	public @ResponseBody AbstractGenericResourceModel<IssueEntity> updateIssueEntity(@PathVariable("issueentityid") int id, @RequestBody IssueEntityResource issueEntityResource) {
+	public @ResponseBody IssueEntityResource updateIssueEntity(@PathVariable("issueentityid") int id, @RequestBody IssueEntityResource issueEntityResource) {
 		return issueEntityResourceService.updateIssueEntity(id, issueEntityResource);
 	}
 

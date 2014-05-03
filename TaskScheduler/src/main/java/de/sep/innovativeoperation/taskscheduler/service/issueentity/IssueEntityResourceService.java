@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
-import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntitiesResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntityResourceAssembler;
 
@@ -28,7 +27,7 @@ public class IssueEntityResourceService {
 	private IssueEntitiesResourceAssembler issueEntitiesResourceAssembler;
 	
 	
-	public AbstractGenericResourceModel<IssueEntity> getIssueEntity(int issueEntityId){
+	public IssueEntityResource getIssueEntity(int issueEntityId){
 		IssueEntity issueEntity = issueEntityDataService.getIssueEntity(issueEntityId);
 		return issueEntityResourceAssembler.toResource(issueEntity);
 	}
