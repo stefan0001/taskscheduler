@@ -1,9 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.model.resource;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.ListIterator;
-
 import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourcesModel;
 
 public class IssueDraftsResource extends AbstractGenericResourcesModel<IssueDraftResource> {

@@ -156,4 +156,70 @@ public class IssueDraft extends AbstractDataModel {
 		this.issueEntities = issueEntites;
 	}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((eventTasks == null) ? 0 : eventTasks.hashCode());
+		result = prime * result + id;
+		result = prime
+				* result
+				+ ((issueDescription == null) ? 0 : issueDescription.hashCode());
+		result = prime * result
+				+ ((issueEntities == null) ? 0 : issueEntities.hashCode());
+		result = prime * result
+				+ ((issueName == null) ? 0 : issueName.hashCode());
+		result = prime * result
+				+ ((issueType == null) ? 0 : issueType.hashCode());
+		result = prime * result
+				+ ((timeTasks == null) ? 0 : timeTasks.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		IssueDraft other = (IssueDraft) obj;
+		if (eventTasks == null) {
+			if (other.eventTasks != null)
+				return false;
+		} else if (!eventTasks.equals(other.eventTasks))
+			return false;
+		if (id != other.id)
+			return false;
+		if (issueDescription == null) {
+			if (other.issueDescription != null)
+				return false;
+		} else if (!issueDescription.equals(other.issueDescription))
+			return false;
+		if (issueEntities == null) {
+			if (other.issueEntities != null)
+				return false;
+		} else if (!issueEntities.equals(other.issueEntities))
+			return false;
+		if (issueName == null) {
+			if (other.issueName != null)
+				return false;
+		} else if (!issueName.equals(other.issueName))
+			return false;
+		if (issueType != other.issueType)
+			return false;
+		if (timeTasks == null) {
+			if (other.timeTasks != null)
+				return false;
+		} else if (!timeTasks.equals(other.timeTasks))
+			return false;
+		return true;
+	}
+
+	
+	
 }

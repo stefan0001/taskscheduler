@@ -32,7 +32,19 @@ public class Event extends AbstractDataModel{
 	 * Creates an Event with no Name and and no tasks
 	 */
 	public Event() {
+		this(null,null);
 	}
+	
+	/**
+	 * Creates an Event with only a name and empty task list
+	 * @param name Name of the eventtask
+	 */
+	public Event(String name) {
+		this(name,null);
+	}
+	
+	
+	
 	
 	/**
 	 * Create a Event with a name and all Tasks that use this event

@@ -1,5 +1,7 @@
 package de.sep.innovativeoperation.taskscheduler.model.data;
 
+import static org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType.HAL;
+
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -13,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.hateoas.core.Relation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,7 +28,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @SuppressWarnings("serial")
 @Entity
 @JsonIgnoreProperties({"issueDraft"})
-
+@Relation(value="draft")
+@EnableHypermediaSupport(type = { HAL })
 //@XmlElement
 //@XmlRootElement
 public class IssueEntity extends AbstractDataModel implements Serializable {
@@ -97,5 +101,44 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 		this.issueDraft = issueDraft;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result
+				+ ((issueDraft == null) ? 0 : issueDraft.hashCode());
+		result = prime * result
+				+ ((issueResolution == null) ? 0 : issueResolution.hashCode());
+		result = prime * result
+				+ ((issueStatus == null) ? 0 : issueStatus.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		IssueEntity other = (IssueEntity) obj;
+		if (id != other.id)
+			return false;
+		if (issueDraft == null) {
+			if (other.issueDraft != null)
+				return false;
+		} else if (!issueDraft.equals(other.issueDraft))
+			return false;
+		if (issueResolution != other.issueResolution)
+			return false;
+		if (issueStatus != other.issueStatus)
+			return false;
+		return true;
+	}
+
+	
+	
 
 }

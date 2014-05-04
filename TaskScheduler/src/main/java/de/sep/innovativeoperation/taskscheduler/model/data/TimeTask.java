@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class TimeTask {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int timeTaskId;
+	private int id;
 	
 	@NotNull
 	private String name;
@@ -43,17 +43,28 @@ public class TimeTask {
 	
 	
 	public TimeTask() {	
-		
+		this(null,null,0,new HashSet<IssueDraft>() );
 	}
 	
-	/**
-	 * 
-	 * @param name Name of this Task
-	 */
+	//TODO
 	public TimeTask(String name) {
-		this.name = name;
+		this(name,null,0,new HashSet<IssueDraft>() );
 	}
 	
+
+	/**
+	 * Creates a new TimeTask
+	 * @param name			Name of the Timetask
+	 * @param firstFireTime	The first fire Time
+	 * @param intervall		The time to the next execution
+	 * @param issueDrafts   All IssueDrafts that are used by this TimeTak
+	 */
+	public TimeTask(String name, Calendar firstFireTime, int intervall, Set<IssueDraft> issueDrafts) {
+		this.name = name;
+		this.firstFireTime = firstFireTime;
+		this.intervall = intervall;
+		this.issueDrafts = issueDrafts;
+	}
 
 	public Set<IssueDraft> getIssueDrafts() {
 		return issueDrafts;
@@ -72,11 +83,11 @@ public class TimeTask {
 	}
 
 	public int getId() {
-		return timeTaskId;
+		return id;
 	}
 
-	public void setId(int timeTaskId) {
-		this.timeTaskId = timeTaskId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Calendar getFirstFireTime() {
@@ -102,6 +113,9 @@ public class TimeTask {
 	public void setIntervall(int intervall) {
 		this.intervall = intervall;
 	}
+	
+	
+	
 
 	
 }
