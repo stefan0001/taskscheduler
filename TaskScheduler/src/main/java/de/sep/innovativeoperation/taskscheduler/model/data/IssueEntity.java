@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.hateoas.core.Relation;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
@@ -46,6 +48,7 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "ISSUEDRAFT_ISSUEDRAFTID")
 	private IssueDraft issueDraft;
+	
 	
 	public IssueEntity() {
 	}

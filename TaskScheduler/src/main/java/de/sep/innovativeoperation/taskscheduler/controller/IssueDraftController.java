@@ -2,9 +2,6 @@ package de.sep.innovativeoperation.taskscheduler.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,14 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftResourceService;
-import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
 /**
  * Controller for CRUD operations on Issue Drafts
