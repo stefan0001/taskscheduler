@@ -9,7 +9,6 @@ import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
 public class TimeTaskValidationService implements AbstractGenericValidationService<TimeTask> {
 
 	//TODO
-	@Override
 	public void checkObject(TimeTask object) throws ValidationFailureException {
 		if (object.getName() == null) {
 			throw new ValidationFailureException();

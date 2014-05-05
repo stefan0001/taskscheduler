@@ -11,7 +11,6 @@ public class TimeTaskResourceAssembler extends AbstractGenericDataResourceAssemb
 		super(TimeTaskController.class, TimeTaskResource.class);
 	}
 
-	@Override
 	public TimeTaskResource toResource(TimeTask entity) {
 		TimeTaskResource resource = new TimeTaskResource(entity);
 		

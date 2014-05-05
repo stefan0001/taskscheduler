@@ -49,11 +49,7 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 		issueDraftValidationService.checkObject(issueDraft);
 
 		// search for object
-		IssueDraft oldDraft = issueDraftDAO.findById(id);
-
-		if (oldDraft == null) {
-			throw new ResourceNotFoundException();
-		}
+		this.getById(id);
 
 		issueDraft = issueDraftDAO.save(issueDraft);
 
