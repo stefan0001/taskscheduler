@@ -16,15 +16,14 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.AbstractGener
 @Transactional
 public abstract class AbstractGenericDataService<T extends AbstractDataModel> {
 	@Autowired
-	private GenericDAOjpa<T> dao;
+	protected GenericDAOjpa<T> dao;
 	
 	@Autowired
-	private AbstractGenericValidationService<T> validationService;
+	protected AbstractGenericValidationService<T> validationService;
 	
 	
 	
-	
-	
+
 	public T getById(int id){
 		T entity = dao.findById(id);
 		if(entity == null){
@@ -33,12 +32,16 @@ public abstract class AbstractGenericDataService<T extends AbstractDataModel> {
 		
 		return entity;
 	}
-	
+
 	public void deleteById(int id){
-		T entity = this.getById(id);
+		T entity = dao.findById(id);
+		
+		if(entity == null){
+			throw new ResourceNotFoundException();
+		}
+		
 		dao.remove(entity);
 	}
-	
 	
 	
 	public List<T> getAll(){

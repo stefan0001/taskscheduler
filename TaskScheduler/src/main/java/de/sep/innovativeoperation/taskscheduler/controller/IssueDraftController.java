@@ -41,7 +41,7 @@ public class IssueDraftController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = JSON)
 	public @ResponseBody IssueDraftsResource getIssueDrafts() {
-		return issueDraftResourceService.getAllIssueDrafts();
+		return issueDraftResourceService.getAll();
 		
 
 	}
@@ -54,7 +54,7 @@ public class IssueDraftController {
 	 */
 	@RequestMapping(value="/{issuedraftid}",method = RequestMethod.GET, produces = JSON)
 	public @ResponseBody IssueDraftResource getIssueDraft( @PathVariable("issuedraftid") int id) {
-		return issueDraftResourceService.getIssueDraft(id);
+		return issueDraftResourceService.getById(id);
 	}
 	
 	/**
@@ -77,7 +77,7 @@ public class IssueDraftController {
 	 */
 	@RequestMapping(value="/{issuedraftid}",method = RequestMethod.DELETE, produces = JSON)
 	public @ResponseBody void deleteIssueDraft( @PathVariable("issuedraftid") int id) {
-		issueDraftResourceService.deleteIssueDraft(id);
+		issueDraftResourceService.deleteById(id);
 	}
 	
 	

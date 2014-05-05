@@ -36,7 +36,7 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = JSON)
 	public @ResponseBody IssueEntitiesResource getIssueEntities() {
-		return issueEntityResourceService.getAllIssueEntities();
+		return issueEntityResourceService.getAll();
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.GET, produces = JSON)
 	public @ResponseBody IssueEntityResource getIssueEntity(@PathVariable("issueentityid") int id) {
-		return issueEntityResourceService.getIssueEntity(id);
+		return issueEntityResourceService.getById(id);
 
 	}
 
@@ -69,7 +69,7 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.DELETE, produces = JSON)
 	public void deleteIssueEntity(@PathVariable("issueentityid") int id) {
-		issueEntityResourceService.deleteIssueEntity(id);
+		issueEntityResourceService.deleteById(id);
 	}
 
 }

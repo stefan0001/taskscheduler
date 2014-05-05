@@ -1,7 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.service.issueentity;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,13 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
+import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericResourceService;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntitiesResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntityResourceAssembler;
 
 
 @Service
 @Transactional
-public class IssueEntityResourceService {
+public class IssueEntityResourceService extends AbstractGenericResourceService<IssueEntity,IssueEntityResource, IssueEntitiesResource>{
 	//SERVICES
 	@Autowired 
 	private IssueEntityDataService issueEntityDataService;
@@ -26,16 +25,6 @@ public class IssueEntityResourceService {
 	@Autowired
 	private IssueEntitiesResourceAssembler issueEntitiesResourceAssembler;
 	
-	
-	public IssueEntityResource getIssueEntity(int issueEntityId){
-		IssueEntity issueEntity = issueEntityDataService.getById(issueEntityId);
-		return issueEntityResourceAssembler.toResource(issueEntity);
-	}
-	
-	public IssueEntitiesResource getAllIssueEntities(){
-		List<IssueEntity> issueEntities = issueEntityDataService.getAll();
-		return issueEntitiesResourceAssembler.toResource(issueEntityResourceAssembler.toResources(issueEntities));
-	}
 	
 	
 	public IssueEntityResource createIssueEntity(int issueDraftId, IssueEntityResource issueEntityResource) {
@@ -52,8 +41,6 @@ public class IssueEntityResourceService {
 	}
 	
 
-	public void deleteIssueEntity(int id){
-		issueEntityDataService.deleteById(id);
-	}
+
 	
 }

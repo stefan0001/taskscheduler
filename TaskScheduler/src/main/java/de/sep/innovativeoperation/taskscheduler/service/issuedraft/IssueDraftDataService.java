@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
@@ -41,19 +42,17 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 	}
 
 	// TODO id should be != 0
+	@Transactional(propagation=Propagation.REQUIRED)
 	public IssueDraft updateIssueDraft(int id, IssueDraft issueDraft) {
 
-		// id change is not allowed
-		issueDraft.setId(id);
 
 		issueDraftValidationService.checkObject(issueDraft);
 
+		System.out.println(issueDraft.getIssueName());
 		// search for object
-		this.getById(id);
-
-		issueDraft = issueDraftDAO.save(issueDraft);
-
-		return issueDraft;
+		IssueDraft issueDraftOld = issueDraftDAO.findById(id);
+		issueDraftOld.setIssueName("OMG");
+		return issueDraftDAO.save(issueDraftOld);
 
 	}
 	

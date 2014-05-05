@@ -13,6 +13,7 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResourc
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
+import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericResourceService;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftsResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntitiesResourceAssembler;
@@ -21,7 +22,7 @@ import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.Is
 
 @Service
 @Transactional
-public class IssueDraftResourceService {
+public class IssueDraftResourceService extends AbstractGenericResourceService<IssueDraft,IssueDraftResource, IssueDraftsResource>{
 
 	//SERVICES
 	@Autowired
@@ -57,24 +58,10 @@ public class IssueDraftResourceService {
 	}
 	
 
-	public void deleteIssueDraft(int id) {
-		 issueDraftDataService.deleteById(id);
-
-	}
 
 
-	public IssueDraftsResource getAllIssueDrafts() {
-		List<IssueDraft> issueDrafts = issueDraftDataService.getAll();
-		List<IssueDraftResource> issueDraftResources = issueDraftResourceAssembler.toResources(issueDrafts);
-		return issueDraftsResourceAssembler.toResource(issueDraftResources);
-	}
 
 
-	public IssueDraftResource getIssueDraft(int issueDraftId) {
-		IssueDraft issueDraft = issueDraftDataService.getById(issueDraftId);
-
-		return issueDraftResourceAssembler.toResource(issueDraft);
-	}
 
 	public IssueEntitiesResource getIssueEntitiesForIssueDraft(int issueDraftId) {
 		Set<IssueEntity> issueEntities = issueDraftDataService.getIssueEntitiesForIssueDraft(issueDraftId);
