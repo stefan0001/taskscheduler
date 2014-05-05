@@ -18,9 +18,10 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@SuppressWarnings("serial")
 @Entity
 @JsonIgnoreProperties({"issueDrafts"})
-public class TimeTask {
+public class TimeTask extends AbstractDataModel{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

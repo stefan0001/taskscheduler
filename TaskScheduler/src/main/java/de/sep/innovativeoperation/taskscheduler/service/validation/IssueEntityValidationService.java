@@ -13,7 +13,8 @@ public class IssueEntityValidationService implements AbstractGenericValidationSe
 	public void checkObject(IssueEntity object) throws ValidationFailureException {
 		if (object.getIssueResolution() == null) {
 			throw new ValidationFailureException();
-		} else if (object.getIssueStatus() == null) {
+		} 
+		if (object.getIssueStatus() == null) {
 			throw new ValidationFailureException();
 		} 
 	}

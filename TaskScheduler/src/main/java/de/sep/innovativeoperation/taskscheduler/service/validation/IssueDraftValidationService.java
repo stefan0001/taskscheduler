@@ -13,9 +13,11 @@ public class IssueDraftValidationService implements AbstractGenericValidationSer
 		
 		if (object.getIssueName() == null) {
 			throw new ValidationFailureException();
-		} else if (object.getIssueDescription() == null) {
+		} 
+		if (object.getIssueDescription() == null) {
 			throw new ValidationFailureException();
-		} else if (object.getIssueType() == null) {
+		} 
+		if (object.getIssueType() == null) {
 			throw new ValidationFailureException();
 		} 
 	}

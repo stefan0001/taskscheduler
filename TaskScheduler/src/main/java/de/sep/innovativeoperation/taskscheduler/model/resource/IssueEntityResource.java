@@ -14,14 +14,26 @@ public class IssueEntityResource extends AbstractGenericResourceModel<IssueEntit
 	private EmbeddedIssueDraft embedded;
 	
 	
+	/**
+	 * Create a new IssueEntityResource with a default IssueEntity and a Default IssueDraftResource
+	 */
 	public IssueEntityResource() {
 		this(new IssueEntity() );
 	}
 	
+	/**
+	 * Create a new IssueEntityResource with a given IssueEntity as Content
+	 * @param content  including IssueEntity
+	 */
 	public IssueEntityResource(IssueEntity content) {
 		this(content, new IssueDraftResource() );
 	}
 	
+	/**
+	 * Create a new IssueEntityResource with a given IssueEntity as content and a IssueDraftResource as embedded Resource
+	 * @param content
+	 * @param embedded
+	 */
 	public IssueEntityResource(IssueEntity content, IssueDraftResource embedded) {
 		super(content);
 		this.embedded = new EmbeddedIssueDraft( embedded );

@@ -58,20 +58,20 @@ public class IssueDraftResourceService {
 	
 
 	public void deleteIssueDraft(int id) {
-		 issueDraftDataService.deleteIssueDraft(id);
+		 issueDraftDataService.deleteById(id);
 
 	}
 
 
 	public IssueDraftsResource getAllIssueDrafts() {
-		List<IssueDraft> issueDrafts = issueDraftDataService.getAllIssueDrafts();
+		List<IssueDraft> issueDrafts = issueDraftDataService.getAll();
 		List<IssueDraftResource> issueDraftResources = issueDraftResourceAssembler.toResources(issueDrafts);
 		return issueDraftsResourceAssembler.toResource(issueDraftResources);
 	}
 
 
 	public IssueDraftResource getIssueDraft(int issueDraftId) {
-		IssueDraft issueDraft = issueDraftDataService.getIssueDraft(issueDraftId);
+		IssueDraft issueDraft = issueDraftDataService.getById(issueDraftId);
 
 		return issueDraftResourceAssembler.toResource(issueDraft);
 	}

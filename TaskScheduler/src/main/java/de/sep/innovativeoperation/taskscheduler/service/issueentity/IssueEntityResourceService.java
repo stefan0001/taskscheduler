@@ -28,12 +28,12 @@ public class IssueEntityResourceService {
 	
 	
 	public IssueEntityResource getIssueEntity(int issueEntityId){
-		IssueEntity issueEntity = issueEntityDataService.getIssueEntity(issueEntityId);
+		IssueEntity issueEntity = issueEntityDataService.getById(issueEntityId);
 		return issueEntityResourceAssembler.toResource(issueEntity);
 	}
 	
 	public IssueEntitiesResource getAllIssueEntities(){
-		List<IssueEntity> issueEntities = issueEntityDataService.getAllIssueEntities();
+		List<IssueEntity> issueEntities = issueEntityDataService.getAll();
 		return issueEntitiesResourceAssembler.toResource(issueEntityResourceAssembler.toResources(issueEntities));
 	}
 	
@@ -53,7 +53,7 @@ public class IssueEntityResourceService {
 	
 
 	public void deleteIssueEntity(int id){
-		issueEntityDataService.deleteIssueEntity(id );
+		issueEntityDataService.deleteById(id);
 	}
 	
 }

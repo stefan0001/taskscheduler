@@ -1,6 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.service.issuedraft;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
+import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftValidationService;
 
 /**
@@ -21,7 +21,7 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftVal
  */
 @Service
 @Transactional
-public class IssueDraftDataService {
+public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft> {
 
 	@Autowired
 	private IssueDraftDAO issueDraftDAO;
@@ -61,51 +61,8 @@ public class IssueDraftDataService {
 
 	}
 	
-	/**
-	 * Delete a IssueDraft with a given id
-	 * @param id
-	 */
-	public void deleteIssueDraft(int id) {
 
-		//find issuedraft
 
-		IssueDraft issueDraft = issueDraftDAO.findById(id);
-
-		if (issueDraft == null) {
-			throw new ResourceNotFoundException();
-		}
-
-		issueDraftDAO.remove(issueDraft);
-
-	}
-
-	/**
-	 * load all IssueDrafts
-	 * 
-	 * @param issueDraftId
-	 * @return
-	 */
-	public List<IssueDraft> getAllIssueDrafts() {
-		List<IssueDraft> issueDrafts = issueDraftDAO.fetchAll();
-
-		return issueDrafts;
-	}
-
-	/**
-	 * load one IssueDraft
-	 * 
-	 * @param issueDraftId
-	 * @return
-	 */
-	public IssueDraft getIssueDraft(int issueDraftId) {
-		IssueDraft issueDraft = issueDraftDAO.findById(issueDraftId);
-
-		if (issueDraft == null) {
-			throw new ResourceNotFoundException();
-		}
-
-		return issueDraft;
-	}
 
 	/**
 	 * load all IssueEntities for one IssueDraft

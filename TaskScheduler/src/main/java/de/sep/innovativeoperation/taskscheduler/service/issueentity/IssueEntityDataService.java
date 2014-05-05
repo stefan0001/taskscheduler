@@ -1,7 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.service.issueentity;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +8,7 @@ import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
+import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
 import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftDataService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueEntityValidationService;
 
@@ -21,7 +20,7 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.IssueEntityVa
  */
 @Service
 @Transactional
-public class IssueEntityDataService {
+public class IssueEntityDataService extends AbstractGenericDataService<IssueEntity> {
 
 	//DAO's
 	@Autowired
@@ -36,34 +35,10 @@ public class IssueEntityDataService {
 	private IssueEntityValidationService issueEntityValidationService;
 	
 	
-	/**
-	 * load all IssueEntities
-	 * @return
-	 */
-	public List<IssueEntity> getAllIssueEntities() {
-		return issueEntityDAO.fetchAll();
-	}
-	
-	
-	/**
-	 * load one IssueEntity
-	 * @return
-	 */
-	public IssueEntity getIssueEntity(int issueEntityId) {
-		IssueEntity issueEntity = issueEntityDAO.findById(issueEntityId);
-		
-		if(issueEntity == null){
-			throw new ResourceNotFoundException();
-		}
-		return issueEntity;
-		
-		
-	}
-	
 	//TODO
 	public IssueEntity createIssueEntity(int issueDraftId, IssueEntity issueEntity) {
 		//find the issueDraft
-		IssueDraft issueDraft = issueDraftService.getIssueDraft(issueDraftId);
+		IssueDraft issueDraft = issueDraftService.getById(issueDraftId);
 		
 		System.out.println(issueDraft);
 		if(issueDraft == null){
@@ -113,22 +88,7 @@ public class IssueEntityDataService {
 
 	}
 	
-	
-	/**
-	 * Delete a IssueEntity with a given id
-	 * @param id
-	 */
-	public void deleteIssueEntity(int id){
-		//find issueentity
-		IssueEntity issueEntity = issueEntityDAO.findById(id);
 
-		if (issueEntity == null) {
-			throw new ResourceNotFoundException();
-		}
-
-		issueEntityDAO.remove(issueEntity);
-	}
-	
 	
 	
 	
