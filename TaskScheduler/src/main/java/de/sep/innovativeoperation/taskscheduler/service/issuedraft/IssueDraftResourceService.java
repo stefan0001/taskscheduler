@@ -14,10 +14,9 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResour
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericResourceService;
-import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftResourceAssembler;
-import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftsResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntitiesResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntityResourceAssembler;
+import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 
 
 @Service
@@ -27,47 +26,34 @@ public class IssueDraftResourceService extends AbstractGenericResourceService<Is
 	//SERVICES
 	@Autowired
 	private IssueDraftDataService issueDraftDataService;
-
-	//ASSEMBLER
 	
-	@Autowired
-	private IssueDraftResourceAssembler issueDraftResourceAssembler;
-	
-	@Autowired
-	private IssueDraftsResourceAssembler issueDraftsResourceAssembler;
-	
-	
-	@Autowired
+	@Autowired 
 	private IssueEntityResourceAssembler issueEntityResourceAssembler;
-	
 	@Autowired
 	private IssueEntitiesResourceAssembler issueEntitiesResourceAssembler;
+	
 	
 
 	public IssueDraftResource createIssueDraft(IssueDraftResource issueDraftResource) {
 		IssueDraft issueDraft = issueDraftDataService.createIssueDraft(issueDraftResource.getContent());
 		
-		return issueDraftResourceAssembler.toResource(issueDraft);
+		return resourceAssembler.toResource(issueDraft);
 	}
 
 
 	public IssueDraftResource updateIssueDraft(int id, IssueDraftResource issueDraftResource) {
 		IssueDraft issueDraft = issueDraftDataService.updateIssueDraft(id, issueDraftResource.getContent());
 		
-		return issueDraftResourceAssembler.toResource(issueDraft);
+		return resourceAssembler.toResource(issueDraft);
 	}
 	
 
-
-
-
-
-
 	public IssueEntitiesResource getIssueEntitiesForIssueDraft(int issueDraftId) {
-		Set<IssueEntity> issueEntities = issueDraftDataService.getIssueEntitiesForIssueDraft(issueDraftId);
+		Set<IssueEntity> issueEntities =  issueDraftDataService.getIssueEntitiesForIssueDraft(issueDraftId);
 		List<IssueEntityResource> issueEntityResources = issueEntityResourceAssembler.toResources(issueEntities);
 		return issueEntitiesResourceAssembler.toResource(issueEntityResources);
 	}
+
 
 
 }

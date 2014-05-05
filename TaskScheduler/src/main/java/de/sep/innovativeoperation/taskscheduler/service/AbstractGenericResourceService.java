@@ -15,7 +15,7 @@ import de.sep.innovativeoperation.taskscheduler.service.assembler.generic.Abstra
 
 @Service
 @Transactional
-public abstract class AbstractGenericResourceService<D extends AbstractDataModel, R extends AbstractGenericResourceModel<D>,S extends AbstractGenericResourcesModel<R>> {
+public abstract class AbstractGenericResourceService<D extends AbstractDataModel,R extends AbstractGenericResourceModel<D>,M extends AbstractGenericResourcesModel<R>> {
 	@Autowired
 	protected AbstractGenericDataService<D> dataService;
 	
@@ -23,24 +23,24 @@ public abstract class AbstractGenericResourceService<D extends AbstractDataModel
 	protected AbstractGenericDataResourceAssembler<D,R> resourceAssembler;
 	
 	@Autowired
-	protected AbstractGenericDataResourcesAssembler<R,S> resourcesAssembler;
+	protected AbstractGenericDataResourcesAssembler<R,M> resourcesAssembler;
 	
-	@Transactional
+
 	public R getById(int id){
 		D data = dataService.getById(id);
 		R resource = resourceAssembler.toResource(data);
 		return  resource;
 	}
-	@Transactional
+
 	public void deleteById(int id){
 		dataService.deleteById(id);
 		System.out.println("TEST");
 	}
-	@Transactional
-	public S getAll(){
+
+	public M getAll(){
 		List<D> data = dataService.getAll();
 		List<R> resources = resourceAssembler.toResources(data);
-		S resourcesResource = resourcesAssembler.toResource(resources);
+		M resourcesResource = resourcesAssembler.toResource(resources);
 		return  resourcesResource;
 	}
 	

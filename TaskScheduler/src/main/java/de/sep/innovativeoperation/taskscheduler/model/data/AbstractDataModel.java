@@ -8,4 +8,6 @@ import java.io.Serializable;
 public abstract class AbstractDataModel implements Serializable{
 
 	public abstract int getId();
+	
+	public abstract void setId(int id);
 }

@@ -31,7 +31,7 @@ public class RemoveIssueDraft {
 		
 		int id = issueDraft.getId();
 
-		issueDraftDAO.remove(issueDraft);
+
 		// CHECK
 		Assert.assertNull(issueDraftDAO.findById(id));
 

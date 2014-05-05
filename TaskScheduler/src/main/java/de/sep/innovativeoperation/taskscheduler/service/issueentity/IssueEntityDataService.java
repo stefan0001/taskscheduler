@@ -67,24 +67,17 @@ public class IssueEntityDataService extends AbstractGenericDataService<IssueEnti
 	// TODO id should be != 0
 	public IssueEntity updateIssueEntity(int id, IssueEntity issueEntity) {
 
-		// id change is not allowed
-		issueEntity.setId(id);
 
 		issueEntityValidationService.checkObject(issueEntity);
 
 		// search for object
-		IssueEntity oldEntity = issueEntityDAO.findById(id);
-
-		if (oldEntity == null) {
-			throw new ResourceNotFoundException();
-		}
+		IssueEntity oldEntity = this.getById(id);
 		
-		//draft change is not allowed
-		issueEntity.setIssueDraft(oldEntity.getIssueDraft());
+		//update object
+		oldEntity.setIssueResolution(issueEntity.getIssueResolution());
+		oldEntity.setIssueStatus(issueEntity.getIssueStatus());
 
-		issueEntity = issueEntityDAO.save(issueEntity);
-
-		return issueEntity;
+		return oldEntity;
 
 	}
 	

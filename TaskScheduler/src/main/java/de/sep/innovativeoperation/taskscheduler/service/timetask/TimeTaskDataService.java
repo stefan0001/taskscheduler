@@ -42,12 +42,14 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		//find 
 		TimeTask timeTaskOld = this.getById(id);
 		
+		//find task
 		timeTaskValidationSerive.checkObject(timeTask);
 		
-		//id change is not allowed
-		timeTask.setId(id);
+		//update object
+		timeTaskOld.setName(timeTask.getName());
+		timeTaskOld.setIntervall(timeTask.getIntervall());
+		timeTaskOld.setFirstFireTime(timeTask.getFirstFireTime());
 		
-		//changing Relations is not allowed
 		timeTask.setIssueDrafts(timeTaskOld.getIssueDrafts());
 		
 		

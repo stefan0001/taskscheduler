@@ -34,12 +34,8 @@ public abstract class AbstractGenericDataService<T extends AbstractDataModel> {
 	}
 
 	public void deleteById(int id){
-		T entity = dao.findById(id);
-		
-		if(entity == null){
-			throw new ResourceNotFoundException();
-		}
-		
+		T entity = this.getById(id);
+			
 		dao.remove(entity);
 	}
 	

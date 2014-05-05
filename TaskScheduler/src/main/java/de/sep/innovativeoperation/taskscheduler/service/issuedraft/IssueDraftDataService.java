@@ -31,7 +31,6 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 	private IssueDraftValidationService issueDraftValidationService;
 
 	
-	// TODO id should be 0
 	public IssueDraft createIssueDraft(IssueDraft issueDraft) {
 
 		// set id to 0 to tell the database it should be a new entity
@@ -41,23 +40,25 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 		return issueDraftDAO.save(issueDraft);
 	}
 
-	// TODO id should be != 0
-	@Transactional(propagation=Propagation.REQUIRED)
+
+
 	public IssueDraft updateIssueDraft(int id, IssueDraft issueDraft) {
 
 
 		issueDraftValidationService.checkObject(issueDraft);
 
-		System.out.println(issueDraft.getIssueName());
 		// search for object
-		IssueDraft issueDraftOld = issueDraftDAO.findById(id);
-		issueDraftOld.setIssueName("OMG");
-		return issueDraftDAO.save(issueDraftOld);
+		IssueDraft issueDraftOld = this.getById(id);
+		//update object
+		issueDraftOld.setIssueName(issueDraft.getIssueName());
+		issueDraftOld.setIssueDescription(issueDraft.getIssueDescription());
+		issueDraftOld.setIssueType(issueDraft.getIssueType());
+
+		
+		return issueDraftOld;
 
 	}
 	
-
-
 
 	/**
 	 * load all IssueEntities for one IssueDraft
@@ -66,20 +67,14 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 	 * @return
 	 */
 	public Set<IssueEntity> getIssueEntitiesForIssueDraft(int issueDraftId) {
-		IssueDraft issueDraft = issueDraftDAO.findById(issueDraftId);
-
-		if (issueDraft == null) {
-			throw new ResourceNotFoundException();
-		}
+		IssueDraft issueDraft = this.getById(issueDraftId);
 		
 		Set<IssueEntity> issueEntities = issueDraft.getIssueEntities();
 
-		if (issueEntities == null) {
-			throw new ResourceNotFoundException();
-		}
 		
 		return issueEntities;
 	}
+
 
 
 }

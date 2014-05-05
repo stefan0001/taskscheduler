@@ -44,12 +44,12 @@ public class TimeTask extends AbstractDataModel{
 	
 	
 	public TimeTask() {	
-		this(null,null,0,new HashSet<IssueDraft>() );
+		this(null);
 	}
 	
 	//TODO
 	public TimeTask(String name) {
-		this(name,null,0,new HashSet<IssueDraft>() );
+		this(name,new GregorianCalendar(),0,new HashSet<IssueDraft>() );
 	}
 	
 
@@ -86,7 +86,7 @@ public class TimeTask extends AbstractDataModel{
 	public int getId() {
 		return id;
 	}
-
+	@Override
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -95,16 +95,9 @@ public class TimeTask extends AbstractDataModel{
 		return firstFireTime;
 	}
 
-	/**
-	 * 
-	 * @param year
-	 * @param month
-	 * @param dayOfMonth Starts at zero, January = 0
-	 * @param hourOfDay
-	 * @param minute
-	 */
-	public void setFirstFireTime(int year, int month, int dayOfMonth, int hourOfDay, int minute) {
-		this.firstFireTime = new GregorianCalendar(year, month, dayOfMonth, hourOfDay, minute);
+
+	public void setFirstFireTime(Calendar calendar) {
+		this.firstFireTime = calendar;
 	}
 
 	public int getIntervall() {
@@ -113,6 +106,28 @@ public class TimeTask extends AbstractDataModel{
 
 	public void setIntervall(int intervall) {
 		this.intervall = intervall;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TimeTask other = (TimeTask) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 	
 	

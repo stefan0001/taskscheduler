@@ -41,6 +41,5 @@ public class IssueEntityResourceService extends AbstractGenericResourceService<I
 	}
 	
 
-
 	
 }

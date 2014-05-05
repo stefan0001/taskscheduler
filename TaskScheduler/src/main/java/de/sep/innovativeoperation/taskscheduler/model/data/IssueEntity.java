@@ -68,7 +68,7 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 		this.issueResolution = issueResolution;
 		this.issueDraft = issueDraft;
 	}
-	
+	@Override
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -106,12 +106,6 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result
-				+ ((issueDraft == null) ? 0 : issueDraft.hashCode());
-		result = prime * result
-				+ ((issueResolution == null) ? 0 : issueResolution.hashCode());
-		result = prime * result
-				+ ((issueStatus == null) ? 0 : issueStatus.hashCode());
 		return result;
 	}
 
@@ -126,17 +120,10 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 		IssueEntity other = (IssueEntity) obj;
 		if (id != other.id)
 			return false;
-		if (issueDraft == null) {
-			if (other.issueDraft != null)
-				return false;
-		} else if (!issueDraft.equals(other.issueDraft))
-			return false;
-		if (issueResolution != other.issueResolution)
-			return false;
-		if (issueStatus != other.issueStatus)
-			return false;
 		return true;
 	}
+
+
 
 	
 	
