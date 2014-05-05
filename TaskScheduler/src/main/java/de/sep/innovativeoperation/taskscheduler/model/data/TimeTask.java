@@ -1,6 +1,7 @@
 package de.sep.innovativeoperation.taskscheduler.model.data;
 
 
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -22,9 +23,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @JsonIgnoreProperties({"issueDrafts"})
 public class TimeTask extends AbstractDataModel{
+	/*Auto-generated ID*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	int id;
 	
 	@NotNull
 	private String name;
@@ -82,7 +84,7 @@ public class TimeTask extends AbstractDataModel{
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	@Override
 	public int getId() {
 		return id;
 	}

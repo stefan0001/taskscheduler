@@ -32,7 +32,7 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 
 	
 	public IssueDraft createIssueDraft(IssueDraft issueDraft) {
-
+		System.out.println(issueDraft.getIssueEntities());
 		// set id to 0 to tell the database it should be a new entity
 		issueDraft.setId(0);
 

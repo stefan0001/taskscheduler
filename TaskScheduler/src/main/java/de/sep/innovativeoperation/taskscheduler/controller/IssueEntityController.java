@@ -24,7 +24,6 @@ import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityR
 @RequestMapping(value = "/issueentity")
 public class IssueEntityController {
 
-	
 	// ResourceService
 	@Autowired
 	private IssueEntityResourceService issueEntityResourceService;

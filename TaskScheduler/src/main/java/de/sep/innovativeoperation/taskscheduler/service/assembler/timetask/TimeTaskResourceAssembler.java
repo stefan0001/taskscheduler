@@ -1,7 +1,11 @@
 package de.sep.innovativeoperation.taskscheduler.service.assembler.timetask;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import org.springframework.stereotype.Service;
 
+import de.sep.innovativeoperation.taskscheduler.controller.IssueEntityController;
 import de.sep.innovativeoperation.taskscheduler.controller.TimeTaskController;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTaskResource;
@@ -17,6 +21,8 @@ public class TimeTaskResourceAssembler extends AbstractGenericDataResourceAssemb
 	public TimeTaskResource toResource(TimeTask entity) {
 		TimeTaskResource resource = new TimeTaskResource(entity);
 		
+		//self link
+		resource.add(linkTo(methodOn(TimeTaskController.class).getOneTimeTask(entity.getId())).withSelfRel());
 		
 		return resource;
 	}

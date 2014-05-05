@@ -34,7 +34,6 @@ public abstract class AbstractGenericResourceService<D extends AbstractDataModel
 
 	public void deleteById(int id){
 		dataService.deleteById(id);
-		System.out.println("TEST");
 	}
 
 	public M getAll(){

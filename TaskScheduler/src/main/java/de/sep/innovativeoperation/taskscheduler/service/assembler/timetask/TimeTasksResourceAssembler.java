@@ -1,5 +1,8 @@
 package de.sep.innovativeoperation.taskscheduler.service.assembler.timetask;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import org.springframework.stereotype.Service;
 
 import de.sep.innovativeoperation.taskscheduler.controller.TimeTaskController;
@@ -18,6 +21,9 @@ public class TimeTasksResourceAssembler  extends AbstractGenericDataResourcesAss
 
 	public TimeTasksResource toResource(Iterable<TimeTaskResource> entity) {
 		TimeTasksResource resource = new TimeTasksResource(entity);
+		
+		//self link
+		resource.add(linkTo(methodOn(TimeTaskController.class).getAllTimeTask()).withSelfRel());
 		
 		return resource;
 	}
