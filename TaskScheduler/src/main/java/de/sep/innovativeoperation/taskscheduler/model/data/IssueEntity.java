@@ -73,6 +73,7 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 		this.id = id;
 	}
 	
+	@Override
 	public int getId (){
 		return id;
 	}

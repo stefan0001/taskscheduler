@@ -99,11 +99,12 @@ public class IssueDraft extends AbstractDataModel {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	@Override
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setIssueName(String issueName) {
 		this.issueName = issueName;
 	}

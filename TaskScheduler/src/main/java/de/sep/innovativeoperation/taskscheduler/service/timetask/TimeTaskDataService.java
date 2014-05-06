@@ -1,5 +1,7 @@
 package de.sep.innovativeoperation.taskscheduler.service.timetask;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +25,19 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	 * @param timetask
 	 * @return the saved timetask
 	 */
-	public TimeTask createTimeTask(TimeTask timetask){
+	public TimeTask createTimeTask(TimeTask timeTask){
 		//id should be 0 for new entity
-		timetask.setId(0);
+		timeTask.setId(0);
 		
-		timeTaskValidationSerive.checkObject(timetask);
+		//
+		timeTaskValidationSerive.checkObject(timeTask);
 		
-		return timeTaskDAO.save(timetask);
+		//set  NextFireTime
+		timeTask.setNextFireTime(generateNextFireTime(timeTask.getFirstFireTime(),timeTask.getIntervall()) );
+		
+		
+		return timeTaskDAO.save(timeTask);
+
 	}
 	
 	/**
@@ -39,6 +47,7 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	 * @return
 	 */
 	public TimeTask updateTimeTask(int id, TimeTask timeTask){
+		
 		//find 
 		TimeTask timeTaskOld = this.getById(id);
 		
@@ -49,11 +58,21 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		timeTaskOld.setName(timeTask.getName());
 		timeTaskOld.setIntervall(timeTask.getIntervall());
 		timeTaskOld.setFirstFireTime(timeTask.getFirstFireTime());
+		timeTaskOld.setNextFireTime( generateNextFireTime(timeTask.getFirstFireTime(),timeTask.getIntervall()) );
+		timeTaskOld.setActivated(timeTask.isActivated());
+		return timeTaskOld;
+	}
+	
+	
+	private Calendar generateNextFireTime(Calendar firstFireTime, int intervall){
+		Calendar now = Calendar.getInstance();
 		
-		timeTask.setIssueDrafts(timeTaskOld.getIssueDrafts());
+		Calendar fireTime = (Calendar) firstFireTime.clone();
 		
-		
-		return timeTaskDAO.save(timeTask);
+		while(now.compareTo(fireTime) <= 0){
+			fireTime.add(Calendar.SECOND, intervall);
+		}
+		return fireTime;
 	}
 	
 	

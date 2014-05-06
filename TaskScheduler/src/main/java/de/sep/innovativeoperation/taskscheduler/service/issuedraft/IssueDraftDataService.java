@@ -41,7 +41,6 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 
 	public IssueDraft updateIssueDraft(int id, IssueDraft issueDraft) {
 
-
 		issueDraftValidationService.checkObject(issueDraft);
 
 		// search for object

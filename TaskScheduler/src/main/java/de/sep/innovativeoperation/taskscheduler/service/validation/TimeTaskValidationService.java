@@ -13,6 +13,18 @@ public class TimeTaskValidationService implements AbstractGenericValidationServi
 		if (object.getName() == null) {
 			throw new ValidationFailureException();
 		} 
+		if (object.getFirstFireTime() == null) {
+			throw new ValidationFailureException();
+		} 
+		if (object.getNextFireTime() == null) {
+			throw new ValidationFailureException();
+		}
+
+		
+		//TODO
+		if (object.getIntervall() >= 3600) {
+			throw new ValidationFailureException();
+		} 
 
 		
 	}

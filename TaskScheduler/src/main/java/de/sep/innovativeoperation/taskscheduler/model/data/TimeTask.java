@@ -2,7 +2,6 @@ package de.sep.innovativeoperation.taskscheduler.model.data;
 
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +15,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
 @Entity
@@ -37,9 +38,17 @@ public class TimeTask extends AbstractDataModel{
 	/* Stores Date and Time. */
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar firstFireTime = new GregorianCalendar();
+	private Calendar firstFireTime;
 	
-	/*Interval in days*/
+	@JsonProperty
+	@JsonIgnore
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar nextFireTime;
+	
+	
+	//TODO
+	/*Interval in seconds*/
 	@NotNull
 	private int intervall;
 	
@@ -47,35 +56,57 @@ public class TimeTask extends AbstractDataModel{
 	@NotNull
 	private boolean activated;
 	
+	@JsonProperty
+	@JsonIgnore
+	@NotNull
+	private int fireCount;
+	
+	
+	
 	public TimeTask() {	
 		this(null);
 	}
 	
 	//TODO
 	public TimeTask(String name) {
-		this(name,new GregorianCalendar(),0,false );
+		this(name,Calendar.getInstance(),Calendar.getInstance(),0,0,false );
+	}
+	
+	public TimeTask(String name, Calendar firstFireTime, Calendar nextFireTime,int intervall) {
+		this(name,firstFireTime,nextFireTime,0,intervall,false );
 	}
 	
 
 
-
 	/**
-	 * @param id
+	 * 
 	 * @param name
-	 * @param issueDrafts
 	 * @param firstFireTime
+	 * @param nextFireTime
+	 * @param firecount
 	 * @param intervall
 	 * @param activated
 	 */
-	public TimeTask(String name, Calendar firstFireTime, int intervall, boolean activated) {
+	public TimeTask(String name, Calendar firstFireTime, Calendar nextFireTime,int firecount, int intervall, boolean activated) {
 		this.id = 0;
 		this.name = name;
 		this.issueDrafts = new HashSet<IssueDraft>();
 		this.firstFireTime = firstFireTime;
+		this.nextFireTime = nextFireTime;
 		this.intervall = intervall;
 		this.setActivated(activated);
+		this.setFireCount(firecount);
 	}
 	
+	
+	@Override
+	public int getId() {
+		return id;
+	}
+	@Override
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Set<IssueDraft> getIssueDrafts() {
 		return issueDrafts;
@@ -92,14 +123,7 @@ public class TimeTask extends AbstractDataModel{
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Override
-	public int getId() {
-		return id;
-	}
-	@Override
-	public void setId(int id) {
-		this.id = id;
-	}
+
 
 	public Calendar getFirstFireTime() {
 		return firstFireTime;
@@ -118,6 +142,37 @@ public class TimeTask extends AbstractDataModel{
 		this.intervall = intervall;
 	}
 
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
+
+	public Calendar getNextFireTime() {
+		return nextFireTime;
+	}
+	
+	//TODO
+	//changing nextfiretime is not allowed
+	@JsonIgnore
+	public void setNextFireTime(Calendar nextFireTime) {
+		this.nextFireTime = nextFireTime;
+	}
+	
+	public int getFireCount() {
+		return fireCount;
+	}
+	//TODO
+	//changing firecount is not allowed
+	@JsonIgnore
+	public void setFireCount(int firecount) {
+		this.fireCount = firecount;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -140,15 +195,6 @@ public class TimeTask extends AbstractDataModel{
 		return true;
 	}
 
-	public boolean isActivated() {
-		return activated;
-	}
-
-	public void setActivated(boolean activated) {
-		this.activated = activated;
-	}
-	
-	
 	
 
 	

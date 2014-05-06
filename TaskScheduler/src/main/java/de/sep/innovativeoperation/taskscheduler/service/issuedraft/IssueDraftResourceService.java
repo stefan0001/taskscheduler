@@ -16,7 +16,6 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResour
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericResourceService;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntitiesResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.issueentity.IssueEntityResourceAssembler;
-import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 
 
 @Service
