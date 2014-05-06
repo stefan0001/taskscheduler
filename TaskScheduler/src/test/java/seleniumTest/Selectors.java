@@ -42,5 +42,10 @@ public interface Selectors {
 	String radioButton_zeitbasiertUebersicht = "";
 	String checkbox_tasksUebersicht = "";
 	String text_fireCounter = "";
-	//
+	
+	//editIssue
+	String button_issueBearbeiten = "";
+	String dropdownMenu_status = "";
+	String dropdownMenu_issueType = "";
+	String dropdownMenu_resolution = "";
 }

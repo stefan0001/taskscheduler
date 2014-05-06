@@ -71,7 +71,7 @@ public class SafariTest_createTask implements Selectors, URL {
 
 	@Test
 	public void saveTimeTaskNoName() {
-		// test case 5
+		// test case 5, 14
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill description
@@ -183,7 +183,7 @@ public class SafariTest_createTask implements Selectors, URL {
 
 	@Test
 	public void saveEventTaskValid() {
-		// test case 7
+		// test case 7, 13
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
