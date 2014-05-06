@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [TaskScheduler by packages]">
-  <test name="seleniumTest(failed)">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
     <classes>
-      <class name="seleniumTest.Open">
+      <class name="seleniumTest.safariTest.NewTest">
         <methods>
-          <include name="safariTest"/>
-          <include name="firefoxTest"/>
-          <include name="closeDriver"/>
-          <include name="internetExplorerTest"/>
+          <include name="filterWithTodo"/>
+          <include name="filterWithDone"/>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+          <include name="openTaskUebersicht"/>
+          <include name="filterWithImProgress"/>
         </methods>
-      </class> <!-- seleniumTest.Open -->
+      </class> <!-- seleniumTest.safariTest.NewTest -->
     </classes>
-  </test> <!-- seleniumTest(failed) -->
-</suite> <!-- Failed suite [TaskScheduler by packages] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

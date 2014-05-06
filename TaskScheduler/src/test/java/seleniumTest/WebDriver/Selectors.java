@@ -1,8 +1,13 @@
-package seleniumTest;
+package seleniumTest.WebDriver;
 
 public interface Selectors {
 
 	//overview and createTask
+	String checkbox_filter = "";
+	String block_todo = "";
+	String block_imProgress = "";
+	String block_done = "";
+	
 	String button_uebersicht = "";
 	String button_neuerTask = "";
 	String button_issueErstellen = "";

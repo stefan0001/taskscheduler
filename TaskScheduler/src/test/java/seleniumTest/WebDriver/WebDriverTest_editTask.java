@@ -1,21 +1,17 @@
-package seleniumTest.safariTest;
+package seleniumTest.WebDriver;
 
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.*;
-import seleniumTest.Selectors;
-import seleniumTest.URL;
 
-public class SafariTest_editTask implements URL, Selectors {
-	private WebDriver driver;
+public abstract class WebDriverTest_editTask implements URL, Selectors {
+	protected WebDriver driver;
 
 	@Test
 	public void activeTimeTask() {
@@ -91,10 +87,11 @@ public class SafariTest_editTask implements URL, Selectors {
 		driver.findElement(By.id(button_fireTime)).click();
 		assertEquals(driver.findElement(By.id(text_fireCounter)).getText(), "0");
 	}
+	public abstract void initializeWebDriver();
 
 	@BeforeMethod
-	public void beforeMethod() {
-		driver = new SafariDriver();
+	public void beforeMethod(){
+		initializeWebDriver();
 		driver.get(url);
 	}
 
@@ -106,6 +103,7 @@ public class SafariTest_editTask implements URL, Selectors {
 
 	@BeforeClass
 	public void beforeClass() {
+		beforeMethod();
 		// create a task based on time
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description

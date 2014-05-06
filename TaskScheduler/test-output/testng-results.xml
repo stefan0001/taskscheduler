@@ -1,112 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="3" total="4" passed="1">
+<testng-results skipped="0" failed="4" total="5" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="TaskScheduler by packages" duration-ms="13184" started-at="2014-05-05T14:11:23Z" finished-at="2014-05-05T14:11:36Z">
+  <suite name="Default suite" duration-ms="8057" started-at="2014-05-06T13:51:24Z" finished-at="2014-05-06T13:51:32Z">
     <groups>
     </groups>
-    <test name="seleniumTest" duration-ms="13184" started-at="2014-05-05T14:11:23Z" finished-at="2014-05-05T14:11:36Z">
-      <class name="seleniumTest.Open">
-        <test-method status="PASS" signature="chromeTest()[pri:0, instance:seleniumTest.Open@30b688e1]" name="chromeTest" duration-ms="3811" started-at="2014-05-05T16:11:23Z" finished-at="2014-05-05T16:11:27Z">
+    <test name="Default test" duration-ms="8057" started-at="2014-05-06T13:51:24Z" finished-at="2014-05-06T13:51:32Z">
+      <class name="seleniumTest.safariTest.NewTest">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="2205" started-at="2014-05-06T15:51:24Z" finished-at="2014-05-06T15:51:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- chromeTest -->
-        <test-method status="FAIL" signature="firefoxTest()[pri:0, instance:seleniumTest.Open@30b688e1]" name="firefoxTest" duration-ms="378" started-at="2014-05-05T16:11:27Z" finished-at="2014-05-05T16:11:27Z">
-          <exception class="java.lang.NoClassDefFoundError">
-            <message>
-              <![CDATA[org/w3c/dom/ElementTraversal]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal
-	at java.lang.ClassLoader.defineClass1(Native Method)
-	at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
-	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
-	at java.net.URLClassLoader.defineClass(URLClassLoader.java:449)
-	at java.net.URLClassLoader.access$100(URLClassLoader.java:71)
-	at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
-	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
-	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
-	at org.apache.xerces.parsers.AbstractDOMParser.startDocument(Unknown Source)
-	at org.apache.xerces.impl.dtd.XMLDTDValidator.startDocument(Unknown Source)
-	at org.apache.xerces.impl.XMLDocumentScannerImpl.startEntity(Unknown Source)
-	at org.apache.xerces.impl.XMLVersionDetector.startDocumentParsing(Unknown Source)
-	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
-	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
-	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
-	at org.apache.xerces.parsers.DOMParser.parse(Unknown Source)
-	at org.apache.xerces.jaxp.DocumentBuilderImpl.parse(Unknown Source)
-	at javax.xml.parsers.DocumentBuilder.parse(DocumentBuilder.java:205)
-	at org.openqa.selenium.firefox.internal.FileExtension.readIdFromInstallRdf(FileExtension.java:97)
-	at org.openqa.selenium.firefox.internal.FileExtension.writeTo(FileExtension.java:60)
-	at org.openqa.selenium.firefox.internal.ClasspathExtension.writeTo(ClasspathExtension.java:63)
-	at org.openqa.selenium.firefox.FirefoxProfile.installExtensions(FirefoxProfile.java:416)
-	at org.openqa.selenium.firefox.FirefoxProfile.layoutOnDisk(FirefoxProfile.java:394)
-	at org.openqa.selenium.firefox.internal.NewProfileExtensionConnection.start(NewProfileExtensionConnection.java:89)
-	at org.openqa.selenium.firefox.FirefoxDriver.startClient(FirefoxDriver.java:246)
-	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:114)
-	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:191)
-	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:186)
-	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:182)
-	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:95)
-	at seleniumTest.Open.firefoxTest(Open.java:34)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-Caused by: java.lang.ClassNotFoundException: org.w3c.dom.ElementTraversal
-	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
-	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
-	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
-	... 59 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NoClassDefFoundError -->
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="f()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="f" duration-ms="11" started-at="2014-05-06T15:51:27Z" finished-at="2014-05-06T15:51:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- firefoxTest -->
-        <test-method status="FAIL" signature="internetExplorerTest()[pri:0, instance:seleniumTest.Open@30b688e1]" name="internetExplorerTest" duration-ms="9" started-at="2014-05-05T16:11:27Z" finished-at="2014-05-05T16:11:27Z">
-          <exception class="java.lang.IllegalStateException">
+        </test-method> <!-- f -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="97" started-at="2014-05-06T15:51:27Z" finished-at="2014-05-06T15:51:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="1392" started-at="2014-05-06T15:51:27Z" finished-at="2014-05-06T15:51:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="FAIL" signature="filterWithDone()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="filterWithDone" duration-ms="113" started-at="2014-05-06T15:51:28Z" finished-at="2014-05-06T15:51:28Z">
+          <exception class="java.lang.IndexOutOfBoundsException">
             <message>
-              <![CDATA[The path to the driver executable must be set by the webdriver.ie.driver system property; for more information, see http://code.google.com/p/selenium/wiki/InternetExplorerDriver. The latest version can be downloaded from http://selenium-release.storage.googleapis.com/index.html]]>
+              <![CDATA[Index: 0, Size: 0]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.IllegalStateException: The path to the driver executable must be set by the webdriver.ie.driver system property; for more information, see http://code.google.com/p/selenium/wiki/InternetExplorerDriver. The latest version can be downloaded from http://selenium-release.storage.googleapis.com/index.html
-	at com.google.common.base.Preconditions.checkState(Preconditions.java:177)
-	at org.openqa.selenium.remote.service.DriverService.findExecutable(DriverService.java:105)
-	at org.openqa.selenium.ie.InternetExplorerDriverService.access$100(InternetExplorerDriverService.java:38)
-	at org.openqa.selenium.ie.InternetExplorerDriverService$Builder.build(InternetExplorerDriverService.java:230)
-	at org.openqa.selenium.ie.InternetExplorerDriver.setupService(InternetExplorerDriver.java:250)
-	at org.openqa.selenium.ie.InternetExplorerDriver.<init>(InternetExplorerDriver.java:171)
-	at org.openqa.selenium.ie.InternetExplorerDriver.<init>(InternetExplorerDriver.java:146)
-	at seleniumTest.Open.internetExplorerTest(Open.java:40)
+              <![CDATA[java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
+	at java.util.ArrayList.get(ArrayList.java:411)
+	at seleniumTest.safariTest.SafariTest_overview.filterWithDone(SafariTest_overview.java:63)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -133,26 +59,28 @@ Caused by: java.lang.ClassNotFoundException: org.w3c.dom.ElementTraversal
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.IllegalStateException -->
+          </exception> <!-- java.lang.IndexOutOfBoundsException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- internetExplorerTest -->
-        <test-method status="FAIL" signature="safariTest()[pri:0, instance:seleniumTest.Open@30b688e1]" name="safariTest" duration-ms="8927" started-at="2014-05-05T16:11:27Z" finished-at="2014-05-05T16:11:36Z">
-          <exception class="org.openqa.selenium.remote.UnreachableBrowserException">
+        </test-method> <!-- filterWithDone -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="90" started-at="2014-05-06T15:51:28Z" finished-at="2014-05-06T15:51:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="822" started-at="2014-05-06T15:51:28Z" finished-at="2014-05-06T15:51:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="FAIL" signature="filterWithImProgress()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="filterWithImProgress" duration-ms="110" started-at="2014-05-06T15:51:29Z" finished-at="2014-05-06T15:51:29Z">
+          <exception class="java.lang.IndexOutOfBoundsException">
             <message>
-              <![CDATA[Error communicating with the remote browser. It may have died.
-Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
-System info: host: 'Dorotheas-MacBook-Air.local', ip: '10.10.103.133', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
-Driver info: driver.version: RemoteWebDriver]]>
+              <![CDATA[Index: 0, Size: 0]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
-Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
-System info: host: 'Dorotheas-MacBook-Air.local', ip: '10.10.103.133', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
-Driver info: driver.version: RemoteWebDriver
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:589)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:300)
-	at seleniumTest.Open.safariTest(Open.java:21)
+              <![CDATA[java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
+	at java.util.ArrayList.get(ArrayList.java:411)
+	at seleniumTest.safariTest.SafariTest_overview.filterWithImProgress(SafariTest_overview.java:47)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -177,39 +105,136 @@ Driver info: driver.version: RemoteWebDriver
 	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-Caused by: org.openqa.selenium.safari.ConnectionClosedException: The underlying channel was closed
-Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
-System info: host: 'Dorotheas-MacBook-Air.local', ip: '10.10.103.133', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
-Driver info: driver.version: unknown
-	at org.openqa.selenium.safari.WebSocketConnection$2.operationComplete(WebSocketConnection.java:79)
-	at org.jboss.netty.channel.DefaultChannelFuture.notifyListener(DefaultChannelFuture.java:428)
-	at org.jboss.netty.channel.DefaultChannelFuture.notifyListeners(DefaultChannelFuture.java:419)
-	at org.jboss.netty.channel.DefaultChannelFuture.setSuccess(DefaultChannelFuture.java:363)
-	at org.jboss.netty.channel.AbstractChannel$ChannelCloseFuture.setClosed(AbstractChannel.java:353)
-	at org.jboss.netty.channel.AbstractChannel.setClosed(AbstractChannel.java:183)
-	at org.jboss.netty.channel.socket.nio.AbstractNioChannel.setClosed(AbstractNioChannel.java:200)
-	at org.jboss.netty.channel.socket.nio.NioSocketChannel.setClosed(NioSocketChannel.java:85)
-	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.close(AbstractNioWorker.java:613)
-	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:98)
-	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.processSelectedKeys(AbstractNioWorker.java:373)
-	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:247)
-	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:35)
-	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:102)
-	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
-	at java.lang.Thread.run(Thread.java:744)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.remote.UnreachableBrowserException -->
+          </exception> <!-- java.lang.IndexOutOfBoundsException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- safariTest -->
-        <test-method status="PASS" signature="closeDriver()[pri:0, instance:seleniumTest.Open@30b688e1]" name="closeDriver" is-config="true" duration-ms="28" started-at="2014-05-05T16:11:36Z" finished-at="2014-05-05T16:11:36Z">
+        </test-method> <!-- filterWithImProgress -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="90" started-at="2014-05-06T15:51:29Z" finished-at="2014-05-06T15:51:29Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- closeDriver -->
-      </class> <!-- seleniumTest.Open -->
-    </test> <!-- seleniumTest -->
-  </suite> <!-- TaskScheduler by packages -->
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="1303" started-at="2014-05-06T15:51:29Z" finished-at="2014-05-06T15:51:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="FAIL" signature="filterWithTodo()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="filterWithTodo" duration-ms="112" started-at="2014-05-06T15:51:31Z" finished-at="2014-05-06T15:51:31Z">
+          <exception class="java.lang.IndexOutOfBoundsException">
+            <message>
+              <![CDATA[Index: 0, Size: 0]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
+	at java.util.ArrayList.get(ArrayList.java:411)
+	at seleniumTest.safariTest.SafariTest_overview.filterWithTodo(SafariTest_overview.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IndexOutOfBoundsException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- filterWithTodo -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="94" started-at="2014-05-06T15:51:31Z" finished-at="2014-05-06T15:51:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="1375" started-at="2014-05-06T15:51:31Z" finished-at="2014-05-06T15:51:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="FAIL" signature="openTaskUebersicht()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="openTaskUebersicht" duration-ms="116" started-at="2014-05-06T15:51:32Z" finished-at="2014-05-06T15:51:32Z">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[Could not find element: {"using":"id","value":""} (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 113 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '10.10.102.28', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Session ID: null
+Driver info: org.openqa.selenium.safari.SafariDriver
+Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, secureSsl=true, browserName=safari, takesScreenshot=true, version=7.0.3}]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: Could not find element: {"using":"id","value":""} (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 113 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '10.10.102.28', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Session ID: null
+Driver info: org.openqa.selenium.safari.SafariDriver
+Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, secureSsl=true, browserName=safari, takesScreenshot=true, version=7.0.3}]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:193)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:389)
+	at org.openqa.selenium.By$ById.findElement(By.java:214)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:340)
+	at seleniumTest.safariTest.SafariTest_overview.openTaskUebersicht(SafariTest_overview.java:24)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openTaskUebersicht -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="86" started-at="2014-05-06T15:51:32Z" finished-at="2014-05-06T15:51:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- seleniumTest.safariTest.NewTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

@@ -3,15 +3,16 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="seleniumTest.safariTest.SafariTest">
+      <class name="seleniumTest.safariTest.NewTest">
         <methods>
-          <include name="openTaskUebersicht"/>
-          <include name="afterClass"/>
+          <include name="filterWithTodo"/>
+          <include name="filterWithDone"/>
           <include name="beforeMethod"/>
-          <include name="beforeClass"/>
           <include name="afterMethod"/>
+          <include name="openTaskUebersicht"/>
+          <include name="filterWithImProgress"/>
         </methods>
-      </class> <!-- seleniumTest.safariTest.SafariTest -->
+      </class> <!-- seleniumTest.safariTest.NewTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

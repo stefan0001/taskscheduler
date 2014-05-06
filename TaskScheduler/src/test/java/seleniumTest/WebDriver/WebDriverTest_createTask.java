@@ -1,17 +1,13 @@
-package seleniumTest.safariTest;
+package seleniumTest.WebDriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 
-import seleniumTest.Selectors;
-import seleniumTest.URL;
-
-public class SafariTest_createTask implements Selectors, URL {
-	private WebDriver driver;
+public abstract class WebDriverTest_createTask implements Selectors, URL {
+	protected WebDriver driver;
 
 	@Test
 	public void createTaskBreak() {
@@ -261,9 +257,11 @@ public class SafariTest_createTask implements Selectors, URL {
 		driver.switchTo().alert().accept();
 	}
 
+	public abstract void initializeWebDriver();
+	
 	@BeforeMethod
 	public void beforeMethod() {
-		driver = new SafariDriver();
+		initializeWebDriver();
 		driver.get(url);
 	}
 
@@ -272,13 +270,5 @@ public class SafariTest_createTask implements Selectors, URL {
 		driver.close();
 		driver.quit();
 	}
-	//
-	// @BeforeClass
-	// public void beforeClass() {
-	// }
-	//
-	// @AfterClass
-	// public void afterClass() {
-	// }
 
 }
