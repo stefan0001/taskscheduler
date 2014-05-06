@@ -1,7 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.model.data;
 
 
-import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -45,29 +44,38 @@ public class TimeTask extends AbstractDataModel{
 	private int intervall;
 	
 	
+	@NotNull
+	private boolean activated;
+	
 	public TimeTask() {	
 		this(null);
 	}
 	
 	//TODO
 	public TimeTask(String name) {
-		this(name,new GregorianCalendar(),0,new HashSet<IssueDraft>() );
+		this(name,new GregorianCalendar(),0,false );
 	}
 	
 
+
+
 	/**
-	 * Creates a new TimeTask
-	 * @param name			Name of the Timetask
-	 * @param firstFireTime	The first fire Time
-	 * @param intervall		The time to the next execution
-	 * @param issueDrafts   All IssueDrafts that are used by this TimeTak
+	 * @param id
+	 * @param name
+	 * @param issueDrafts
+	 * @param firstFireTime
+	 * @param intervall
+	 * @param activated
 	 */
-	public TimeTask(String name, Calendar firstFireTime, int intervall, Set<IssueDraft> issueDrafts) {
+	public TimeTask(String name, Calendar firstFireTime, int intervall, boolean activated) {
+		this.id = 0;
 		this.name = name;
+		this.issueDrafts = new HashSet<IssueDraft>();
 		this.firstFireTime = firstFireTime;
 		this.intervall = intervall;
-		this.issueDrafts = issueDrafts;
+		this.activated = activated;
 	}
+	
 
 	public Set<IssueDraft> getIssueDrafts() {
 		return issueDrafts;

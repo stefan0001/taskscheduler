@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
@@ -39,11 +38,6 @@ public class IssueEntityDataService extends AbstractGenericDataService<IssueEnti
 	public IssueEntity createIssueEntity(int issueDraftId, IssueEntity issueEntity) {
 		//find the issueDraft
 		IssueDraft issueDraft = issueDraftService.getById(issueDraftId);
-		
-		System.out.println(issueDraft);
-		if(issueDraft == null){
-			throw new ResourceNotFoundException();
-		}
 		
 		//set id to 0 to tell the database it should be a new entity
 		issueEntity.setId( 0 );

@@ -4,11 +4,9 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
@@ -32,7 +30,6 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 
 	
 	public IssueDraft createIssueDraft(IssueDraft issueDraft) {
-		System.out.println(issueDraft.getIssueEntities());
 		// set id to 0 to tell the database it should be a new entity
 		issueDraft.setId(0);
 
@@ -49,6 +46,7 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 
 		// search for object
 		IssueDraft issueDraftOld = this.getById(id);
+		
 		//update object
 		issueDraftOld.setIssueName(issueDraft.getIssueName());
 		issueDraftOld.setIssueDescription(issueDraft.getIssueDescription());
