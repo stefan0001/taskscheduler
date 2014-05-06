@@ -66,10 +66,11 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	
 	private Calendar generateNextFireTime(Calendar firstFireTime, int intervall){
 		Calendar now = Calendar.getInstance();
-		
+		System.out.println("NOW="+now.getTimeInMillis());
 		Calendar fireTime = (Calendar) firstFireTime.clone();
+		System.out.println("NOW="+fireTime.getTimeInMillis());
 		
-		while(now.compareTo(fireTime) <= 0){
+		while(now.compareTo(fireTime) >= 0){
 			fireTime.add(Calendar.SECOND, intervall);
 		}
 		return fireTime;
