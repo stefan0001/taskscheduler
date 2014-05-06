@@ -22,7 +22,7 @@ public class TimeTaskValidationService implements AbstractGenericValidationServi
 
 		
 		//TODO
-		if (object.getIntervall() >= 3600) {
+		if (object.getIntervall() < 3600) {
 			throw new ValidationFailureException();
 		} 
 
