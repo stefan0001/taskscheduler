@@ -73,7 +73,7 @@ public class TimeTask extends AbstractDataModel{
 		this.issueDrafts = new HashSet<IssueDraft>();
 		this.firstFireTime = firstFireTime;
 		this.intervall = intervall;
-		this.activated = activated;
+		this.setActivated(activated);
 	}
 	
 
@@ -138,6 +138,14 @@ public class TimeTask extends AbstractDataModel{
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 	
 	
