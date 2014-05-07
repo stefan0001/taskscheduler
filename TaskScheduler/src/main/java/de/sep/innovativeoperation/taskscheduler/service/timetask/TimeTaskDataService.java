@@ -1,14 +1,17 @@
 package de.sep.innovativeoperation.taskscheduler.service.timetask;
 
 import java.util.Calendar;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.TimeTaskDAO;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
+import de.sep.innovativeoperation.taskscheduler.service.timetask.monitor.TimeTaskMonitor;
 import de.sep.innovativeoperation.taskscheduler.service.validation.TimeTaskValidationService;
 
 @Service
@@ -16,6 +19,10 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.TimeTaskValid
 public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	@Autowired
 	private TimeTaskDAO timeTaskDAO;
+	
+	@Autowired
+	private TimeTaskMonitor timeTaskMonitor;
+	
 	
 	@Autowired
 	private TimeTaskValidationService timeTaskValidationSerive;
@@ -32,8 +39,10 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		//
 		timeTaskValidationSerive.checkObject(timeTask);
 		
-		//set  NextFireTime
-		timeTask.setNextFireTime(generateNextFireTime(timeTask.getFirstFireTime(),timeTask.getIntervall()) );
+		//generate nextfiretime
+		Calendar nextFireTime = timeTaskMonitor.generateNextFireTime(timeTask.getFirstFireTime(), timeTask.getIntervall());
+
+		timeTask.setNextFireTime(nextFireTime);
 		
 		
 		return timeTaskDAO.save(timeTask);
@@ -58,24 +67,24 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		timeTaskOld.setName(timeTask.getName());
 		timeTaskOld.setIntervall(timeTask.getIntervall());
 		timeTaskOld.setFirstFireTime(timeTask.getFirstFireTime());
-		timeTaskOld.setNextFireTime( generateNextFireTime(timeTask.getFirstFireTime(),timeTask.getIntervall()) );
+		
+		Calendar nextFireTime = timeTaskMonitor.generateNextFireTime(timeTask.getFirstFireTime(), timeTask.getIntervall());
+
+		timeTask.setNextFireTime(nextFireTime);
+		
 		timeTaskOld.setActivated(timeTask.isActivated());
 		return timeTaskOld;
 	}
 	
-	
-	private Calendar generateNextFireTime(Calendar firstFireTime, int intervall){
-		Calendar now = Calendar.getInstance();
-		System.out.println("NOW="+now.getTimeInMillis());
-		Calendar fireTime = (Calendar) firstFireTime.clone();
-		System.out.println("NOW="+fireTime.getTimeInMillis());
-		
-		while(now.compareTo(fireTime) >= 0){
-			fireTime.add(Calendar.SECOND, intervall);
-		}
-		return fireTime;
+	/**
+	 * get all IssueDrafts for the TimeTask with the id
+	 * @param id 	id of the TimeTask
+	 * @return
+	 */
+	public Set<IssueDraft> getIssueDraftsforTimeTask(int id){
+		TimeTask timeTask = this.getById(id);
+		return timeTask.getIssueDrafts();
 	}
-	
 	
 	
 	

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
+import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftValidationService;
 
@@ -71,6 +72,17 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 		
 		return issueEntities;
 	}
+	
+	/**
+	 * get all TimeTasks for the IssueDraft with the id
+	 * @param id 	id of the IssueDraft
+	 * @return
+	 */
+	public Set<TimeTask> getTimeTasksForIssueDraft(int id){
+		IssueDraft issueDraft = this.getById(id);
+		return issueDraft.getTimeTasks();
+	}
+
 
 
 

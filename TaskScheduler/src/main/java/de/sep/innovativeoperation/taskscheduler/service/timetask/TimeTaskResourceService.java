@@ -1,13 +1,21 @@
 package de.sep.innovativeoperation.taskscheduler.service.timetask;
 
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTaskResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTasksResource;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericResourceService;
+import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftResourceAssembler;
+import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftsResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.timetask.TimeTaskResourceAssembler;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.timetask.TimeTasksResourceAssembler;
 
@@ -19,11 +27,21 @@ public class TimeTaskResourceService extends AbstractGenericResourceService<Time
 	@Autowired
 	private TimeTaskDataService timeTaskDataService;
 	
+	//ASSEMBLER
+	
+	//TIMETASK
 	@Autowired
 	private TimeTaskResourceAssembler timeTaskResourceAssembler;
-	
 	@Autowired
 	private TimeTasksResourceAssembler timeTasksResourceAssembler;
+	
+	//ISSUEDRAFT
+	@Autowired
+	private IssueDraftResourceAssembler issueDraftResourceAssembler;
+	@Autowired
+	private IssueDraftsResourceAssembler issueDraftsResourceAssembler;
+	
+	
 	
 	public TimeTaskResource createTimeTask(TimeTaskResource timeTaskResource){
 		TimeTask timeTask = timeTaskDataService.createTimeTask(timeTaskResource.getContent() );
@@ -41,5 +59,21 @@ public class TimeTaskResourceService extends AbstractGenericResourceService<Time
 		TimeTask timeTask = timeTaskDataService.updateTimeTask(id , timeTaskResource.getContent() );
 		TimeTaskResource resource =  timeTaskResourceAssembler.toResource(timeTask);
 		return resource;
+	}
+	
+	
+	/**
+	 * get all IssueDrafts for the TimeTask with the id
+	 * @param id 	id of the TimeTask
+	 * @return
+	 */
+	public IssueDraftsResource getIssueDraftsforTimeTask(int id){
+		//get issuedraft
+		Set<IssueDraft> issueDrafts = timeTaskDataService.getIssueDraftsforTimeTask(id);
+		//generate resources
+		List<IssueDraftResource> issueDraftResoruces = issueDraftResourceAssembler.toResources(issueDrafts);
+		//generate resources to one resource
+		return issueDraftsResourceAssembler.toResource(issueDraftResoruces);
+		
 	}
 }
