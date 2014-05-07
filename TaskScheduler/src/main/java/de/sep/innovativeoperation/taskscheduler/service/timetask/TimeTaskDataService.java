@@ -87,6 +87,16 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	}
 	
 	
+	/**
+	 * add a IssueDraft to a TimeTask
+	 * @param id 	id of the TimeTask
+	 * @return
+	 */
+	public Set<IssueDraft> addIssueDraftstoTimeTask(int id, IssueDraft issueDraft){
+		return null;
+	}
+	
+	
 	
 	
 }
