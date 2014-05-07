@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import de.sep.innovativeoperation.taskscheduler.dao.TimeTaskDAO;
@@ -41,13 +42,15 @@ public class TimeTaskMonitor {
 		return fireTime;
 	}
 	
+	@Scheduled(fixedDelay = 6000)
 	public void monitorTimTasks(){
+		System.out.println("Hello");
 		List<TimeTask> timeTasks = timeTaskDAO.getTimeTaskWithNextFireTimeOlderThan(currentTime);
 		createIssuesForTimeTasks(timeTasks);
 	}
 	
 	/**
-	 * Creates IssueEntites for all TimeTasks
+	 * Creates IssueEntites for all TimeTasks, executet every 10 min
 	 * @param timeTasks List of timeTask
 	 */
 	private void createIssuesForTimeTasks(List<TimeTask> timeTasks){
