@@ -21,7 +21,7 @@ import de.sep.innovativeoperation.taskscheduler.service.timetask.TimeTaskDataSer
 @Service
 public class TimeTaskMonitor {
 	
-	//Cant use generic cause of specific method
+	//Can't use generic cause of specific method
 	@Autowired
 	private TimeTaskDAO timeTaskDAO;
 	
@@ -43,18 +43,32 @@ public class TimeTaskMonitor {
 	
 	public void monitorTimTasks(){
 		List<TimeTask> timeTasks = timeTaskDAO.getTimeTaskWithNextFireTimeOlderThan(currentTime);
-		createIssues(timeTasks);
+		createIssuesForTimeTasks(timeTasks);
 	}
 	
-	private void createIssues(List<TimeTask> timeTasks){
+	/**
+	 * Creates IssueEntites for all TimeTasks
+	 * @param timeTasks List of timeTask
+	 */
+	private void createIssuesForTimeTasks(List<TimeTask> timeTasks){
 		Iterator<TimeTask> timeTaskIterator = timeTasks.iterator();
 		
+		//Lets create IssueEntites for all TimeTasks in this List 
 		while(timeTaskIterator.hasNext()){
 			TimeTask currentTimeTask = timeTaskIterator.next();
+			
+			//first, lets create all IssueEntites related to this current timetask
 			createIssueEntityForTimeTask(currentTimeTask);
+			
+			//second, update NextFireTime of current timetask
+			generateNextFireTime(currentTimeTask.getFirstFireTime(), currentTimeTask.getIntervall());
 		}
 	}
 	
+	/**
+	 * Creates IssueEntities for one TimeTask
+	 * @param timeTask 
+	 */
 	private void createIssueEntityForTimeTask(TimeTask timeTask){
 		Iterator<IssueDraft> issueDraftIterator = timeTask.getIssueDrafts().iterator();
 		
@@ -72,6 +86,5 @@ public class TimeTaskMonitor {
 			issueEntityService.createIssueEntity(currentIssueDraft.getId(), newIssueEntity);
 		}
 	}
-	
 	
 }
