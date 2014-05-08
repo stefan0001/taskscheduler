@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //@XmlElement
 //@XmlRootElement
 public class IssueEntity extends AbstractDataModel implements Serializable {
-	@JsonProperty()
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
