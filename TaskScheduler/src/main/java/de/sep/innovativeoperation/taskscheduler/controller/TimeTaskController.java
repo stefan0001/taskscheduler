@@ -2,9 +2,6 @@ package de.sep.innovativeoperation.taskscheduler.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
-import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTaskResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTasksResource;
 import de.sep.innovativeoperation.taskscheduler.service.timetask.TimeTaskResourceService;
@@ -99,20 +94,32 @@ public class TimeTaskController {
 	
 	
 	
+
+	
 	/**
-	 * add a IssueDraft to a TimeTask
-	 * creating a new issuedraft for the issuedraftid==0 
-	 * creating a relation for issuedraftid != 0
+	 * create a relation between a timetask and a issuedraft
+	 * @param timeTaskId
+	 * @param issueDraftId
+	 * @return 
+	 */
+	@RequestMapping(value="/{timetaskid}/issuedraft/{issuedraftid}",method = RequestMethod.PUT, produces = JSON)
+	public @ResponseBody IssueDraftResource createRelationTimeTaskIssueDraft(@PathVariable("timetaskid") int timeTaskId, @PathVariable("issuedraftid") int issueDraftId){
+		return timeTaskResourceService.createRelationTimeTaskIssueDraft(timeTaskId, issueDraftId);
+	}
+	
+	
+	/**
+	 * delete a relation between a task and a issuedraft
 	 * @param id                  id of the task
 	 * @param issueDraftResource  the issuedraft with the issuedraftid
 	 * @return IssueDraftResource
 	 */
-	@RequestMapping(value="/{timetaskid}/issuedraft",method = RequestMethod.POST, produces = JSON)
-	public @ResponseBody IssueDraftResource addIssueDraftstoTimeTask(@PathVariable("timetaskid") int id, @RequestBody IssueDraftResource issueDraftResource){
-		return timeTaskResourceService.addIssueDraftstoTimeTask(id, issueDraftResource);
+	@RequestMapping(value="/{timetaskid}/issuedraft/{issuedraftid}",method = RequestMethod.DELETE, produces = JSON)
+	public @ResponseBody void deleteRelationTimeTaskIssueDraft(@PathVariable("timetaskid") int timeTaskId, @PathVariable("issuedraftid") int issueDraftId){
+		timeTaskResourceService.deleteRelationTimeTaskIssueDraft(timeTaskId, issueDraftId);
 	}
 	
-	
+
 	
 
 }

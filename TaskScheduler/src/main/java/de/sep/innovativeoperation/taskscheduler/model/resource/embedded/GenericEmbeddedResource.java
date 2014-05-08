@@ -15,8 +15,4 @@ public abstract class GenericEmbeddedResource<T extends AbstractGenericResourceM
 
 	}
 	
-	public void setResource(T resource){
-		this.resource = resource;
-
-	}
 }

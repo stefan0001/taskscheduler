@@ -19,6 +19,7 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.hateoas.core.Relation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 
@@ -33,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //@XmlElement
 //@XmlRootElement
 public class IssueEntity extends AbstractDataModel implements Serializable {
-
+	@JsonProperty()
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

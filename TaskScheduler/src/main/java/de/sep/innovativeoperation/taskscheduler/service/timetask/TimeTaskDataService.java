@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.TimeTaskDAO;
+import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
-import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
 import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftDataService;
 import de.sep.innovativeoperation.taskscheduler.service.timetask.monitor.TimeTaskMonitor;
@@ -94,31 +94,43 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		return timeTask.getIssueDrafts();
 	}
 	
+
 	
 	/**
-	 * add a IssueDraft to a TimeTask
-	 * @param id 	id of the TimeTask
-	 * @return
+	 * create a relation between a timetask and a issuedraft
+	 * @param timeTaskId
+	 * @param issueDraftId
 	 */
-	public IssueDraft addIssueDraftstoTimeTask(int id, IssueDraft issueDraft){
-		//find timetask with the id
-		TimeTask timeTask = this.getById(id);
+	public IssueDraft createRelationTimeTaskIssueDraft(int timeTaskId, int issueDraftId){
+		TimeTask timeTask = this.getById(timeTaskId);
+		IssueDraft issueDraft = issueDraftDataService.getById(issueDraftId);
 		
-		//check issuedraft id 
-		//if 0 create a new issuedraft
-		if(issueDraft.getId() == 0){
-			issueDraft = issueDraftDataService.createIssueDraft(issueDraft);
-		} else {
-			//find issueDraft
-			issueDraft = issueDraftDataService.getById(issueDraft.getId());
+		
+		if(timeTask.getIssueDrafts().contains(issueDraft) ){
+			//TODO
+			throw new ResourceNotFoundException();
 		}
-		
-		//assign relation
 		timeTask.getIssueDrafts().add(issueDraft);
-		
 		return issueDraft;
-		
 	}
+	
+	/**
+	 * delete a relation between a timetask and a issuedraft
+	 * @param timeTaskId
+	 * @param issueDraftId
+	 */
+	public void deleteRelationTimeTaskIssueDraft(int timeTaskId, int issueDraftId){
+		TimeTask timeTask = this.getById(timeTaskId);
+		IssueDraft issueDraft = issueDraftDataService.getById(issueDraftId);
+		
+		
+		if(!timeTask.getIssueDrafts().contains(issueDraft) ){
+			throw new ResourceNotFoundException();
+		}
+		timeTask.getIssueDrafts().remove(issueDraft);
+	}
+	
+	
 	
 	
 	
