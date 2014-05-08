@@ -1,7 +1,5 @@
 package de.sep.innovativeoperation.taskscheduler.model.data;
 
-import static org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType.HAL;
-
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -15,11 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.hateoas.config.EnableHypermediaSupport;
-import org.springframework.hateoas.core.Relation;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 
@@ -29,10 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @SuppressWarnings("serial")
 @Entity
 @JsonIgnoreProperties({"issueDraft"})
-@Relation(value="draft")
-@EnableHypermediaSupport(type = { HAL })
-//@XmlElement
-//@XmlRootElement
+
 public class IssueEntity extends AbstractDataModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

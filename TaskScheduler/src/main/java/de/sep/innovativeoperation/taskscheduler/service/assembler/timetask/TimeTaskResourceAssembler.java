@@ -5,7 +5,6 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import org.springframework.stereotype.Service;
 
-import de.sep.innovativeoperation.taskscheduler.controller.IssueEntityController;
 import de.sep.innovativeoperation.taskscheduler.controller.TimeTaskController;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTaskResource;
