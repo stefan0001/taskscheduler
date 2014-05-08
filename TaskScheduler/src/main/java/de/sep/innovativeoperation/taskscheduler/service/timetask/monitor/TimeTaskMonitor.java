@@ -48,7 +48,9 @@ public class TimeTaskMonitor {
 	 */
 	@Scheduled(fixedDelay = 6000)
 	public void monitorTimTasks(){
+		 
 		List<TimeTask> timeTasks = timeTaskDAO.getTimeTaskWithNextFireTimeOlderThan(currentTime);
+		System.out.println(timeTasks.size());
 		if(!timeTasks.isEmpty())createIssuesForTimeTasks(timeTasks);
 	}
 	

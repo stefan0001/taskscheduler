@@ -38,7 +38,7 @@ public class IssueEntityDataService extends AbstractGenericDataService<IssueEnti
 	public IssueEntity createIssueEntity(int issueDraftId, IssueEntity issueEntity) {
 		//find the issueDraft
 		IssueDraft issueDraft = issueDraftService.getById(issueDraftId);
-		
+		System.out.println("GGGG");
 		//set id to 0 to tell the database it should be a new entity
 		issueEntity.setId( 0 );
 		issueEntity.setIssueDraft(issueDraft);

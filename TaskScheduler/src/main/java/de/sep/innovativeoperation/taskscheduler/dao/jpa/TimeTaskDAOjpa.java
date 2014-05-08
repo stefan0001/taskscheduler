@@ -15,7 +15,6 @@ import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
 public class TimeTaskDAOjpa extends GenericDAOjpa<TimeTask> implements TimeTaskDAO {
 
 	public List<TimeTask> getTimeTaskWithNextFireTimeOlderThan(Calendar firetime) {
-		
 		TypedQuery<TimeTask> query = em.createQuery("SELECT e FROM TimeTask e WHERE e.nextFireTime < :arg1", TimeTask.class);
 		query.setParameter("arg1", firetime);
 
