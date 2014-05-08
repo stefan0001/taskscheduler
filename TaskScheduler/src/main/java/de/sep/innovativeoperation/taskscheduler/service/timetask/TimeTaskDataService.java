@@ -11,20 +11,27 @@ import org.springframework.transaction.annotation.Transactional;
 import de.sep.innovativeoperation.taskscheduler.dao.TimeTaskDAO;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
+import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftDataService;
 import de.sep.innovativeoperation.taskscheduler.service.timetask.monitor.TimeTaskMonitor;
 import de.sep.innovativeoperation.taskscheduler.service.validation.TimeTaskValidationService;
 
 @Service
 @Transactional
 public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
+	//DAO
 	@Autowired
 	private TimeTaskDAO timeTaskDAO;
-	
+
 	@Autowired
 	private TimeTaskMonitor timeTaskMonitor;
 	
+	//SERVICES
+	@Autowired
+	private IssueDraftDataService issueDraftDataService;
 	
+	//VALIDATION
 	@Autowired
 	private TimeTaskValidationService timeTaskValidationSerive;
 	
@@ -93,8 +100,24 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	 * @param id 	id of the TimeTask
 	 * @return
 	 */
-	public Set<IssueDraft> addIssueDraftstoTimeTask(int id, IssueDraft issueDraft){
-		return null;
+	public IssueDraft addIssueDraftstoTimeTask(int id, IssueDraft issueDraft){
+		//find timetask with the id
+		TimeTask timeTask = this.getById(id);
+		
+		//check issuedraft id 
+		//if 0 create a new issuedraft
+		if(issueDraft.getId() == 0){
+			issueDraft = issueDraftDataService.createIssueDraft(issueDraft);
+		} else {
+			//find issueDraft
+			issueDraft = issueDraftDataService.getById(issueDraft.getId());
+		}
+		
+		//assign relation
+		timeTask.getIssueDrafts().add(issueDraft);
+		
+		return issueDraft;
+		
 	}
 	
 	

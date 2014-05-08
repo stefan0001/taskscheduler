@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @SuppressWarnings("serial")
@@ -25,6 +26,7 @@ public class IssueDraft extends AbstractDataModel {
 
 
 	/*Auto-generated ID*/
+	@JsonProperty(value="id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
@@ -95,6 +97,7 @@ public class IssueDraft extends AbstractDataModel {
 		this.timeTasks = timeTasks;
 		this.eventTasks = eventTasks;
 	}
+	
 	@Override
 	public void setId(int id) {
 		this.id = id;

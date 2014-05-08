@@ -76,4 +76,22 @@ public class TimeTaskResourceService extends AbstractGenericResourceService<Time
 		return issueDraftsResourceAssembler.toResource(issueDraftResoruces);
 		
 	}
+	
+	
+	
+	/**
+	 * add a IssueDraft to a TimeTask
+	 * creating a new issuedraft for the issuedraftid==0 
+	 * creating a relation for issuedraftid != 0
+	 * @param id                  id of the task
+	 * @param issueDraftResource  the issuedraft with the issuedraftid
+	 * @return IssueDraftResource
+	 */
+	public IssueDraftResource addIssueDraftstoTimeTask(int id, IssueDraftResource issueDraftResource){
+		 IssueDraft issueDraft = timeTaskDataService.addIssueDraftstoTimeTask(id, issueDraftResource.getContent());
+		 IssueDraftResource newIssueDraftResource = issueDraftResourceAssembler.toResource(issueDraft);
+		 
+		 return newIssueDraftResource;
+
+	}
 }

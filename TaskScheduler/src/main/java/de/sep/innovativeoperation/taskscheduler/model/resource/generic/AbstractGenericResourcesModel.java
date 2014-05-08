@@ -4,6 +4,7 @@ import org.springframework.hateoas.Resources;
 
 public abstract class AbstractGenericResourcesModel<R extends AbstractGenericResourceModel<?>> extends Resources<R> {
 
+	
 	public AbstractGenericResourcesModel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -14,9 +15,6 @@ public abstract class AbstractGenericResourcesModel<R extends AbstractGenericRes
 		super(content);
 		// TODO Auto-generated constructor stub
 	}
-
-
-
 
 
 }
