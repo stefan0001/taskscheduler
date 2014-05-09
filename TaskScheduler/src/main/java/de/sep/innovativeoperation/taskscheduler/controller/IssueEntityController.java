@@ -52,11 +52,14 @@ public class IssueEntityController {
 
 	/**
 	 * Update one issueEntity
-	 * 
+	 * @param id
+	 * @param issueEntityResource
 	 * @return
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.PUT, produces = JSON)
 	public @ResponseBody IssueEntityResource updateIssueEntity(@PathVariable("issueentityid") int id, @RequestBody IssueEntityResource issueEntityResource) {
+		//TODO
+		System.out.println("TEST");
 		return issueEntityResourceService.updateIssueEntity(id, issueEntityResource);
 	}
 

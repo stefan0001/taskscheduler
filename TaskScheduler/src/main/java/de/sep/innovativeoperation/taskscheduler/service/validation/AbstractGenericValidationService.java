@@ -8,4 +8,6 @@ import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationF
 public interface AbstractGenericValidationService<T> {
 	
 	public abstract void checkObject(T object) throws ValidationFailureException;
+	
+
 }

@@ -1,13 +1,16 @@
 package de.sep.innovativeoperation.taskscheduler.model.resource;
 
+import static org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType.HAL;
+
+import org.springframework.hateoas.config.EnableHypermediaSupport;
+
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.resource.embedded.EmbeddedIssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
 
-
 //@XmlRootElement
 //@XmlSeeAlso({ IssueEntity.class })
-
+@EnableHypermediaSupport(type = { HAL })
 public class IssueEntityResource extends AbstractGenericResourceModel<IssueEntity> {
 	
 
@@ -26,7 +29,8 @@ public class IssueEntityResource extends AbstractGenericResourceModel<IssueEntit
 	 * @param content  including IssueEntity
 	 */
 	public IssueEntityResource(IssueEntity content) {
-		this(content, new IssueDraftResource() );
+		super(content);
+		this.embedded = new EmbeddedIssueDraft();
 	}
 	
 	/**
@@ -38,14 +42,13 @@ public class IssueEntityResource extends AbstractGenericResourceModel<IssueEntit
 		super(content);
 		this.embedded = new EmbeddedIssueDraft( embedded );
 	}
+	
 
 	public EmbeddedIssueDraft getEmbedded() {
 		return embedded;
 	}
+	
 
-	public void setEmbedded(EmbeddedIssueDraft embedded) {
-		this.embedded = embedded;
-	}
 
 
 }
