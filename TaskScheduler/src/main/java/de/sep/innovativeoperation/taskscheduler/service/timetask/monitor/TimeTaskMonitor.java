@@ -55,7 +55,6 @@ public class TimeTaskMonitor {
 	@Scheduled(fixedDelay = 6000)
 	public void monitorTimTasks(){
 		List<TimeTask> timeTasks = timeTaskDAO.getTimeTaskWithNextFireTimeOlderThan(currentTime);
-		System.out.println("monitorTimeTask------" + timeTasks.size());
 		if(!timeTasks.isEmpty())createIssuesForTimeTasks(timeTasks);
 	}
 	
@@ -70,9 +69,8 @@ public class TimeTaskMonitor {
 		//Lets create IssueEntites for all TimeTasks in this list 
 		while(timeTaskIterator.hasNext()){
 			TimeTask currentTimeTask = timeTaskIterator.next();
-			System.out.println("iteratorAllTimeTask-----" + currentTimeTask.getId());
 			if(currentTimeTask.isActivated()){
-				System.out.println("isactivated---------" + currentTimeTask.getId());
+				
 				//first, lets create all IssueEntites related to this current timetask
 				createIssueEntityForTimeTask(currentTimeTask);
 			}
@@ -97,7 +95,6 @@ public class TimeTaskMonitor {
 			newIssueEntity.setId(0);
 			newIssueEntity.setIssueResolution(IssueResolution.UNRESOLVED);
 			newIssueEntity.setIssueStatus(IssueStatus.NEW);
-			System.out.println("createIssueEntity-----" + newIssueEntity.getId());
 			//let the service do the persistence thing
 			issueEntityService.createIssueEntity(currentIssueDraft.getId(), newIssueEntity);
 		}
