@@ -1,32 +1,43 @@
 package de.sep.innovativeoperation.taskscheduler.service.validation;
 
+import java.util.Calendar;
+
 import org.springframework.stereotype.Service;
 
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
+import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
+import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
 
 @Service
 public class TimeTaskValidationService implements AbstractGenericValidationService<TimeTask> {
 
-	//TODO
+	// TODO
 	public void checkObject(TimeTask object) throws ValidationFailureException {
-		if (object.getName() == null) {
-			throw new ValidationFailureException();
-		} 
-		if (object.getFirstFireTime() == null) {
-			throw new ValidationFailureException();
-		} 
-		if (object.getNextFireTime() == null) {
-			throw new ValidationFailureException();
+		this.checkTaskName(object.getName());
+		this.checkFireTime(object.getFirstFireTime());
+		this.checkIntervall(object.getIntervall());
+	}
+
+	public void checkTaskName(String taskName) {
+		if (taskName == null) {
+			throw new ValueIsNullException();
 		}
+		if(taskName.length() > 100){
+			throw new ValueIsNotValidException();
+		}
+	}
 
-		
-		//TODO
-		if (object.getIntervall() < 3600) {
-			throw new ValidationFailureException();
-		} 
+	public void checkFireTime(Calendar fireTime) {
+		if (fireTime == null) {
+			throw new ValueIsNullException();
+		}
+	}
 
-		
+	public void checkIntervall(int intervall) {
+		if (intervall < 3600) {
+			throw new ValueIsNotValidException();
+		}
 	}
 
 }

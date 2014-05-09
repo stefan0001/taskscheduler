@@ -2,20 +2,23 @@ package de.sep.innovativeoperation.taskscheduler.model.resource.embedded;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.resource.generic.AbstractGenericResourceModel;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 
-public class EmbeddedIssueDraft extends GenericEmbeddedResource< AbstractGenericResourceModel<IssueDraft> > {
+public class EmbeddedIssueDraft extends GenericEmbeddedResource< IssueDraftResource > {
 
-	public EmbeddedIssueDraft(AbstractGenericResourceModel<IssueDraft> t) {
-		super(t);
-		// TODO Auto-generated constructor stub
+	
+	public EmbeddedIssueDraft(){
+		this(new IssueDraftResource() );
+	}
+
+	public EmbeddedIssueDraft(IssueDraftResource issueDraftResource) {
+		super(issueDraftResource);
 	}
 	
-	@JsonProperty("issueDraft")
+	@JsonProperty(value="issueDraft")
 	@Override
-	public AbstractGenericResourceModel<IssueDraft> getResource(){
-		return resource;
+	public IssueDraftResource getResource(){
+		return super.getResource();
 	}
 
 }

@@ -10,9 +10,13 @@ public abstract class GenericEmbeddedResource<T extends AbstractGenericResourceM
 		this.resource = resource;
 	}
 	
+	
 	public T getResource(){
 		return resource;
-
 	}
+	
+
+	
+	
 	
 }

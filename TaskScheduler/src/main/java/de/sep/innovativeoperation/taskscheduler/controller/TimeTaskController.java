@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTaskResource;
@@ -54,7 +55,7 @@ public class TimeTaskController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{timetaskid}", method = RequestMethod.DELETE, produces = JSON)
-	public void deleteIssueEntity(@PathVariable("timetaskid") int id) {
+	public @ResponseBody void deleteIssueEntity(@PathVariable("timetaskid") int id) {
 		timeTaskResourceService.deleteById(id);
 	}
 	
@@ -80,6 +81,7 @@ public class TimeTaskController {
 	public @ResponseBody TimeTaskResource updateTimeTask( @PathVariable("timetaskid") int id, @RequestBody TimeTaskResource timeTaskResource) {
 		return timeTaskResourceService.updateTimeTask(id, timeTaskResource);
 	}
+
 	
 	
 	/**
@@ -98,13 +100,14 @@ public class TimeTaskController {
 	
 	/**
 	 * create a relation between a timetask and a issuedraft
+	 * for id of issueDraft == 0 a new issuedraft is created
 	 * @param timeTaskId
-	 * @param issueDraftId
+	 * @param issueDraft
 	 * @return 
 	 */
-	@RequestMapping(value="/{timetaskid}/issuedraft/{issuedraftid}",method = RequestMethod.PUT, produces = JSON)
-	public @ResponseBody IssueDraftResource createRelationTimeTaskIssueDraft(@PathVariable("timetaskid") int timeTaskId, @PathVariable("issuedraftid") int issueDraftId){
-		return timeTaskResourceService.createRelationTimeTaskIssueDraft(timeTaskId, issueDraftId);
+	@RequestMapping(value="/{timetaskid}/issuedraft/",method = RequestMethod.POST, produces = JSON)
+	public @ResponseBody IssueDraftResource createRelationTimeTaskIssueDraft(@PathVariable("timetaskid") int timeTaskId, @RequestBody IssueDraft issueDraft){
+		return timeTaskResourceService.createRelationTimeTaskIssueDraft(timeTaskId, issueDraft);
 	}
 	
 	

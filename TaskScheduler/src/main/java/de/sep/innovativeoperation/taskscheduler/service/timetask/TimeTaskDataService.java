@@ -95,16 +95,37 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	}
 	
 
+	/**
+	 * create a relation between a timetask and a issuedraft
+	 * for id of issueDraft == 0 a new issuedraft is created
+	 * @param timeTaskId
+	 * @param issueDraft
+	 * @return
+	 */
+	public IssueDraft createRelationTimeTaskIssueDraft(int timeTaskId, IssueDraft issueDraft){
+		TimeTask timeTaskFromDB = this.getById(timeTaskId);
+		IssueDraft issueDraftFromDB;
+		
+		if(issueDraft.getId() == 0){
+			//for id == 0 create a new issuedraft
+			issueDraftFromDB = issueDraftDataService.createIssueDraft(issueDraft);
+		} else {
+			//else try to finde the issuedraft
+			issueDraftFromDB = issueDraftDataService.getById(issueDraft.getId());
+		}
+		
+			
+		return createRelationTimeTaskIssueDraft(timeTaskFromDB, issueDraftFromDB);
+		
+	}
+	
 	
 	/**
 	 * create a relation between a timetask and a issuedraft
 	 * @param timeTaskId
 	 * @param issueDraftId
 	 */
-	public IssueDraft createRelationTimeTaskIssueDraft(int timeTaskId, int issueDraftId){
-		TimeTask timeTask = this.getById(timeTaskId);
-		IssueDraft issueDraft = issueDraftDataService.getById(issueDraftId);
-		
+	private IssueDraft createRelationTimeTaskIssueDraft(TimeTask timeTask, IssueDraft issueDraft){
 		
 		if(timeTask.getIssueDrafts().contains(issueDraft) ){
 			//TODO
@@ -113,6 +134,8 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		timeTask.getIssueDrafts().add(issueDraft);
 		return issueDraft;
 	}
+	
+	
 	
 	/**
 	 * delete a relation between a timetask and a issuedraft
@@ -129,6 +152,7 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		}
 		timeTask.getIssueDrafts().remove(issueDraft);
 	}
+
 	
 	
 	
