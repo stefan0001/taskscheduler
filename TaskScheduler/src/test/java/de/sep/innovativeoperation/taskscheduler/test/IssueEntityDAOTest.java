@@ -12,6 +12,7 @@ import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
+import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -19,16 +20,17 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
 @Transactional
 public class IssueEntityDAOTest {
 	@Autowired
-	IssueEntityDAO issueEntityDAO;
+	IssueEntityDataService issueEntityDataService;
 	
 	@Test
 	public void test(){
 		IssueEntity iefilter = new IssueEntity();
-		iefilter.setIssueStatus(IssueStatus.NEW);
 		IssueDraft idfilter = new IssueDraft();
+		idfilter.setIssueName("blabla");
+		
 		
 		System.out.println("______________________________");
-		System.out.println("issueentitysize: " + issueEntityDAO.filterIssueEntity(iefilter, idfilter).size());
+		System.out.println("issueentitysize: " + issueEntityDataService.filterIssueEntity(iefilter, idfilter).size());
 		System.out.println("______________________________");
 		
 	}

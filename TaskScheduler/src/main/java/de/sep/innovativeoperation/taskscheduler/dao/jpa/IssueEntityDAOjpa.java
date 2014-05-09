@@ -17,11 +17,12 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 
 @Repository
 public class IssueEntityDAOjpa extends GenericDAOjpa<IssueEntity> implements IssueEntityDAO{
 
-	public List<IssueEntity> filterIssueEntity(IssueEntity issueEntity, IssueDraft issueDraft) {
+	public List<IssueEntity> filterIssueEntity(IssueStatus issueStatus, IssueResolution issueResolution, String issueName, String issueDescription, IssueType issueType) {
 		
 		//CRITERIA BUILDER
 		
@@ -40,18 +41,35 @@ public class IssueEntityDAOjpa extends GenericDAOjpa<IssueEntity> implements Iss
 		
 		
 		//where issuestatus is
-		if(issueEntity.getIssueStatus() != null){
-			Predicate issueStatusPredicate = cb.and(cb.equal(issueEntityRoot.<IssueStatus>get("issueStatus"),issueEntity.getIssueStatus()));
-			predicates.add(issueStatusPredicate);
+		if(issueStatus != null){
+			Predicate predicate = cb.and(cb.equal(issueEntityRoot.<IssueStatus>get("issueStatus"),issueStatus));
+			predicates.add(predicate);
 		}
 		
 		//where issueresolution is
-		if(issueEntity.getIssueResolution() != null){
-			Predicate issueResolutionPredicate = cb.and(cb.equal(issueEntityRoot.<IssueResolution>get("issueResolution"),issueEntity.getIssueResolution()));
-			predicates.add(issueResolutionPredicate);
+		if(issueResolution != null){
+			Predicate predicate = cb.and(cb.equal(issueEntityRoot.<IssueResolution>get("issueResolution"),issueResolution));
+			predicates.add(predicate );
 		}
 		
-		//issueresolution
+		//where issuedraftname
+		if(issueName != null){
+			Predicate predicate = cb.and(cb.like(issueDrafts.<String>get("issueName"),issueName));
+			predicates.add(predicate );
+		}
+		//where issuedraftdescription
+		if(issueDescription!= null){
+			Predicate predicate  = cb.and(cb.like(issueDrafts.<String>get("issueDescription"),issueDescription));
+			predicates.add(predicate);
+		}
+		
+		//where issuedrafttype
+		if(issueType != null){
+			Predicate predicate  = cb.and(cb.equal(issueDrafts.<IssueType>get("issueType"),issueType));
+			predicates.add(predicate);
+		}
+		
+
 
 		//sum of the predicates
 		cq.where(predicates.toArray(new Predicate[predicates.size()]) );
