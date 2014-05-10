@@ -13,7 +13,7 @@ public interface GenericDAO <T> {
 	//READ
 	public T findById(int id);
 	
-	public List<T> fetchAll();
+	public List<T> fetchAll(int page);
 
 	
 	

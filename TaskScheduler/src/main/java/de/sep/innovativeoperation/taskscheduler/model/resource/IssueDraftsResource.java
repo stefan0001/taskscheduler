@@ -6,6 +6,7 @@ public class IssueDraftsResource extends AbstractGenericResourcesModel<IssueDraf
 
 	public IssueDraftsResource() {
 		super();
+
 		// TODO Auto-generated constructor stub
 	}
 
