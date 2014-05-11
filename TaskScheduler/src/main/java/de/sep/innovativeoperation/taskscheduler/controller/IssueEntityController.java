@@ -58,8 +58,6 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.PUT, produces = JSON)
 	public @ResponseBody IssueEntityResource updateIssueEntity(@PathVariable("issueentityid") int id, @RequestBody IssueEntityResource issueEntityResource) {
-		//TODO
-		System.out.println("TEST");
 		return issueEntityResourceService.updateIssueEntity(id, issueEntityResource);
 	}
 
@@ -70,7 +68,7 @@ public class IssueEntityController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.DELETE, produces = JSON)
-	public void deleteIssueEntity(@PathVariable("issueentityid") int id) {
+	public @ResponseBody void deleteIssueEntity(@PathVariable("issueentityid") int id) {
 		issueEntityResourceService.deleteById(id);
 	}
 

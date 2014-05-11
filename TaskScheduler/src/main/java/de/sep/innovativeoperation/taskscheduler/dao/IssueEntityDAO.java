@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import de.sep.innovativeoperation.taskscheduler.dao.generic.GenericDAO;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;

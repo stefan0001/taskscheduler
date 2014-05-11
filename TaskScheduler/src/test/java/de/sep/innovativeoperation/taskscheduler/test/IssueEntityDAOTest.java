@@ -8,10 +8,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
