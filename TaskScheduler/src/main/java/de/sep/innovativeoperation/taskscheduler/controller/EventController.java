@@ -86,8 +86,9 @@ public class EventController {
 	 * @return OK the event got triggered
 	 */
 	@RequestMapping(value = "/{eventid}/trigger", method = RequestMethod.PUT, produces = JSON)
-	public @ResponseBody void updateEvent(@PathVariable("eventid") int id){
-		//TODO
+	public @ResponseBody void triggerEvent(@PathVariable("eventid") int id){
+		EventResource eventResource =eventResourceService.getById(id);
+		eventResourceService.triggerEvent(eventResource);
 	}
 	
 	

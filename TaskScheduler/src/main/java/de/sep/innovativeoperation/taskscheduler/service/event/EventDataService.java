@@ -1,6 +1,9 @@
 package de.sep.innovativeoperation.taskscheduler.service.event;
 
 
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import de.sep.innovativeoperation.taskscheduler.dao.EventDAO;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
+import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
+import de.sep.innovativeoperation.taskscheduler.service.trigger.EventTaskTrigger;
 import de.sep.innovativeoperation.taskscheduler.service.validation.EventValidationService;
 
 @Service
@@ -25,6 +30,9 @@ public class EventDataService extends AbstractGenericDataService<Event>{
 	//DAO
 	@Autowired
 	private EventDAO eventDAO;
+	
+	@Autowired
+	private EventTaskTrigger eventTaskTrigger;
 	
 	
 	/**
@@ -61,5 +69,18 @@ public class EventDataService extends AbstractGenericDataService<Event>{
 		return eventDB;
 	}
 	
+	/**
+	 * Trigger all EventTask related to this Event
+	 * @param event
+	 */
+	public void trigger(Event event){
+		Set<EventTask> eventTasks = event.getEventTasks();
+		Iterator<EventTask> iterator = eventTasks.iterator();
+		
+		while(iterator.hasNext()){
+			eventTaskTrigger.trigger(iterator.next());
+		}
+		
+	}
 
 }
