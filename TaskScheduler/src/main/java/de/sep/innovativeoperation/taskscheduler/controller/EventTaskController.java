@@ -65,15 +65,7 @@ public class EventTaskController {
 	
 	
 	
-	/**
-	 * Creating a new EventTask
-	 * @param eventTaskResource	EventTaskResource containing the information for the new EventTask
-	 * @return EventTaskResource containing the new EventTask
-	 */
-	@RequestMapping(method = RequestMethod.POST, produces = JSON)
-	public @ResponseBody EventTaskResource createEventTask(@RequestBody EventTaskResource eventTaskResource) {
-		return eventTaskResourceService.createEventTask(eventTaskResource);
-	}
+
 	
 	
 	

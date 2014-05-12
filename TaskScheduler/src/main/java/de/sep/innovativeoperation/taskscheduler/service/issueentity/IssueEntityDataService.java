@@ -41,8 +41,7 @@ public class IssueEntityDataService extends
 	private IssueDraftValidationService issueDraftValidationService;
 
 	// TODO
-	public IssueEntity createIssueEntity(int issueDraftId,
-			IssueEntity issueEntity) {
+	public IssueEntity createIssueEntity(int issueDraftId, IssueEntity issueEntity) {
 		// find the issueDraft
 		IssueDraft issueDraft = issueDraftService.getById(issueDraftId);
 

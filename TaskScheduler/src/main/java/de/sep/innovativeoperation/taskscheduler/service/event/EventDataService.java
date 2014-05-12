@@ -1,5 +1,7 @@
 package de.sep.innovativeoperation.taskscheduler.service.event;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import de.sep.innovativeoperation.taskscheduler.dao.EventDAO;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
+import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.EventValidationService;
 
@@ -57,8 +60,8 @@ public class EventDataService extends AbstractGenericDataService<Event>{
 		//update object
 		eventDB.setName(event.getName());
 		
-		
-		
 		return eventDB;
 	}
+	
+
 }

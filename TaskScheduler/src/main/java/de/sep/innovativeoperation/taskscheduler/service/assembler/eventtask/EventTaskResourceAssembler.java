@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import de.sep.innovativeoperation.taskscheduler.controller.EventTaskController;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
+import de.sep.innovativeoperation.taskscheduler.model.resource.EventResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventTaskResource;
 import de.sep.innovativeoperation.taskscheduler.service.assembler.generic.AbstractGenericDataResourceAssembler;
 
@@ -17,7 +18,7 @@ public class EventTaskResourceAssembler extends AbstractGenericDataResourceAssem
 
 	@Override
 	public EventTaskResource toResource(EventTask entity) {
-		EventTaskResource resource = new EventTaskResource(entity);
+		EventTaskResource resource = new EventTaskResource(entity, new EventResource(entity.getEvent()));
 		
 		//TODO
 		return resource;

@@ -6,5 +6,5 @@ package de.sep.innovativeoperation.taskscheduler.model.data;
  * 
  */
 public enum IssueType {
-	BUG, IMPROVMENT, TASK
+	BUG, IMPROVEMENT, TASK
 }

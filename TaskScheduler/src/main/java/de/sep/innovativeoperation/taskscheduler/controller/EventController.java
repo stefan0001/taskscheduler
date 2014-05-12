@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.EventTaskResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventsResource;
 import de.sep.innovativeoperation.taskscheduler.service.event.EventResourceService;
+import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskResourceService;
 
 @Controller
 @RequestMapping(value = "/event")
@@ -20,6 +22,9 @@ public class EventController {
 	//RESOURCE SERVICE
 	@Autowired
 	EventResourceService eventResourceService;
+	
+	@Autowired
+	EventTaskResourceService eventTaskResourceService;
 
 	/**
 	 * get all events
@@ -83,6 +88,28 @@ public class EventController {
 	@RequestMapping(value = "/{eventid}/trigger", method = RequestMethod.PUT, produces = JSON)
 	public @ResponseBody void updateEvent(@PathVariable("eventid") int id){
 		//TODO
+	}
+	
+	
+	/**
+	 * Get all EventTasks for a event
+	 * @param id EventId
+	 * @return
+	 */
+	@RequestMapping(value = "/{eventid}/eventtask", method = RequestMethod.GET, produces = JSON)
+	public @ResponseBody void getAllEventTasksForEvent(@PathVariable("eventid") int id){
+		//TODO
+	}
+	
+	
+	/**
+	 * Creating a new EventTask
+	 * @param eventTaskResource	EventTaskResource containing the information for the new EventTask
+	 * @return EventTaskResource containing the new EventTask
+	 */
+	@RequestMapping(value = "/{eventid}/eventtask", method = RequestMethod.POST, produces = JSON)
+	public @ResponseBody EventTaskResource createEventTask(@PathVariable("eventid") int id, @RequestBody EventTaskResource eventTaskResource) {
+		return eventTaskResourceService.createEventTask(id, eventTaskResource);
 	}
 	
 	

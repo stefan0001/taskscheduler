@@ -46,6 +46,11 @@ public class EventTask extends AbstractDataModel {
 		this(null, new HashSet<IssueDraft>(), null );
 	}
 	
+	//TODO
+	public EventTask(String name){
+		this(name, new HashSet<IssueDraft>(), null );
+	}
+	
 
 
 	//TODO

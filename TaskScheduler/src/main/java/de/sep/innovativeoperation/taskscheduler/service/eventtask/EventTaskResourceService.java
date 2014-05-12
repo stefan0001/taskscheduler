@@ -29,13 +29,13 @@ public class EventTaskResourceService extends AbstractGenericResourceService<Eve
 	
 	/**
 	 * Create a new EventTask
+	 * @param eventid  id of the event
 	 * @param eventTaskResource EventTaskResources containing the information for creating a new EventTask
 	 * @return	EventTaskresource containing the new EventTask from the Database
 	 */
-	public EventTaskResource createEventTask(EventTaskResource eventTaskResource) {
-		EventTask createdEventTask = eventTaskDataService.createEventTask(eventTaskResource.getContent());
+	public EventTaskResource createEventTask(int eventid, EventTaskResource eventTaskResource) {
+		EventTask createdEventTask = eventTaskDataService.createEventTask(eventid, eventTaskResource.getContent());
 		return eventTaskResourceAssembler.toResource(createdEventTask);
-
 	}
 
 	/**
