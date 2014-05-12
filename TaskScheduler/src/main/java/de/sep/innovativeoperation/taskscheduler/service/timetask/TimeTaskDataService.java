@@ -127,11 +127,9 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	 */
 	private IssueDraft createRelationTimeTaskIssueDraft(TimeTask timeTask, IssueDraft issueDraft){
 		
-		if(timeTask.getIssueDrafts().contains(issueDraft) ){
-			//TODO
-			throw new ResourceNotFoundException();
+		if(!timeTask.getIssueDrafts().contains(issueDraft) ){
+			timeTask.getIssueDrafts().add(issueDraft);
 		}
-		timeTask.getIssueDrafts().add(issueDraft);
 		return issueDraft;
 	}
 	

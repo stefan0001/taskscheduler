@@ -87,7 +87,7 @@ public class EventController {
 	 */
 	@RequestMapping(value = "/{eventid}/trigger", method = RequestMethod.PUT, produces = JSON)
 	public @ResponseBody void triggerEvent(@PathVariable("eventid") int id){
-		EventResource eventResource =eventResourceService.getById(id);
+		EventResource eventResource = eventResourceService.getById(id);
 		eventResourceService.triggerEvent(eventResource);
 	}
 	
@@ -113,5 +113,6 @@ public class EventController {
 		return eventTaskResourceService.createEventTask(id, eventTaskResource);
 	}
 	
+	//TODO get all eventaks for event
 	
 }

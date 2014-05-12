@@ -1,15 +1,20 @@
 package de.sep.innovativeoperation.taskscheduler.service.eventtask;
 
+import java.util.Set;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.sep.innovativeoperation.taskscheduler.dao.EventTaskDAO;
+import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.service.AbstractGenericDataService;
 import de.sep.innovativeoperation.taskscheduler.service.event.EventDataService;
+import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftDataService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.EventTaskValidationService;
 
 @Service
@@ -23,6 +28,9 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 	
 	@Autowired
 	private EventDataService eventDataService;
+	
+	@Autowired
+	private IssueDraftDataService issueDraftDataService;
 	
 	//DAO
 	@Autowired
@@ -80,6 +88,74 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 		
 		
 		return eventTaskDB;
+	}
+	
+	
+	
+	/**
+	 * get all IssueDrafts for the EventTask with the id
+	 * @param id 	id of the EventTask
+	 * @return
+	 */
+	public Set<IssueDraft> getIssueDraftsforEventTask(int id){
+		EventTask eventTask = this.getById(id);
+		return eventTask.getIssueDrafts();
+	}
+	
+	/**
+	 * create a relation between a EventTask and a issuedraft
+	 * for id of issueDraft == 0 a new issuedraft is created
+	 * @param eventTaskId
+	 * @param issueDraft
+	 * @return
+	 */
+	public IssueDraft createRelationEventTaskIssueDraft(int eventTaskId, IssueDraft issueDraft){
+		EventTask eventTaskFromDB = this.getById(eventTaskId);
+		IssueDraft issueDraftFromDB;
+		
+		if(issueDraft.getId() == 0){
+			//for id == 0 create a new issuedraft
+			issueDraftFromDB = issueDraftDataService.createIssueDraft(issueDraft);
+		} else {
+			//else try to finde the issuedraft
+			issueDraftFromDB = issueDraftDataService.getById(issueDraft.getId());
+		}
+		
+			
+		return createRelationEventTaskIssueDraft(eventTaskFromDB, issueDraftFromDB);
+		
+	}
+	
+	
+	/**
+	 * create a relation between a EventTask and a issuedraft
+	 * @param eventTaskId
+	 * @param issueDraftId
+	 */
+	private IssueDraft createRelationEventTaskIssueDraft(EventTask eventTask, IssueDraft issueDraft){
+		
+		if(!eventTask.getIssueDrafts().contains(issueDraft) ){
+			eventTask.getIssueDrafts().add(issueDraft);
+		}
+		return issueDraft;
+	}
+	
+	
+	
+	/**
+	 * delete a relation between a EventTask and a issuedraft
+	 * @param eventTaskId
+	 * @param issueDraftId
+	 */
+	public void deleteRelationEventTaskIssueDraft(int eventTaskId, int issueDraftId){
+		EventTask eventTask = this.getById(eventTaskId);
+		IssueDraft issueDraft = issueDraftDataService.getById(issueDraftId);
+		
+		
+		if(!eventTask.getIssueDrafts().contains(issueDraft) ){
+			throw new ResourceNotFoundException();
+		}
+		eventTask.getIssueDrafts().remove(issueDraft);
 	}
 	
 	

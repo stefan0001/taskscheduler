@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventTaskResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventTasksResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
 import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskResourceService;
 
 @Controller
@@ -63,6 +65,49 @@ public class EventTaskController {
 		eventTaskResourceService.deleteById(id);
 	}
 	
+	
+	
+	
+	
+	/**
+	 * get all IssueDrafts for the EventTask with the id
+	 * @param id
+	 * @return IssueDraftResource
+	 */
+	@RequestMapping(value="/{eventtaskid}/issuedraft",method = RequestMethod.GET, produces = JSON)
+	public @ResponseBody IssueDraftsResource getIssueDraftsforEventTask(@PathVariable("eventtaskid") int id){
+		return eventTaskResourceService.getIssueDraftsforEventTask(id);
+	}
+	
+	
+	
+
+	
+	/**
+	 * create a relation between a eventtask and a issuedraft
+	 * for id of issueDraft == 0 a new issuedraft is created
+	 * @param eventTaskId
+	 * @param issueDraft
+	 * @return 
+	 */
+	@RequestMapping(value="/{eventtaskid}/issuedraft",method = RequestMethod.POST, produces = JSON)
+	public @ResponseBody IssueDraftResource createRelationEventTaskIssueDraft(@PathVariable("eventtaskid") int eventTaskId, @RequestBody IssueDraftResource issueDraftResource){
+		return eventTaskResourceService.createRelationEventTaskIssueDraft(eventTaskId, issueDraftResource);
+	}
+	
+	
+	/**
+	 * delete a relation between a task and a issuedraft
+	 * @param id                  id of the task
+	 * @param issueDraftResource  the issuedraft with the issuedraftid
+	 * @return IssueDraftResource
+	 */
+	@RequestMapping(value="/{eventtaskid}/issuedraft/{issuedraftid}",method = RequestMethod.DELETE, produces = JSON)
+	public @ResponseBody void deleteRelationEventTaskIssueDraft(@PathVariable("eventtaskid") int eventTaskId, @PathVariable("issuedraftid") int issueDraftId){
+		eventTaskResourceService.deleteRelationEventTaskIssueDraft(eventTaskId, issueDraftId);
+	}
+	
+
 	
 	
 

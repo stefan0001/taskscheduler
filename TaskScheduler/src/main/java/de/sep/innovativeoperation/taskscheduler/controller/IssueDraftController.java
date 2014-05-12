@@ -81,7 +81,7 @@ public class IssueDraftController {
 	}
 	
 	
-	//TODO
+
 	/**
 	 * Load all IssueEntities for a given IssueDraft
 	 * @param id
@@ -110,7 +110,7 @@ public class IssueDraftController {
 	 * @param issueDraft
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = JSON)
+	@RequestMapping(method = RequestMethod.POST, produces = JSON)
 	public @ResponseBody IssueDraftResource createIssueDraft( @RequestBody IssueDraftResource issueDraftResource) {
 		return issueDraftResourceService.createIssueDraft(issueDraftResource);
 	}
