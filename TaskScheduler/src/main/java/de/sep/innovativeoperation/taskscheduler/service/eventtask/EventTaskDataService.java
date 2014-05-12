@@ -34,7 +34,7 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 	
 	//DAO
 	@Autowired
-	private EventTaskDAO EventTaskDAO;
+	private EventTaskDAO eventTaskDAO;
 	
 	
 	/**
@@ -52,7 +52,7 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 		eventTask.setEvent(event);
 
 		eventTaskValidationService.checkObject(eventTask);
-		return EventTaskDAO.save(eventTask);
+		return eventTaskDAO.save(eventTask);
 	}
 	
 	//TODO
@@ -80,7 +80,7 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 		eventTaskValidationService.checkObject(eventTask);
 
 		// search for object
-		EventTask eventTaskDB = EventTaskDAO.findById(id);
+		EventTask eventTaskDB = eventTaskDAO.findById(id);
 		
 		//update object
 		eventTaskDB.setName(eventTask.getName());
@@ -156,6 +156,16 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 			throw new ResourceNotFoundException();
 		}
 		eventTask.getIssueDrafts().remove(issueDraft);
+	}
+	
+	/**
+	 * get all EventTasks for a given Event id
+	 * @param id id of the event
+	 * @return
+	 */
+	public Set<EventTask> getAllEventTasksForEvent(int id){
+		Event event = eventDataService.getById(id);
+		return event.getEventTasks();
 	}
 	
 	

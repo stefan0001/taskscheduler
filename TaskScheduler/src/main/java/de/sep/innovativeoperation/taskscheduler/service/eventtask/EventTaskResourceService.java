@@ -106,4 +106,18 @@ public class EventTaskResourceService extends AbstractGenericResourceService<Eve
 	public void deleteRelationEventTaskIssueDraft(int eventTaskId, int issueDraftId){
 		eventTaskDataService.deleteRelationEventTaskIssueDraft(eventTaskId, issueDraftId);
 	}
+	
+	/**
+	 * get all EventTasks for a given Event id
+	 * @param id id of the event
+	 * @return
+	 */
+	public EventTasksResource getAllEventTasksForEvent(int id){
+		Set<EventTask> eventTasks = eventTaskDataService.getAllEventTasksForEvent(id);
+		List<EventTaskResource> resources = eventTaskResourceAssembler.toResources(eventTasks);
+		
+		return eventTasksResourceAssembler.toResource(resources);
+	}
+	
+	
 }

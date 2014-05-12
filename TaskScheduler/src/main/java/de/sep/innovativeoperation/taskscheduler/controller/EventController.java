@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventTaskResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.EventTasksResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventsResource;
 import de.sep.innovativeoperation.taskscheduler.service.event.EventResourceService;
 import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskResourceService;
@@ -94,11 +95,12 @@ public class EventController {
 	/**
 	 * Get all EventTasks for a event
 	 * @param id EventId
+	 * @return 
 	 * @return
 	 */
 	@RequestMapping(value = "/{eventid}/eventtask", method = RequestMethod.GET, produces = JSON)
-	public @ResponseBody void getAllEventTasksForEvent(@PathVariable("eventid") int id){
-		//TODO
+	public @ResponseBody EventTasksResource getAllEventTasksForEvent(@PathVariable("eventid") int id){
+		return eventTaskResourceService.getAllEventTasksForEvent(id);
 	}
 	
 	
@@ -111,7 +113,5 @@ public class EventController {
 	public @ResponseBody EventTaskResource createEventTask(@PathVariable("eventid") int id, @RequestBody EventTaskResource eventTaskResource) {
 		return eventTaskResourceService.createEventTask(id, eventTaskResource);
 	}
-	
-	//TODO get all eventaks for event
-	
+
 }
