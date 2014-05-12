@@ -73,7 +73,8 @@ public class EventDataService extends AbstractGenericDataService<Event>{
 	 * Trigger all EventTask related to this Event
 	 * @param event
 	 */
-	public void trigger(Event event){
+	public void trigger(int id){
+		Event event = eventDAO.findById(id);
 		Set<EventTask> eventTasks = event.getEventTasks();
 		Iterator<EventTask> iterator = eventTasks.iterator();
 		

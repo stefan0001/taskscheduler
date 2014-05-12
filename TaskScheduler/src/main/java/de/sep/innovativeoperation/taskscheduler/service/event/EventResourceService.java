@@ -54,7 +54,7 @@ public class EventResourceService extends AbstractGenericResourceService<Event, 
 	 * Trigger all EventTask related to this event
 	 * @param eventResource
 	 */
-	public void triggerEvent(EventResource eventResource){
-		eventDataService.trigger(eventResource.getContent());
+	public void triggerEvent(int id){
+		eventDataService.trigger(id);
 	}
 }
