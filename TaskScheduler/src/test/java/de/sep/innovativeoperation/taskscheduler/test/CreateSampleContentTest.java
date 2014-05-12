@@ -27,7 +27,7 @@ import de.sep.innovativeoperation.taskscheduler.service.timetask.TimeTaskDataSer
 
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 @Transactional
 public class CreateSampleContentTest {
 	

@@ -24,14 +24,8 @@
 //@WebAppConfiguration
 //public class StatusTest {
 //
-//
-//
-//
-//
 //    private MockMvc mockMvc;
-//
-//
-//
+//    
 //    @Autowired
 //    private WebApplicationContext webApplicationContext;
 //
@@ -44,18 +38,13 @@
 //    public void testDefaultController() throws Exception {
 //    	//redirect
 //    	mockMvc.perform(get("/")).andExpect(status().is(302));
-//
 //    }
 //    
-//
-//
 //    @Test
 //    public void testIssueDraftController() throws Exception {
 //    	
 //    	mockMvc.perform(get("/issuedraft")).andExpect(status().is(200));
-// 
-//
-//    }
+//     }
 //
 //
 //}
