@@ -13,6 +13,7 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
+import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 
 
 @Service
@@ -22,6 +23,8 @@ public class EventTaskTrigger {
 	@Autowired
 	GenericDAO<IssueEntity> issueEntityDAO;
 	
+	@Autowired 
+	IssueEntityDataService issueEntityDataService;
 	/**
 	 * Creates Issues for event tasks
 	 * @param eventTask to which Issues shall be created
@@ -39,12 +42,9 @@ public class EventTaskTrigger {
 	}
 	
 	private IssueEntity createIssueFor(IssueDraft issueDraft){
-		IssueEntity issueEntity = new IssueEntity();
-		issueEntity.setId(0);
-		issueEntity.setIssueResolution(IssueResolution.UNRESOLVED);
-		issueEntity.setIssueStatus(IssueStatus.NEW);
-		
-		return issueEntityDAO.save(issueEntity);
+		IssueEntity issueEntity = new IssueEntity(IssueStatus.NEW,IssueResolution.UNRESOLVED, null);
+		return issueEntityDataService.createIssueEntity(issueDraft.getId(), issueEntity);
+
 	}
 	
 	
