@@ -43,7 +43,6 @@ public class EventTaskTrigger {
 		issueEntity.setId(0);
 		issueEntity.setIssueResolution(IssueResolution.UNRESOLVED);
 		issueEntity.setIssueStatus(IssueStatus.NEW);
-		issueEntity.setIssueDraft(issueDraft);
 		
 		return issueEntityDAO.save(issueEntity);
 	}

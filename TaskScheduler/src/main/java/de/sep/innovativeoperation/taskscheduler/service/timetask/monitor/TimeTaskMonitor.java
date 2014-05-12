@@ -11,24 +11,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.TimeTaskDAO;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
-import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
+import de.sep.innovativeoperation.taskscheduler.service.trigger.TimeTaskTrigger;
 
 
 @Service
 @Transactional
 public class TimeTaskMonitor {
 	
-	//Can't use generic cause of specific method
-	@Autowired
-	private TimeTaskDAO timeTaskDAO;
 	
 	@Autowired
-	private IssueEntityDataService issueEntityService;
+	private TimeTaskTrigger trigger;
+	
+	//Can't use generic cause of specific method
+	@Autowired
+	TimeTaskDAO timeTaskDAO;
 	
 	private Locale locale = Locale.UK;
 	private Calendar currentTime = Calendar.getInstance(locale);
@@ -54,8 +51,13 @@ public class TimeTaskMonitor {
 	 */
 	@Scheduled(fixedDelay = 6000)
 	public void monitorTimTasks(){
+		
+		/* get all time tasks which shall fire issues*/
 		List<TimeTask> timeTasks = timeTaskDAO.getTimeTaskWithNextFireTimeOlderThan(currentTime);
-		if(!timeTasks.isEmpty())createIssuesForTimeTasks(timeTasks);
+		
+		if(!timeTasks.isEmpty()){
+			createIssuesForTimeTasks(timeTasks);
+		}
 	}
 	
 	/**
@@ -68,35 +70,16 @@ public class TimeTaskMonitor {
 		
 		//Lets create IssueEntites for all TimeTasks in this list 
 		while(timeTaskIterator.hasNext()){
+			
 			TimeTask currentTimeTask = timeTaskIterator.next();
+			
 			if(currentTimeTask.isActivated()){
-				
-				//first, lets create all IssueEntites related to this current timetask
-				createIssueEntityForTimeTask(currentTimeTask);
+				//first, lets create all IssueEntites related to this current time task
+				trigger.trigger(currentTimeTask);
 			}
 			
-			//second, update NextFireTime of current timetask
+			//second, update NextFireTime of current time task
 			currentTimeTask.setNextFireTime(generateNextFireTime(currentTimeTask.getFirstFireTime(), currentTimeTask.getIntervall()));
-		}
-	}
-	
-	/**
-	 * Creates IssueEntities for one TimeTask
-	 * @param timeTask 
-	 */
-	private void createIssueEntityForTimeTask(TimeTask timeTask){
-		Iterator<IssueDraft> issueDraftIterator = timeTask.getIssueDrafts().iterator();
-		
-		//as long as there are IssueDrafts in the queue
-		while(issueDraftIterator.hasNext()){
-			IssueDraft currentIssueDraft = issueDraftIterator.next();
-			//create and set up a new issueEntity for this issueDraft
-			IssueEntity newIssueEntity = new IssueEntity();
-			newIssueEntity.setId(0);
-			newIssueEntity.setIssueResolution(IssueResolution.UNRESOLVED);
-			newIssueEntity.setIssueStatus(IssueStatus.NEW);
-			//let the service do the persistence thing
-			issueEntityService.createIssueEntity(currentIssueDraft.getId(), newIssueEntity);
 		}
 	}
 
