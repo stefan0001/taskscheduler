@@ -156,7 +156,7 @@ public class TimeTask extends AbstractDataModel{
 	}
 	
 	//TODO
-	//changing nextfiretime is not allowed
+	//changing nextfiretime from controller is not allowed
 	@JsonIgnore
 	public void setNextFireTime(Calendar nextFireTime) {
 		this.nextFireTime = nextFireTime;

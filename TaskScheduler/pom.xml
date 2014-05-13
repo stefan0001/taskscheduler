@@ -162,7 +162,7 @@
 		</testResources>
 
 		<finalName>TaskScheduler</finalName>
-
+		
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -173,6 +173,18 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+          		<groupId>org.apache.tomcat.maven</groupId>
+          		<artifactId>tomcat7-maven-plugin</artifactId>
+          		<configuration>
+          			<url>http://localhost:8083/manager/text</url>
+          			<server>TomcatServer</server>
+          			<path>/TaskScheduler</path>
+          		</configuration>
+          		<version>2.2</version>
+        	</plugin>
+			
 		</plugins>
 	</build>
 </project>
