@@ -34,6 +34,9 @@ public class TimeTaskTrigger {
 			createIssueFor(current);
 		}
 		
+		//plus 1 to the fire counter
+		timeTask.setFireCount(timeTask.getFireCount()+1);
+		
 	}
 	
 	private IssueEntity createIssueFor(IssueDraft issueDraft){

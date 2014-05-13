@@ -33,7 +33,6 @@ public class EventTaskTrigger {
 			IssueDraft current = iterator.next();
 			createIssueFor(current);
 		}
-		
 	}
 	
 	private IssueEntity createIssueFor(IssueDraft issueDraft){
