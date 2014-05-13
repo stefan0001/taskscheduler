@@ -34,11 +34,4 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/main/webapp/static</name>
-			<type>2</type>
-			<location>/Users/Thea/git/taskschedulerclient/GuiClient/src/main/webapp/static</location>
-		</link>
-	</linkedResources>
 </projectDescription>
