@@ -1,5 +1,7 @@
 package de.sep.innovativeoperation.taskscheduler.service.issueentity;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +42,12 @@ public class IssueEntityResourceService extends AbstractGenericResourceService<I
 		return issueEntityResourceAssembler.toResource(issueEntity);
 	}
 	
+	public IssueEntitiesResource filterIssueEntities(IssueEntityResource issueEntityResource){
+		List<IssueEntity> resultIssueEntities = issueEntityDataService.filterIssueEntity(issueEntityResource.getContent(), issueEntityResource.getEmbedded().getResource().getContent());
+		List<IssueEntityResource> resultIssueEntityResources = issueEntityResourceAssembler.toResources(resultIssueEntities);
+		
+		return issueEntitiesResourceAssembler.toResource(resultIssueEntityResources);
+	}
 
 	
 }

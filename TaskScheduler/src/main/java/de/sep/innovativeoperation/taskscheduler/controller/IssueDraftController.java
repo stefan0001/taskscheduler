@@ -46,6 +46,18 @@ public class IssueDraftController {
 
 	}
 	
+//	/**
+//	 * Search for IssueDrafts that looks like
+//	 * @param issueDraftResource
+//	 * @return
+//	 */
+//	@RequestMapping(method = RequestMethod.GET, produces = JSON)
+//	public @ResponseBody IssueDraftsResource getIssueDrafts(IssueDraftResource issueDraftResource) {
+//		return issueEntityResourceService
+//		
+//
+//	}
+	
 	
 	/**
 	 * Load one IssueDraft
@@ -114,6 +126,9 @@ public class IssueDraftController {
 	public @ResponseBody IssueDraftResource createIssueDraft( @RequestBody IssueDraftResource issueDraftResource) {
 		return issueDraftResourceService.createIssueDraft(issueDraftResource);
 	}
+	
+	
+
 	
 	
 	
