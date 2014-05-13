@@ -2,15 +2,23 @@ package de.sep.innovativeoperation.taskscheduler.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 
+import java.beans.PropertyEditorSupport;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import de.sep.innovativeoperation.taskscheduler.exception.http.CouldNotMapRequestParamException;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
@@ -36,6 +44,23 @@ public class IssueEntityController {
 	@RequestMapping(method = RequestMethod.GET, produces = JSON)
 	public @ResponseBody IssueEntitiesResource getIssueEntities() {
 		return issueEntityResourceService.getAll();
+	}
+	
+	
+	
+	/**
+	 * Filter IssueEntities with a given IssueEntity
+	 * @param issueEntityResource
+	 * @return
+	 */
+	@RequestMapping(value = "/filter", method = RequestMethod.GET, produces = JSON)
+	public @ResponseBody IssueEntitiesResource filterIssueEntities(@RequestParam(value = "filter") IssueEntityResource issueEntityResource) {
+		if(issueEntityResource == null){ 
+			//create a default issueentityreousrce if no issueentityresource was send
+			issueEntityResource = new IssueEntityResource();
+		}
+		
+		return issueEntityResourceService.filterIssueEntities(issueEntityResource);
 	}
 
 	/**
@@ -71,5 +96,31 @@ public class IssueEntityController {
 	public @ResponseBody void deleteIssueEntity(@PathVariable("issueentityid") int id) {
 		issueEntityResourceService.deleteById(id);
 	}
+	
+	
+	
+	
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+	    dataBinder.registerCustomEditor(IssueEntityResource.class, new PropertyEditorSupport() {
+	        IssueEntityResource value;
+	        @Override
+	        public IssueEntityResource getValue() {
+	            return value;
+	        }
+
+	        @Override
+	        public void setAsText(String text) throws IllegalArgumentException {
+	        	ObjectMapper mapper = new ObjectMapper();
+	            try {
+					value = mapper.readValue(text, IssueEntityResource.class);
+				} catch (IOException e) {
+					throw new CouldNotMapRequestParamException();
+				}
+	        }
+	    });
+	}
+	
+
 
 }

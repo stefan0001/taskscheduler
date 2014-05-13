@@ -80,8 +80,7 @@ public class IssueEntityDataService extends
 
 	}
 
-	public List<IssueEntity> filterIssueEntity(IssueEntity issueEntity,
-			IssueDraft issueDraft) {
+	public List<IssueEntity> filterIssueEntity(IssueEntity issueEntity, IssueDraft issueDraft) {
 		// check values ignore null values
 		try {
 			issueEntityValidationService.checkIssueStatus(issueEntity
