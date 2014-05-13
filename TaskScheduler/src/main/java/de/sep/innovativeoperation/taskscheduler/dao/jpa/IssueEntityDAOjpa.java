@@ -9,6 +9,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
@@ -54,14 +55,15 @@ public class IssueEntityDAOjpa extends GenericDAOjpa<IssueEntity> implements Iss
 		
 		//where issuedraftname
 		if(issueName != null){
-			Predicate predicate = cb.and(cb.like(issueDrafts.<String>get("issueName"),issueName));
+			Predicate predicate = cb.and(cb.like(issueDrafts.<String>get("issueName"),issueName+"%"));
 			predicates.add(predicate );
 		}
 		//where issuedraftdescription
 		if(issueDescription!= null){
-			Predicate predicate  = cb.and(cb.like(issueDrafts.<String>get("issueDescription"),issueDescription));
+			Predicate predicate  = cb.and(cb.like(issueDrafts.<String>get("issueDescription"),issueDescription+"%"));
 			predicates.add(predicate);
 		}
+
 		
 		//where issuedrafttype
 		if(issueType != null){
@@ -69,7 +71,6 @@ public class IssueEntityDAOjpa extends GenericDAOjpa<IssueEntity> implements Iss
 			predicates.add(predicate);
 		}
 		
-
 
 		//sum of the predicates
 		cq.where(predicates.toArray(new Predicate[predicates.size()]) );
