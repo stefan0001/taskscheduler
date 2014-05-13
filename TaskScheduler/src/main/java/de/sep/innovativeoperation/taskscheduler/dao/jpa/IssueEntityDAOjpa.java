@@ -9,7 +9,6 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
@@ -43,38 +42,40 @@ public class IssueEntityDAOjpa extends GenericDAOjpa<IssueEntity> implements Iss
 		
 		//where issuestatus is
 		if(issueStatus != null){
-			Predicate predicate = cb.and(cb.equal(issueEntityRoot.<IssueStatus>get("issueStatus"),issueStatus));
+			Predicate predicate = cb.equal(issueEntityRoot.<IssueStatus>get("issueStatus"),issueStatus);
 			predicates.add(predicate);
 		}
 		
 		//where issueresolution is
 		if(issueResolution != null){
-			Predicate predicate = cb.and(cb.equal(issueEntityRoot.<IssueResolution>get("issueResolution"),issueResolution));
+			Predicate predicate = cb.equal(issueEntityRoot.<IssueResolution>get("issueResolution"),issueResolution);
 			predicates.add(predicate );
 		}
 		
 		//where issuedraftname
 		if(issueName != null){
-			Predicate predicate = cb.and(cb.like(issueDrafts.<String>get("issueName"),issueName+"%"));
+			Predicate predicate = cb.like(cb.lower(issueDrafts.<String>get("issueName")),issueName.toLowerCase()+"%");
 			predicates.add(predicate );
 		}
 		//where issuedraftdescription
 		if(issueDescription!= null){
-			Predicate predicate  = cb.and(cb.like(issueDrafts.<String>get("issueDescription"),issueDescription+"%"));
+			Predicate predicate  = cb.like(cb.lower(issueDrafts.<String>get("issueDescription")),issueDescription.toLowerCase()+"%");
 			predicates.add(predicate);
 		}
 
 		
 		//where issuedrafttype
 		if(issueType != null){
-			Predicate predicate  = cb.and(cb.equal(issueDrafts.<IssueType>get("issueType"),issueType));
+			Predicate predicate  = cb.equal(issueDrafts.<IssueType>get("issueType"),issueType);
 			predicates.add(predicate);
 		}
 		
 
 		//sum of the predicates
-		cq.where(predicates.toArray(new Predicate[predicates.size()]) );
+		cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()]) ));
+
 		cq.select(issueEntityRoot);
+		
 
 		
 		return em.createQuery(cq).getResultList();
