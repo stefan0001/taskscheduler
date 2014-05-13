@@ -24,6 +24,7 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 	@Autowired
 	private TimeTaskDAO timeTaskDAO;
 
+	//MONITOR FOR TIMETASK
 	@Autowired
 	private TimeTaskMonitor timeTaskMonitor;
 	
@@ -44,14 +45,11 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		//id should be 0 for new entity
 		timeTask.setId(0);
 		
-		//
+		//check if time task has correct data 
 		timeTaskValidationSerive.checkObject(timeTask);
 		
-		//generate nextfiretime
-		Calendar nextFireTime = timeTaskMonitor.generateNextFireTime(timeTask.getFirstFireTime(), timeTask.getIntervall());
-
-		timeTask.setNextFireTime(nextFireTime);
-		
+		//call the monitor for checking if the new time task has to be triggered right now
+		timeTaskMonitor.monitorTimTasks();
 		
 		return timeTaskDAO.save(timeTask);
 
