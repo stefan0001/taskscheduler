@@ -6,24 +6,23 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import de.sep.innovativeoperation.taskscheduler.dao.generic.GenericDAO;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
+import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 
 @Service
 @Transactional
 public class TimeTaskTrigger {
 
-	@Autowired
-	GenericDAO<IssueEntity> issueEntityDAO;
+	@Autowired 
+	IssueEntityDataService issueEntityDataService;
 	
 	/**
 	 * Creates Issues for time tasks
-	 * @param timeTask to which Issues shall be created
+	 * @param timeTask which Issues shall be created
 	 */
 	public void trigger(TimeTask timeTask){
 		
@@ -38,13 +37,8 @@ public class TimeTaskTrigger {
 	}
 	
 	private IssueEntity createIssueFor(IssueDraft issueDraft){
-		IssueEntity issueEntity = new IssueEntity();
-		issueEntity.setId(0);
-		issueEntity.setIssueResolution(IssueResolution.UNRESOLVED);
-		issueEntity.setIssueStatus(IssueStatus.NEW);
-		issueEntity.setIssueDraft(issueDraft);
-		
-		return issueEntityDAO.save(issueEntity);
+		IssueEntity issueEntity = new IssueEntity(IssueStatus.NEW,IssueResolution.UNRESOLVED, null);
+		return issueEntityDataService.createIssueEntity(issueDraft.getId(), issueEntity);
 	}
 	
 }

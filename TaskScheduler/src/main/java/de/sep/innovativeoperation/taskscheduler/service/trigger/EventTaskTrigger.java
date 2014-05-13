@@ -6,8 +6,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import de.sep.innovativeoperation.taskscheduler.dao.generic.GenericDAO;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
@@ -20,14 +18,11 @@ import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityD
 @Transactional
 public class EventTaskTrigger {
 	
-	@Autowired
-	GenericDAO<IssueEntity> issueEntityDAO;
-	
 	@Autowired 
 	IssueEntityDataService issueEntityDataService;
 	/**
-	 * Creates Issues for event tasks
-	 * @param eventTask to which Issues shall be created
+	 * Creates Issues for time tasks
+	 * @param timeTask which Issues shall be created
 	 */
 	public void trigger(EventTask eventTask){
 		
