@@ -51,9 +51,11 @@ public class IssueEntityDataService extends
 
 		issueEntityValidationService.checkObject(issueEntity);
 
-		issueEntity = issueEntityDAO.save(issueEntity);
-
-		return issueEntity;
+		IssueEntity savedIssueEntity = issueEntityDAO.save(issueEntity);
+		//assign bidirectional relation
+		issueDraft.getIssueEntities().add(savedIssueEntity);
+		
+		return savedIssueEntity;
 	}
 
 	/**
@@ -76,9 +78,9 @@ public class IssueEntityDataService extends
 		oldEntity.setIssueStatus(issueEntity.getIssueStatus());
 
 		return oldEntity;
-		
 
 	}
+	
 
 	public List<IssueEntity> filterIssueEntity(IssueEntity issueEntity, IssueDraft issueDraft) {
 		// check values ignore null values
@@ -116,6 +118,13 @@ public class IssueEntityDataService extends
 				issueEntity.getIssueResolution(), issueDraft.getIssueName(),
 				issueDraft.getIssueDescription(), issueDraft.getIssueType());
 
+	}
+
+	@Override
+	public void removeBidirctionalRelations(IssueEntity entity) {
+		//remove bidirectional relation to IssueDraft
+		entity.getIssueDraft().getIssueEntities().remove(entity);
+		
 	}
 
 }

@@ -2,6 +2,7 @@
 package de.sep.innovativeoperation.taskscheduler.service.timetask;
 
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,6 +128,8 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		
 		if(!timeTask.getIssueDrafts().contains(issueDraft) ){
 			timeTask.getIssueDrafts().add(issueDraft);
+			//assign bidirectional relation
+			issueDraft.getTimeTasks().add(timeTask);
 		}
 		return issueDraft;
 	}
@@ -146,7 +149,19 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		if(!timeTask.getIssueDrafts().contains(issueDraft) ){
 			throw new ResourceNotFoundException();
 		}
+		
 		timeTask.getIssueDrafts().remove(issueDraft);
+		//remove bidirectional relation
+		issueDraft.getTimeTasks().remove(timeTask);
+	}
+
+	@Override
+	public void removeBidirctionalRelations(TimeTask entity) {
+		Iterator<IssueDraft> iteratorIssueDrafts = entity.getIssueDrafts().iterator();
+		while(iteratorIssueDrafts.hasNext() ){
+			iteratorIssueDrafts.next().getTimeTasks().remove(entity);
+		}
+		
 	}
 
 	

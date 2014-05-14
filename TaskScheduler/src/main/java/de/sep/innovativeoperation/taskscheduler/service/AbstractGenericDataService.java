@@ -35,12 +35,15 @@ public abstract class AbstractGenericDataService<T extends AbstractDataModel> {
 
 	public void deleteById(int id){
 		T entity = this.getById(id);
-			
+		this.removeBidirctionalRelations(entity);
+		
 		dao.remove(entity);
 	}
 	
+	protected abstract void removeBidirctionalRelations(T entity);
 	
 	public List<T> getAll(){
 		return dao.fetchAll();
 	}
+	
 }

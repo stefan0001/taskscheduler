@@ -1,6 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.service.eventtask;
 
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -53,22 +53,14 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 		eventTask.setEvent(event);
 
 		eventTaskValidationService.checkObject(eventTask);
-		return eventTaskDAO.save(eventTask);
+		EventTask savedEventTask = eventTaskDAO.save(eventTask);
+		
+		//assign bidirectional relation
+		event.getEventTasks().add(savedEventTask);
+		return savedEventTask;
 	}
 	
-	//TODO
-	public EventTask createEventTask(Event event, EventTask eventTask) {
-		
-		if(event.getId() == 0){
-			//creating a new event and receive it with a id
-			event = eventDataService.createEvent(event);
-			System.out.println(event.getId());
-		} 
-		
-		
-		return createEventTask(event.getId() , eventTask);
 
-	}
 
 
 	/**
@@ -136,6 +128,8 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 		
 		if(!eventTask.getIssueDrafts().contains(issueDraft) ){
 			eventTask.getIssueDrafts().add(issueDraft);
+			//assign bidirectional relation
+			issueDraft.getEventTasks().add(eventTask);
 		}
 		return issueDraft;
 	}
@@ -156,6 +150,9 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 			throw new ResourceNotFoundException();
 		}
 		eventTask.getIssueDrafts().remove(issueDraft);
+		
+		//remove bidirectional relation
+		issueDraft.getEventTasks().remove(eventTask);
 	}
 	
 	/**
@@ -166,6 +163,23 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 	public Set<EventTask> getAllEventTasksForEvent(int id){
 		Event event = eventDataService.getById(id);
 		return event.getEventTasks();
+	}
+
+
+
+	//TODO
+	@Override
+	public void removeBidirctionalRelations(EventTask entity) {
+		
+		Iterator<IssueDraft> iteratorIssueDrafts = entity.getIssueDrafts().iterator();
+		while(iteratorIssueDrafts.hasNext() ){
+			iteratorIssueDrafts.next().getEventTasks().remove(entity);
+		}
+		
+		entity.getEvent().getEventTasks().remove(entity);
+		
+
+		
 	}
 	
 	

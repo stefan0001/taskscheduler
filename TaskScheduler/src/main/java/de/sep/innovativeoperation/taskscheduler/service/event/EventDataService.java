@@ -83,6 +83,13 @@ public class EventDataService extends AbstractGenericDataService<Event>{
 		}
 		
 	}
+
+
+
+	@Override
+	public void removeBidirctionalRelations(Event entity) {
+		
+	}
 	
 	
 

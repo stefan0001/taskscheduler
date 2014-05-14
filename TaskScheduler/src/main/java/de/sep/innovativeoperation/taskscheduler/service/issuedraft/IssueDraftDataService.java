@@ -1,5 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.service.issuedraft;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -109,6 +110,17 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 
 		return issueDraftDAO.filterIssueDraft( issueDraft.getIssueName(),issueDraft.getIssueDescription(), issueDraft.getIssueType());
 
+	}
+
+
+
+	@Override
+	public void removeBidirctionalRelations(IssueDraft entity) {
+		Iterator<TimeTask> iteratorTimeTasks = entity.getTimeTasks().iterator();
+		while(iteratorTimeTasks.hasNext() ){
+			iteratorTimeTasks.next().getIssueDrafts().remove(entity);
+		}
+		
 	}
 
 
