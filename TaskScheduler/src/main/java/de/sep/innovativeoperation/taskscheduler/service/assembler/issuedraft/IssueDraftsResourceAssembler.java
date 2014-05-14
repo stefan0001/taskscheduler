@@ -21,7 +21,7 @@ public class IssueDraftsResourceAssembler extends AbstractGenericDataResourcesAs
 		IssueDraftsResource resource = new IssueDraftsResource(entities);
 		
 		//self link
-		resource.add(linkTo(methodOn(IssueDraftController.class).getIssueDrafts()).withSelfRel());
+		resource.add(linkTo(methodOn(IssueDraftController.class).getIssueDrafts(null)).withSelfRel());
 		
 		return resource;
 	}

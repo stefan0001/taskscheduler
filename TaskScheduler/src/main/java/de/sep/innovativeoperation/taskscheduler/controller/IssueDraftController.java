@@ -2,13 +2,21 @@ package de.sep.innovativeoperation.taskscheduler.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 
+import java.beans.PropertyEditorSupport;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
@@ -34,29 +42,25 @@ public class IssueDraftController {
 	
 	
 	
-	
+	//TODO
 	/**
 	 * Load all IssueDrafts
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = JSON)
-	public @ResponseBody IssueDraftsResource getIssueDrafts() {
-		return issueDraftResourceService.getAll();
+	public @ResponseBody IssueDraftsResource getIssueDrafts(@RequestParam(value = "filter" , required=false) IssueDraftResource issueDraftResource) {
+		
+		if(issueDraftResource == null){
+			//load all in case for no filter
+			return issueDraftResourceService.getAll();
+		}
+		
+		//return filtered
+		return issueDraftResourceService.filterIssueDrafts(issueDraftResource);
 		
 
 	}
 	
-//	/**
-//	 * Search for IssueDrafts that looks like
-//	 * @param issueDraftResource
-//	 * @return
-//	 */
-//	@RequestMapping(method = RequestMethod.GET, produces = JSON)
-//	public @ResponseBody IssueDraftsResource getIssueDrafts(IssueDraftResource issueDraftResource) {
-//		return issueEntityResourceService
-//		
-//
-//	}
 	
 	
 	/**
@@ -129,7 +133,26 @@ public class IssueDraftController {
 	
 	
 
-	
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+	    dataBinder.registerCustomEditor(IssueDraftResource.class, new PropertyEditorSupport() {
+	        IssueDraftResource value;
+	        @Override
+	        public IssueDraftResource getValue() {
+	            return value;
+	        }
+
+	        @Override
+	        public void setAsText(String text) throws IllegalArgumentException {
+	        	ObjectMapper mapper = new ObjectMapper();
+	            try {
+					value = mapper.readValue(text, IssueDraftResource.class);
+				} catch (IOException e) {
+					throw new IllegalArgumentException();
+				}
+	        }
+	    });
+	}
 	
 	
 	

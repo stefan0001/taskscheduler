@@ -25,7 +25,7 @@ public class IssueEntitiesResourceAssembler extends AbstractGenericDataResources
 	public IssueEntitiesResource toResource(Iterable<IssueEntityResource> entities) {
 		IssueEntitiesResource resource = new IssueEntitiesResource(entities);
 		
-		resource.add(linkTo(methodOn(IssueEntityController.class).getIssueEntities()).withSelfRel());
+		resource.add(linkTo(methodOn(IssueEntityController.class).getIssueEntities(null)).withSelfRel());
 
 		return resource;
 	}

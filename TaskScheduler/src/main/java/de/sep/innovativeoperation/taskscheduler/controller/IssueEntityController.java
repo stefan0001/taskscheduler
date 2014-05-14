@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.sep.innovativeoperation.taskscheduler.exception.http.CouldNotMapRequestParamException;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
@@ -36,32 +35,26 @@ public class IssueEntityController {
 	@Autowired
 	private IssueEntityResourceService issueEntityResourceService;
 
+	
+
 	/**
-	 * Load all IssueEntities
-	 * 
+	 * Get IssueEntities
+	 * @param issueEntityResource	Filter for a given issueentity
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = JSON)
-	public @ResponseBody IssueEntitiesResource getIssueEntities() {
-		return issueEntityResourceService.getAll();
-	}
-	
-	
-	
-	/**
-	 * Filter IssueEntities with a given IssueEntity
-	 * @param issueEntityResource
-	 * @return
-	 */
-	@RequestMapping(value = "/filter", method = RequestMethod.GET, produces = JSON)
-	public @ResponseBody IssueEntitiesResource filterIssueEntities(@RequestParam(value = "filter") IssueEntityResource issueEntityResource) {
+	public @ResponseBody IssueEntitiesResource getIssueEntities(@RequestParam(value = "filter" , required=false) IssueEntityResource issueEntityResource) {
 		if(issueEntityResource == null){ 
-			//create a default issueentityreousrce if no issueentityresource was send
-			issueEntityResource = new IssueEntityResource();
+			//return all issueentities in case of no filter
+			return issueEntityResourceService.getAll();
 		}
 		
+		//return filtered issueentities
 		return issueEntityResourceService.filterIssueEntities(issueEntityResource);
 	}
+	
+	
+	
 
 	/**
 	 * Load one IssueEntity
@@ -115,7 +108,7 @@ public class IssueEntityController {
 	            try {
 					value = mapper.readValue(text, IssueEntityResource.class);
 				} catch (IOException e) {
-					throw new CouldNotMapRequestParamException();
+					throw new IllegalArgumentException();
 				}
 	        }
 	    });

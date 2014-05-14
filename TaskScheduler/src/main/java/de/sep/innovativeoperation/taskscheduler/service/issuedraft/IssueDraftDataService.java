@@ -1,5 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.service.issuedraft;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
+import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
@@ -83,6 +85,31 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 		return issueDraft.getTimeTasks();
 	}
 
+	
+	public List<IssueDraft> filterIssueEntity(IssueDraft issueDraft) {
+		// check values ignore null values
+
+		try {
+			issueDraftValidationService.checkIssueName(issueDraft
+					.getIssueName());
+		} catch (ValueIsNullException e) {
+		}
+
+		try {
+			issueDraftValidationService.checkIssueDescription(issueDraft
+					.getIssueDescription());
+		} catch (ValueIsNullException e) {
+		}
+
+		try {
+			issueDraftValidationService.checkIssueType(issueDraft
+					.getIssueType());
+		} catch (ValueIsNullException e) {
+		}
+
+		return issueDraftDAO.filterIssueDraft( issueDraft.getIssueName(),issueDraft.getIssueDescription(), issueDraft.getIssueType());
+
+	}
 
 
 
