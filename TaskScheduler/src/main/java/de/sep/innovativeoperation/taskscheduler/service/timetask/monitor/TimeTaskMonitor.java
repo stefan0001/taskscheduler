@@ -41,7 +41,6 @@ public class TimeTaskMonitor {
 		Calendar fireTime = (Calendar) firstFireTime.clone();
 		
 		while(currentTime.compareTo(fireTime) >= 0 && intervall > 0){
-			System.out.println("change next firetime");
 			fireTime.add(Calendar.SECOND, intervall);
 		}
 		return fireTime;
@@ -55,10 +54,8 @@ public class TimeTaskMonitor {
 		
 		currentTime = Calendar.getInstance(locale);
 		
-		System.out.println();
 		/* get all time tasks which shall fire issues*/
 		List<TimeTask> timeTasks = timeTaskDAO.getTimeTaskWithNextFireTimeOlderThan(currentTime);
-		System.out.println(timeTasks.isEmpty());
 		if(!timeTasks.isEmpty()){
 			createIssuesForTimeTasks(timeTasks);
 		}
@@ -76,16 +73,13 @@ public class TimeTaskMonitor {
 		while(timeTaskIterator.hasNext()){
 			
 			TimeTask currentTimeTask = timeTaskIterator.next();
-			System.out.println(currentTimeTask.getId() + " " + currentTimeTask.getNextFireTime());
 			if(currentTimeTask.isActivated()){
 				//first, lets create all IssueEntites related to this current time task
 				trigger.trigger(currentTimeTask);
 			}
 			
 			//second, update NextFireTime of current time task
-			System.out.println(currentTimeTask.getIntervall());
 			currentTimeTask.setNextFireTime(generateNextFireTime(currentTimeTask.getFirstFireTime(), currentTimeTask.getIntervall()));
-			System.out.println(currentTimeTask.getId() + " " + currentTimeTask.getNextFireTime());
 		}
 	}
 
