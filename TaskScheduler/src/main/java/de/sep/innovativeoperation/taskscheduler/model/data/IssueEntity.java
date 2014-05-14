@@ -101,6 +101,13 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 		return result;
 	}
 
+//	@Override
+//	public boolean equals(Object obj) {
+//	if(
+//			(this.getIssueResolution().equals(((IssueEntity) obj).getIssueResolution()))
+//		&&(this.getIssueStatus()))
+//	}
+//	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

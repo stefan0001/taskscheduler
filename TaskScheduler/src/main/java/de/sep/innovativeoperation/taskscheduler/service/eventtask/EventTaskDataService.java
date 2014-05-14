@@ -1,5 +1,6 @@
 package de.sep.innovativeoperation.taskscheduler.service.eventtask;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -61,6 +62,7 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 		if(event.getId() == 0){
 			//creating a new event and receive it with a id
 			event = eventDataService.createEvent(event);
+			System.out.println(event.getId());
 		} 
 		
 		
@@ -77,15 +79,13 @@ public class EventTaskDataService extends AbstractGenericDataService<EventTask> 
 	 */
 	public EventTask updateEventTask(int id, EventTask eventTask) {
 
-		eventTaskValidationService.checkObject(eventTask);
+		eventTaskValidationService.checkObject(eventTask); 
 
 		// search for object
 		EventTask eventTaskDB = eventTaskDAO.findById(id);
 		
 		//update object
 		eventTaskDB.setName(eventTask.getName());
-		
-		
 		
 		return eventTaskDB;
 	}
