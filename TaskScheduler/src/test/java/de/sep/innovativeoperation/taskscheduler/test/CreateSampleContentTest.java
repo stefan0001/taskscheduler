@@ -1,6 +1,9 @@
 package de.sep.innovativeoperation.taskscheduler.test;
 
+import static org.junit.Assert.*;
+
 import java.util.Calendar;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -75,4 +78,32 @@ public class CreateSampleContentTest {
 		
 		
 	}
+	
+	@Test
+	public void testGetIssueEntitiesForIssueDraft() {
+		IssueDraft issueDraft = new IssueDraft("foo", "baa",IssueType.BUG);
+		IssueDraft savedIssueDraft = issueDraftDataService.createIssueDraft(issueDraft);
+		
+		assertTrue(savedIssueDraft.getId()>0);
+		System.out.println("TEST!");
+		IssueEntity newIssueEntity = new IssueEntity(IssueStatus.NEW,IssueResolution.UNRESOLVED, issueDraft);
+		IssueEntity savedIssueEntity = issueEntityDataService.createIssueEntity(savedIssueDraft.getId(), newIssueEntity);
+		System.out.println("TEST!");
+		System.out.println(savedIssueEntity.getId());
+		assertTrue(savedIssueEntity.getId()>0);
+		System.out.println("TEST!");
+		
+		Set<IssueEntity> issueEntities = issueDraftDataService.getIssueEntitiesForIssueDraft(savedIssueDraft.getId());
+		
+		System.out.println("-----------------------");
+		System.out.println("->" + savedIssueDraft.getId());
+
+		System.out.println(issueEntities.size());
+		System.out.println(savedIssueDraft.getIssueEntities().size());
+		
+		System.out.println("->" + savedIssueEntity.getId());
+		System.out.println("->" + savedIssueEntity.getIssueDraft().getId());
+//		assertTrue(issueEntities.contains(savedIssueEntity));
+	}
+	
 }

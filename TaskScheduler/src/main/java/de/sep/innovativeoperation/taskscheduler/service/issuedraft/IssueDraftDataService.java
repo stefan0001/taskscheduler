@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
+import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
@@ -116,10 +117,18 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 
 	@Override
 	public void removeBidirctionalRelations(IssueDraft entity) {
+		//remove bidirectional relation to timetask
 		Iterator<TimeTask> iteratorTimeTasks = entity.getTimeTasks().iterator();
 		while(iteratorTimeTasks.hasNext() ){
 			iteratorTimeTasks.next().getIssueDrafts().remove(entity);
 		}
+		
+		//remove bidirectional relation to eventtask
+		Iterator<EventTask> iteratorEventTasks = entity.getEventTasks().iterator();
+		while(iteratorEventTasks.hasNext() ){
+			iteratorEventTasks.next().getIssueDrafts().remove(entity);
+		}
+		
 		
 	}
 
