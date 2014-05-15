@@ -87,7 +87,8 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.DELETE, produces = JSON)
 	public @ResponseBody void deleteIssueEntity(@PathVariable("issueentityid") int id) {
-		issueEntityResourceService.deleteById(id);
+		//TODO
+		issueEntityResourceService.archiveById(id);
 	}
 	
 	

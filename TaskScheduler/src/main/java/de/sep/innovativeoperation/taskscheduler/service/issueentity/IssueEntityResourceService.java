@@ -48,6 +48,9 @@ public class IssueEntityResourceService extends AbstractGenericResourceService<I
 		
 		return issueEntitiesResourceAssembler.toResource(resultIssueEntityResources);
 	}
-
+	
+	public void archiveById(int id){
+		issueEntityDataService.archiveById(id);
+	}
 	
 }
