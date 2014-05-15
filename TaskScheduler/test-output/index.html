@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 4 failed tests</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +37,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Default_suite">
-              <span class="suite-name border-failed">Default suite</span>
+              <span class="suite-name border-skipped">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -90,50 +90,151 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">5 methods, 4 failed,   1 passed</span>
+                    <span class="method-stats">27 methods,  27 skipped,  </span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    <span class="method-list-title skipped">Skipped methods</span>
+                    <span class="show-or-hide-methods skipped">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods skipped suite-Default_suite"> (hide)</a> <!-- hide-methods skipped suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods skipped suite-Default_suite"> (show)</a> <!-- show-methods skipped suite-Default_suite -->
                     </span>
-                    <div class="method-list-content failed suite-Default_suite">
+                    <div class="method-list-content skipped suite-Default_suite">
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.NewTest" hash-for-method="filterWithDone">filterWithDone</a> <!-- method navigator-link -->
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editTask" hash-for-method="activeEventTask">activeEventTask</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.NewTest" hash-for-method="filterWithImProgress">filterWithImProgress</a> <!-- method navigator-link -->
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editTask" hash-for-method="activeTimeTask">activeTimeTask</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.NewTest" hash-for-method="filterWithTodo">filterWithTodo</a> <!-- method navigator-link -->
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="createEventTaskBreak">createEventTaskBreak</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.NewTest" hash-for-method="openTaskUebersicht">openTaskUebersicht</a> <!-- method navigator-link -->
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="createTaskBreak">createTaskBreak</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-Default_suite -->
-                  </li>
-                  <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
-                    </span>
-                    <div class="method-list-content passed suite-Default_suite">
                       <span>
-                        <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.NewTest" hash-for-method="f">f</a> <!-- method navigator-link -->
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="createTimeTaskBreak">createTimeTaskBreak</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Default_suite -->
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editTask" hash-for-method="deactiveEventTask">deactiveEventTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editTask" hash-for-method="deactiveTimeTask">deactiveTimeTask</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editIssue" hash-for-method="editIssue">editIssue</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editIssue" hash-for-method="editIssueStatus">editIssueStatus</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editIssue" hash-for-method="editResolutionOfClosedIssue">editResolutionOfClosedIssue</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editIssue" hash-for-method="editResolutionOfNoClosedIssue">editResolutionOfNoClosedIssue</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_overview" hash-for-method="filterWithDone">filterWithDone</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_overview" hash-for-method="filterWithImProgress">filterWithImProgress</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_overview" hash-for-method="filterWithTodo">filterWithTodo</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_overview" hash-for-method="openTaskUebersicht">openTaskUebersicht</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="savaTaskNoIssue">savaTaskNoIssue</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveEventTaskNoEvent">saveEventTaskNoEvent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveEventTaskValid">saveEventTaskValid</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveTaskNoSelect">saveTaskNoSelect</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveTimeTaskNoDescription">saveTimeTaskNoDescription</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveTimeTaskNoName">saveTimeTaskNoName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveTimeTaskNoTime">saveTimeTaskNoTime</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveTimeTaskNothing">saveTimeTaskNothing</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveTimeTaskValidNoLoop">saveTimeTaskValidNoLoop</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="saveTimeTaskValidWithLoop">saveTimeTaskValidWithLoop</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_createTask" hash-for-method="selectIssueBreak">selectIssueBreak</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="seleniumTest.safariTest.SafariTest_editTask" hash-for-method="showFireTime">showFireTime</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content skipped suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -145,10 +246,195 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-failed">
+          <div class="suite-Default_suite-class-skipped">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">seleniumTest.safariTest.NewTest</span>
+              <img src="skipped.png"/>
+              <span class="class-name">seleniumTest.safariTest.SafariTest_editIssue</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="editIssue">
+                  </a> <!-- editIssue -->
+                  <span class="method-name">editIssue</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="editIssueStatus">
+                  </a> <!-- editIssueStatus -->
+                  <span class="method-name">editIssueStatus</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="editResolutionOfClosedIssue">
+                  </a> <!-- editResolutionOfClosedIssue -->
+                  <span class="method-name">editResolutionOfClosedIssue</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="editResolutionOfNoClosedIssue">
+                  </a> <!-- editResolutionOfNoClosedIssue -->
+                  <span class="method-name">editResolutionOfNoClosedIssue</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-skipped -->
+          <div class="suite-Default_suite-class-skipped">
+            <div class="main-panel-header rounded-window-top">
+              <img src="skipped.png"/>
+              <span class="class-name">seleniumTest.safariTest.SafariTest_createTask</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="createEventTaskBreak">
+                  </a> <!-- createEventTaskBreak -->
+                  <span class="method-name">createEventTaskBreak</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="createTaskBreak">
+                  </a> <!-- createTaskBreak -->
+                  <span class="method-name">createTaskBreak</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="createTimeTaskBreak">
+                  </a> <!-- createTimeTaskBreak -->
+                  <span class="method-name">createTimeTaskBreak</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="savaTaskNoIssue">
+                  </a> <!-- savaTaskNoIssue -->
+                  <span class="method-name">savaTaskNoIssue</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveEventTaskNoEvent">
+                  </a> <!-- saveEventTaskNoEvent -->
+                  <span class="method-name">saveEventTaskNoEvent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveEventTaskValid">
+                  </a> <!-- saveEventTaskValid -->
+                  <span class="method-name">saveEventTaskValid</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveTaskNoSelect">
+                  </a> <!-- saveTaskNoSelect -->
+                  <span class="method-name">saveTaskNoSelect</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveTimeTaskNoDescription">
+                  </a> <!-- saveTimeTaskNoDescription -->
+                  <span class="method-name">saveTimeTaskNoDescription</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveTimeTaskNoName">
+                  </a> <!-- saveTimeTaskNoName -->
+                  <span class="method-name">saveTimeTaskNoName</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveTimeTaskNoTime">
+                  </a> <!-- saveTimeTaskNoTime -->
+                  <span class="method-name">saveTimeTaskNoTime</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveTimeTaskNothing">
+                  </a> <!-- saveTimeTaskNothing -->
+                  <span class="method-name">saveTimeTaskNothing</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveTimeTaskValidNoLoop">
+                  </a> <!-- saveTimeTaskValidNoLoop -->
+                  <span class="method-name">saveTimeTaskValidNoLoop</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="saveTimeTaskValidWithLoop">
+                  </a> <!-- saveTimeTaskValidWithLoop -->
+                  <span class="method-name">saveTimeTaskValidWithLoop</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="selectIssueBreak">
+                  </a> <!-- selectIssueBreak -->
+                  <span class="method-name">selectIssueBreak</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-skipped -->
+          <div class="suite-Default_suite-class-skipped">
+            <div class="main-panel-header rounded-window-top">
+              <img src="skipped.png"/>
+              <span class="class-name">seleniumTest.safariTest.SafariTest_editTask</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="activeEventTask">
+                  </a> <!-- activeEventTask -->
+                  <span class="method-name">activeEventTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="activeTimeTask">
+                  </a> <!-- activeTimeTask -->
+                  <span class="method-name">activeTimeTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="deactiveEventTask">
+                  </a> <!-- deactiveEventTask -->
+                  <span class="method-name">deactiveEventTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="deactiveTimeTask">
+                  </a> <!-- deactiveTimeTask -->
+                  <span class="method-name">deactiveTimeTask</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="showFireTime">
+                  </a> <!-- showFireTime -->
+                  <span class="method-name">showFireTime</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-skipped -->
+          <div class="suite-Default_suite-class-skipped">
+            <div class="main-panel-header rounded-window-top">
+              <img src="skipped.png"/>
+              <span class="class-name">seleniumTest.safariTest.SafariTest_overview</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -156,36 +442,6 @@
                   <a name="filterWithDone">
                   </a> <!-- filterWithDone -->
                   <span class="method-name">filterWithDone</span>
-                  <div class="stack-trace">java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
-	at java.util.ArrayList.get(ArrayList.java:411)
-	at seleniumTest.safariTest.SafariTest_overview.filterWithDone(SafariTest_overview.java:63)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-
-</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -193,36 +449,6 @@
                   <a name="filterWithImProgress">
                   </a> <!-- filterWithImProgress -->
                   <span class="method-name">filterWithImProgress</span>
-                  <div class="stack-trace">java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
-	at java.util.ArrayList.get(ArrayList.java:411)
-	at seleniumTest.safariTest.SafariTest_overview.filterWithImProgress(SafariTest_overview.java:47)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-
-</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -230,36 +456,6 @@
                   <a name="filterWithTodo">
                   </a> <!-- filterWithTodo -->
                   <span class="method-name">filterWithTodo</span>
-                  <div class="stack-trace">java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
-	at java.util.ArrayList.get(ArrayList.java:411)
-	at seleniumTest.safariTest.SafariTest_overview.filterWithTodo(SafariTest_overview.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-
-</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -267,75 +463,14 @@
                   <a name="openTaskUebersicht">
                   </a> <!-- openTaskUebersicht -->
                   <span class="method-name">openTaskUebersicht</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Could not find element: {&quot;using&quot;:&quot;id&quot;,&quot;value&quot;:&quot;&quot;} (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 113 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;2.41.0&apos;, revision: &apos;3192d8a6c4449dc285928ba024779344f5423c58&apos;, time: &apos;2014-03-27 11:29:39&apos;
-System info: host: &apos;Dorotheas-MacBook-Air.local&apos;, ip: &apos;10.10.102.28&apos;, os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;10.9.2&apos;, java.version: &apos;1.7.0_45&apos;
-Session ID: null
-Driver info: org.openqa.selenium.safari.SafariDriver
-Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, secureSsl=true, browserName=safari, takesScreenshot=true, version=7.0.3}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:193)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:389)
-	at org.openqa.selenium.By$ById.findElement(By.java:214)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:340)
-	at seleniumTest.safariTest.SafariTest_overview.openTaskUebersicht(SafariTest_overview.java:24)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-
-</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-failed -->
-          <div class="suite-Default_suite-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">seleniumTest.safariTest.NewTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="f">
-                  </a> <!-- f -->
-                  <span class="method-name">f</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-passed -->
+          </div> <!-- suite-Default_suite-class-skipped -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/private/var/folders/_8/2q4q23cx7qs5wg5zm7mz9kf40000gn/T/testng-eclipse-1956461330/testng-customsuite.xml</span>
+            <span class="header-content">/private/var/folders/_8/2q4q23cx7qs5wg5zm7mz9kf40000gn/T/testng-eclipse--1624897808/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -344,7 +479,10 @@ Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, s
 &lt;suite name=&quot;Default suite&quot;&gt;
   &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;seleniumTest.safariTest.NewTest&quot;/&gt;
+      &lt;class name=&quot;seleniumTest.safariTest.SafariTest_editTask&quot;/&gt;
+      &lt;class name=&quot;seleniumTest.safariTest.SafariTest_editIssue&quot;/&gt;
+      &lt;class name=&quot;seleniumTest.safariTest.SafariTest_createTask&quot;/&gt;
+      &lt;class name=&quot;seleniumTest.safariTest.SafariTest_overview&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -358,7 +496,7 @@ Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, s
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Default test (1 class)</span>
+                <span class="test-name">Default test (4 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -384,32 +522,120 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(5);
+data.addRows(27);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'openTaskUebersicht')
-data.setCell(0, 2, 'seleniumTest.safariTest.NewTest')
-data.setCell(0, 3, 116);
+data.setCell(0, 1, 'editResolutionOfClosedIssue')
+data.setCell(0, 2, 'seleniumTest.safariTest.SafariTest_editIssue')
+data.setCell(0, 3, 7);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'filterWithDone')
-data.setCell(1, 2, 'seleniumTest.safariTest.NewTest')
-data.setCell(1, 3, 113);
+data.setCell(1, 1, 'saveEventTaskNoEvent')
+data.setCell(1, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(1, 3, 3);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'filterWithTodo')
-data.setCell(2, 2, 'seleniumTest.safariTest.NewTest')
-data.setCell(2, 3, 112);
+data.setCell(2, 1, 'saveTimeTaskValidWithLoop')
+data.setCell(2, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(2, 3, 3);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'filterWithImProgress')
-data.setCell(3, 2, 'seleniumTest.safariTest.NewTest')
-data.setCell(3, 3, 110);
+data.setCell(3, 1, 'showFireTime')
+data.setCell(3, 2, 'seleniumTest.safariTest.SafariTest_editTask')
+data.setCell(3, 3, 2);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'f')
-data.setCell(4, 2, 'seleniumTest.safariTest.NewTest')
-data.setCell(4, 3, 11);
+data.setCell(4, 1, 'editResolutionOfNoClosedIssue')
+data.setCell(4, 2, 'seleniumTest.safariTest.SafariTest_editIssue')
+data.setCell(4, 3, 2);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'filterWithTodo')
+data.setCell(5, 2, 'seleniumTest.safariTest.SafariTest_overview')
+data.setCell(5, 3, 2);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'saveTimeTaskNoDescription')
+data.setCell(6, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(6, 3, 1);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'saveEventTaskValid')
+data.setCell(7, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(7, 3, 1);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'saveTimeTaskNothing')
+data.setCell(8, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(8, 3, 1);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'deactiveEventTask')
+data.setCell(9, 2, 'seleniumTest.safariTest.SafariTest_editTask')
+data.setCell(9, 3, 1);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'deactiveTimeTask')
+data.setCell(10, 2, 'seleniumTest.safariTest.SafariTest_editTask')
+data.setCell(10, 3, 1);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'filterWithDone')
+data.setCell(11, 2, 'seleniumTest.safariTest.SafariTest_overview')
+data.setCell(11, 3, 1);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'editIssue')
+data.setCell(12, 2, 'seleniumTest.safariTest.SafariTest_editIssue')
+data.setCell(12, 3, 1);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'selectIssueBreak')
+data.setCell(13, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(13, 3, 1);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'saveTaskNoSelect')
+data.setCell(14, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(14, 3, 1);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'createEventTaskBreak')
+data.setCell(15, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(15, 3, 1);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'activeEventTask')
+data.setCell(16, 2, 'seleniumTest.safariTest.SafariTest_editTask')
+data.setCell(16, 3, 1);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'saveTimeTaskNoTime')
+data.setCell(17, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(17, 3, 1);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'savaTaskNoIssue')
+data.setCell(18, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(18, 3, 1);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'activeTimeTask')
+data.setCell(19, 2, 'seleniumTest.safariTest.SafariTest_editTask')
+data.setCell(19, 3, 1);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'createTaskBreak')
+data.setCell(20, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(20, 3, 1);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'editIssueStatus')
+data.setCell(21, 2, 'seleniumTest.safariTest.SafariTest_editIssue')
+data.setCell(21, 3, 1);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'openTaskUebersicht')
+data.setCell(22, 2, 'seleniumTest.safariTest.SafariTest_overview')
+data.setCell(22, 3, 1);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'saveTimeTaskValidNoLoop')
+data.setCell(23, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(23, 3, 0);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'createTimeTaskBreak')
+data.setCell(24, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(24, 3, 0);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'saveTimeTaskNoName')
+data.setCell(25, 2, 'seleniumTest.safariTest.SafariTest_createTask')
+data.setCell(25, 3, 0);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'filterWithImProgress')
+data.setCell(26, 2, 'seleniumTest.safariTest.SafariTest_overview')
+data.setCell(26, 3, 0);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 462 ms</span>
+              <span class="suite-total-time">Total running time: 36 ms</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -435,75 +661,148 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">seleniumTest.safariTest.NewTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">seleniumTest.safariTest.SafariTest_editTask</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">beforeMethod</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">f</span>
-                <span class="method-start">2205 ms</span>
+                <span class="method-name">activeEventTask</span>
+                <span class="method-start">80781 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">afterMethod</span>
-                <span class="method-start">2217 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">beforeMethod</span>
-                <span class="method-start">2315 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
+                <span class="method-name">activeTimeTask</span>
+                <span class="method-start">80788 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">deactiveEventTask</span>
+                <span class="method-start">80795 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">deactiveTimeTask</span>
+                <span class="method-start">80799 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">showFireTime</span>
+                <span class="method-start">80806 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">seleniumTest.safariTest.SafariTest_editIssue</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
                 <img src="failed.png">
                 </img>
+                <span class="method-name">beforeClass</span>
+                <span class="method-start">80812 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">editIssue</span>
+                <span class="method-start">198374 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">editIssueStatus</span>
+                <span class="method-start">198378 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">editResolutionOfClosedIssue</span>
+                <span class="method-start">198383 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">editResolutionOfNoClosedIssue</span>
+                <span class="method-start">198394 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">seleniumTest.safariTest.SafariTest_createTask</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">beforeMethod</span>
+                <span class="method-start">198400 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">createEventTaskBreak</span>
+                <span class="method-start">204766 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">createTaskBreak</span>
+                <span class="method-start">204770 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">createTimeTaskBreak</span>
+                <span class="method-start">204774 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">savaTaskNoIssue</span>
+                <span class="method-start">204777 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveEventTaskNoEvent</span>
+                <span class="method-start">204781 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveEventTaskValid</span>
+                <span class="method-start">204787 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveTaskNoSelect</span>
+                <span class="method-start">204790 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveTimeTaskNoDescription</span>
+                <span class="method-start">204795 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveTimeTaskNoName</span>
+                <span class="method-start">204799 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveTimeTaskNoTime</span>
+                <span class="method-start">204802 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveTimeTaskNothing</span>
+                <span class="method-start">204806 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveTimeTaskValidNoLoop</span>
+                <span class="method-start">204811 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">saveTimeTaskValidWithLoop</span>
+                <span class="method-start">204814 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">selectIssueBreak</span>
+                <span class="method-start">204820 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">seleniumTest.safariTest.SafariTest_overview</div> <!-- chronological-class-name -->
+              <div class="configuration-method before">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">beforeMethod</span>
+                <span class="method-start">204824 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
                 <span class="method-name">filterWithDone</span>
-                <span class="method-start">3707 ms</span>
+                <span class="method-start">210262 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">afterMethod</span>
-                <span class="method-start">3824 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">beforeMethod</span>
-                <span class="method-start">3916 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">filterWithImProgress</span>
-                <span class="method-start">4738 ms</span>
+                <span class="method-start">210266 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">afterMethod</span>
-                <span class="method-start">4850 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">beforeMethod</span>
-                <span class="method-start">4941 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">filterWithTodo</span>
-                <span class="method-start">6244 ms</span>
+                <span class="method-start">210269 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">afterMethod</span>
-                <span class="method-start">6358 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">beforeMethod</span>
-                <span class="method-start">6454 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">openTaskUebersicht</span>
-                <span class="method-start">7829 ms</span>
+                <span class="method-start">210274 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">afterMethod</span>
-                <span class="method-start">7951 ms</span>
-              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

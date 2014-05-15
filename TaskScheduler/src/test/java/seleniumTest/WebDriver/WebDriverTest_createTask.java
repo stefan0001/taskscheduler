@@ -47,7 +47,7 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
 		// select a issue
 		driver.findElement(By.id(button_issueAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_issues)).get(0).click();
+		driver.findElements(By.className(radioButton_issues)).get(0).click();
 		driver.findElement(By.id(button_speichernIssue)).click();
 		;
 		// break
@@ -70,16 +70,12 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		// test case 5, 14
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
-		// fill description
-		driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-				"Beispiel");
 		// based on time
 		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
 		// select a issue
 		driver.findElement(By.id(button_issueAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_issues)).get(0).click();
+		driver.findElements(By.className(radioButton_issues)).get(0).click();
 		driver.findElement(By.id(button_speichernIssue)).click();
-		;
 		// save the task
 		driver.findElement(By.id(button_speichernTask)).click();
 		// accept alert
@@ -97,7 +93,7 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
 		// select a issue
 		driver.findElement(By.id(button_issueAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_issues)).get(0).click();
+		driver.findElements(By.className(radioButton_issues)).get(0).click();
 		driver.findElement(By.id(button_speichernIssue)).click();
 		// save the task
 		driver.findElement(By.id(button_speichernTask)).click();
@@ -112,42 +108,16 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
-		driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-				"Beispiel");
-		;
 		// based on time
 		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
 		// select a issue
 		driver.findElement(By.id(button_issueAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_issues)).get(0).click();
+		driver.findElements(By.className(radioButton_issues)).get(0).click();
 		driver.findElement(By.id(button_speichernIssue)).click();
-		;
 		// save the task
 		driver.findElement(By.id(button_speichernTask)).click();
 		// accept alert
 		driver.switchTo().alert().accept();
-	}
-
-	@Test
-	public void saveTimeTaskValidNoLoop() {
-		// test case 5
-		// create a new task
-		driver.findElement(By.id(button_neuerTask)).click();
-		// fill name and description
-		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
-		;
-		driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-				"Beispiel");
-		;
-		// based on time
-		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
-		// select a issue
-		driver.findElement(By.id(button_issueAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_issues)).get(0).click();
-		driver.findElement(By.id(button_speichernIssue)).click();
-		;
-		// save the task
-		driver.findElement(By.id(button_speichernTask)).click();
 	}
 
 	@Test
@@ -157,20 +127,15 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
-		driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-				"Beispiel");
+
 		// based on time
 		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
-		driver.findElement(By.className(checkbox_wiederholung)).click();
-		;
-		driver.findElement(By.id(eingabefeld_datum)).sendKeys(eingabe_datum);
+		driver.findElement(By.name(eingabefeld_datum)).sendKeys(eingabe_datum);
 		driver.findElement(By.id(eingabefeld_uhrzeit))
 				.sendKeys(eingabe_uhrzeit);
-		driver.findElement(By.id(eingabefeld_endDatum)).sendKeys(
-				eingabe_endDatum);
 		// select a issue
 		driver.findElement(By.id(button_issueAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_issues)).get(0).click();
+		driver.findElements(By.className(radioButton_issues)).get(0).click();
 		driver.findElement(By.id(button_speichernIssue)).click();
 		;
 		// save the issue
@@ -184,17 +149,15 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
-		driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-				"Beispiel");
 		// based on event
 		driver.findElement(By.id(radioButton_eventbasiertTastErstellen)).click();
 		// select a event
 		driver.findElement(By.id(button_eventAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_events)).get(0).click();
+		driver.findElements(By.className(radioButton_events)).get(0).click();
 		driver.findElement(By.id(button_speichernEvent)).click();
 		// select a issue
 		driver.findElement(By.id(button_issueAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_issues)).get(0).click();
+		driver.findElements(By.className(radioButton_issues)).get(0).click();
 		driver.findElement(By.id(button_speichernIssue)).click();
 		// save the task
 		driver.findElement(By.id(button_speichernTask)).click();
@@ -207,8 +170,6 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
-		driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-				"Beispiel");
 		// based on event
 		driver.findElement(By.id(radioButton_eventbasiertTastErstellen)).click();
 		// save no event
@@ -224,11 +185,9 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
-		driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-				"Beispiel");
 		// select a issue
 		driver.findElement(By.id(button_issueAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_issues)).get(0).click();
+		driver.findElements(By.className(radioButton_issues)).get(0).click();
 		driver.findElement(By.id(button_speichernIssue)).click();
 		// save the task
 		driver.findElement(By.id(button_speichernTask)).click();
@@ -243,13 +202,11 @@ public abstract class WebDriverTest_createTask implements Selectors, URL {
 		driver.findElement(By.id(button_neuerTask)).click();
 		// fill name and description
 		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Muster");
-		driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-				"Beispiel");
 		// based on event
 		driver.findElement(By.id(radioButton_eventbasiertTastErstellen)).click();
 		// select a event
 		driver.findElement(By.id(button_eventAuswaehlen)).click();
-		driver.findElements(By.className(checkbox_events)).get(0).click();
+		driver.findElements(By.className(radioButton_events)).get(0).click();
 		driver.findElement(By.id(button_speichernEvent)).click();
 		// save the task
 		driver.findElement(By.id(button_speichernTask)).click();

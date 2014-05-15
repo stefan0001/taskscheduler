@@ -21,55 +21,15 @@ public abstract class WebDriverTest_overview implements Selectors, URL {
 	}
 
 	@Test
-	public void filterWithTodo() {
+	public void filter() {
 		// test case 18
-		List<WebElement> filter = driver.findElements(By.id(checkbox_filter));
-		if (((WebElement) filter.get(0)).isSelected()) {
-			//it shows todo column
-			assertEquals(driver.findElement(By.id(block_todo)).isDisplayed(),
-					true);
-		} else {
-			//it doesn't show todo colum
-			assertEquals(driver.findElement(By.id(block_todo)).isDisplayed(),
-					false);
-			//change visible
-			((WebElement) filter.get(0)).click();
-			assertEquals(driver.findElement(By.id(block_todo)).isDisplayed(),
-					true);
-		}
+		//insert a issue name
+		driver.findElement(By.id(eingabefeld_filterIssueName)).sendKeys("Beispiel");
+		//select a type
+		List<WebElement> filterElement;
+		//submit
 	}
 
-	@Test
-	public void filterWithImProgress() {
-		// test case 18
-		List<WebElement> filter = driver.findElements(By.id(checkbox_filter));
-		if (((WebElement) filter.get(0)).isSelected()) {
-			assertEquals(driver.findElement(By.id(block_imProgress))
-					.isDisplayed(), true);
-		} else {
-			assertEquals(driver.findElement(By.id(block_imProgress))
-					.isDisplayed(), false);
-			((WebElement) filter.get(0)).click();
-			assertEquals(driver.findElement(By.id(block_imProgress))
-					.isDisplayed(), true);
-		}
-	}
-
-	@Test
-	public void filterWithDone() {
-		// test case 18
-		List<WebElement> filter = driver.findElements(By.id(checkbox_filter));
-		if (((WebElement) filter.get(0)).isSelected()) {
-			assertEquals(driver.findElement(By.id(block_done)).isDisplayed(),
-					true);
-		} else {
-			assertEquals(driver.findElement(By.id(block_done)).isDisplayed(),
-					false);
-			((WebElement) filter.get(0)).click();
-			assertEquals(driver.findElement(By.id(block_done)).isDisplayed(),
-					true);
-		}
-	}
 	
 	public abstract void initializeWebDriver();
 	

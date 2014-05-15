@@ -3,16 +3,53 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="seleniumTest.safariTest.NewTest">
+      <class name="seleniumTest.safariTest.SafariTest_editIssue">
         <methods>
+          <include name="editIssueStatus"/>
+          <include name="editResolutionOfClosedIssue"/>
+          <include name="editResolutionOfNoClosedIssue"/>
+          <include name="beforeClass"/>
+          <include name="editIssue"/>
+        </methods>
+      </class> <!-- seleniumTest.safariTest.SafariTest_editIssue -->
+      <class name="seleniumTest.safariTest.SafariTest_createTask">
+        <methods>
+          <include name="savaTaskNoIssue"/>
+          <include name="saveTimeTaskNoName"/>
+          <include name="beforeMethod"/>
+          <include name="saveEventTaskNoEvent"/>
+          <include name="saveTimeTaskNoDescription"/>
+          <include name="createTimeTaskBreak"/>
+          <include name="selectIssueBreak"/>
+          <include name="createEventTaskBreak"/>
+          <include name="saveTimeTaskValidNoLoop"/>
+          <include name="saveEventTaskValid"/>
+          <include name="saveTimeTaskNothing"/>
+          <include name="saveTaskNoSelect"/>
+          <include name="saveTimeTaskValidWithLoop"/>
+          <include name="saveTimeTaskNoTime"/>
+          <include name="createTaskBreak"/>
+        </methods>
+      </class> <!-- seleniumTest.safariTest.SafariTest_createTask -->
+      <class name="seleniumTest.safariTest.SafariTest_editTask">
+        <methods>
+          <include name="deactiveEventTask"/>
+          <include name="activeTimeTask"/>
+          <include name="beforeMethod"/>
+          <include name="showFireTime"/>
+          <include name="deactiveTimeTask"/>
+          <include name="activeEventTask"/>
+        </methods>
+      </class> <!-- seleniumTest.safariTest.SafariTest_editTask -->
+      <class name="seleniumTest.safariTest.SafariTest_overview">
+        <methods>
+          <include name="filterWithImProgress"/>
           <include name="filterWithTodo"/>
           <include name="filterWithDone"/>
-          <include name="beforeMethod"/>
-          <include name="afterMethod"/>
           <include name="openTaskUebersicht"/>
-          <include name="filterWithImProgress"/>
+          <include name="beforeMethod"/>
         </methods>
-      </class> <!-- seleniumTest.safariTest.NewTest -->
+      </class> <!-- seleniumTest.safariTest.SafariTest_overview -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

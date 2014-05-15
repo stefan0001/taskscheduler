@@ -1,44 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="4" total="5" passed="1">
+<testng-results skipped="27" failed="0" total="27" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="8057" started-at="2014-05-06T13:51:24Z" finished-at="2014-05-06T13:51:32Z">
+  <suite name="Default suite" duration-ms="210293" started-at="2014-05-13T16:07:22Z" finished-at="2014-05-13T16:10:52Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="8057" started-at="2014-05-06T13:51:24Z" finished-at="2014-05-06T13:51:32Z">
-      <class name="seleniumTest.safariTest.NewTest">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="2205" started-at="2014-05-06T15:51:24Z" finished-at="2014-05-06T15:51:27Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="f()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="f" duration-ms="11" started-at="2014-05-06T15:51:27Z" finished-at="2014-05-06T15:51:27Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- f -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="97" started-at="2014-05-06T15:51:27Z" finished-at="2014-05-06T15:51:27Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="1392" started-at="2014-05-06T15:51:27Z" finished-at="2014-05-06T15:51:28Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="FAIL" signature="filterWithDone()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="filterWithDone" duration-ms="113" started-at="2014-05-06T15:51:28Z" finished-at="2014-05-06T15:51:28Z">
-          <exception class="java.lang.IndexOutOfBoundsException">
+    <test name="Default test" duration-ms="210293" started-at="2014-05-13T16:07:22Z" finished-at="2014-05-13T16:10:52Z">
+      <class name="seleniumTest.safariTest.SafariTest_createTask">
+        <test-method status="FAIL" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <exception class="org.openqa.selenium.remote.UnreachableBrowserException">
             <message>
-              <![CDATA[Index: 0, Size: 0]]>
+              <![CDATA[Error communicating with the remote browser. It may have died.
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: RemoteWebDriver]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
-	at java.util.ArrayList.get(ArrayList.java:411)
-	at seleniumTest.safariTest.SafariTest_overview.filterWithDone(SafariTest_overview.java:63)
+              <![CDATA[org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:589)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:300)
+	at seleniumTest.WebDriver.WebDriverTest_createTask.beforeMethod(WebDriverTest_createTask.java:265)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:606)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:653)
 	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
 	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
@@ -57,184 +49,562 @@
 	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+Caused by: org.openqa.selenium.safari.ConnectionClosedException: The underlying channel was closed
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.safari.WebSocketConnection$2.operationComplete(WebSocketConnection.java:79)
+	at org.jboss.netty.channel.DefaultChannelFuture.notifyListener(DefaultChannelFuture.java:428)
+	at org.jboss.netty.channel.DefaultChannelFuture.notifyListeners(DefaultChannelFuture.java:419)
+	at org.jboss.netty.channel.DefaultChannelFuture.setSuccess(DefaultChannelFuture.java:363)
+	at org.jboss.netty.channel.AbstractChannel$ChannelCloseFuture.setClosed(AbstractChannel.java:353)
+	at org.jboss.netty.channel.AbstractChannel.setClosed(AbstractChannel.java:183)
+	at org.jboss.netty.channel.socket.nio.AbstractNioChannel.setClosed(AbstractNioChannel.java:200)
+	at org.jboss.netty.channel.socket.nio.NioSocketChannel.setClosed(NioSocketChannel.java:85)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.close(AbstractNioWorker.java:613)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:98)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.processSelectedKeys(AbstractNioWorker.java:373)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:247)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:35)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:102)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.IndexOutOfBoundsException -->
+          </exception> <!-- org.openqa.selenium.remote.UnreachableBrowserException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="createEventTaskBreak()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="createEventTaskBreak" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createEventTaskBreak -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="createTaskBreak()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="createTaskBreak" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createTaskBreak -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="createTimeTaskBreak()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="createTimeTaskBreak" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createTimeTaskBreak -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="savaTaskNoIssue()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="savaTaskNoIssue" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- savaTaskNoIssue -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="saveEventTaskNoEvent()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveEventTaskNoEvent" duration-ms="3" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveEventTaskNoEvent -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="saveEventTaskValid()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveEventTaskValid" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveEventTaskValid -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="saveTaskNoSelect()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveTaskNoSelect" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveTaskNoSelect -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="saveTimeTaskNoDescription()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveTimeTaskNoDescription" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveTimeTaskNoDescription -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="saveTimeTaskNoName()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveTimeTaskNoName" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveTimeTaskNoName -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="saveTimeTaskNoTime()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveTimeTaskNoTime" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveTimeTaskNoTime -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="saveTimeTaskNothing()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveTimeTaskNothing" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveTimeTaskNothing -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="saveTimeTaskValidNoLoop()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveTimeTaskValidNoLoop" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveTimeTaskValidNoLoop -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="saveTimeTaskValidWithLoop()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="saveTimeTaskValidWithLoop" duration-ms="3" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveTimeTaskValidWithLoop -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="selectIssueBreak()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="selectIssueBreak" duration-ms="1" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- selectIssueBreak -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_createTask@be3606d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- seleniumTest.safariTest.SafariTest_createTask -->
+      <class name="seleniumTest.safariTest.SafariTest_editIssue">
+        <test-method status="FAIL" signature="beforeClass()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="beforeClass" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <exception class="org.openqa.selenium.remote.UnreachableBrowserException">
+            <message>
+              <![CDATA[Error communicating with the remote browser. It may have died.
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: RemoteWebDriver]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:589)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:300)
+	at seleniumTest.WebDriver.WebDriverTest_editIssue.beforeMethod(WebDriverTest_editIssue.java:57)
+	at seleniumTest.WebDriver.WebDriverTest_editIssue.beforeClass(WebDriverTest_editIssue.java:69)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:175)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:107)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+Caused by: org.openqa.selenium.safari.ConnectionClosedException: The underlying channel was closed
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.safari.WebSocketConnection$2.operationComplete(WebSocketConnection.java:79)
+	at org.jboss.netty.channel.DefaultChannelFuture.notifyListener(DefaultChannelFuture.java:428)
+	at org.jboss.netty.channel.DefaultChannelFuture.notifyListeners(DefaultChannelFuture.java:419)
+	at org.jboss.netty.channel.DefaultChannelFuture.setSuccess(DefaultChannelFuture.java:363)
+	at org.jboss.netty.channel.AbstractChannel$ChannelCloseFuture.setClosed(AbstractChannel.java:353)
+	at org.jboss.netty.channel.AbstractChannel.setClosed(AbstractChannel.java:183)
+	at org.jboss.netty.channel.socket.nio.AbstractNioChannel.setClosed(AbstractNioChannel.java:200)
+	at org.jboss.netty.channel.socket.nio.NioSocketChannel.setClosed(NioSocketChannel.java:85)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.close(AbstractNioWorker.java:613)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:98)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.processSelectedKeys(AbstractNioWorker.java:373)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:247)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:35)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:102)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.remote.UnreachableBrowserException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="editIssue()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="editIssue" duration-ms="1" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- editIssue -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="editIssueStatus()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="editIssueStatus" duration-ms="1" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- editIssueStatus -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="editResolutionOfClosedIssue()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="editResolutionOfClosedIssue" duration-ms="7" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- editResolutionOfClosedIssue -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="editResolutionOfNoClosedIssue()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="editResolutionOfNoClosedIssue" duration-ms="2" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- editResolutionOfNoClosedIssue -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editIssue@565b6f28]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:40Z" finished-at="2014-05-13T18:10:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- seleniumTest.safariTest.SafariTest_editIssue -->
+      <class name="seleniumTest.safariTest.SafariTest_editTask">
+        <test-method status="FAIL" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:07:22Z" finished-at="2014-05-13T18:07:22Z">
+          <exception class="org.openqa.selenium.remote.UnreachableBrowserException">
+            <message>
+              <![CDATA[Error communicating with the remote browser. It may have died.
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: RemoteWebDriver]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:589)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:300)
+	at seleniumTest.WebDriver.WebDriverTest_editTask.beforeMethod(WebDriverTest_editTask.java:95)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:653)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+Caused by: org.openqa.selenium.safari.ConnectionClosedException: The underlying channel was closed
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.safari.WebSocketConnection$2.operationComplete(WebSocketConnection.java:79)
+	at org.jboss.netty.channel.DefaultChannelFuture.notifyListener(DefaultChannelFuture.java:428)
+	at org.jboss.netty.channel.DefaultChannelFuture.notifyListeners(DefaultChannelFuture.java:419)
+	at org.jboss.netty.channel.DefaultChannelFuture.setSuccess(DefaultChannelFuture.java:363)
+	at org.jboss.netty.channel.AbstractChannel$ChannelCloseFuture.setClosed(AbstractChannel.java:353)
+	at org.jboss.netty.channel.AbstractChannel.setClosed(AbstractChannel.java:183)
+	at org.jboss.netty.channel.socket.nio.AbstractNioChannel.setClosed(AbstractNioChannel.java:200)
+	at org.jboss.netty.channel.socket.nio.NioSocketChannel.setClosed(NioSocketChannel.java:85)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.close(AbstractNioWorker.java:613)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:98)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.processSelectedKeys(AbstractNioWorker.java:373)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:247)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:35)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:102)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.remote.UnreachableBrowserException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="activeEventTask()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="activeEventTask" duration-ms="1" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- activeEventTask -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="activeTimeTask()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="activeTimeTask" duration-ms="1" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- activeTimeTask -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="deactiveEventTask()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="deactiveEventTask" duration-ms="1" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deactiveEventTask -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="deactiveTimeTask()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="deactiveTimeTask" duration-ms="1" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deactiveTimeTask -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="showFireTime()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="showFireTime" duration-ms="2" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- showFireTime -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_editTask@7ccf9a33]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:08:43Z" finished-at="2014-05-13T18:08:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- seleniumTest.safariTest.SafariTest_editTask -->
+      <class name="seleniumTest.safariTest.SafariTest_overview">
+        <test-method status="FAIL" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:47Z" finished-at="2014-05-13T18:10:47Z">
+          <exception class="org.openqa.selenium.remote.UnreachableBrowserException">
+            <message>
+              <![CDATA[Error communicating with the remote browser. It may have died.
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: RemoteWebDriver]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:589)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:300)
+	at seleniumTest.WebDriver.WebDriverTest_overview.beforeMethod(WebDriverTest_overview.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:653)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
+Caused by: org.openqa.selenium.safari.ConnectionClosedException: The underlying channel was closed
+Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
+System info: host: 'Dorotheas-MacBook-Air.local', ip: '192.168.1.10', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.safari.WebSocketConnection$2.operationComplete(WebSocketConnection.java:79)
+	at org.jboss.netty.channel.DefaultChannelFuture.notifyListener(DefaultChannelFuture.java:428)
+	at org.jboss.netty.channel.DefaultChannelFuture.notifyListeners(DefaultChannelFuture.java:419)
+	at org.jboss.netty.channel.DefaultChannelFuture.setSuccess(DefaultChannelFuture.java:363)
+	at org.jboss.netty.channel.AbstractChannel$ChannelCloseFuture.setClosed(AbstractChannel.java:353)
+	at org.jboss.netty.channel.AbstractChannel.setClosed(AbstractChannel.java:183)
+	at org.jboss.netty.channel.socket.nio.AbstractNioChannel.setClosed(AbstractNioChannel.java:200)
+	at org.jboss.netty.channel.socket.nio.NioSocketChannel.setClosed(NioSocketChannel.java:85)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.close(AbstractNioWorker.java:613)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:98)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.processSelectedKeys(AbstractNioWorker.java:373)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:247)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:35)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:102)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.remote.UnreachableBrowserException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="filterWithDone()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="filterWithDone" duration-ms="1" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- filterWithDone -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="90" started-at="2014-05-06T15:51:28Z" finished-at="2014-05-06T15:51:28Z">
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="822" started-at="2014-05-06T15:51:28Z" finished-at="2014-05-06T15:51:29Z">
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="FAIL" signature="filterWithImProgress()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="filterWithImProgress" duration-ms="110" started-at="2014-05-06T15:51:29Z" finished-at="2014-05-06T15:51:29Z">
-          <exception class="java.lang.IndexOutOfBoundsException">
-            <message>
-              <![CDATA[Index: 0, Size: 0]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
-	at java.util.ArrayList.get(ArrayList.java:411)
-	at seleniumTest.safariTest.SafariTest_overview.filterWithImProgress(SafariTest_overview.java:47)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.IndexOutOfBoundsException -->
+        <test-method status="SKIP" signature="filterWithImProgress()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="filterWithImProgress" duration-ms="0" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- filterWithImProgress -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="90" started-at="2014-05-06T15:51:29Z" finished-at="2014-05-06T15:51:29Z">
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="1303" started-at="2014-05-06T15:51:29Z" finished-at="2014-05-06T15:51:31Z">
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="FAIL" signature="filterWithTodo()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="filterWithTodo" duration-ms="112" started-at="2014-05-06T15:51:31Z" finished-at="2014-05-06T15:51:31Z">
-          <exception class="java.lang.IndexOutOfBoundsException">
-            <message>
-              <![CDATA[Index: 0, Size: 0]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-	at java.util.ArrayList.rangeCheck(ArrayList.java:635)
-	at java.util.ArrayList.get(ArrayList.java:411)
-	at seleniumTest.safariTest.SafariTest_overview.filterWithTodo(SafariTest_overview.java:31)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.IndexOutOfBoundsException -->
+        <test-method status="SKIP" signature="filterWithTodo()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="filterWithTodo" duration-ms="2" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- filterWithTodo -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="94" started-at="2014-05-06T15:51:31Z" finished-at="2014-05-06T15:51:31Z">
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="beforeMethod" is-config="true" duration-ms="1375" started-at="2014-05-06T15:51:31Z" finished-at="2014-05-06T15:51:32Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="FAIL" signature="openTaskUebersicht()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="openTaskUebersicht" duration-ms="116" started-at="2014-05-06T15:51:32Z" finished-at="2014-05-06T15:51:32Z">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[Could not find element: {"using":"id","value":""} (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 113 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
-System info: host: 'Dorotheas-MacBook-Air.local', ip: '10.10.102.28', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
-Session ID: null
-Driver info: org.openqa.selenium.safari.SafariDriver
-Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, secureSsl=true, browserName=safari, takesScreenshot=true, version=7.0.3}]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: Could not find element: {"using":"id","value":""} (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 113 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '2.41.0', revision: '3192d8a6c4449dc285928ba024779344f5423c58', time: '2014-03-27 11:29:39'
-System info: host: 'Dorotheas-MacBook-Air.local', ip: '10.10.102.28', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.9.2', java.version: '1.7.0_45'
-Session ID: null
-Driver info: org.openqa.selenium.safari.SafariDriver
-Capabilities [{platform=MAC, cssSelectorsEnabled=true, javascriptEnabled=true, secureSsl=true, browserName=safari, takesScreenshot=true, version=7.0.3}]
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:193)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:145)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:595)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:348)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:389)
-	at org.openqa.selenium.By$ById.findElement(By.java:214)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:340)
-	at seleniumTest.safariTest.SafariTest_overview.openTaskUebersicht(SafariTest_overview.java:24)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+        <test-method status="SKIP" signature="openTaskUebersicht()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="openTaskUebersicht" duration-ms="1" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openTaskUebersicht -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.NewTest@7e6c7407]" name="afterMethod" is-config="true" duration-ms="86" started-at="2014-05-06T15:51:32Z" finished-at="2014-05-06T15:51:32Z">
+        <test-method status="SKIP" signature="beforeMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="SKIP" signature="afterMethod()[pri:0, instance:seleniumTest.safariTest.SafariTest_overview@7ba3b8a1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-05-13T18:10:52Z" finished-at="2014-05-13T18:10:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-      </class> <!-- seleniumTest.safariTest.NewTest -->
+      </class> <!-- seleniumTest.safariTest.SafariTest_overview -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

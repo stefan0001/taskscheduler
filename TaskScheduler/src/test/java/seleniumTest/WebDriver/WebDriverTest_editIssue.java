@@ -71,23 +71,17 @@ public abstract class WebDriverTest_editIssue implements Selectors, URL {
 				driver.findElement(By.id(button_neuerTask)).click();
 				// fill name and description
 				driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Time");
-				driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-						"Time task");
 				// based on time
 				driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
-				driver.findElement(By.className(checkbox_wiederholung)).click();
-				;
 				driver.findElement(By.id(eingabefeld_datum)).sendKeys(eingabe_datum);
 				driver.findElement(By.id(eingabefeld_uhrzeit))
 						.sendKeys(eingabe_uhrzeit);
-				driver.findElement(By.id(eingabefeld_endDatum)).sendKeys(
-						eingabe_endDatum);
 				// create a new issue
 				driver.findElement(By.id(button_issueAuswaehlen)).click();
 				driver.findElement(By.className(button_neuesIssue)).click();
-				driver.findElement(By.id(eingabefeld_issueName)).sendKeys(
+				driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
 						"Muster Issue1");
-				driver.findElement(By.id(eingabefeld_issueBeschreibung)).sendKeys(
+				driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask)).sendKeys(
 						"Ein Issue");
 				// save the issue
 				driver.findElement(By.id(button_speichernTask)).click();
@@ -96,21 +90,19 @@ public abstract class WebDriverTest_editIssue implements Selectors, URL {
 				driver.findElement(By.id(button_neuerTask)).click();
 				// fill name and description
 				driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Event");
-				driver.findElement(By.id(eingabefeld_taskBeschreibung)).sendKeys(
-						"Event Task");
 				// based on event
 				driver.findElement(By.id(radioButton_eventbasiertTastErstellen))
 						.click();
 				// select a event
 				driver.findElement(By.id(button_eventAuswaehlen)).click();
-				driver.findElements(By.className(checkbox_events)).get(0).click();
+				driver.findElements(By.className(radioButton_events)).get(0).click();
 				driver.findElement(By.id(button_speichernEvent)).click();
 				// create a new issue
 				driver.findElement(By.id(button_issueAuswaehlen)).click();
 				driver.findElement(By.className(button_neuesIssue)).click();
-				driver.findElement(By.id(eingabefeld_issueName)).sendKeys(
+				driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
 						"Muster Issue2");
-				driver.findElement(By.id(eingabefeld_issueBeschreibung)).sendKeys(
+				driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask)).sendKeys(
 						"Ein Issue");
 				//select type of this issue 
 				Select issueType = new Select(driver.findElement(By.id(dropdownMenu_issueType)));
