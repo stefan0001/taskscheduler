@@ -63,17 +63,24 @@ public class IssueEntityDAOjpa extends GenericDAOjpa<IssueEntity> implements Iss
 			predicates.add(predicate);
 		}
 
-		
 		//where issuedrafttype
 		if(issueType != null){
 			Predicate predicate  = cb.equal(issueDrafts.<IssueType>get("issueType"),issueType);
 			predicates.add(predicate);
 		}
 		
+		
+		
+		
+		//find only non archived entities
+		Predicate predicate  = cb.equal(issueEntityRoot.<Boolean>get("archived"),false);
+		predicates.add(predicate);
 
+		
 		//sum of the predicates
 		cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()]) ));
 
+		//where
 		cq.select(issueEntityRoot);
 		
 
