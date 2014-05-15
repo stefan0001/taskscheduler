@@ -96,18 +96,20 @@ public class TestEventDAO {
 		eventDAO.save(event);		
 	}
 	
-	@Test(expected = ValueIsNotValidException.class)//TODO Exception
+	@Test(expected = ValueIsNotValidException.class)//TODO Exception AssertionError?
 	public void testExceptionAtSave101letterName() {
 		String invalidName = MyUtil.generateStringWithLength(maxNameLetters+1, "a");
 		assertTrue(invalidName.length()==101);
 		event.setName(invalidName);
-		eventDAO.save(event);	
+		Event savedEvent = eventDAO.save(event);	
+		assertNull(savedEvent);
+
 	}
 	@Test(expected = ValueIsNullException.class)//TODO Exception
 	public void testExceptionAtSaveNullEventTasks() {
 		event.setEventTasks(null);
-		eventDAO.save(event);	
-		assertTrue(event.getId()>0);
+		Event savedEvent =eventDAO.save(event);	
+		assertTrue(savedEvent.getId()>0);
 	}
 	
 }

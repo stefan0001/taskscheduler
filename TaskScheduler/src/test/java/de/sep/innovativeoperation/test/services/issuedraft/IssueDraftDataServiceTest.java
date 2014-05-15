@@ -108,8 +108,7 @@ public class IssueDraftDataServiceTest {
 		assertTrue(savedIssueEntity.getId() > 0);
 
 		assertTrue(issueEntities.contains(savedIssueEntity));
-		assertTrue(issueEntities.contains(issueDraftDataService
-				.getById(savedIssueEntity.getId())));
+	
 	}
 
 	@Test

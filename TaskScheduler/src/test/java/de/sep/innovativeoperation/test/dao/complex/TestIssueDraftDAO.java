@@ -24,6 +24,7 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
+import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -247,28 +248,32 @@ public class TestIssueDraftDAO {
 		issueDraftDAO.save(issueDraft);
 	}
 
-	@Test(expected = ValueIsNullException.class)
+	@Test
 	public void testSaveIssueDraftNullIssueEntities() {
 		// SAVE
 		// IssueEntity issueEntitySaved = issueEntityDAO.save(null);
 		issueDraft.setIssueEntities(null);
-		issueDraftDAO.save(issueDraft);
+		IssueDraft savedIssueDraft = issueDraftDAO.save(issueDraft);
+		assertTrue(savedIssueDraft.getId()>0);
 	}
 
-	@Test(expected = ValueIsNullException.class)
+	@Test
 	public void testSaveIssueDraftNullTimeTasks() {
 		// SAVE
 		// IssueEntity issueEntitySaved = issueEntityDAO.save(null);
 		issueDraft.setTimeTasks(null);
-		issueDraftDAO.save(issueDraft);
+		IssueDraft savedIssueDraft = issueDraftDAO.save(issueDraft);
+		assertTrue(savedIssueDraft.getId()>0);
+	
 	}
 
 	@Test(expected = ValueIsNotValidException.class)
-	public void testSaveIssueDraft51LetterName() {
-		String invalidName = "bababababababababababababababababababababababababab";
-		assertTrue(invalidName.length() == 51);
+	public void testSaveIssueDraft101LetterName() {
+		String invalidName = MyUtil.generateStringWithLength(101, "a");
+		assertTrue(invalidName.length() == 101);
 		issueDraft.setIssueName(invalidName);
-		issueDraftDAO.save(issueDraft);
+		IssueDraft savedIssueDraft = issueDraftDAO.save(issueDraft);
+		assertTrue(savedIssueDraft.getId()>0);
 	}
 	@Test//(expected = ValueIsNotValidException.class)
 	public void testSaveIssueDraft101LetterDescription() {
