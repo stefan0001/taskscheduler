@@ -24,6 +24,7 @@ import de.sep.innovativeoperation.taskscheduler.model.data.Event;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
+import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
@@ -36,6 +37,7 @@ public class TestEventDAO {
 	
 	private Event event;
 	private Set<EventTask> eventTasksSet;
+	private int maxNameLetters = 100;
 	
 	@Before
 	public void setUp() {
@@ -66,6 +68,7 @@ public class TestEventDAO {
 			for (Event event : events) {
 				eventDAO.remove(event);
 			}
+		events = eventDAO.fetchAll();
 		assertTrue(events.isEmpty());
 		Event savedEvent = eventDAO.save(event);
 		assertTrue(savedEvent.getId()>0);
@@ -94,16 +97,17 @@ public class TestEventDAO {
 	}
 	
 	@Test(expected = ValueIsNotValidException.class)//TODO Exception
-	public void testExceptionAtSave51letterName() {
-		String invalidName = "bababababababababababababababababababababababababab";
-		assertTrue(invalidName.length()==51);
+	public void testExceptionAtSave101letterName() {
+		String invalidName = MyUtil.generateStringWithLength(maxNameLetters+1, "a");
+		assertTrue(invalidName.length()==101);
 		event.setName(invalidName);
 		eventDAO.save(event);	
 	}
 	@Test(expected = ValueIsNullException.class)//TODO Exception
 	public void testExceptionAtSaveNullEventTasks() {
 		event.setEventTasks(null);
-		eventDAO.save(event);		
+		eventDAO.save(event);	
+		assertTrue(event.getId()>0);
 	}
 	
 }

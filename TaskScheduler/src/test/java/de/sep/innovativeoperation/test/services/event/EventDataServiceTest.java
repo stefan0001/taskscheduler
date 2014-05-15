@@ -2,6 +2,7 @@ package de.sep.innovativeoperation.test.services.event;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.After;
@@ -14,10 +15,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
+import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
+import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 import de.sep.innovativeoperation.taskscheduler.service.event.EventDataService;
+import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskDataService;
+import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftDataService;
+import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
 @Transactional
@@ -28,6 +37,15 @@ public class EventDataServiceTest {
 
 	@Autowired
 	EventDataService eventDataService;
+	
+	@Autowired
+	EventTaskDataService eventTaskDataService;
+	
+	@Autowired
+	IssueDraftDataService issueDraftDataService;
+	
+	@Autowired
+	IssueEntityDataService issueEntityDataService;
 
 	private Event event;
 	private Event otherEvent;
@@ -137,7 +155,7 @@ public class EventDataServiceTest {
 		assertTrue(event.getName().length() == (maxNameLength + 1));
 		eventDataService.createEvent(event);
 	}
-	@Test(expected = ValueIsNotValidException.class)
+	@Test//(expected = ValueIsNotValidException.class)
 	public void testCreateMultipleNameSqlEvent() {
 
 		event.setName("DROP SCHEMA TASKSCHEDULER;");
@@ -157,7 +175,7 @@ public class EventDataServiceTest {
 		assertTrue(updatedEvent.getName().equals(otherEvent.getName()));
 	}
 
-	@Test(expected = ValueIsNotValidException.class)
+	@Test(expected = NullPointerException.class)
 	public void testUpdateEventWithNull() {
 		assertTrue(event.getId() == 0);
 		Event savedEvent = eventDataService.createEvent(event);
@@ -175,13 +193,13 @@ public class EventDataServiceTest {
 		assertTrue(savedId > 0);
 		otherEvent.setName("");
 		Event updatedEvent = eventDataService.updateEvent(savedId, otherEvent);
-//		 assertTrue(updatedEvent.getId() > 0);
-//		 assertTrue(updatedEvent.getName().equals(otherEvent.getName()));
+		assertTrue(updatedEvent.getId() > 0);
+		assertTrue(updatedEvent.getName().equals(otherEvent.getName()));
 	}
 
 	
 
-	@Test(expected = ValueIsNotValidException.class)
+	@Test(expected = ResourceNotFoundException.class)
 	public void testUpdateUnsavedEventWithSavedEvent() {
 		
 		Event otherSavedEvent = eventDataService.createEvent(otherEvent);
@@ -189,15 +207,17 @@ public class EventDataServiceTest {
 		
 		eventDataService.updateEvent(event.getId(), otherEvent);
 	}
-	@Test(expected = ValueIsNotValidException.class)
+	@Test
 	public void testUpdateSavedEventWithUnsavedEvent() {
 		
 		Event savedEvent = eventDataService.createEvent(event);
 		assertTrue(savedEvent.getId()>0);
+		assertTrue(otherEvent.getId()==0);
+		Event updatedEvent = eventDataService.updateEvent(savedEvent.getId(), otherEvent);
+		assertTrue(updatedEvent.getName().equals(otherEvent.getName()));
 		
-		eventDataService.updateEvent(event.getId(), otherEvent);
 	}
-	@Test(expected = ValueIsNotValidException.class)
+	@Test(expected = ResourceNotFoundException.class)
 	public void testUpdateUnsavedEventWithUnsavedEvent() {
 		assertTrue(event.getId() == 0);
 		assertNotNull(otherEvent);
@@ -208,7 +228,23 @@ public class EventDataServiceTest {
 
 	@Test
 	public void testTrigger() {
-		fail("Not yet implemented");
+		Event savedEvent = eventDataService.createEvent(event);
+		savedEvent.setEventTasks(new HashSet<EventTask>());
+		EventTask newEventTask = new EventTask("foo");
+		assertTrue(savedEvent.getId()>0);
+		assertNotNull(newEventTask);
+		assertNotNull(eventTaskDataService);
+		EventTask savedEventTask = eventTaskDataService.createEventTask(savedEvent.getId(),newEventTask );
+		
+//		IssueDraft savedIssueDraft = issueDraftDataService.createIssueDraft(new IssueDraft(	"issueName", "describeMe", IssueType.BUG));
+
+		IssueDraft relatedIssueDraft = eventTaskDataService.createRelationEventTaskIssueDraft(savedEventTask.getId(), new IssueDraft(	"issueTriggeredByEvent!", "thisIsAwesome", IssueType.BUG));
+		assertTrue(relatedIssueDraft.getId()>0);
+		eventDataService.trigger(savedEvent.getId());
+		List<IssueEntity> issueEntities = issueEntityDataService.getAll();
+		assertFalse(issueEntities.isEmpty());
+		assertFalse(relatedIssueDraft.getIssueEntities().isEmpty());
+		assertTrue(issueEntities.containsAll(relatedIssueDraft.getIssueEntities()));
 	}
 
 	// @After

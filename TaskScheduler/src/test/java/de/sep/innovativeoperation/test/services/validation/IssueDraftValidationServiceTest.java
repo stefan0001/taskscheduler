@@ -25,6 +25,7 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 import de.sep.innovativeoperation.taskscheduler.service.validation.EventTaskValidationService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.EventValidationService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftValidationService;
+import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -34,6 +35,9 @@ public class IssueDraftValidationServiceTest {
 
 	// private EventTask eventTask;
 	private IssueDraft issueDraft;
+	private int maxNameLetters = 100;
+	private int maxDescriptionLetters = 500;
+	
 	@Autowired
 	IssueDraftValidationService issueDraftValidationService;
 
@@ -52,8 +56,8 @@ public class IssueDraftValidationServiceTest {
 	}
 
 	@Test(expected = ValueIsNotValidException.class)
-	public void testCheckOverlength51IssueNameObject() {
-		issueDraft.setIssueName(generateStringWithLength(51));		
+	public void testCheckOverlength101IssueNameObject() {
+		issueDraft.setIssueName(MyUtil.generateStringWithLength(maxNameLetters,"a"));		
 		issueDraftValidationService.checkObject(issueDraft);
 	}
 
@@ -74,7 +78,7 @@ public class IssueDraftValidationServiceTest {
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckOverlength501IssueDescription() {
 
-		issueDraft.setIssueDescription(generateStringWithLength(501));
+		issueDraft.setIssueDescription(MyUtil.generateStringWithLength(maxDescriptionLetters+1, "a"));
 
 		issueDraftValidationService.checkObject(issueDraft);
 	}
@@ -87,12 +91,5 @@ public class IssueDraftValidationServiceTest {
 		issueDraftValidationService.checkObject(issueDraft);
 	}
 
-	public String generateStringWithLength(int length) {
-		StringBuffer outputBuffer = new StringBuffer(length);
-		for (int i = 0; i < length; i++) {
-			outputBuffer.append("a");
-		}
-		return outputBuffer.toString();
-	}
 
 }
