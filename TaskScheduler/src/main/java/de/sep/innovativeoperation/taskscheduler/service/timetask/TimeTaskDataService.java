@@ -50,7 +50,8 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		timeTaskValidationSerive.checkObject(timeTask);
 		
 		//call the monitor for checking if the new time task has to be triggered right now
-		timeTaskMonitor.monitorTimTasks();
+		Calendar nextFireTime = timeTaskMonitor.generateNextFireTime(timeTask.getFirstFireTime(), timeTask.getIntervall());
+		timeTask.setNextFireTime(nextFireTime);
 		
 		return timeTaskDAO.save(timeTask);
 
@@ -76,8 +77,7 @@ public class TimeTaskDataService extends AbstractGenericDataService<TimeTask> {
 		timeTaskOld.setFirstFireTime(timeTask.getFirstFireTime());
 		
 		Calendar nextFireTime = timeTaskMonitor.generateNextFireTime(timeTask.getFirstFireTime(), timeTask.getIntervall());
-
-		timeTask.setNextFireTime(nextFireTime);
+		timeTaskOld.setNextFireTime(nextFireTime);
 		
 		timeTaskOld.setActivated(timeTask.isActivated());
 		return timeTaskOld;
