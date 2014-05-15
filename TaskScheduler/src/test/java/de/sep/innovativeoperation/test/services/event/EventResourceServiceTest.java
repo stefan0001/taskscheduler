@@ -2,7 +2,11 @@ package de.sep.innovativeoperation.test.services.event;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -53,17 +57,42 @@ public class EventResourceServiceTest {
 	}
 
 	@Test
-	public void testCreateGoodEvent() {
-		event.setId(11);
-		eventResource = eventResourceAssembler.toResource(event);
-//		List<Link> links = eventResource.getLinks();
-//		System.out.println(""+links.get(0).toString());
-//		for (Link link : links) {
-//			System.out.println(""+link.toString());
-//		}
-		assertTrue(eventResource.hasLinks());
-//		assertTrue(savedEvent.getName().equals("foo"));
+	public void testEventToResource() {
+		// event.setId(11);
+		Event savedEvent = eventDataService.createEvent(event);
+		EventResource savedEventResource = eventResourceAssembler.toResource(savedEvent);
+		// List<Link> links = eventResource.getLinks();
+		// System.out.println(""+links.get(0).toString());
+		// for (Link link : links) {
+		// System.out.println(""+link.toString());
+		// }
+//		assertTrue
+		assertTrue(savedEventResource.hasLinks());
+		// assertTrue(savedEvent.getName().equals("foo"));
 	}
+
+//	@Test
+//	public void testEventToResources() {
+//		// event.setId(11);
+//		Event otherEvent = new Event("otherEvent");
+//		Event rhirdEvent = new Event("thirdEvent");
+//		Event savedEvent = eventDataService.createEvent(event);
+//		Event savedOtherEvent = eventDataService.createEvent(otherEvent);
+//		Event savedThirdEvent = eventDataService.createEvent(rhirdEvent);
+//		Set<Event> events = new HashSet<Event>();
+//		events.add(savedEvent);
+//		events.add(savedOtherEvent);
+//		events.add(savedThirdEvent);
+//
+//		eventResource = eventResourceAssembler.toResources();
+//		// List<Link> links = eventResource.getLinks();
+//		// System.out.println(""+links.get(0).toString());
+//		// for (Link link : links) {
+//		// System.out.println(""+link.toString());
+//		// }
+//		assertTrue(eventResource.hasLinks());
+//		// assertTrue(savedEvent.getName().equals("foo"));
+//	}
 	//
 	// @Test(expected = ValueIsNotValidException.class)
 	// public void testCreateNullNameEvent() {

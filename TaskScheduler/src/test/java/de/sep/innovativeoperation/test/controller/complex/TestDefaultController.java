@@ -24,6 +24,13 @@ import org.springframework.web.context.WebApplicationContext;
 
 import de.sep.innovativeoperation.taskscheduler.controller.DefaultController;
 
+/**
+ * Test the Default Controller with Mockito and SpringTest
+ * tests the RequestMapping by Spring
+ *  
+ * @author Joscha Zander
+ *
+ */
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -51,6 +58,10 @@ public class TestDefaultController {
 		MockitoAnnotations.initMocks(this);
 	}
 
+	/**
+	 * Test http exception t
+	 * @throws Exception
+	 */
 	@Test
 	public void testPutFrontControllerExpect405() throws Exception {
 
@@ -58,6 +69,11 @@ public class TestDefaultController {
 				status().isMethodNotAllowed());
 	}
 
+	/**
+	 * Test if DefaultController is redirecting to the right url
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testAccessingFrontControllerExpect200() throws Exception {
 	

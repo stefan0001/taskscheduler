@@ -61,7 +61,11 @@ public class TestEventDAO {
 	}
 	@Test
 	public void testFetchAll() {		
-		List<Event> events = eventDAO.fetchAll();		
+		List<Event> events = eventDAO.fetchAll();
+		if(!events.isEmpty())
+			for (Event event : events) {
+				eventDAO.remove(event);
+			}
 		assertTrue(events.isEmpty());
 		Event savedEvent = eventDAO.save(event);
 		assertTrue(savedEvent.getId()>0);

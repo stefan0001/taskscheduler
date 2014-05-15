@@ -44,7 +44,7 @@ public class TimeTaskValidationServiceTest {
 	TimeTaskValidationService timeTaskValidationService;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		timeTask = new TimeTask();
 		timeTask.setName("foo");
 		Calendar firstFireTime = Calendar.getInstance();
