@@ -88,7 +88,7 @@ public class IssueDraftDataService extends AbstractGenericDataService<IssueDraft
 	}
 
 	
-	public List<IssueDraft> filterIssueEntity(IssueDraft issueDraft) {
+	public List<IssueDraft> filterIssueDraft(IssueDraft issueDraft) {
 		// check values ignore null values
 
 		try {

@@ -86,7 +86,7 @@ public class IssueDraftResourceService extends AbstractGenericResourceService<Is
 	
 	//TODO
 	public IssueDraftsResource filterIssueDrafts(IssueDraftResource issueDraftResource){
-		List<IssueDraft> resultIssueDrafts = issueDraftDataService.filterIssueEntity(issueDraftResource.getContent());
+		List<IssueDraft> resultIssueDrafts = issueDraftDataService.filterIssueDraft(issueDraftResource.getContent());
 		List<IssueDraftResource> resultIssueDraftResources = resourceAssembler.toResources(resultIssueDrafts);
 		
 		return resourcesAssembler.toResource(resultIssueDraftResources);
