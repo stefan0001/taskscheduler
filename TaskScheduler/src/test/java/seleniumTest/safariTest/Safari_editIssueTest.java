@@ -2,9 +2,9 @@ package seleniumTest.safariTest;
 
 import org.openqa.selenium.safari.SafariDriver;
 
-import seleniumTest.WebDriver.WebDriverTest_editTask;
+import seleniumTest.WebDriver.WebDriver_editIssueTest;
 
-public class SafariTest_editTask extends WebDriverTest_editTask {
+public class Safari_editIssueTest extends WebDriver_editIssueTest {
 
 	@Override
 	public void initializeWebDriver() {

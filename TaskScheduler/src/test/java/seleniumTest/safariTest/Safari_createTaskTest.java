@@ -2,9 +2,9 @@ package seleniumTest.safariTest;
 
 import org.openqa.selenium.safari.SafariDriver;
 
-import seleniumTest.WebDriver.WebDriverTest_createTask;
+import seleniumTest.WebDriver.WebDriver_createTaskTest;
 
-public class SafariTest_createTask extends WebDriverTest_createTask{
+public class Safari_createTaskTest extends WebDriver_createTaskTest{
 
 
 @Override

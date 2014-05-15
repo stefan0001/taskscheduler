@@ -2,9 +2,10 @@ package seleniumTest.FirefoxTest;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import seleniumTest.WebDriver.WebDriverTest_overview;
+import seleniumTest.WebDriver.WebDriver_createTaskTest;
 
-public class FirefoxTest_overview extends WebDriverTest_overview {
+
+public class Firefox_createTaskTest extends WebDriver_createTaskTest{
 
 	@Override
 	public void initializeWebDriver() {

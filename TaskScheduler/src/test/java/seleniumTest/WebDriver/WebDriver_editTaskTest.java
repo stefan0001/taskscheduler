@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.*;
 
-public abstract class WebDriverTest_editTask implements URL, Selectors {
+public abstract class WebDriver_editTaskTest implements URL, Selectors {
 	protected WebDriver driver;
 
 	@Test

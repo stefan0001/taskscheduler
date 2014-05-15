@@ -2,9 +2,9 @@ package seleniumTest.safariTest;
 
 import org.openqa.selenium.safari.SafariDriver;
 
-import seleniumTest.WebDriver.WebDriverTest_overview;
+import seleniumTest.WebDriver.WebDriver_overviewTest;
 
-public class SafariTest_overview extends WebDriverTest_overview {
+public class Safari_overviewTest extends WebDriver_overviewTest {
 
 	@Override
 	public void initializeWebDriver() {

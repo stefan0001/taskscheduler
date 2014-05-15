@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 
-public abstract class WebDriverTest_createTask implements Selectors, URL {
+public abstract class WebDriver_createTaskTest implements Selectors, URL {
 	protected WebDriver driver;
 
 	@Test

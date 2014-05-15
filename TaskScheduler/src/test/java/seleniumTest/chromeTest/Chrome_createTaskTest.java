@@ -2,9 +2,9 @@ package seleniumTest.chromeTest;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import seleniumTest.WebDriver.WebDriverTest_editTask;
+import seleniumTest.WebDriver.WebDriver_createTaskTest;
 
-public class ChromeTest_editTask extends WebDriverTest_editTask {
+public class Chrome_createTaskTest extends WebDriver_createTaskTest{
 
 	@Override
 	public void initializeWebDriver() {
