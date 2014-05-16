@@ -2,7 +2,7 @@ package seleniumTest.safariTest;
 
 import org.openqa.selenium.safari.SafariDriver;
 
-import seleniumTest.WebDriver.WebDriver_createTaskTest;
+import seleniumTest.webDriver.WebDriver_createTaskTest;
 
 public class Safari_createTaskTest extends WebDriver_createTaskTest{
 

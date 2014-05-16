@@ -1,4 +1,4 @@
-package seleniumTest.WebDriver;
+package seleniumTest.webDriver;
 
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;

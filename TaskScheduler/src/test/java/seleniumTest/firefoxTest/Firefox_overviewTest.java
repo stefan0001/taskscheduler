@@ -1,8 +1,8 @@
-package seleniumTest.FirefoxTest;
+package seleniumTest.firefoxTest;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import seleniumTest.WebDriver.WebDriver_overviewTest;
+import seleniumTest.webDriver.WebDriver_overviewTest;
 
 public class Firefox_overviewTest extends WebDriver_overviewTest {
 

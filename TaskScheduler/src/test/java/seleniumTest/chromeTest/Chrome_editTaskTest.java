@@ -2,7 +2,7 @@ package seleniumTest.chromeTest;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import seleniumTest.WebDriver.WebDriver_editTaskTest;
+import seleniumTest.webDriver.WebDriver_editTaskTest;
 
 public class Chrome_editTaskTest extends WebDriver_editTaskTest {
 

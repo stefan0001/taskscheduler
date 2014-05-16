@@ -1,8 +1,8 @@
-package seleniumTest.FirefoxTest;
+package seleniumTest.firefoxTest;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import seleniumTest.WebDriver.WebDriver_createTaskTest;
+import seleniumTest.webDriver.WebDriver_createTaskTest;
 
 
 public class Firefox_createTaskTest extends WebDriver_createTaskTest{

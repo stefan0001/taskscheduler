@@ -1,8 +1,8 @@
-package seleniumTest.FirefoxTest;
+package seleniumTest.firefoxTest;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import seleniumTest.WebDriver.WebDriver_editTaskTest;
+import seleniumTest.webDriver.WebDriver_editTaskTest;
 
 public class Firefox_editTaskTest extends WebDriver_editTaskTest {
 

@@ -1,4 +1,4 @@
-package seleniumTest.WebDriver;
+package seleniumTest.webDriver;
 
 public interface Selectors {
 

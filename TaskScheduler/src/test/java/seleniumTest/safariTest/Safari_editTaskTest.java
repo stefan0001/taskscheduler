@@ -2,7 +2,7 @@ package seleniumTest.safariTest;
 
 import org.openqa.selenium.safari.SafariDriver;
 
-import seleniumTest.WebDriver.WebDriver_editTaskTest;
+import seleniumTest.webDriver.WebDriver_editTaskTest;
 
 public class Safari_editTaskTest extends WebDriver_editTaskTest {
 

@@ -2,7 +2,7 @@ package seleniumTest.chromeTest;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import seleniumTest.WebDriver.WebDriver_createTaskTest;
+import seleniumTest.webDriver.WebDriver_createTaskTest;
 
 public class Chrome_createTaskTest extends WebDriver_createTaskTest{
 
