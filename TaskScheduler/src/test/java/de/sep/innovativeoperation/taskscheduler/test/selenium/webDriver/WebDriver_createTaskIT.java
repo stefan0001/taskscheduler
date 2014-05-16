@@ -9,8 +9,16 @@ public abstract class WebDriver_createTaskIT implements Selectors, URL {
 
 	@Test
 	public void testTest(){
+		try {
+			Thread.sleep(600000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		driver = new FirefoxDriver();
 		driver.get(url);
+		
 		
 		driver.close();
 		driver.quit();
