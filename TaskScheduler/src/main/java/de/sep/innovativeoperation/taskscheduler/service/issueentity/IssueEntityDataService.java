@@ -82,6 +82,7 @@ public class IssueEntityDataService extends
 	}
 	
 
+
 	public List<IssueEntity> filterIssueEntity(IssueEntity issueEntity, IssueDraft issueDraft) {
 		// check values ignore null values
 		try {
@@ -124,7 +125,11 @@ public class IssueEntityDataService extends
 	public void removeBidirctionalRelations(IssueEntity entity) {
 		//remove bidirectional relation to IssueDraft
 		entity.getIssueDraft().getIssueEntities().remove(entity);
-		
+	}
+	
+	
+	public void archiveById(int id){
+		this.getById(id).setArchived(true);
 	}
 
 }

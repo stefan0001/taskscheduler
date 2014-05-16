@@ -45,8 +45,8 @@ public class IssueEntityController {
 	@RequestMapping(method = RequestMethod.GET, produces = JSON)
 	public @ResponseBody IssueEntitiesResource getIssueEntities(@RequestParam(value = "filter" , required=false) IssueEntityResource issueEntityResource) {
 		if(issueEntityResource == null){ 
-			//return all issueentities in case of no filter
-			return issueEntityResourceService.getAll();
+			//find all
+			issueEntityResource = new IssueEntityResource();
 		}
 		
 		//return filtered issueentities
@@ -87,7 +87,8 @@ public class IssueEntityController {
 	 */
 	@RequestMapping(value = "/{issueentityid}", method = RequestMethod.DELETE, produces = JSON)
 	public @ResponseBody void deleteIssueEntity(@PathVariable("issueentityid") int id) {
-		issueEntityResourceService.deleteById(id);
+		//TODO
+		issueEntityResourceService.archiveById(id);
 	}
 	
 	

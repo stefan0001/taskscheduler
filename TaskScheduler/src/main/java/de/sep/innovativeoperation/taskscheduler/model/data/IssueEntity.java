@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @SuppressWarnings("serial")
 @Entity
-@JsonIgnoreProperties({"issueDraft"})
+@JsonIgnoreProperties({"issueDraft","archived"})
 
 public class IssueEntity extends AbstractDataModel implements Serializable {
     @Id
@@ -44,6 +44,8 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 	@JoinColumn(name = "ISSUEDRAFT_ISSUEDRAFTID")
 	private IssueDraft issueDraft;
 	
+	@NotNull
+	private boolean archived;
 	
 	public IssueEntity() {
 	}
@@ -92,6 +94,18 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 	public void setIssueDraft(IssueDraft issueDraft) {
 		this.issueDraft = issueDraft;
 	}
+	
+	
+
+
+	public boolean isArchived() {
+		return archived;
+	}
+
+	public void setArchived(boolean archived) {
+		this.archived = archived;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -101,13 +115,7 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 		return result;
 	}
 
-//	@Override
-//	public boolean equals(Object obj) {
-//	if(
-//			(this.getIssueResolution().equals(((IssueEntity) obj).getIssueResolution()))
-//		&&(this.getIssueStatus()))
-//	}
-//	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -121,9 +129,6 @@ public class IssueEntity extends AbstractDataModel implements Serializable {
 			return false;
 		return true;
 	}
-
-
-
 	
 	
 
