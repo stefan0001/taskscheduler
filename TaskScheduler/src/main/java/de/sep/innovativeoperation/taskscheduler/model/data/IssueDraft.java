@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,9 +32,11 @@ public class IssueDraft extends AbstractDataModel {
 
 
 	@NotNull
+	@Column(length=100)   
 	private String issueName;
 
 	@NotNull
+	@Column(length=500) 
 	private String issueDescription;
 
 	@NotNull

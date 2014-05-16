@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,7 @@ public class TimeTask extends AbstractDataModel{
 	int id;
 	
 	@NotNull
+	@Column(length=100) 
 	private String name;
 	
 	/*Owner of the TimeTask <--> IssueDraft relationship*/
