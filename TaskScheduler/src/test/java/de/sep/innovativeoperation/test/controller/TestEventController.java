@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.test.controller.complex;
+package de.sep.innovativeoperation.test.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 import static org.mockito.Mockito.reset;
@@ -9,10 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,13 +29,13 @@ import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 import org.springframework.web.context.WebApplicationContext;
 
 import de.sep.innovativeoperation.taskscheduler.controller.EventController;
-import de.sep.innovativeoperation.taskscheduler.controller.IssueEntityController;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.EventTaskResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.EventTasksResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventsResource;
 import de.sep.innovativeoperation.taskscheduler.service.event.EventResourceService;
-import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
+import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskResourceService;
 
-//@Transactional
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -52,9 +48,8 @@ public class TestEventController {
 
 	@Mock
 	private EventResourceService eventResourceService;
-
-	// @Mock
-	// private IssueEntityResourceAssembler issueEntityResourceAssembler;
+	@Mock
+	private EventTaskResourceService eventTaskResourceService;
 
 	@Autowired
 	private WebApplicationContext wac;
@@ -67,11 +62,15 @@ public class TestEventController {
 
 	@Before
 	public void setup() {
+
+		// reset mocks to prevent side effects
 		if (eventResourceService != null)
 			reset(eventResourceService);
+
 		// Process mock annotations
 		MockitoAnnotations.initMocks(this);
 
+		// setUp the MockMvcBuilder
 		mockMvc = MockMvcBuilders
 				.<StandaloneMockMvcBuilder> webAppContextSetup(wac).build();
 
@@ -80,83 +79,94 @@ public class TestEventController {
 	}
 
 	@Test
-	// TODO MOCK eventResourceService
 	public void testAccessEventController200() throws Exception {
 
 		when(eventResourceService.getAll()).thenReturn(eventsResource);
 
-		mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isOk())
-				.andDo(print());
+		mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isOk());
 
 		verify(eventResourceService, times(1)).getAll();
 	}
 
 	@Test
-	// TODO MOCK eventResourceService
 	public void testGetEventByIdOne200() throws Exception {
 
 		when(eventResourceService.getById(1)).thenReturn(eventResource);
 
-		mockMvc.perform(get(url + "/1").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get(url + "/1").accept(appJSON)).andExpect(
+				status().isOk());
 
 		verify(eventResourceService, times(1)).getById(1);
 	}
 
 	@Test
-	// TODO MOCK eventResourceService
 	public void testCreateEvent200() throws Exception {
 
 		when(eventResourceService.createEvent(eventResource)).thenReturn(
 				eventResource);
 
-		mockMvc.perform(post(url).contentType(appJSON).content("{}").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(
+				post(url).contentType(appJSON).content("{}").accept(appJSON))
+				.andExpect(status().isOk());
 
 		verify(eventResourceService, times(1)).createEvent(eventResource);
 	}
 
 	@Test
-	// TODO MOCK eventResourceService
 	public void testDeleteEvent200() throws Exception {
 
-		// when(eventResourceService.deleteById(1))
-		// .thenReturn(eventResource);
-
-		mockMvc.perform(delete(url + "/1").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(delete(url + "/1").accept(appJSON)).andExpect(
+				status().isOk());
 
 		verify(eventResourceService, times(1)).deleteById(1);
 	}
 
 	@Test
-	// TODO MOCK eventResourceService
 	public void testUpdateEventOne200() throws Exception {
 		EventResource updatedEventResource = new EventResource();
 
 		when(eventResourceService.updateEvent(1, eventResource)).thenReturn(
 				updatedEventResource);
 
-		mockMvc.perform(put(url + "/1").contentType(appJSON).content("{}").accept(appJSON)// .content("{\"links\":[],\"content\":[]}")
-		).andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(
+				put(url + "/1").contentType(appJSON).content("{}")
+						.accept(appJSON)).andExpect(status().isOk());
 
 		verify(eventResourceService, times(1)).updateEvent(1, eventResource);
 	}
 
 	@Test
-	// TODO MOCK eventResourceService
 	public void testTriggerEventOne200() throws Exception {
-		EventResource updatedEventResource = new EventResource();
+		mockMvc.perform(
+				put(url + "/1/trigger").accept(appJSON).contentType(appJSON)
+						.content("{}")).andExpect(status().isOk());
 
-		when(eventResourceService.getById(1)).thenReturn(updatedEventResource);
+		verify(eventResourceService, times(1)).triggerEvent(1);
+	}
+	
+	@Test
+	public void testGetAllEventTasksForEvent200() throws Exception {
+		EventTasksResource eventTasksResource = new EventTasksResource();
+
+		when(eventTaskResourceService.getAllEventTasksForEvent(1)).thenReturn(eventTasksResource);
 
 		mockMvc.perform(
-				put(url + "/1/trigger").accept(appJSON).contentType(appJSON).content(
-						"{}"))//\"links\":[],\"content\":[]
-				.andExpect(status().isOk()).andDo(print());
+				get(url + "/1/eventtask").accept(appJSON).contentType(appJSON)
+						.content("{}")).andExpect(status().isOk());
 
-		verify(eventResourceService, times(1)).getById(1);
-//		verify(eventResourceService, times(1)).triggerEvent(
-//				updatedEventResource);
+		verify(eventTaskResourceService, times(1)).getAllEventTasksForEvent(1);
 	}
-} 
+	
+	@Test
+	public void testCreateEventTask200() throws Exception {
+		EventTaskResource eventTaskResource = new EventTaskResource();
+		EventTaskResource returnedEventTaskResource = new EventTaskResource();
+		when(eventTaskResourceService.createEventTask(1,eventTaskResource)).thenReturn(returnedEventTaskResource);
+
+		mockMvc.perform(
+				post(url + "/1/eventtask").accept(appJSON).contentType(appJSON)
+						.content("{}")).andExpect(status().isOk());
+
+		verify(eventTaskResourceService, times(1)).createEventTask(1,eventTaskResource);
+	}
+}

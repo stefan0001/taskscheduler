@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.test.dao.complex;
+package de.sep.innovativeoperation.test.dao;
 
 import static org.junit.Assert.*;
 
@@ -10,9 +10,7 @@ import javax.validation.ConstraintViolationException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,12 +18,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.EventTaskDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
-
 
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
@@ -34,7 +30,7 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 public class TestEventTaskDAO {
 
 	@Autowired
-	EventTaskDAO eventTaskDAO;	
+	EventTaskDAO eventTaskDAO;
 
 	private IssueDraft issueDraft;
 	private EventTask eventTask;
@@ -42,10 +38,6 @@ public class TestEventTaskDAO {
 	private EventTask eventTaskNullName;
 	private EventTask eventTaskNullIssueDraftSet;
 	private Event event;
-
-	// TODO hmm wenn ich das Event nicht initialisiere gescheit, kommt bei
-	// EventTask savedEventTask = eventTaskDAO.save(eventTask);ne
-	// ConstraintViolationException - Event darf nicht null sein
 
 	@Before
 	public void setUp() {
@@ -55,7 +47,6 @@ public class TestEventTaskDAO {
 		issueDraftSet.add(issueDraft);
 
 		event = new Event("testEvent", eventTasksSet);
-
 		eventTask = new EventTask("TestSchreiben", issueDraftSet, event);
 		eventTaskNullEvent = new EventTask("TestSchreiben", issueDraftSet, null);
 		eventTaskNullName = new EventTask(null, issueDraftSet, event);
@@ -73,49 +64,24 @@ public class TestEventTaskDAO {
 	@Test(expected = ConstraintViolationException.class)
 	public void saveEventTaskwithNullEvent() {
 
-//		Set<IssueDraft> issueDraftSet = new HashSet<IssueDraft>();
-//		issueDraftSet.add(issueDraft);
-//
-//		EventTask savedEventTask = new EventTask("TestSchreiben",
-//				issueDraftSet, event);
+		eventTaskDAO.save(eventTaskNullEvent);
 
-//		try {
-		EventTask savedEventTask = eventTaskDAO.save(eventTaskNullEvent);
-//		} catch (Exception e) {
-//			 TODO: handle exception
-//		}
-
-//		assertFalse(savedEventTask.getId() > 0);
-//		assertNull(eventTaskDAO.findById(savedEventTask.getId()));
 	}
-	@Test(expected = ValueIsNullException.class)
+
+	@Test
 	public void saveEventTaskwithNullIssueDraftSet() {
 
-		// *****************************************
+		EventTask savedEventTask = eventTaskDAO
+				.save(eventTaskNullIssueDraftSet);
+		assertTrue(savedEventTask.getId() > 0);
 
-//		EventTask savedEventTask = new EventTask("TestSchreiben", issueDraftSet, event);
-//		try {
-			EventTask savedEventTask = eventTaskDAO.save(eventTaskNullIssueDraftSet);
-//		} catch (Exception e) {
-			// TODO: handle exception
-//		}
-
-//		assertTrue(savedEventTask.getId() > 0);
-//		assertNotNull(eventTaskDAO.findById(savedEventTask.getId()));
-
-		// *****************************************
 	}
-	@Test (expected = ConstraintViolationException.class)
-	public void saveEventTaskwithNullName() {
-//		savedEventTask = new EventTask("TestSchreiben", issueDraftSet, event);
-//		try {
-			EventTask savedEventTask = eventTaskDAO.save(eventTaskNullName);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
 
-//		assertFalse(savedEventTask.getId() > 0);
-//		assertNull(eventTaskDAO.findById(savedEventTask.getId()));
+	@Test(expected = ConstraintViolationException.class)
+	public void saveEventTaskwithNullName() {
+
+		eventTaskDAO.save(eventTaskNullName);
+
 	}
 
 	@Test
@@ -125,8 +91,9 @@ public class TestEventTaskDAO {
 		EventTask foundEventTask = eventTaskDAO
 				.findById(savedEventTask.getId());
 		assertNotNull(foundEventTask);
-		// TODO EQUAL METHODE?
+
 		assertTrue(savedEventTask.getName().equals(foundEventTask.getName()));
+		assertTrue(savedEventTask.equals(foundEventTask));
 
 		assertNull(eventTaskDAO.findById(8888));
 		assertNull(eventTaskDAO.findById(0));
@@ -159,25 +126,4 @@ public class TestEventTaskDAO {
 		eventTaskDAO.remove(savedEventTask);
 		assertNull(eventTaskDAO.findById(savedEventTask.getId()));
 	}
-
-//	@Test
-//	public void testRemoveAllEventTaskDAO() {
-//		EventTask savedEventTaskTestSchreiben = eventTaskDAO.save(eventTask);
-//		eventTask.setName("SchreibeTests");
-//		EventTask savedEventTaskSchreibeTest = eventTaskDAO.save(eventTask);
-//		assertFalse(eventTaskDAO.fetchAll().isEmpty());
-//		List<EventTask> eventTasks = eventTaskDAO.fetchAll();
-//		deleteAllEventTasksInEventTaskDAO();
-//		assertTrue(eventTaskDAO.fetchAll().isEmpty());
-//	}
-
-//	private void deleteAllEventTasksInEventTaskDAO() {
-//		List<EventTask> eventTasks = eventTaskDAO.fetchAll();
-//		if (!eventTasks.isEmpty())
-//			for (EventTask actualEventTask : eventTasks) {
-//				eventTaskDAO.remove(eventTaskDAO.findById(actualEventTask
-//						.getId()));
-//			}
-//	}
-
 }

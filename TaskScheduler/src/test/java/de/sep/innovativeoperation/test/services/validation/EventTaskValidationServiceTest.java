@@ -1,7 +1,6 @@
 package de.sep.innovativeoperation.test.services.validation;
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +19,7 @@ import de.sep.innovativeoperation.taskscheduler.model.data.Event;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.service.validation.EventTaskValidationService;
+import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -27,11 +27,13 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.EventTaskVali
 @Transactional
 public class EventTaskValidationServiceTest {
 	
+@Autowired
+EventTaskValidationService eventTaskValidationService;
+
 private EventTask eventTask;
 private Event event;
 private Set<IssueDraft> issueDrafts;
-@Autowired
-EventTaskValidationService eventTaskValidationService;
+private int maxNameLength = 100;
 
 	@Before
 	public void setUp() throws Exception {
@@ -43,13 +45,7 @@ EventTaskValidationService eventTaskValidationService;
 		eventTask.setEvent(event);
 		eventTask.setIssueDrafts(issueDrafts);
 	}
-
-	//checkObject //TODO testCheckNullObject?
-//	@Test(expected = ValidationFailureException.class)
-//	public void testCheckNullObject() {		
-//		eventTaskValidationService.checkObject(null);
-//	}
-//	
+	
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckNullNameObject() {		
 		eventTask.setName(null);
@@ -58,25 +54,17 @@ EventTaskValidationService eventTaskValidationService;
 	
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckOverlengthNameObject() {		
-		eventTask.setName("abababababababababababababababaabababababababababababababababababaababababababababaaaaaababababababab");
-//		System.out.println(eventTask.getName() + eventTask.getName().length());
+		eventTask.setName(MyUtil.generateRandomStringWithLength(maxNameLength +1));
 		eventTaskValidationService.checkObject(eventTask);
-	}
+	}	
 	
-	//TODO testCheckEmptyNameObject Name = "";
-	@Test(expected = ValueIsNotValidException.class)
+	@Test
 	public void testCheckEmptyNameObject() {		
-		eventTask.setName("");
-//		System.out.println(eventTask.getName() + eventTask.getName().length());
-		eventTaskValidationService.checkObject(eventTask);
+		try {
+			eventTask.setName("");
+			eventTaskValidationService.checkObject(eventTask);
+		} catch (ValidationFailureException e) {
+			fail("ValidationFailureException");
+		}
 	}
-
-//	@Test
-	//TODO testgoodObject? wie und überhaupt?
-//	public void testCheckGoodObject() {		
-//		eventTaskValidationService.checkObject(eventTask);
-//		assertTrue(eventTask.getId()>0);
-//	}
-//	
-
 }

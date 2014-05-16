@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.test.controller.complex;
+package de.sep.innovativeoperation.test.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 import static org.mockito.Mockito.reset;
@@ -10,7 +10,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,25 +36,23 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTaskResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTasksResource;
 import de.sep.innovativeoperation.taskscheduler.service.timetask.TimeTaskResourceService;
 
-//@Transactional
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration({ "classpath:applicationContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestTimeTaskController {
+
 	@Autowired
 	@InjectMocks
 	private TimeTaskController timeTaskController;
-	private MediaType appJSON = MediaType.parseMediaType(JSON);
+
 	@Mock
 	private TimeTaskResourceService timeTaskResourceService;
-
-	// @Mock
-	// private IssueEntityResourceAssembler issueEntityResourceAssembler;
 
 	@Autowired
 	private WebApplicationContext wac;
 
+	private MediaType appJSON = MediaType.parseMediaType(JSON);
 	private MockMvc mockMvc;
 	private String url = "/timetask";
 	private TimeTasksResource timeTasksResource;
@@ -65,6 +62,7 @@ public class TestTimeTaskController {
 	public void setup() {
 		if (timeTaskResourceService != null)
 			reset(timeTaskResourceService);
+
 		// Process mock annotations
 		MockitoAnnotations.initMocks(this);
 
@@ -76,42 +74,36 @@ public class TestTimeTaskController {
 	}
 
 	@Test
-	// TODO MOCK timeResourceService
 	public void testAccess200TimeTaskController() throws Exception {
 
 		when(timeTaskResourceService.getAll()).thenReturn(timeTasksResource);
 
-		mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isOk())
-				.andDo(print());
+		mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isOk());
 
 		verify(timeTaskResourceService, times(1)).getAll();
 	}
 
 	@Test
-	// TODO MOCK timeResourceService
 	public void testGetTimeTaskByIdOne200() throws Exception {
 
 		when(timeTaskResourceService.getById(1)).thenReturn(timeTaskResource);
 
-		mockMvc.perform(get(url + "/1").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(get(url + "/1").accept(appJSON)).andExpect(
+				status().isOk());
 
 		verify(timeTaskResourceService, times(1)).getById(1);
 	}
+
 	@Test
-	// TODO MOCK TimeResourceService
 	public void testDeleteTimeTask200() throws Exception {
 
-		// when(TimeResourceService.deleteById(1))
-		// .thenReturn(TimeResource);
-
-		mockMvc.perform(delete(url + "/1").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(delete(url + "/1").accept(appJSON)).andExpect(
+				status().isOk());
 
 		verify(timeTaskResourceService, times(1)).deleteById(1);
 	}
+
 	@Test
-	// TODO MOCK TimeResourceService
 	public void testCreateTimeTask200() throws Exception {
 		TimeTaskResource givenTimeTaskResource = timeTaskResource;
 		TimeTaskResource returnedTimeTaskResource = timeTaskResource;
@@ -120,24 +112,14 @@ public class TestTimeTaskController {
 				.thenReturn(returnedTimeTaskResource);
 
 		mockMvc.perform(
-				post(url)
-						.accept(appJSON)
-						.contentType(appJSON)
-						.content("{}"
-						// "{\"links\":[],\"content\":[]}"
-
-//								"{\"name\":\"TEST\",\"firstFireTime\":1399888149205,\"nextFireTime\":1399891749205,"
-//										+ "\"intervall\":3600,\"activated\":false,\"fireCount\":0,\"ID\":1,\"links\":[]}"
-
-						)).andExpect(status().isOk()).andDo(print());
+				post(url).accept(appJSON).contentType(appJSON).content("{}"))
+				.andExpect(status().isOk());
 
 		verify(timeTaskResourceService, times(1)).createTimeTask(
 				givenTimeTaskResource);
 	}
 
-
 	@Test
-	// TODO MOCK TimeResourceService
 	public void testUpdateTimeTaskOne200() throws Exception {
 
 		TimeTaskResource givenTimeTaskResource = timeTaskResource;
@@ -148,57 +130,58 @@ public class TestTimeTaskController {
 				.thenReturn(updatedTimeTaskResource);
 
 		mockMvc.perform(
-				put(url + "/1")
-						.accept(appJSON)
-						.contentType(appJSON)
-						.content("{}"
-//
-//								"{\"name\":\"TEST\",\"firstFireTime\":1399888149205,\"nextFireTime\":1399891749205,"
-//										+ "\"intervall\":3600,\"activated\":false,\"fireCount\":0,\"ID\":1,\"links\":[]}"
-
-						// "{\"links\":[],\"content\":[]}"
-						)).andExpect(status().isOk()).andDo(print());
+				put(url + "/1").accept(appJSON).contentType(appJSON)
+						.content("{}")).andExpect(status().isOk());
 
 		verify(timeTaskResourceService, times(1)).updateTimeTask(1,
 				givenTimeTaskResource);
 	}
-	@Test
-	// TODO MOCK timeResourceService
-	public void getAllIssueDraftsForTimeTaskWithIdOne() throws Exception {
-		IssueDraftsResource newIssueDraftsResources = new IssueDraftsResource();
-		when(timeTaskResourceService.getIssueDraftsforTimeTask(1)).thenReturn(newIssueDraftsResources);
 
-		mockMvc.perform(get(url + "/1/issuedraft").accept(appJSON).contentType(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+	@Test
+	public void getAllIssueDraftsForTimeTaskWithIdOne() throws Exception {
+
+		IssueDraftsResource newIssueDraftsResources = new IssueDraftsResource();
+
+		when(timeTaskResourceService.getIssueDraftsforTimeTask(1)).thenReturn(
+				newIssueDraftsResources);
+
+		mockMvc.perform(
+				get(url + "/1/issuedraft").accept(appJSON).contentType(appJSON))
+				.andExpect(status().isOk());
 
 		verify(timeTaskResourceService, times(1)).getIssueDraftsforTimeTask(1);
 	}
-	
+
 	@Test
-	// TODO MOCK timeResourceService
-	public void testCreateRelationBetweenTimetaskAndIissuedraft200() throws Exception {
+	public void testCreateRelationBetweenTimetaskAndIissuedraft200()
+			throws Exception {
+
 		IssueDraft issueDraft = new IssueDraft();
-		IssueDraftResource newIssueDraftResource = new IssueDraftResource(issueDraft);
-		
+		IssueDraftResource newIssueDraftResource = new IssueDraftResource(
+				issueDraft);
 
-		when(timeTaskResourceService.createRelationTimeTaskIssueDraft(1, newIssueDraftResource)).thenReturn(newIssueDraftResource);
+		when(
+				timeTaskResourceService.createRelationTimeTaskIssueDraft(1,
+						newIssueDraftResource)).thenReturn(
+				newIssueDraftResource);
 
-		mockMvc.perform(post(url + "/1/issuedraft/").content("{}").accept(appJSON).contentType(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+		mockMvc.perform(
+				post(url + "/1/issuedraft/").content("{}").accept(appJSON)
+						.contentType(appJSON)).andExpect(status().isOk());
 
-		verify(timeTaskResourceService, times(1)).createRelationTimeTaskIssueDraft(1,newIssueDraftResource);
+		verify(timeTaskResourceService, times(1))
+				.createRelationTimeTaskIssueDraft(1, newIssueDraftResource);
 	}
-	@Test
-	// TODO MOCK TimeResourceService
-	public void testDeleteRelationBetweenTimetaskAndIissuedraft200() throws Exception {
 
-//		 when(TimeResourceService.deleteRelationTimeTaskIssueDraft(1))
-//		 .thenReturn(TimeResource);
+	@Test
+	public void testDeleteRelationBetweenTimetaskAndIissuedraft200()
+			throws Exception {
 
 		mockMvc.perform(delete(url + "/1/issuedraft/1").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+				.andExpect(status().isOk());
 
-		verify(timeTaskResourceService, times(1)).deleteRelationTimeTaskIssueDraft(1,1);
+		verify(timeTaskResourceService, times(1))
+				.deleteRelationTimeTaskIssueDraft(1, 1);
 	}
 
 }

@@ -1,9 +1,7 @@
-package de.sep.innovativeoperation.test.controller.complex;
+package de.sep.innovativeoperation.test.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Before;
@@ -25,11 +23,11 @@ import org.springframework.web.context.WebApplicationContext;
 import de.sep.innovativeoperation.taskscheduler.controller.DefaultController;
 
 /**
- * Test the Default Controller with Mockito and SpringTest
- * tests the RequestMapping by Spring
- *  
+ * Test the DefaultController at the URL: "/" RequestMapping by Spring with
+ * Mockito and SpringMockMvc
+ * 
  * @author Joscha Zander
- *
+ * 
  */
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
@@ -39,12 +37,11 @@ public class TestDefaultController {
 	private MockMvc mockMvc;
 	private String url = "/";
 	private String expectUrl = "/static/gui/index.html";
-	 private MediaType appJSON = MediaType.parseMediaType(JSON);
-
+	private MediaType appJSON = MediaType.parseMediaType(JSON);
 
 	@Autowired
 	private WebApplicationContext wac;
-	
+
 	@Autowired
 	@InjectMocks
 	private DefaultController defaultController;
@@ -59,7 +56,8 @@ public class TestDefaultController {
 	}
 
 	/**
-	 * Test http exception t
+	 * Test http exception handling
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -69,19 +67,32 @@ public class TestDefaultController {
 				status().isMethodNotAllowed());
 	}
 
+	@Test
+	public void testPostFrontControllerExpect405() throws Exception {
+
+		mockMvc.perform(post(url).accept(appJSON)).andExpect(
+				status().isMethodNotAllowed());
+	}
+
+	@Test
+	public void testDeleteFrontControllerExpect405() throws Exception {
+
+		mockMvc.perform(delete(url).accept(appJSON)).andExpect(
+				status().isMethodNotAllowed());
+	}
+
 	/**
 	 * Test if DefaultController is redirecting to the right url
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void testAccessingFrontControllerExpect200() throws Exception {
-	
-		mockMvc.perform(get(url).accept(appJSON))
-				.andExpect(status().isFound())
-				.andExpect(redirectedUrl(expectUrl)).andDo(print());
-			
+	public void testAccessingFrontControllerExpect200AndCheckRedirection()
+			throws Exception {
+
+		mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isFound())
+				.andExpect(redirectedUrl(expectUrl));
+
 	}
 
 }
-

@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.test.dao.complex;
+package de.sep.innovativeoperation.test.dao;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 
 import org.junit.Before;
@@ -18,12 +19,8 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.EventDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
 @Transactional
@@ -34,11 +31,11 @@ public class TestEventDAO {
 
 	@Autowired
 	EventDAO eventDAO;
-	
+
 	private Event event;
 	private Set<EventTask> eventTasksSet;
 	private int maxNameLetters = 100;
-	
+
 	@Before
 	public void setUp() {
 		eventTasksSet = new HashSet<EventTask>();
@@ -46,36 +43,37 @@ public class TestEventDAO {
 		event.setId(0);
 		event.setEventTasks(eventTasksSet);
 		event.setName("Tests schreiben");
-		
+
 	}
-	
+
 	@Test
 	public void testSaveEvent() {
 		Event savedEvent = eventDAO.save(event);
-		assertTrue(savedEvent.getId()>0);
+		assertTrue(savedEvent.getId() > 0);
 	}
-	
+
 	@Test
-	public void testFindEventById() {		
+	public void testFindEventById() {
 		Event savedEvent = eventDAO.save(event);
 		Event foundEvent = eventDAO.findById(savedEvent.getId());
 		assertNotNull(foundEvent);
 	}
+
 	@Test
-	public void testFetchAll() {		
+	public void testFetchAll() {
 		List<Event> events = eventDAO.fetchAll();
-		if(!events.isEmpty())
+		if (!events.isEmpty())
 			for (Event event : events) {
 				eventDAO.remove(event);
 			}
 		events = eventDAO.fetchAll();
 		assertTrue(events.isEmpty());
 		Event savedEvent = eventDAO.save(event);
-		assertTrue(savedEvent.getId()>0);
+		assertTrue(savedEvent.getId() > 0);
 		events = eventDAO.fetchAll();
 		assertFalse(events.isEmpty());
 	}
-	
+
 	@Test
 	public void testRemoveEventById() {
 		Event savedEvent = eventDAO.save(event);
@@ -85,31 +83,26 @@ public class TestEventDAO {
 		Event removedEvent = eventDAO.findById(savedEventId);
 		assertNull(removedEvent);
 	}
-	
+
 	@Test(expected = UnsupportedOperationException.class)
 	public void testExceptionAtDeleteAll() {
-		eventDAO.deleteAll();		
+		eventDAO.deleteAll();
 	}
-	@Test(expected = ConstraintViolationException.class)//TODO Exception
+
+	@Test(expected = ConstraintViolationException.class)
 	public void testExceptionAtSaveNullName() {
 		event.setName(null);
-		eventDAO.save(event);		
+		eventDAO.save(event);
 	}
-	
-	@Test(expected = ValueIsNotValidException.class)//TODO Exception AssertionError?
-	public void testExceptionAtSave101letterName() {
-		String invalidName = MyUtil.generateStringWithLength(maxNameLetters+1, "a");
-		assertTrue(invalidName.length()==101);
-		event.setName(invalidName);
-		Event savedEvent = eventDAO.save(event);	
-		assertNull(savedEvent);
 
+	@Test(expected = PersistenceException.class)
+	public void testExceptionAtSave101letterName() {
+		String invalidName = MyUtil.generateRandomStringWithLength(
+				maxNameLetters + 1);
+		assertTrue(invalidName.length() == (maxNameLetters + 1));
+		event.setName(invalidName);
+		Event savedEvent = eventDAO.save(event);
+		assertNull(savedEvent);
 	}
-	@Test(expected = ValueIsNullException.class)//TODO Exception
-	public void testExceptionAtSaveNullEventTasks() {
-		event.setEventTasks(null);
-		Event savedEvent =eventDAO.save(event);	
-		assertTrue(savedEvent.getId()>0);
-	}
-	
+
 }

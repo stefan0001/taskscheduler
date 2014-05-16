@@ -43,12 +43,8 @@ public class IssueDraftDataServiceTest {
 	@Autowired
 	TimeTaskDataService timeTaskDataService;
 
-	// private Event event;
-	// private Event otherEvent;
-	// private EventTask eventTask;
-	// private int maxNameLength = 100;
-	int maxDescriptionLetters = 500;
-	int maxNameLetters = 100;
+	int maxDescriptionLength = 500;
+	int maxNameLength = 100;
 
 	@Before
 	public void setUp() throws Exception {
@@ -108,7 +104,7 @@ public class IssueDraftDataServiceTest {
 		assertTrue(savedIssueEntity.getId() > 0);
 
 		assertTrue(issueEntities.contains(savedIssueEntity));
-	
+
 	}
 
 	@Test
@@ -122,9 +118,9 @@ public class IssueDraftDataServiceTest {
 
 		TimeTask savedTimeTask = timeTaskDataService
 				.createTimeTask(newTimeTask);
-		
+
 		assertTrue(savedTimeTask.getId() > 0);
-		
+
 		IssueDraft relatedIssueDraft = timeTaskDataService
 				.createRelationTimeTaskIssueDraft(savedTimeTask.getId(),
 						savedIssueDraft);
@@ -132,13 +128,10 @@ public class IssueDraftDataServiceTest {
 		assertNotNull(relatedIssueDraft);
 
 		Set<TimeTask> timeTasks = issueDraftDataService
-				.getTimeTasksForIssueDraft(relatedIssueDraft.getId());
-		assertTrue(relatedIssueDraft.getEventTasks().isEmpty());
-		for (TimeTask timeTask : timeTasks) {
-			System.out.println(timeTask.getId() + " " + timeTask.getName());
-		}
-		assertTrue(savedTimeTask.equals(savedTimeTask));
-		assertTrue(relatedIssueDraft.getEventTasks().contains(savedTimeTask));
+				.getTimeTasksForIssueDraft(savedIssueDraft.getId());
+
+		assertFalse(timeTasks.isEmpty());
+		assertTrue(relatedIssueDraft.getTimeTasks().contains(savedTimeTask));
 		assertTrue(timeTasks.contains(savedTimeTask));
 
 	}
@@ -189,53 +182,68 @@ public class IssueDraftDataServiceTest {
 		umlauteIssueDraft = new IssueDraft(null, null, null);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
 		assertTrue(issueDrafts.containsAll(unfilteredIssueDrafts));
-		
+
 		issueDrafts = new LinkedList<IssueDraft>();
 		umlauteIssueDraft = new IssueDraft(null, "p", null);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
-		assertTrue(issueDrafts.contains(savedThirdIssueDraft));	
-		
+		assertTrue(issueDrafts.contains(savedThirdIssueDraft));
+
 		issueDrafts = new LinkedList<IssueDraft>();
 		umlauteIssueDraft = new IssueDraft(null, "pö", null);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
-		assertTrue(issueDrafts.contains(savedThirdIssueDraft));	
-		
+		assertTrue(issueDrafts.contains(savedThirdIssueDraft));
+
 		issueDrafts = new LinkedList<IssueDraft>();
 		umlauteIssueDraft = new IssueDraft(null, "pöö", null);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
-		assertTrue(issueDrafts.contains(thirdIssueDraft));	
-		
-	
+		assertTrue(issueDrafts.contains(savedThirdIssueDraft));
+
 	}
-	
+
 	@Test
-	public void testFilterRightSizedName(){
-		IssueDraft hugeDescriptionIssueDraft = new IssueDraft(MyUtil.generateStringWithLength(maxNameLetters, "a"), "hugeDescription", IssueType.BUG);
-		IssueDraft savedIssueDraft = issueDraftDataService.createIssueDraft(hugeDescriptionIssueDraft);
-		List<IssueDraft> issueDrafts=issueDraftDataService.filterIssueDraft(new IssueDraft(MyUtil.generateStringWithLength(maxNameLetters, "a"),null, null));
-		assertTrue(issueDrafts.contains(savedIssueDraft));	
+	public void testFilterRightSizedName() {
+		String nameToFilterFor = MyUtil.generateRandomStringWithLength(
+				maxNameLength);
+		IssueDraft hugeDescriptionIssueDraft = new IssueDraft(nameToFilterFor,
+				"hugeDescription", IssueType.BUG);
+		IssueDraft savedIssueDraft = issueDraftDataService
+				.createIssueDraft(hugeDescriptionIssueDraft);
+		List<IssueDraft> issueDrafts = issueDraftDataService
+				.filterIssueDraft(new IssueDraft(nameToFilterFor, null, null));
+		assertTrue(issueDrafts.contains(savedIssueDraft));
 
 	}
-	@Test(expected = ValueIsNotValidException.class)
-	public void testFilterOversizedName(){
 
-		IssueDraft umlauteIssueDraft = new IssueDraft(MyUtil.generateStringWithLength(maxNameLetters+1, "A"), null, null);
+	@Test(expected = ValueIsNotValidException.class)
+	public void testFilterOversizedName() {
+
+		IssueDraft umlauteIssueDraft = new IssueDraft(
+				MyUtil.generateRandomStringWithLength(maxNameLength + 1), null,
+				null);
 		issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
 	}
+
 	@Test
-	public void testFilterRightSizedDescription(){
-		IssueDraft hugeDescriptionIssueDraft = new IssueDraft("hugeDescription", MyUtil.generateStringWithLength(maxDescriptionLetters, "B"), IssueType.BUG);
-		IssueDraft savedIssueDraft = issueDraftDataService.createIssueDraft(hugeDescriptionIssueDraft);
-		List<IssueDraft> issueDrafts=issueDraftDataService.filterIssueDraft(new IssueDraft(null, MyUtil.generateStringWithLength(500, "B"), null));
-		assertTrue(issueDrafts.contains(savedIssueDraft));	
-
+	public void testFilterRightSizedDescription() {
+		IssueDraft hugeDescriptionIssueDraft = new IssueDraft(
+				"hugeDescription", MyUtil.generateSingleCharStringOfLength(
+						maxDescriptionLength, "B"), IssueType.BUG);
+		IssueDraft savedIssueDraft = issueDraftDataService
+				.createIssueDraft(hugeDescriptionIssueDraft);
+		List<IssueDraft> issueDrafts = issueDraftDataService
+				.filterIssueDraft(new IssueDraft(null, MyUtil
+						.generateSingleCharStringOfLength(500, "B"), null));
+		assertTrue(issueDrafts.contains(savedIssueDraft));
 	}
-	
+
 	@Test(expected = ValueIsNotValidException.class)
-	public void testFilterOversizedDescription(){
+	public void testFilterOversizedDescription() {
 
-		IssueDraft umlauteIssueDraft = new IssueDraft(null, MyUtil.generateStringWithLength(maxDescriptionLetters+1, "A"), null);
-		issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
+		IssueDraft issueDraft = new IssueDraft(
+				null,
+				MyUtil.generateRandomStringWithLength(maxDescriptionLength + 1),
+				null);
+		issueDraftDataService.filterIssueDraft(issueDraft);
 	}
-	
+
 }

@@ -1,9 +1,10 @@
-package de.sep.innovativeoperation.test.dao.complex;
+package de.sep.innovativeoperation.test.dao;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 
 import org.junit.Before;
@@ -16,13 +17,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
-import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
@@ -35,17 +30,14 @@ public class TestIssueDraftDAO {
 	@Autowired
 	IssueDraftDAO issueDraftDAO;
 
-	private IssueEntity issueEntity;
-
 	private IssueDraft issueDraft;
+	private int maxNameLength = 100;
+	private int maxDescriptionLength = 500;
 
 	@Before
 	public void setUp() throws Exception {
 		issueDraft = new IssueDraft("newIssue", "WorkToDo", IssueType.BUG);
-		issueEntity = new IssueEntity(IssueStatus.NEW,
-				IssueResolution.CANNOT_REPRODUCE, issueDraft);
-		// TODO
-		// issueEntityDAO.deleteAll();
+
 	}
 
 	@Test
@@ -113,23 +105,12 @@ public class TestIssueDraftDAO {
 	public void testFetchAllIssueEntitiesFromIssueDraftDAO() {
 		IssueDraft issueDraft2 = new IssueDraft("newIssue2", "WorkToDo2",
 				IssueType.BUG);
-		// IssueEntity issueEntity2 = new IssueEntity(IssueStatus.NEW,
-		// IssueResolution.DONE, issueDraft2);
+		
 		IssueDraft issueDraft3 = new IssueDraft("newIssue3", "WorkToDo3",
 				IssueType.BUG);
-		// IssueEntity issueEntity3 = new IssueEntity(IssueStatus.NEW,
-		// IssueResolution.DUPLICATE, issueDraft3);
-
-		System.out.println(issueDraftDAO.fetchAll().isEmpty());
-		System.out.println(issueDraftDAO.fetchAll().size());
-
-		printIssueDraftDAOElements();
-
+		
 		if (!issueDraftDAO.fetchAll().isEmpty())
 			deleteAllIssuesInIssueDraftDAO();
-
-		// System.out.println(issueDraftDAO.fetchAll().isEmpty());
-		// System.out.println(issueDraftDAO.fetchAll().size());
 
 		assertTrue(issueDraftDAO.fetchAll().isEmpty());
 
@@ -137,13 +118,7 @@ public class TestIssueDraftDAO {
 		IssueDraft issueDraftSaved = issueDraftDAO.save(issueDraft);
 		IssueDraft issueDraftSaved2 = issueDraftDAO.save(issueDraft2);
 		IssueDraft issueDraftSaved3 = issueDraftDAO.save(issueDraft3);
-
-		// System.out.println(issueDraftDAO.fetchAll().isEmpty());
-		// System.out.println(issueDraftDAO.fetchAll().size());
-
-		// TODO testFetchAllIssueEntitiesFromIssueEntityDAO detchAll is empty?!?
-		// printIssueDraftDAOElements();
-
+		
 		assertFalse(issueDraftDAO.fetchAll().isEmpty());
 
 		// CHECK
@@ -158,62 +133,25 @@ public class TestIssueDraftDAO {
 		int issueDraftSavedID = issueDraftSaved.getId();
 		int issueDraftSavedID2 = issueDraftSaved2.getId();
 		int issueDraftSavedID3 = issueDraftSaved3.getId();
-
-		// CHECK for ID in result of fetchAll()
-		// assertTrue(issueDrafts.get(0).getId() == (issueDraftSavedID));
-		// assertTrue(issueDrafts.get(0).getIssueEntities()
-		// .equals(issueDraftSaved.getIssueEntities()));
-		// assertTrue(issueDrafts.get(0).getIssueResolution()
-		// .equals(issueDraftSaved.getIssueResolution()));
-		// assertTrue(issueDrafts.get(0).getIssueStatus()
-		// .equals(issueDraftSaved.getIssueStatus()));
-		//
-		// assertTrue(issueDrafts.get(1).getId() == (issueDraftSavedID2));
-		// assertTrue(issueDrafts.get(1).getIssueEntities()
-		// .equals(issueEntitySaved2.getIssueDraft()));
-		// assertTrue(issueDrafts.get(1).getIssueResolution()
-		// .equals(issueEntitySaved2.getIssueResolution()));
-		// assertTrue(issueEnissueDraftstities.get(1).getIssueStatus()
-		// .equals(issueEntitySaved2.getIssueStatus()));
-		//
-		// assertTrue(issueDrafts.get(2).getId() == (issueDraftSavedID3));
-		// assertTrue(issueDrafts.get(2).getIssueEntities()
-		// .equals(issueEntitySaved3.getIssueDraft()));
-		// assertTrue(issueDrafts.get(2).getIssueResolution()
-		// .equals(issueEntitySaved3.getIssueResolution()));
-		// assertTrue(issueDrafts.get(2).getIssueStatus()
-		// .equals(issueEntitySaved3.getIssueStatus()));
-
+		
 		issueDraftDAO.remove(issueDraftSaved2);
 		assertNull(issueDraftDAO.findById(issueDraftSavedID2));
 
 		issueDrafts = issueDraftDAO.fetchAll();
 		assertFalse(issueDrafts.contains(issueDraftSaved2));
-		// TODO equals methode implementieren for contains() etc...
-		// assertFalse(issueEntities.contains(issueEntitySavedID2));
+
 		assertTrue(issueDrafts.get(0).getId() == (issueDraftSavedID));
 		assertTrue(issueDrafts.get(1).getId() == (issueDraftSavedID3));
 
 	}
 
-	private void printIssueDraftDAOElements() {
-		List<IssueDraft> issueDrafts = issueDraftDAO.fetchAll();
-		for (IssueDraft actualIssueDraft : issueDrafts) {
-			System.out.println(actualIssueDraft.getId() + " "
-					+ actualIssueDraft.getIssueName() + " "
-					+ actualIssueDraft.getIssueType());
-		}
-
-	}
-
 	private void deleteAllIssuesInIssueDraftDAO() {
 		List<IssueDraft> issueDrafts = issueDraftDAO.fetchAll();
+		assertFalse(issueDrafts.isEmpty());
 		for (IssueDraft actualIssueDraft : issueDrafts) {
-			System.out.println("DELETE : " + issueEntity.getId() + " "
-					+ actualIssueDraft.getIssueName() + " "
-					+ actualIssueDraft.getIssueType());
-
-			issueDraftDAO.remove(issueDraftDAO.findById(actualIssueDraft
+						issueDraftDAO.remove(issueDraftDAO.findById(actualIssueDraft
+					.getId()));
+						assertNull(issueDraftDAO.findById(actualIssueDraft
 					.getId()));
 		}
 
@@ -226,59 +164,49 @@ public class TestIssueDraftDAO {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testSaveIssueDraftNullName() {
-		// SAVE
-		// IssueEntity issueEntitySaved = issueEntityDAO.save(null);
 		issueDraft.setIssueName(null);
 		issueDraftDAO.save(issueDraft);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testSaveIssueDraftNullDescription() {
-		// SAVE
-		// IssueEntity issueEntitySaved = issueEntityDAO.save(null);
 		issueDraft.setIssueDescription(null);
 		issueDraftDAO.save(issueDraft);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testSaveIssueDraftNullType() {
-		// SAVE
-		// IssueEntity issueEntitySaved = issueEntityDAO.save(null);
 		issueDraft.setIssueType(null);
 		issueDraftDAO.save(issueDraft);
 	}
 
 	@Test
 	public void testSaveIssueDraftNullIssueEntities() {
-		// SAVE
-		// IssueEntity issueEntitySaved = issueEntityDAO.save(null);
 		issueDraft.setIssueEntities(null);
 		IssueDraft savedIssueDraft = issueDraftDAO.save(issueDraft);
 		assertTrue(savedIssueDraft.getId()>0);
 	}
 
 	@Test
-	public void testSaveIssueDraftNullTimeTasks() {
-		// SAVE
-		// IssueEntity issueEntitySaved = issueEntityDAO.save(null);
+	public void testSaveIssueDraftNullTimeTasks() {		
 		issueDraft.setTimeTasks(null);
 		IssueDraft savedIssueDraft = issueDraftDAO.save(issueDraft);
 		assertTrue(savedIssueDraft.getId()>0);
 	
 	}
 
-	@Test(expected = ValueIsNotValidException.class)
+	@Test(expected = PersistenceException.class)
 	public void testSaveIssueDraft101LetterName() {
-		String invalidName = MyUtil.generateStringWithLength(101, "a");
-		assertTrue(invalidName.length() == 101);
+		String invalidName = MyUtil.generateRandomStringWithLength(maxNameLength+1);
+		assertTrue(invalidName.length() == (maxNameLength+1));
 		issueDraft.setIssueName(invalidName);
 		IssueDraft savedIssueDraft = issueDraftDAO.save(issueDraft);
 		assertTrue(savedIssueDraft.getId()>0);
 	}
-	@Test//(expected = ValueIsNotValidException.class)
-	public void testSaveIssueDraft101LetterDescription() {
-		String invalidDescription = "babababababababababababababababababababababababababababababababababababababababababababababababababab";
-		assertTrue(invalidDescription.length() == 101);
+	@Test(expected = PersistenceException.class)
+	public void testSaveIssueDraft501LetterDescription() {
+		String invalidDescription = MyUtil.generateRandomStringWithLength(maxDescriptionLength+1);
+		assertTrue(invalidDescription.length() == (maxDescriptionLength+1));
 		issueDraft.setIssueDescription(invalidDescription);
 		issueDraft = issueDraftDAO.save(issueDraft);
 		assertTrue(issueDraft.getId()>0);

@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.test.dao.complex;
+package de.sep.innovativeoperation.test.dao;
 
 import static org.junit.Assert.*;
 
@@ -19,12 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.sep.innovativeoperation.taskscheduler.dao.EventTaskDAO;
 import de.sep.innovativeoperation.taskscheduler.dao.TimeTaskDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
-import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
@@ -89,50 +84,30 @@ public class TestTimeTaskDAO {
 	@Test(expected = ConstraintViolationException.class)
 	public void testSaveTimeTasksWithNullFirstFireTimeInTimeTaskDAO() {
 
-		// try {
-		TimeTask savedTimeTask = timeTaskDAO.save(timeTaskNullFirstFireTime);
-		// } catch (Exception e) {
-		// System.out.println("timeTaskNullFirstFireTime Exception!");
-
-		// }
-//		assertTrue(savedTimeTask.getId() > 0);
-//		assertNotNull(timeTaskDAO.findById(savedTimeTask.getId()));
+		timeTaskDAO.save(timeTaskNullFirstFireTime);
 	}
 
 	@Test
 	public void testSaveTimeTasksWithNullIntervallInTimeTaskDAO() {
 
-		// ****************************
-		// savedTimeTask = timeTask;
-
-		// try {
 		TimeTask savedTimeTask = timeTaskDAO.save(timeTaskNullIntervall);
-		// } catch (Exception e) {
-		// System.out.println("timeTaskNullIntervall Exception!");
-		// }
+
 		assertTrue(savedTimeTask.getId() > 0);
 		assertNotNull(timeTaskDAO.findById(savedTimeTask.getId()));
 	}
 
-	@Test//TODO TimeTasksWithNullIssueDraftsInTimeTaskDAO SOLL DASS SO???
-	public void testSaveTimeTasksWithNullIssueDraftsInTimeTaskDAO() {		
+	@Test
+	public void testSaveTimeTasksWithNullIssueDraftsInTimeTaskDAO() {
 		TimeTask savedTimeTask = timeTaskDAO.save(timeTaskNullIssueDrafts);
 		assertNotNull(savedTimeTask);
-		assertTrue(savedTimeTask.getId()>0);
+		assertTrue(savedTimeTask.getId() > 0);
 	}
 
-	// TODO Exception
 	@Test(expected = ConstraintViolationException.class)
 	public void testSaveTimeTasksWithNullNameInTimeTaskDAO() {
 
-		// ****************************
-		// savedTimeTask = timeTask;
-		// try {
-		TimeTask savedTimeTask = timeTaskDAO.save(timeTaskNullName);
-		// } catch (Exception e)
-		// {System.out.println("timeTaskNullName Exception!");}
-		// assertFalse(savedTimeTask.getId() > 0);
-		// assertNull(timeTaskDAO.findById(savedTimeTask.getId()));
+		timeTaskDAO.save(timeTaskNullName);
+
 	}
 
 	@Test

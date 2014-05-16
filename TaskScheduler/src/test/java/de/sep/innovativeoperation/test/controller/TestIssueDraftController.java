@@ -1,14 +1,10 @@
-package de.sep.innovativeoperation.test.controller.complex;
+package de.sep.innovativeoperation.test.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,16 +21,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.core.Is.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.mockito.Mockito.*;
 
-import org.springframework.test.web.servlet.result.ContentResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 import org.springframework.web.context.WebApplicationContext;
-
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import de.sep.innovativeoperation.taskscheduler.controller.IssueDraftController;
@@ -47,10 +39,6 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResourc
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntitiesResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueEntityResource;
-import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftResourceAssembler;
-import de.sep.innovativeoperation.taskscheduler.service.assembler.issuedraft.IssueDraftsResourceAssembler;
-//import de.sep.innovativeoperation.taskscheduler.service.IssueDraftService;
-//import de.sep.innovativeoperation.taskscheduler.service.IssueEntityService;
 import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftResourceService;
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
 
@@ -85,7 +73,6 @@ public class TestIssueDraftController {
 	private IssueEntitiesResource issueEntitiesResource;
 	private IssueEntityResource issueEntityResource;
 	private IssueEntity issueEntity;
-	private String mockedResponse = "{\"links\":[],\"id\":0,\"issueName\":\"name2\",\"issueDescription\":\"issueDescription2\",\"issueType\":\"BUG\"}";
 
 	@Autowired
 	private WebApplicationContext wac;
@@ -96,7 +83,6 @@ public class TestIssueDraftController {
 			reset(issueDraftResourceService);
 		if (issueEntityResourceService != null)
 			reset(issueEntityResourceService);
-		// TODO TestIssueDraftController JSON setzen!
 
 		// Process mock annotations
 		MockitoAnnotations.initMocks(this);
@@ -142,8 +128,8 @@ public class TestIssueDraftController {
 		when(issueDraftResourceService.getById(1)).thenReturn(
 				issueDraftResource);
 
-		this.mockMvc.perform(get("/issuedraft/1").accept(appJSON))
-				.andDo(print()).andExpect(status().isOk());
+		this.mockMvc.perform(get("/issuedraft/1").accept(appJSON)).andExpect(
+				status().isOk());
 
 		verify(issueDraftResourceService, times(1)).getById(1);
 	}
@@ -169,35 +155,23 @@ public class TestIssueDraftController {
 						issueDraftResourceTemp)).thenReturn(
 				alteredIssueDraftResource);
 
-		System.out.println(mockedResponse);
 		this.mockMvc
 				.perform(
 						put(url + "/0")
 								.contentType(appJSON)
 								.content(
 										"{\"links\":[],\"id\":0,\"issueName\":\"name2\",\"issueDescription\":\"issueDescription2\",\"issueType\":\"BUG\"}"))
-				.andDo(print())
+
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.issueName", is("name2")))
 				.andExpect(
-						jsonPath("$.issueDescription", is("issueDescription2"))) // content.embedded.issueDraft.
+						jsonPath("$.issueDescription", is("issueDescription2")))
 				.andExpect(jsonPath("$.issueType", is("BUG")));
 
 		verify(issueDraftResourceService, times(1)).updateIssueDraft(0,
 				issueDraftResourceTemp);
-
 	}
 
-	/**
-	 * 
-	 * @throws Exception
-	 * 
-	 *             A successful response SHOULD be 200 (OK) if the response
-	 *             includes an entity describing the status, 202 (Accepted) if
-	 *             the action has not yet been enacted, or 204 (No Content) if
-	 *             the action has been enacted but the response does not include
-	 *             an entity.
-	 */
 	@Test
 	public void testDeleteIssueDraftWithIdZeroExpect200() throws Exception {
 
@@ -215,7 +189,7 @@ public class TestIssueDraftController {
 				.thenReturn(issueEntitiesResource);
 
 		this.mockMvc.perform(get(url + "/0/issueentity").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+				.andExpect(status().isOk());
 
 		verify(issueDraftResourceService, times(1))
 				.getIssueEntitiesForIssueDraft(0);
@@ -231,34 +205,72 @@ public class TestIssueDraftController {
 		mockedIssueEntity.setIssueResolution(IssueResolution.DONE);
 		mockedIssueEntity.setIssueStatus(IssueStatus.CLOSED);
 
-		IssueEntityResource mockedIssueEntityResource = new IssueEntityResource(
-				issueEntity);
 		IssueEntityResource newIssueEntityResource = issueEntityResource;
-		
+
 		when(
 				issueEntityResourceService.createIssueEntity(1,
 						newIssueEntityResource)).thenReturn(
-								newIssueEntityResource);
+				newIssueEntityResource);
 
 		this.mockMvc
 				.perform(
 						post(url + "/1/issueentity")
 								.contentType(appJSON)
 								.content(
-										"{\"links\":[],\"id\":0,\"issueName\":\"name2\",\"issueDescription\":\"issueDescription2\",\"issueType\":\"BUG\"}"
+										"{\"links\":[],\"id\":0,\"issueName\":\"name2\",\"issueDescription\":\"issueDescription2\",\"issueType\":\"BUG\"}")
+								.accept(appJSON)).andExpect(status().isOk());
 
-//										"{\"issueStatus\":\"NEW\",\"issueResolution\":\"FIXED\",\"ID\":1,\"embedded\":{\"issueDraft\":"+
-//								"{\"issueName\":\"TEST\",\"issueDescription\":\"TEST\",\"issueType\":\"BUG\",\"ID\":1,\"links\":"
-//												+"[{\"rel\":\"issueentities\",\"href\":\"\"},"+ //http://localhost:8083/TaskScheduler/issuedraft/1/issueentity
-//								"{\"rel\":\"self\",\"href\":\"\"}]}},\"links\":"+	//http://localhost:8083/TaskScheduler/issuedraft/1\
-//												"[{\"rel\":\"self\",\"href\":\"\"}]}" //http://localhost:8083/TaskScheduler/issueentity/1\
-//								// "{\"links\":[],\"id\":0,\"issueName\":\"name2\",\"issueDescription\":\"issueDescription2\",\"issueType\":\"BUG\"}"
-												
-								).accept(appJSON)).andDo(print())
-				.andExpect(status().isOk());
-		// System.out.println("{\"issueStatus\":\"NEW\",\"issueResolution\":\"FIXED\",\"ID\":1,\"embedded\":{\"issueDraft\":{\"issueName\":\"TEST\",\"issueDescription\":\"TEST\",\"issueType\":\"BUG\",\"ID\":1,\"links\":[{\"rel\":\"issueentities\",\"href\":\"http://localhost:8083/TaskScheduler/issuedraft/1/issueentity\"},{\"rel\":\"self\",\"href\":\"http://localhost:8083/TaskScheduler/issuedraft/1\"}]}},\"links\":[{\"rel\":\"self\",\"href\":\"http://localhost:8083/TaskScheduler/issueentity/1\"}]}");
 		verify(issueEntityResourceService, times(1)).createIssueEntity(1,
 				newIssueEntityResource);
+	}
+
+	@Test
+	public void testFilterIssueDrafts200() throws Exception {
+		IssueDraftResource issueDraftResource = new IssueDraftResource();
+		IssueDraftsResource returnedIssueDraftsResource = new IssueDraftsResource();
+
+		when(issueDraftResourceService.filterIssueDrafts(issueDraftResource))
+				.thenReturn(returnedIssueDraftsResource);
+
+		this.mockMvc.perform(get(url).accept(appJSON).param("filter", "{ }"))
+				.andExpect(status().isOk());
+
+		verify(issueDraftResourceService, times(0)).getAll();
+
+		verify(issueDraftResourceService, times(1)).filterIssueDrafts(
+				issueDraftResource);
+	}
+
+	public void testFilterIssueDraftsWithoutParam() throws Exception {
+		IssueDraftResource issueDraftResource = new IssueDraftResource();
+		IssueDraftsResource returnedIssueDraftsResource = new IssueDraftsResource();
+		String thisIsNull = null;
+		
+		when(issueDraftResourceService.filterIssueDrafts(issueDraftResource))
+				.thenReturn(returnedIssueDraftsResource);
+
+		this.mockMvc.perform(get(url).accept(appJSON).param("filter", thisIsNull))
+				.andExpect(status().isOk());
+
+		verify(issueDraftResourceService, times(0)).filterIssueDrafts(
+				issueDraftResource);
+
+		verify(issueDraftResourceService, times(1)).getAll();
+	}
+
+	@Test
+	public void testCreateIssueDraftExpect200() throws Exception {
+		IssueDraftResource issueDraftResource = new IssueDraftResource();
+		IssueDraftResource returnedIssueDraftResource = new IssueDraftResource();
+		
+		when(issueDraftResourceService.createIssueDraft(issueDraftResource))
+				.thenReturn(returnedIssueDraftResource);
+
+		this.mockMvc.perform(post(url).accept(appJSON).contentType(appJSON).content("{ }")).andExpect(
+				status().isOk());
+
+		verify(issueDraftResourceService, times(1)).createIssueDraft(
+				issueDraftResource);
 	}
 
 	@Test

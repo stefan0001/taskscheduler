@@ -15,8 +15,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
@@ -40,24 +38,16 @@ public class EventTaskDataServiceTest {
 	IssueDraftDataService issueDraftDataService;
 
 	private Event event;
-	private Event otherEvent;
 	private EventTask eventTask;
-	private int maxNameLength = 100;
 
 	@Before
 	public void setUp() throws Exception {
 		event = new Event("foo");
-//		event.setId(0);
 		event.setEventTasks(new HashSet<EventTask>());
 		event = eventDataService.createEvent(event);
-		
-
-		otherEvent = new Event("baa");
-//		otherEvent.setId(0);
 
 		eventTask = new EventTask();
 		eventTask.setName("DooFoo");
-//		eventTask.s
 
 	}
 
@@ -66,14 +56,14 @@ public class EventTaskDataServiceTest {
 		Event newEvent = new Event("foo");
 		newEvent.setEventTasks(new HashSet<EventTask>());
 		Event savedEvent = eventDataService.createEvent(newEvent);
-		assertTrue(savedEvent.getId()>0);
+		assertTrue(savedEvent.getId() > 0);
+
 		EventTask newEventTask = new EventTask("foo");
 		newEventTask.setIssueDrafts(new HashSet<IssueDraft>());
-		// assertNotNull(eventDataService.getById(event.getId()));
 		assertNotNull(eventTaskDataService);
 		assertNotNull(savedEvent);
 		assertNotNull(eventTask);
-		
+
 		EventTask savedEventTask = eventTaskDataService.createEventTask(
 				savedEvent.getId(), newEventTask);
 		assertTrue(savedEventTask.getId() > 0);
@@ -93,29 +83,21 @@ public class EventTaskDataServiceTest {
 	@Test(expected = ResourceNotFoundException.class)
 	public void testCreateGoodEventTaskWithUnsavedEventMethodIntEventTask() {
 		Event unsavedEvent = new Event("unsaved");
-		EventTask savedEventTask = eventTaskDataService.createEventTask(
-				unsavedEvent.getId(), eventTask);
-//		assertTrue(savedEventTask.getId() > 0);
-//		assertTrue(savedEventTask.getEvent().equals(unsavedEvent));
+		eventTaskDataService.createEventTask(unsavedEvent.getId(), eventTask);
 	}
 
 	@Test(expected = ResourceNotFoundException.class)
 	public void testCreateGoodEventTaskWithUnsavedEventMethodEventEventTask() {
 		Event newEvent = new Event("baa");
-		assertTrue(newEvent.getId()==0);
-		EventTask savedEventTask = eventTaskDataService.createEventTask(
-				newEvent.getId(), eventTask);
-//		assertTrue(savedEventTask.getId() > 0);
-//		assertTrue(savedEventTask.getEvent().getName()
-//				.equals(newEvent.getName()));
-//		assertTrue(savedEventTask.getEvent().getId() > 0);
+		assertTrue(newEvent.getId() == 0);
+		eventTaskDataService.createEventTask(newEvent.getId(), eventTask);
 	}
 
 	@Test
 	public void testCreateGoodEventTaskWithSavedEventMethodEventEventTask() {
 
-		EventTask savedEventTask = eventTaskDataService.createEventTask(event.getId(),
-				eventTask);
+		EventTask savedEventTask = eventTaskDataService.createEventTask(
+				event.getId(), eventTask);
 
 		assertTrue(savedEventTask.getId() > 0);
 		assertTrue(savedEventTask.getEvent().getName().equals(event.getName()));
@@ -128,8 +110,8 @@ public class EventTaskDataServiceTest {
 		EventTask otherEventTask = new EventTask();
 		otherEventTask.setName("DooBaa");
 
-		EventTask savedEventTask = eventTaskDataService.createEventTask(event.getId(),
-				eventTask);
+		EventTask savedEventTask = eventTaskDataService.createEventTask(
+				event.getId(), eventTask);
 
 		EventTask updatedEventTask = eventTaskDataService.updateEventTask(
 				savedEventTask.getId(), otherEventTask);
@@ -152,97 +134,55 @@ public class EventTaskDataServiceTest {
 		IssueDraft newIssueDraft = new IssueDraft("foo", "dooFoo",
 				IssueType.BUG);
 
-		IssueDraft savedIssueDraft = issueDraftDataService.createIssueDraft(newIssueDraft);
+		IssueDraft savedIssueDraft = issueDraftDataService
+				.createIssueDraft(newIssueDraft);
 
 		EventTask newEventTask = new EventTask("DooFooAndDooBaa");
-	
-		EventTask savedEventTask = eventTaskDataService.createEventTask(event.getId(),
-				newEventTask);
-		
-		IssueDraft relatedIssueDraft = eventTaskDataService.createRelationEventTaskIssueDraft(savedEventTask.getId(), savedIssueDraft);
-		
+
+		EventTask savedEventTask = eventTaskDataService.createEventTask(
+				event.getId(), newEventTask);
+
+		IssueDraft relatedIssueDraft = eventTaskDataService
+				.createRelationEventTaskIssueDraft(savedEventTask.getId(),
+						savedIssueDraft);
+
 		assertTrue(savedEventTask.getId() > 0);
 		Set<IssueDraft> receivedIssueDrafts = eventTaskDataService
 				.getIssueDraftsforEventTask(savedEventTask.getId());
-		
-		assertTrue(receivedIssueDrafts.contains(relatedIssueDraft));
-//		
-//		
-//		assertFalse(receivedIssueDrafts.isEmpty());
-//		assertNotNull(receivedIssueDrafts);
-//		// assertTrue(receivedIssueDrafts.size()==1);
-//		for (IssueDraft issueDraft : receivedIssueDrafts) {
-//			assertTrue(issueDraft.getId() > 0);
-//			System.out.println(issueDraft.getIssueName());
-//		}
-//		assertTrue(receivedIssueDrafts.contains(newIssueDraft));
 
+		assertTrue(receivedIssueDrafts.contains(relatedIssueDraft));
 	}
 
 	@Test
 	public void testCreateRelationEventTaskIssueDraft() {
-		
+
 		IssueDraft newIssueDraft = new IssueDraft("foo", "dooFoo",
 				IssueType.BUG);
 
-		IssueDraft savedIssueDraft = issueDraftDataService.createIssueDraft(newIssueDraft);
+		IssueDraft savedIssueDraft = issueDraftDataService
+				.createIssueDraft(newIssueDraft);
 
 		EventTask newEventTask = new EventTask("DooFooAndDooBaa");
-	
-		EventTask savedEventTask = eventTaskDataService.createEventTask(event.getId(),
-				newEventTask);
-		
-		IssueDraft relatedIssueDraft = eventTaskDataService.createRelationEventTaskIssueDraft(savedEventTask.getId(), savedIssueDraft);
-		
+
+		EventTask savedEventTask = eventTaskDataService.createEventTask(
+				event.getId(), newEventTask);
+
+		IssueDraft relatedIssueDraft = eventTaskDataService
+				.createRelationEventTaskIssueDraft(savedEventTask.getId(),
+						savedIssueDraft);
+
 		assertTrue(relatedIssueDraft.getEventTasks().contains(savedEventTask));
 		assertTrue(savedEventTask.getIssueDrafts().contains(relatedIssueDraft));
-
-//		Event newEvent = new Event("hitFooBaa");
-//		newEvent.setEventTasks(new HashSet<EventTask>());
-//		IssueDraft issueDraftOne = new IssueDraft("foo", "dooFoo",
-//				IssueType.BUG);
-//		IssueDraft issueDraftTwo = new IssueDraft("baa", "dooBaa",
-//				IssueType.BUG);
-//
-//		Set<IssueDraft> issueDrafts = new HashSet<IssueDraft>();
-//		issueDrafts.add(issueDraftOne);
-//		issueDrafts.add(issueDraftTwo);
-//		EventTask eventTaskToRelateWith = new EventTask();
-//		eventTaskToRelateWith.setName("DooFooAndDooBaa");
-//
-//		eventTaskToRelateWith = eventTaskDataService.createEventTask(
-//				event.getId(), eventTaskToRelateWith);
-//
-//		assertTrue(eventTaskToRelateWith.getId() > 0);
-//		IssueDraft relatedIssueDraft = eventTaskDataService
-//				.createRelationEventTaskIssueDraft(
-//						eventTaskToRelateWith.getId(), issueDraftOne);
-//		assertTrue(relatedIssueDraft.getId() > 0);
-//	
-//		assertTrue(relatedIssueDraft.getIssueName().equals(
-//				issueDraftOne.getIssueName()));
-//
-//		assertTrue(eventTaskToRelateWith.getIssueDrafts().contains(
-//				issueDraftOne));
-//	
-//		relatedIssueDraft = eventTaskDataService
-//				.createRelationEventTaskIssueDraft(
-//						eventTaskToRelateWith.getId(), issueDraftTwo);
-//		assertTrue(relatedIssueDraft.getId() > 0);
-//		assertTrue(eventTaskToRelateWith.getIssueDrafts().contains(
-//				issueDraftOne));
-
 	}
 
 	@Test
 	public void testDeleteRelationEventTaskIssueDraft() {
 		IssueDraft issueDraftOne = new IssueDraft("foo", "dooFoo",
 				IssueType.BUG);
-//		event = new Event("fooEvent");
-//		Event savedEvent = eventDataService.createEvent(event);
-		assertTrue(event.getId()>0);
-		EventTask savedEventTask = eventTaskDataService.createEventTask(event.getId(),
-				eventTask);
+
+		assertTrue(event.getId() > 0);
+		EventTask savedEventTask = eventTaskDataService.createEventTask(
+				event.getId(), eventTask);
 		IssueDraft savedIssueDraft = eventTaskDataService
 				.createRelationEventTaskIssueDraft(savedEventTask.getId(),
 						issueDraftOne);
@@ -254,8 +194,7 @@ public class EventTaskDataServiceTest {
 
 	@Test(expected = ResourceNotFoundException.class)
 	public void testDeleteRelationEventTaskUnrelatedIssueDraft() {
-		IssueDraft issueDraftOne = new IssueDraft("foo", "dooFoo",
-				IssueType.BUG);
+
 		IssueDraft issueDraftTwo = new IssueDraft("baa", "dooBaa",
 				IssueType.BUG);
 
@@ -263,8 +202,10 @@ public class EventTaskDataServiceTest {
 				.createRelationEventTaskIssueDraft(eventTask.getId(),
 						issueDraftTwo);
 		assertTrue(savedIssueDraft.getId() > 0);
+
 		eventTaskDataService.deleteRelationEventTaskIssueDraft(
 				eventTask.getId(), savedIssueDraft.getId());
+
 		eventTaskDataService.deleteRelationEventTaskIssueDraft(
 				eventTask.getId(), savedIssueDraft.getId());
 
@@ -274,12 +215,18 @@ public class EventTaskDataServiceTest {
 	public void testGetAllEventTasksForEvent() {
 		Event newEvent = new Event("foo");
 		newEvent.setEventTasks(new HashSet<EventTask>());
+
 		Event savedEvent = eventDataService.createEvent(newEvent);
 		EventTask newEventTask = new EventTask("baa");
+
 		newEventTask.setEvent(savedEvent);
-		assertTrue(savedEvent.getId()>0);
-		EventTask createdEventTask = eventTaskDataService.createEventTask(savedEvent.getId(), newEventTask);
-		Set<EventTask> eventTasks = eventTaskDataService.getAllEventTasksForEvent(savedEvent.getId());
+		assertTrue(savedEvent.getId() > 0);
+
+		EventTask createdEventTask = eventTaskDataService.createEventTask(
+				savedEvent.getId(), newEventTask);
+		Set<EventTask> eventTasks = eventTaskDataService
+				.getAllEventTasksForEvent(savedEvent.getId());
+
 		assertNotNull(eventTasks);
 		assertFalse(eventTasks.isEmpty());
 		assertTrue(eventTasks.contains(createdEventTask));

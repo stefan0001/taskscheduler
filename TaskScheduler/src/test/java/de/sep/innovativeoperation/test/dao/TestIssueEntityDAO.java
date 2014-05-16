@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.test.dao.complex;
+package de.sep.innovativeoperation.test.dao;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +16,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
@@ -40,9 +39,7 @@ public class TestIssueEntityDAO {
 	public void setUp() throws Exception {
 		issueDraft = new IssueDraft("newIssue", "WorkToDo", IssueType.BUG);
 		issueEntity = new IssueEntity(IssueStatus.NEW,
-				IssueResolution.CANNOT_REPRODUCE, issueDraft);
-		// TODO
-		// issueEntityDAO.deleteAll();
+				IssueResolution.CANNOT_REPRODUCE, issueDraft);	
 	}
 
 	@Test
@@ -115,25 +112,15 @@ public class TestIssueEntityDAO {
 		IssueEntity issueEntity3 = new IssueEntity(IssueStatus.NEW,
 				IssueResolution.DUPLICATE, issueDraft3);
 
-		System.out.println(issueEntityDAO.fetchAll().isEmpty());
-		System.out.println(issueEntityDAO.fetchAll().size());
-		printIssueEntityDAOElements();
 		if (!issueEntityDAO.fetchAll().isEmpty())
 			deleteAllIssuesInIssueEntityDAO();
-		System.out.println(issueEntityDAO.fetchAll().isEmpty());
-		System.out.println(issueEntityDAO.fetchAll().size());
+		
 		assertTrue(issueEntityDAO.fetchAll().isEmpty());
 
 		// SAVE
 		IssueEntity issueEntitySaved = issueEntityDAO.save(issueEntity);
 		IssueEntity issueEntitySaved2 = issueEntityDAO.save(issueEntity2);
 		IssueEntity issueEntitySaved3 = issueEntityDAO.save(issueEntity3);
-
-		System.out.println(issueEntityDAO.fetchAll().isEmpty());
-		System.out.println(issueEntityDAO.fetchAll().size());
-
-		// TODO testFetchAllIssueEntitiesFromIssueEntityDAO detchAll is empty?!?
-		printIssueEntityDAOElements();
 
 		assertFalse(issueEntityDAO.fetchAll().isEmpty());
 
@@ -179,33 +166,18 @@ public class TestIssueEntityDAO {
 		assertNull(issueEntityDAO.findById(issueEntitySavedID2));
 
 		issueEntities = issueEntityDAO.fetchAll();
-		// TODO equals methode implementieren for contains() etc...
-		// assertFalse(issueEntities.contains(issueEntitySavedID2));
+		
 		assertTrue(issueEntities.get(0).getId() == (issueEntitySavedID));
 		assertTrue(issueEntities.get(1).getId() == (issueEntitySavedID3));
 
 	}
 
-	private void printIssueEntityDAOElements() {
-		List<IssueEntity> issueEntities = issueEntityDAO.fetchAll();
-		for (IssueEntity issueEntity : issueEntities) {
-			System.out.println(issueEntity.getId());
-			System.out.println(issueEntity.getId() + " "
-					+ issueEntity.getIssueStatus() + " "
-					+ issueEntity.getIssueResolution() + " "
-					+ issueEntity.getIssueDraft().getIssueName());
-		}
-
-	}
+	
 
 	private void deleteAllIssuesInIssueEntityDAO() {
 		List<IssueEntity> issueEntities = issueEntityDAO.fetchAll();
 		for (IssueEntity issueEntity : issueEntities) {
-			System.out.println(issueEntity.getId());
-			System.out.println("" + issueEntity.getIssueStatus() + " "
-					+ issueEntity.getIssueResolution() + " "
-					+ issueEntity.getIssueDraft().getIssueName());
-
+			
 			issueEntityDAO.remove(issueEntityDAO.findById(issueEntity.getId()));
 		}
 

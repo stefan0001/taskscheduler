@@ -31,6 +31,7 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.EventValidati
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftValidationService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueEntityValidationService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.TimeTaskValidationService;
+import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -39,7 +40,7 @@ import de.sep.innovativeoperation.taskscheduler.service.validation.TimeTaskValid
 public class TimeTaskValidationServiceTest {
 
 	private TimeTask timeTask;
-
+	private int maxNameLength = 100;
 	@Autowired
 	TimeTaskValidationService timeTaskValidationService;
 
@@ -49,9 +50,20 @@ public class TimeTaskValidationServiceTest {
 		timeTask.setName("foo");
 		Calendar firstFireTime = Calendar.getInstance();
 		timeTask.setFirstFireTime(firstFireTime);
-		timeTask.setIntervall(0);
+		timeTask.setIntervall(3600);
 	}
 
+	
+	@Test
+	public void testCheckGoodName() {
+		timeTask.setName(MyUtil.generateRandomStringWithLength(maxNameLength));
+		assertTrue(timeTask.getName().length() == maxNameLength);
+		
+		timeTaskValidationService.checkObject(timeTask);
+		
+		
+	}
+	
 	@Test(expected = ValueIsNullException.class)
 	public void testCheckNullName() {
 		timeTask.setName(null);
@@ -59,12 +71,12 @@ public class TimeTaskValidationServiceTest {
 	}
 
 	@Test(expected = ValueIsNotValidException.class)
-	public void testCheckOverlength501Name() {
-		timeTask.setName(generateStringWithLength(101));
+	public void testCheckOverlength101Name() {
+		timeTask.setName(MyUtil.generateRandomStringWithLength(maxNameLength+1));
 		timeTaskValidationService.checkObject(timeTask);
 	}
 
-	@Test(expected = ValueIsNotValidException.class)
+	@Test
 	public void testCheckEmptyName() {
 		timeTask.setName("");
 		timeTaskValidationService.checkObject(timeTask);
@@ -77,12 +89,12 @@ public class TimeTaskValidationServiceTest {
 	}
 
 	@Test(expected = ValueIsNotValidException.class)
-	public void testCheckIntervallOver3600() {
+	public void testCheckIntervallUnder3600() {
 		timeTask.setIntervall(3599);
 		timeTaskValidationService.checkObject(timeTask);
-	}
+	}	
 
-	@Test(expected = ValueIsNotValidException.class)
+	@Test//(expected = ValueIsNotValidException.class)
 	public void testCheckIntervallMAX_VALUE() {
 		timeTask.setIntervall(Integer.MAX_VALUE);
 		timeTaskValidationService.checkObject(timeTask);
@@ -92,14 +104,6 @@ public class TimeTaskValidationServiceTest {
 	public void testCheckIntervallMIN_VALUE() {
 		timeTask.setIntervall(Integer.MIN_VALUE);
 		timeTaskValidationService.checkObject(timeTask);
-	}
-
-	public String generateStringWithLength(int length) {
-		StringBuffer outputBuffer = new StringBuffer(length);
-		for (int i = 0; i < length; i++) {
-			outputBuffer.append("a");
-		}
-		return outputBuffer.toString();
 	}
 
 }

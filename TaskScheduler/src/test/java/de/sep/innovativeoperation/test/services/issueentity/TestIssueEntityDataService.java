@@ -2,7 +2,6 @@ package de.sep.innovativeoperation.test.services.issueentity;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,9 +55,7 @@ public class TestIssueEntityDataService {
 
 	@Test
 	public void testCreateIssueEntityByEntityDataService() {
-		System.out.println("testCreateIssueEntityByEntityDataService");
 		IssueEntity newIssueEntity = new IssueEntity();
-		System.out.println("newIssueEntity = null? " + newIssueEntity == null);
 
 		newIssueEntity.setIssueResolution(IssueResolution.UNRESOLVED);
 		newIssueEntity.setIssueStatus(IssueStatus.NEW);
@@ -70,14 +67,10 @@ public class TestIssueEntityDataService {
 				.setIssueName("Name = testCreateIssueEntityByEntityDataService");
 		newIssueDraft.setIssueType(IssueType.TASK);
 
-		System.out.println("newIssueDraft ID = " + newIssueDraft.getId());
 		newIssueDraft = issueDraftDAO.save(newIssueDraft);
-		System.out.println("newIssueDraft ID = " + newIssueDraft.getId());
 
 		IssueEntity receivedIssueEntity = issueEntityDataService
 				.createIssueEntity(newIssueDraft.getId(), newIssueEntity);
-		System.out
-				.println("receivedIssueEntity = null? " + receivedIssueEntity == null);
 		assertNotNull(receivedIssueEntity);
 		assertTrue(receivedIssueEntity.getId() > 0);
 	}
@@ -89,13 +82,7 @@ public class TestIssueEntityDataService {
 		IssueEntity alteredIssueEntity = new IssueEntity();
 		alteredIssueEntity.setIssueResolution(IssueResolution.DONE);
 		alteredIssueEntity.setIssueStatus(IssueStatus.RESOLVED);
-
-		System.out.println("change:");
-		System.out.println("resolution from: "
-				+ issueEntity.getIssueResolution() + " TO: "
-				+ alteredIssueEntity.getIssueResolution());
-		System.out.println("status from: " + issueEntity.getIssueStatus()
-				+ " TO: " + alteredIssueEntity.getIssueStatus());
+		
 		issueEntity = issueEntityDataService.updateIssueEntity(
 				issueEntity.getId(), alteredIssueEntity);
 		assertTrue(issueEntity.getIssueResolution()

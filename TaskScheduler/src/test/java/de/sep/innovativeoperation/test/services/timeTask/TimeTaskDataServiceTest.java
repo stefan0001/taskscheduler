@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.Calendar;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +12,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
-import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
 import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftDataService;
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityDataService;
 import de.sep.innovativeoperation.taskscheduler.service.timetask.TimeTaskDataService;
+
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -41,18 +36,7 @@ public class TimeTaskDataServiceTest {
 		
 		@Autowired
 		IssueDraftDataService issueDraftDataService;
-//		@Autowired
-//		IssueEntityDAO issueEntityDAO;
-//		@Autowired
-//		IssueDraftDAO issueDraftDAO;
-//		private TimeTask timeTask;
 
-		@Before
-		public void setUp() {
-//			timeTask = new TimeTask();
-		}
-
-		// TODO issueEntityDataServiceTest vs DAO Test
 		@Test
 		public void testCreateGoodTimeTask() {
 			TimeTask timeTask = new TimeTask("name", Calendar.getInstance(), Calendar.getInstance(),3600);
@@ -63,18 +47,16 @@ public class TimeTaskDataServiceTest {
 		@Test(expected = ValueIsNotValidException.class)
 		public void testCreateTimeTaskWithOnlyName() {
 			TimeTask timeTask = new TimeTask("name");
-			TimeTask savedTimeTask = timeTaskDataService.createTimeTask(timeTask);
-//			assertNotNull(savedTimeTask);
-//			assertTrue(savedTimeTask.getId()>0);
+			timeTaskDataService.createTimeTask(timeTask);
 		}
+		
 		@Test(expected = ValueIsNullException.class)
 		public void testCreateBlankTimeTask() {
 			TimeTask timeTask = new TimeTask();
-			TimeTask savedTimeTask = timeTaskDataService.createTimeTask(timeTask);
-//			assertNotNull(savedTimeTask);
-//			assertTrue(savedTimeTask.getId()>0);
+			timeTaskDataService.createTimeTask(timeTask);
 		}
-		@Test//(expected = ValueIsNotValidException.class)
+		
+		@Test
 		public void testCreateTimeTaskWithNameAndIntervall() {
 			TimeTask timeTask = new TimeTask("name");
 			timeTask.setIntervall(3600);
@@ -85,7 +67,7 @@ public class TimeTaskDataServiceTest {
 			assertTrue(savedTimeTask.getId()>0);
 		}
 		
-		@Test//(expected = ValueIsNotValidException.class)
+		@Test
 		public void testCreateTimeTaskWithNextFireTimeBehindFirstFireTime() {
 			Calendar firstFireTime = Calendar.getInstance();
 			firstFireTime.add(Calendar.HOUR, 1);
@@ -95,7 +77,7 @@ public class TimeTaskDataServiceTest {
 			assertTrue(savedTimeTask.getId()>0);
 		}
 		
-		@Test//(expected = ValueIsNotValidException.class)
+		@Test
 		public void testCreateTimeTaskHugeIntervall() {
 			TimeTask timeTask = new TimeTask("name");
 			timeTask.setIntervall(Integer.MAX_VALUE);
@@ -120,12 +102,6 @@ public class TimeTaskDataServiceTest {
 		assertTrue(updatedTimeTask.getName()==timeTask2.getName());
 		assertTrue(updatedTimeTask.getIssueDrafts().containsAll(timeTask2.getIssueDrafts()));
 		assertTrue(savedTimeTask.getFireCount()==(timeTask2.getFireCount()));
-
-	}
-
-	@Test
-	public void testGetIssueDraftsforTimeTask() {
-		//TODO setter zund getter testen wir nicht!
 	}
 
 	@Test

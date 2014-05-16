@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.HashSet;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
@@ -78,10 +76,9 @@ public class EventDataServiceTest {
 	@Test
 	public void testCreateMaxNameEvent() {
 
-		String hugeName = MyUtil.generateStringWithLength(maxNameLength, "a");
+		String hugeName = MyUtil.generateRandomStringWithLength(maxNameLength);
 		event.setName(hugeName);
-		// System.out.println(hugeName==null);
-		// System.out.println(hugeName);
+
 		assertTrue(event.getId() == 0);
 		Event savedEvent = eventDataService.createEvent(event);
 
@@ -94,30 +91,24 @@ public class EventDataServiceTest {
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCreateOverSizedNameEvent() {
 
-		String hugeName = MyUtil.generateStringWithLength(maxNameLength + 1,
-				"a");
-		event.setName(hugeName);
-		// System.out.println(hugeName==null);
-		// System.out.println(hugeName);
+		String overSizedeName = MyUtil.generateRandomStringWithLength(maxNameLength + 1
+				);
+		event.setName(overSizedeName);
 		eventDataService.createEvent(event);
-		// assertTrue(savedEvent.getId() > 0);
-		// assertFalse(savedEvent.getName().equals("foo"));
-		// assertTrue(savedEvent.getName().length() == hugeName.length());
 	}
 
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCreateMultipleNameEvent() {
 
 		for (int i = 0; i < 101; i++) {
-			event.setName(MyUtil.generateStringWithLength(i, "a"));
+			event.setName(MyUtil.generateRandomStringWithLength(i));
 			Event savedEvent = new Event();
 			savedEvent = eventDataService.createEvent(event);
 			assertNotNull(savedEvent);
-			System.out.println(savedEvent.getId() + " = "
-					+ savedEvent.getName());
+			
 			assertTrue(savedEvent.getId() > 0);
 		}
-		event.setName(MyUtil.generateStringWithLength(101, "a"));
+		event.setName(MyUtil.generateRandomStringWithLength(101));
 		assertTrue(event.getName().length() == (maxNameLength + 1));
 		eventDataService.createEvent(event);
 	}
@@ -125,36 +116,34 @@ public class EventDataServiceTest {
 	public void testCreateMultipleNameUMLAUTEEvent() {
 
 		for (int i = 0; i < 101; i++) {
-			event.setName(MyUtil.generateStringWithLength(i, "ÜüÄäÖö@/&! §$%$&/()=?"));
+			event.setName(MyUtil.generateRandomStringWithLength(i));
 			Event savedEvent = new Event();
 			savedEvent = eventDataService.createEvent(event);
 			assertNotNull(savedEvent);
-			assertTrue(savedEvent.getId()>0);
-			System.out.println(savedEvent.getId() + " = "
-					+ savedEvent.getName());
-			assertTrue(savedEvent.getId() > 0);
+			assertTrue(savedEvent.getId()>0);			
 		}
-		event.setName(MyUtil.generateStringWithLength(101, "a"));
+		event.setName(MyUtil.generateRandomStringWithLength(101));
 		assertTrue(event.getName().length() == (maxNameLength + 1));
 		eventDataService.createEvent(event);
 	}
+	
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCreateMultipleNameWeirdEvent() {
 
 		for (int i = 0; i < 101; i++) {
-			event.setName(MyUtil.generateStringWithLength(i, "ÜüÄäÖö@/&! §$%$&/()=?"));
+			event.setName(MyUtil.generateRandomStringWithLength(i));
 			Event savedEvent = new Event();
 			savedEvent = eventDataService.createEvent(event);
 			assertNotNull(savedEvent);
 			assertTrue(savedEvent.getId()>0);
-			System.out.println(savedEvent.getId() + " = "
-					+ savedEvent.getName());
+			
 			assertTrue(savedEvent.getId() > 0);
 		}
-		event.setName(MyUtil.generateStringWithLength(101, "a"));
+		event.setName(MyUtil.generateRandomStringWithLength(101));
 		assertTrue(event.getName().length() == (maxNameLength + 1));
 		eventDataService.createEvent(event);
 	}
+	
 	@Test//(expected = ValueIsNotValidException.class)
 	public void testCreateMultipleNameSqlEvent() {
 
@@ -181,11 +170,9 @@ public class EventDataServiceTest {
 		Event savedEvent = eventDataService.createEvent(event);
 		int savedId = savedEvent.getId();
 		assertTrue(savedId > 0);
-		eventDataService.updateEvent(savedId, null);
-		// assertTrue(updatedEvent.getId() > 0);
-		// assertTrue(updatedEvent.getName().equals(otherEvent.getName()));
+		eventDataService.updateEvent(savedId, null);		
 	}
-	@Test(expected = ValueIsNotValidException.class)
+	@Test
 	public void testUpdateEventWithNoName() {
 		assertTrue(event.getId() == 0);
 		Event savedEvent = eventDataService.createEvent(event);
@@ -219,10 +206,10 @@ public class EventDataServiceTest {
 	}
 	@Test(expected = ResourceNotFoundException.class)
 	public void testUpdateUnsavedEventWithUnsavedEvent() {
-		assertTrue(event.getId() == 0);
-		assertNotNull(otherEvent);
-		assertNotNull(event);
-		
+//		assertTrue(event.getId() == 0);
+//		assertNotNull(otherEvent);
+//		assertNotNull(event);
+//		
 		eventDataService.updateEvent(event.getId(), otherEvent);
 	}
 
@@ -236,8 +223,6 @@ public class EventDataServiceTest {
 		assertNotNull(eventTaskDataService);
 		EventTask savedEventTask = eventTaskDataService.createEventTask(savedEvent.getId(),newEventTask );
 		
-//		IssueDraft savedIssueDraft = issueDraftDataService.createIssueDraft(new IssueDraft(	"issueName", "describeMe", IssueType.BUG));
-
 		IssueDraft relatedIssueDraft = eventTaskDataService.createRelationEventTaskIssueDraft(savedEventTask.getId(), new IssueDraft(	"issueTriggeredByEvent!", "thisIsAwesome", IssueType.BUG));
 		assertTrue(relatedIssueDraft.getId()>0);
 		eventDataService.trigger(savedEvent.getId());
@@ -246,15 +231,4 @@ public class EventDataServiceTest {
 		assertFalse(relatedIssueDraft.getIssueEntities().isEmpty());
 		assertTrue(issueEntities.containsAll(relatedIssueDraft.getIssueEntities()));
 	}
-
-	// @After
-	// public void cleanUp(){
-	// List<Event> allEvents = eventDataService.getAll();
-	// int countEvents=0;
-	// for (Event event : allEvents) {
-	// eventDataService.deleteById(event.getId());
-	// countEvents++;
-	// }
-	// System.out.println(countEvents);
-	// }
 }

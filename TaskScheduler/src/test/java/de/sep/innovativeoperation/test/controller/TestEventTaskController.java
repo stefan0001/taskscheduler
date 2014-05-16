@@ -1,4 +1,4 @@
-package de.sep.innovativeoperation.test.controller.complex;
+package de.sep.innovativeoperation.test.controller;
 
 import static de.sep.innovativeoperation.taskscheduler.config.Config.JSON;
 import static org.mockito.Mockito.reset;
@@ -10,7 +10,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -30,18 +28,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 import org.springframework.web.context.WebApplicationContext;
 
-import de.sep.innovativeoperation.taskscheduler.controller.EventController;
 import de.sep.innovativeoperation.taskscheduler.controller.EventTaskController;
-import de.sep.innovativeoperation.taskscheduler.controller.IssueEntityController;
-import de.sep.innovativeoperation.taskscheduler.model.resource.EventResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventTaskResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.EventTasksResource;
-import de.sep.innovativeoperation.taskscheduler.model.resource.EventsResource;
-import de.sep.innovativeoperation.taskscheduler.service.event.EventResourceService;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResource;
+import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
 import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskResourceService;
-import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
 
-//@Transactional
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -56,10 +49,7 @@ public class TestEventTaskController {
 	@Mock
 	private EventTaskResourceService eventTaskResourceService;
 
-	// @Mock
-	// private IssueEntityResourceAssembler issueEntityResourceAssembler;
 	private MediaType appJSON = MediaType.parseMediaType(JSON);
-
 
 	private MockMvc mockMvc;
 	private String url = "/eventtask";
@@ -70,10 +60,10 @@ public class TestEventTaskController {
 	public void setup() {
 		if (eventTaskResourceService != null)
 			reset(eventTaskResourceService);
-		// Process mock annotations
+
 		MockitoAnnotations.initMocks(this);
 
-		mockMvc = MockMvcBuilders
+		this.mockMvc = MockMvcBuilders
 				.<StandaloneMockMvcBuilder> webAppContextSetup(wac).build();
 
 		eventTasksResource = new EventTasksResource();
@@ -81,75 +71,103 @@ public class TestEventTaskController {
 	}
 
 	@Test
-	// TODO MOCK eventResourceService
 	public void testAccessEventController200() throws Exception {
 
 		when(eventTaskResourceService.getAll()).thenReturn(eventTasksResource);
 
-//		try {
-			mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isOk())
-					.andDo(print());
-//		} catch (Exception e) {
-			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		this.mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isOk());
 
 		verify(eventTaskResourceService, times(1)).getAll();
 	}
 
 	@Test
-	// TODO MOCK eventResourceService
 	public void testGetEventTaskByIdOne200() throws Exception {
 
 		when(eventTaskResourceService.getById(1)).thenReturn(eventTaskResource);
 
-		mockMvc.perform(get(url + "/1").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+		this.mockMvc.perform(get(url + "/1").accept(appJSON)).andExpect(
+				status().isOk());
 
 		verify(eventTaskResourceService, times(1)).getById(1);
 	}
-	
-	
+
 	@Test
-	// TODO MOCK eventResourceService
 	public void testUpdateEventTaskOne200() throws Exception {
 		EventTaskResource updatedEventTaskResource = new EventTaskResource();
 		EventTaskResource calledEventTaskResource = eventTaskResource;
-		when(eventTaskResourceService.updateEventTask(1, calledEventTaskResource)).thenReturn(
+		when(
+				eventTaskResourceService.updateEventTask(1,
+						calledEventTaskResource)).thenReturn(
 				updatedEventTaskResource);
 
-		mockMvc.perform(
-				put(url + "/1").accept(appJSON).contentType(appJSON).content("{}"))
-				.andExpect(status().isOk()).andDo(print());
-/*content(
-						"{\"name\":\"TEST\",\"firstFireTime\":1399888149205,\"nextFireTime\":1399891749205,"+
-								   "\"intervall\":3600,\"activated\":false,\"fireCount\":0,\"ID\":1,\"links\":[]}" //{\"rel\":\"self\",\"href\":} //\"http://localhost:8083/TaskScheduler/timetask/1\
-)
- * */
-		verify(eventTaskResourceService, times(1)).updateEventTask(1, calledEventTaskResource);
+		this.mockMvc.perform(
+				put(url + "/1").accept(appJSON).contentType(appJSON)
+						.content("{}")).andExpect(status().isOk());
+
+		verify(eventTaskResourceService, times(1)).updateEventTask(1,
+				calledEventTaskResource);
 	}
+
 	@Test
-	// TODO MOCK eventResourceService
-	public void testDeleteEventTask204() throws Exception {
+	public void testGetIssueDraftForEventTask200() throws Exception {
+		IssueDraftsResource issueDraftsResource = new IssueDraftsResource();
+		when(eventTaskResourceService.getIssueDraftsforEventTask(1))
+				.thenReturn(issueDraftsResource);
 
-		// when(eventResourceService.deleteById(1))
-		// .thenReturn(eventResource);
+		this.mockMvc.perform(
+				get(url + "/1/issuedraft").accept(appJSON)
+						.contentType(appJSON).content("{}")).andExpect(
+				status().isOk());
 
-		mockMvc.perform(delete(url + "/1").accept(appJSON))
-				.andExpect(status().isOk()).andDo(print());
+		verify(eventTaskResourceService, times(1))
+				.getIssueDraftsforEventTask(1);
+	}
+
+	@Test
+	public void testCreateRelationEventTaskIssueDraft200() throws Exception {
+		IssueDraftResource issueDraftResource = new IssueDraftResource();
+		
+		when(eventTaskResourceService.createRelationEventTaskIssueDraft(1, issueDraftResource))
+				.thenReturn(issueDraftResource);
+
+		this.mockMvc.perform(
+				post(url + "/1/issuedraft").accept(appJSON)
+						.contentType(appJSON).content("{}")).andExpect(
+				status().isOk());
+
+		verify(eventTaskResourceService, times(1))
+				.createRelationEventTaskIssueDraft(1, issueDraftResource);
+	}
+	
+	@Test
+	public void testDeleteRelationEventTaskIssueDraft200() throws Exception {
+		
+		this.mockMvc.perform(
+				delete(url + "/1/issuedraft/1").accept(appJSON)
+						.contentType(appJSON).content("{}")).andExpect(
+				status().isOk());
+
+		verify(eventTaskResourceService, times(1))
+				.deleteRelationEventTaskIssueDraft(1, 1);
+	}
+	
+	@Test
+	public void testDeleteEventTask200() throws Exception {
+
+		this.mockMvc.perform(delete(url + "/1").accept(appJSON)).andExpect(
+				status().isOk());
 
 		verify(eventTaskResourceService, times(1)).deleteById(1);
 	}
-	
 
 	@Test
-	// TODO MOCK eventResourceService
-	public void testPOST405() throws Exception {
+	public void testPost405() throws Exception {
 
-		mockMvc.perform(post(url).accept(appJSON).content(
-				"{\"links\":[],\"content\":[]}"))
-				.andExpect(status().isMethodNotAllowed()).andDo(print());
+		this.mockMvc.perform(
+				post(url).accept(appJSON).content(
+						"{\"links\":[],\"content\":[]}")).andExpect(
+				status().isMethodNotAllowed());
 
 	}
-	
+
 }
