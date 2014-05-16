@@ -49,7 +49,7 @@ public class TimeTaskMonitor {
 	/**
 	 * Monitoring the persisted TimeTasks
 	 */
-	@Scheduled(fixedDelay = 6000)
+	//@Scheduled(fixedDelay = 6000)
 	public void monitorTimTasks(){
 		
 		currentTime = Calendar.getInstance(locale);

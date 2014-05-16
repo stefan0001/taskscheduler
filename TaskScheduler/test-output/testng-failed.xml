@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="de.sep.innovativeoperation.taskscheduler.test.selenium.firefoxTest.Firefox_editIssueIT">
+        <methods>
+          <include name="editIssue"/>
+          <include name="beforeClass"/>
+          <include name="editResolutionOfClosedIssue"/>
+          <include name="editIssueStatus"/>
+          <include name="editResolutionOfNoClosedIssue"/>
+        </methods>
+      </class> <!-- de.sep.innovativeoperation.taskscheduler.test.selenium.firefoxTest.Firefox_editIssueIT -->
+      <class name="de.sep.innovativeoperation.taskscheduler.test.selenium.firefoxTest.Firefox_createTaskIT">
+        <methods>
+          <include name="saveTimeTaskNoDescription"/>
+          <include name="selectIssueBreak"/>
+          <include name="savaTaskNoIssue"/>
+          <include name="saveTimeTaskValidWithLoop"/>
+          <include name="createEventTaskBreak"/>
+          <include name="saveEventTaskNoEvent"/>
+          <include name="saveTaskNoSelect"/>
+          <include name="createTaskBreak"/>
+          <include name="afterMethod"/>
+          <include name="saveEventTaskValid"/>
+          <include name="saveTimeTaskNothing"/>
+          <include name="createTimeTaskBreak"/>
+          <include name="beforeMethod"/>
+          <include name="saveTimeTaskNoName"/>
+          <include name="saveTimeTaskNoTime"/>
+        </methods>
+      </class> <!-- de.sep.innovativeoperation.taskscheduler.test.selenium.firefoxTest.Firefox_createTaskIT -->
+      <class name="de.sep.innovativeoperation.taskscheduler.test.selenium.firefoxTest.Firefox_editTaskIT">
+        <methods>
+          <include name="showFireTime"/>
+          <include name="activeEventTask"/>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+          <include name="deactiveTimeTask"/>
+          <include name="deactiveEventTask"/>
+          <include name="activeTimeTask"/>
+        </methods>
+      </class> <!-- de.sep.innovativeoperation.taskscheduler.test.selenium.firefoxTest.Firefox_editTaskIT -->
+      <class name="de.sep.innovativeoperation.taskscheduler.test.selenium.firefoxTest.Firefox_overviewIT">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- de.sep.innovativeoperation.taskscheduler.test.selenium.firefoxTest.Firefox_overviewIT -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
