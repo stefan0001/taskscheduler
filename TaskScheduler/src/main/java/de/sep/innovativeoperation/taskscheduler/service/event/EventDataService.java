@@ -61,7 +61,7 @@ public class EventDataService extends AbstractGenericDataService<Event>{
 		eventValidationService.checkObject(event);
 
 		// search for object
-		Event eventDB = eventDAO.findById(id);
+		Event eventDB = this.getById(id);
 		
 		//update object
 		eventDB.setName(event.getName());
@@ -74,7 +74,7 @@ public class EventDataService extends AbstractGenericDataService<Event>{
 	 * @param event
 	 */
 	public void trigger(int id){
-		Event event = eventDAO.findById(id);
+		Event event = this.getById(id);
 		Set<EventTask> eventTasks = event.getEventTasks();
 		Iterator<EventTask> iterator = eventTasks.iterator();
 		
