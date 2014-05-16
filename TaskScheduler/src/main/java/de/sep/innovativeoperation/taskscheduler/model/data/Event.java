@@ -34,7 +34,7 @@ public class Event extends AbstractDataModel{
 	 * Creates an Event with no Name and and no tasks
 	 */
 	public Event() {
-		this(null,null);
+		this(null);
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class Event extends AbstractDataModel{
 	 * @param name Name of the eventtask
 	 */
 	public Event(String name) {
-		this(name,null);
+		this(name,new HashSet<EventTask>());
 	}
 	
 	

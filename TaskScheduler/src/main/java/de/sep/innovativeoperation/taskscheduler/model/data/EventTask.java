@@ -45,7 +45,7 @@ public class EventTask extends AbstractDataModel {
 	 * Creates an Event Task with no name, empty issueDraft list and no event
 	 */
 	public EventTask(){
-		this(null, new HashSet<IssueDraft>(), null );
+		this(null );
 	}
 	
 	//TODO
