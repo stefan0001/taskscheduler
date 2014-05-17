@@ -40,6 +40,15 @@ import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityR
 
 import static org.mockito.Mockito.*;
 
+/**
+ * Test the IssueEntityController at the URL: "/issueentity" and it´s RequestMapping
+ * by Spring with Mockito and SpringMockMvc
+ * 
+ * dependencies @Mock: IssueEntityResourceService
+ * 
+ * @author Joscha Zander
+ * 
+ */
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })

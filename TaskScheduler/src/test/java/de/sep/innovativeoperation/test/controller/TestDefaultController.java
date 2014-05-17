@@ -26,8 +26,7 @@ import de.sep.innovativeoperation.taskscheduler.controller.DefaultController;
  * Test the DefaultController at the URL: "/" and it´s RequestMapping by Spring with
  * Mockito and SpringMockMvc
  * 
- * dependencies: none
- * 
+ *  
  * @author Joscha Zander 
  * 
  */

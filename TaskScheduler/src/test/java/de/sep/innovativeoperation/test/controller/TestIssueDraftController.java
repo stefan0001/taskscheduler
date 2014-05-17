@@ -43,6 +43,10 @@ import de.sep.innovativeoperation.taskscheduler.service.issuedraft.IssueDraftRes
 import de.sep.innovativeoperation.taskscheduler.service.issueentity.IssueEntityResourceService;
 
 /**
+ * Test the IssueDraftController at the URL: "/issuedraft" and it´s RequestMapping
+ * by Spring with Mockito and SpringMockMvc
+ * 
+ * dependencies @Mock: IssueEntityResourceService and IssueDraftResourceService
  * 
  * @author Joscha Zander
  * 
@@ -59,12 +63,15 @@ public class TestIssueDraftController {
 
 	@Mock
 	private IssueDraftResourceService issueDraftResourceService;
+	
 	@Mock
 	private IssueEntityResourceService issueEntityResourceService;
 
 	private MediaType appJSON = MediaType.parseMediaType(JSON);
 	private MockMvc mockMvc;
+	
 	private String url = "/issuedraft";
+	
 	private IssueDraft issueDraft;
 	private List<IssueDraft> issueDraftList;
 	private List<IssueEntityResource> issueEntityList;
@@ -83,12 +90,9 @@ public class TestIssueDraftController {
 			reset(issueDraftResourceService);
 		if (issueEntityResourceService != null)
 			reset(issueEntityResourceService);
-
-		// Process mock annotations
+	
 		MockitoAnnotations.initMocks(this);
 
-		// Build a MockMvc by registering one or more @Controller's instances
-		// and configuring Spring MVC infrastructure programmatically.
 		mockMvc = MockMvcBuilders
 				.<StandaloneMockMvcBuilder> webAppContextSetup(wac).build();
 

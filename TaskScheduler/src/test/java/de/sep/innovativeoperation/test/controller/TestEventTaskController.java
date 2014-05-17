@@ -35,13 +35,24 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftResourc
 import de.sep.innovativeoperation.taskscheduler.model.resource.IssueDraftsResource;
 import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskResourceService;
 
+/**
+ * Test the EventTaskController at the URL: "/eventtask" and it´s RequestMapping
+ * by Spring with Mockito and SpringMockMvc
+ * 
+ * dependencies @Mock: EventTaskResourceService
+ * 
+ * @author Joscha Zander
+ * 
+ */
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration({ "classpath:applicationContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestEventTaskController {
+	
 	@Autowired
 	private WebApplicationContext wac;
+	
 	@Autowired
 	@InjectMocks
 	private EventTaskController eventTaskController;
@@ -71,17 +82,18 @@ public class TestEventTaskController {
 	}
 
 	@Test
-	public void testAccessEventController200() throws Exception {
+	public void testAccessEventController() throws Exception {
 
 		when(eventTaskResourceService.getAll()).thenReturn(eventTasksResource);
 
-		this.mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isOk());
+		this.mockMvc.perform(get(url).accept(appJSON)).andExpect(
+				status().isOk());
 
 		verify(eventTaskResourceService, times(1)).getAll();
 	}
 
 	@Test
-	public void testGetEventTaskByIdOne200() throws Exception {
+	public void testGetEventTaskByIdOne() throws Exception {
 
 		when(eventTaskResourceService.getById(1)).thenReturn(eventTaskResource);
 
@@ -92,7 +104,7 @@ public class TestEventTaskController {
 	}
 
 	@Test
-	public void testUpdateEventTaskOne200() throws Exception {
+	public void testUpdateEventTaskOne() throws Exception {
 		EventTaskResource updatedEventTaskResource = new EventTaskResource();
 		EventTaskResource calledEventTaskResource = eventTaskResource;
 		when(
@@ -109,26 +121,26 @@ public class TestEventTaskController {
 	}
 
 	@Test
-	public void testGetIssueDraftForEventTask200() throws Exception {
+	public void testGetIssueDraftForEventTask() throws Exception {
 		IssueDraftsResource issueDraftsResource = new IssueDraftsResource();
 		when(eventTaskResourceService.getIssueDraftsforEventTask(1))
 				.thenReturn(issueDraftsResource);
 
 		this.mockMvc.perform(
-				get(url + "/1/issuedraft").accept(appJSON)
-						.contentType(appJSON).content("{}")).andExpect(
-				status().isOk());
+				get(url + "/1/issuedraft").accept(appJSON).contentType(appJSON)
+						.content("{}")).andExpect(status().isOk());
 
 		verify(eventTaskResourceService, times(1))
 				.getIssueDraftsforEventTask(1);
 	}
 
 	@Test
-	public void testCreateRelationEventTaskIssueDraft200() throws Exception {
+	public void testCreateRelationEventTaskIssueDraft() throws Exception {
 		IssueDraftResource issueDraftResource = new IssueDraftResource();
-		
-		when(eventTaskResourceService.createRelationEventTaskIssueDraft(1, issueDraftResource))
-				.thenReturn(issueDraftResource);
+
+		when(
+				eventTaskResourceService.createRelationEventTaskIssueDraft(1,
+						issueDraftResource)).thenReturn(issueDraftResource);
 
 		this.mockMvc.perform(
 				post(url + "/1/issuedraft").accept(appJSON)
@@ -138,10 +150,10 @@ public class TestEventTaskController {
 		verify(eventTaskResourceService, times(1))
 				.createRelationEventTaskIssueDraft(1, issueDraftResource);
 	}
-	
+
 	@Test
-	public void testDeleteRelationEventTaskIssueDraft200() throws Exception {
-		
+	public void testDeleteRelationEventTaskIssueDraft() throws Exception {
+
 		this.mockMvc.perform(
 				delete(url + "/1/issuedraft/1").accept(appJSON)
 						.contentType(appJSON).content("{}")).andExpect(
@@ -150,9 +162,9 @@ public class TestEventTaskController {
 		verify(eventTaskResourceService, times(1))
 				.deleteRelationEventTaskIssueDraft(1, 1);
 	}
-	
+
 	@Test
-	public void testDeleteEventTask200() throws Exception {
+	public void testDeleteEventTask() throws Exception {
 
 		this.mockMvc.perform(delete(url + "/1").accept(appJSON)).andExpect(
 				status().isOk());
@@ -167,7 +179,5 @@ public class TestEventTaskController {
 				post(url).accept(appJSON).content(
 						"{\"links\":[],\"content\":[]}")).andExpect(
 				status().isMethodNotAllowed());
-
 	}
-
 }

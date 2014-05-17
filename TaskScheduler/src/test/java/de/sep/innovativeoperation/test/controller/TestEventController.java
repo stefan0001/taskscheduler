@@ -40,13 +40,10 @@ import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskResou
  * Test the EventController at the URL: "/event" and it´s RequestMapping by Spring
  * with Mockito and SpringMockMvc
  * 
- * dependencies: EventResourceService and EventTaskResourceService
+ * dependencies @Mock: EventResourceService and EventTaskResourceService
  * 
  * @author Joscha Zander
- * @TransactionConfiguration(defaultRollback = true)
- * @WebAppConfiguration
- * @ContextConfiguration({ "classpath:applicationContext.xml" })
- * @RunWith(SpringJUnit4ClassRunner.class)
+ *
  */
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration

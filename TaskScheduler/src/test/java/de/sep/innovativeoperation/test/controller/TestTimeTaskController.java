@@ -36,6 +36,15 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTaskResource;
 import de.sep.innovativeoperation.taskscheduler.model.resource.TimeTasksResource;
 import de.sep.innovativeoperation.taskscheduler.service.timetask.TimeTaskResourceService;
 
+/**
+ * Test the TimeTaskController at the URL: "/timetask" and it´s RequestMapping
+ * by Spring with Mockito and SpringMockMvc
+ * 
+ * dependencies @Mock: TimeTaskResourceService
+ * 
+ * @author Joscha Zander
+ * 
+ */
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration({ "classpath:applicationContext.xml" })
