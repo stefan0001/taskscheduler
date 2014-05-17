@@ -16,6 +16,12 @@ import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
 import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftValidationService;
 import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
+/**
+ * Tests the proper validation by IssueDraftValidationService
+ * 
+ * @author Joscha Zander
+ *
+ */
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:applicationContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,7 +31,7 @@ public class IssueDraftValidationServiceTest {
 	private IssueDraft issueDraft;
 	private int maxNameLenght = 100;
 	private int maxDescriptionLenght = 500;
-	
+
 	@Autowired
 	IssueDraftValidationService issueDraftValidationService;
 
@@ -37,38 +43,54 @@ public class IssueDraftValidationServiceTest {
 		issueDraft.setIssueType(IssueType.BUG);
 	}
 
+	@Test
+	public void testSetUpObject() {
+		issueDraftValidationService.checkObject(issueDraft);
+	}
+
 	@Test(expected = ValueIsNullException.class)
 	public void testCheckNullNameObject() {
 		issueDraft.setIssueName(null);
 		issueDraftValidationService.checkObject(issueDraft);
 	}
 
-	@Test(expected = ValueIsNotValidException.class)
-	public void testCheckOverlength101IssueNameObject() {
-		issueDraft.setIssueName(MyUtil.generateSingleCharStringOfLength(maxNameLenght+1,"a"));		
+	@Test
+	public void testCheckMaxlength101IssueNameObject() {
+		issueDraft.setIssueName(MyUtil.generateSingleCharStringOfLength(
+				maxNameLenght, "a"));
 		issueDraftValidationService.checkObject(issueDraft);
 	}
-	
+
+	@Test(expected = ValueIsNotValidException.class)
+	public void testCheckOverlength101IssueNameObject() {
+		issueDraft.setIssueName(MyUtil.generateSingleCharStringOfLength(
+				maxNameLenght + 1, "a"));
+		issueDraftValidationService.checkObject(issueDraft);
+	}
+
 	@Test(expected = ValueIsNullException.class)
 	public void testCheckNullIssueDescription() {
 		issueDraft.setIssueDescription(null);
+		issueDraftValidationService.checkObject(issueDraft);
+	}
 
+	@Test
+	public void testCheckMaxlength501IssueDescription() {
+		issueDraft.setIssueDescription(MyUtil.generateSingleCharStringOfLength(
+				maxDescriptionLenght, "a"));
 		issueDraftValidationService.checkObject(issueDraft);
 	}
 
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckOverlength501IssueDescription() {
-
-		issueDraft.setIssueDescription(MyUtil.generateSingleCharStringOfLength(maxDescriptionLenght+1 ,"a"));
-
+		issueDraft.setIssueDescription(MyUtil.generateSingleCharStringOfLength(
+				maxDescriptionLenght + 1, "a"));
 		issueDraftValidationService.checkObject(issueDraft);
 	}
 
 	@Test(expected = ValueIsNullException.class)
 	public void testCheckNullIssueType() {
-
 		issueDraft.setIssueType(null);
-
 		issueDraftValidationService.checkObject(issueDraft);
 	}
 }

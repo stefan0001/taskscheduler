@@ -45,6 +45,12 @@ public class EventValidationServiceTest {
 		event.setName(MyUtil.generateSingleCharStringOfLength(maxNameLength+1, "a"));		
 		eventValidationService.checkObject(event);
 	}
+	
+	@Test
+	public void testCheckMaxlengthNameObject() {
+		event.setName(MyUtil.generateSingleCharStringOfLength(maxNameLength, "a"));		
+		eventValidationService.checkObject(event);
+	}
 
 	@Test
 	public void testCheckEmptyNameObject() {

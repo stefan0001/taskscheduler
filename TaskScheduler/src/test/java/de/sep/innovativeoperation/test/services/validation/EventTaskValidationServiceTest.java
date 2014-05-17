@@ -1,5 +1,4 @@
 package de.sep.innovativeoperation.test.services.validation;
-import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
 import de.sep.innovativeoperation.taskscheduler.model.data.Event;
 import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
@@ -57,14 +55,17 @@ private int maxNameLength = 100;
 		eventTask.setName(MyUtil.generateSingleCharStringOfLength(maxNameLength +1,"a"));
 		eventTaskValidationService.checkObject(eventTask);
 	}	
+
+	@Test
+	public void testCheckMaxlengthNameObject() {		
+		eventTask.setName(MyUtil.generateSingleCharStringOfLength(maxNameLength ,"a"));
+		eventTaskValidationService.checkObject(eventTask);
+	}	
 	
 	@Test
 	public void testCheckEmptyNameObject() {		
-		try {
 			eventTask.setName("");
 			eventTaskValidationService.checkObject(eventTask);
-		} catch (ValidationFailureException e) {
-			fail("ValidationFailureException");
-		}
+		
 	}
 }

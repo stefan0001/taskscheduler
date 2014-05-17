@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 import org.springframework.web.context.WebApplicationContext;
 
 import de.sep.innovativeoperation.taskscheduler.controller.DefaultController;
-import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 
 /**
  * Test the DefaultController at the URL: "/" and it´s RequestMapping by Spring with

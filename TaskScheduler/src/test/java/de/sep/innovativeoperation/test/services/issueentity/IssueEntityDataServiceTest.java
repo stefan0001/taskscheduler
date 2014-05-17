@@ -13,8 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.sep.innovativeoperation.taskscheduler.dao.IssueDraftDAO;
-import de.sep.innovativeoperation.taskscheduler.dao.IssueEntityDAO;
 import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
 import de.sep.innovativeoperation.taskscheduler.model.data.IssueEntity;
@@ -55,6 +53,20 @@ public class IssueEntityDataServiceTest {
 				.getById(savedIssueEntity.getId());
 		assertNotNull(receivedIssueEntity);
 		assertTrue(receivedIssueEntity.equals(savedIssueEntity));
+	}
+
+	@Test
+	public void testDeleteByIdEntityDataService() {
+		IssueDraft savedIssueDraft = issueDraftService
+				.createIssueDraft(new IssueDraft("savedIssueDraft",
+						"describeMe", IssueType.TASK));
+		IssueEntity savedIssueEntity = issueEntityDataService
+				.createIssueEntity(savedIssueDraft.getId(), new IssueEntity(
+						IssueStatus.NEW, IssueResolution.UNRESOLVED,
+						savedIssueDraft));
+		issueEntityDataService.deleteById(savedIssueEntity.getId());
+
+		assertFalse(issueEntityDataService.getAll().contains(savedIssueEntity));
 	}
 
 	@Test
