@@ -113,7 +113,7 @@ public class IssueDraftDataServiceTest {
 		IssueDraft savedIssueDraft = issueDraftDataService
 				.createIssueDraft(issueDraft);
 
-		TimeTask newTimeTask = new TimeTask("Müll rausbringen",
+		TimeTask newTimeTask = new TimeTask("Mï¿½ll rausbringen",
 				Calendar.getInstance(), Calendar.getInstance(), 0, 3600, false);
 
 		TimeTask savedTimeTask = timeTaskDataService
@@ -138,72 +138,84 @@ public class IssueDraftDataServiceTest {
 
 	@Test
 	public void testFilterIssueDraft() {
-		IssueDraft issueDraft = new IssueDraft("foo", "baa", IssueType.BUG);
-		IssueDraft savedIssueDraft = issueDraftDataService
+		IssueDraft issueDraft = new IssueDraft("a", "baa", IssueType.BUG);
+		IssueDraft savedFirstIssueDraft = issueDraftDataService
 				.createIssueDraft(issueDraft);
-		assertTrue(savedIssueDraft.getId() > 0);
-		IssueDraft secondIssueDraft = new IssueDraft("baa", "foo",
+		assertTrue(savedFirstIssueDraft.getId() > 0);
+		IssueDraft secondIssueDraft = new IssueDraft("aab", "foo",
 				IssueType.IMPROVEMENT);
 		IssueDraft savedSecondIssueDraft = issueDraftDataService
 				.createIssueDraft(secondIssueDraft);
 		assertTrue(savedSecondIssueDraft.getId() > 0);
-		IssueDraft thirdIssueDraft = new IssueDraft("lol", "pöö",
+		IssueDraft thirdIssueDraft = new IssueDraft("aba", "foa",
 				IssueType.TASK);
 		IssueDraft savedThirdIssueDraft = issueDraftDataService
 				.createIssueDraft(thirdIssueDraft);
 		assertTrue(savedThirdIssueDraft.getId() > 0);
 		List<IssueDraft> unfilteredIssueDrafts = new LinkedList<IssueDraft>();
 
-		unfilteredIssueDrafts.add(savedIssueDraft);
+		unfilteredIssueDrafts.add(savedFirstIssueDraft);
 		unfilteredIssueDrafts.add(savedSecondIssueDraft);
 		unfilteredIssueDrafts.add(savedThirdIssueDraft);
 
 		List<IssueDraft> issueDrafts = issueDraftDataService
 				.filterIssueDraft(issueDraft);
-		assertTrue(issueDrafts.contains(savedIssueDraft));
+		assertTrue(issueDrafts.contains(savedFirstIssueDraft));
 
 		issueDrafts = new LinkedList<IssueDraft>();
 		IssueDraft umlauteIssueDraft = new IssueDraft();
-		umlauteIssueDraft.setIssueName("ö");
+		umlauteIssueDraft.setIssueName("c");
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
 		assertTrue(issueDrafts.isEmpty());
 
 		issueDrafts = new LinkedList<IssueDraft>();
-		umlauteIssueDraft = new IssueDraft(null, "ö", null);
+		umlauteIssueDraft = new IssueDraft(null, "bab", null);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
 		assertTrue(issueDrafts.isEmpty());
 
 		issueDrafts = new LinkedList<IssueDraft>();
 		umlauteIssueDraft = new IssueDraft(null, null, IssueType.BUG);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
-		assertTrue(issueDrafts.contains(savedIssueDraft));
+		assertTrue(issueDrafts.contains(savedFirstIssueDraft));
 
+		issueDrafts = new LinkedList<IssueDraft>();
+		umlauteIssueDraft = new IssueDraft(null, null, IssueType.IMPROVEMENT);
+		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
+		assertTrue(issueDrafts.contains(savedSecondIssueDraft));
+		
+		issueDrafts = new LinkedList<IssueDraft>();
+		umlauteIssueDraft = new IssueDraft(null, null, IssueType.TASK);
+		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
+		assertTrue(issueDrafts.contains(savedThirdIssueDraft));
+		
 		issueDrafts = new LinkedList<IssueDraft>();
 		umlauteIssueDraft = new IssueDraft(null, null, null);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
 		assertTrue(issueDrafts.containsAll(unfilteredIssueDrafts));
 
 		issueDrafts = new LinkedList<IssueDraft>();
-		umlauteIssueDraft = new IssueDraft(null, "p", null);
+		umlauteIssueDraft = new IssueDraft(null, "fo", null);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
 		assertTrue(issueDrafts.contains(savedThirdIssueDraft));
+		assertTrue(issueDrafts.contains(savedSecondIssueDraft));
+		
+		issueDrafts = new LinkedList<IssueDraft>();
+		umlauteIssueDraft = new IssueDraft(null, "foa", null);
+		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
+		assertTrue(issueDrafts.contains(savedThirdIssueDraft));
+		assertFalse(issueDrafts.contains(savedSecondIssueDraft));
 
 		issueDrafts = new LinkedList<IssueDraft>();
-		umlauteIssueDraft = new IssueDraft(null, "pö", null);
+		umlauteIssueDraft = new IssueDraft(null, "b", null);
 		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
-		assertTrue(issueDrafts.contains(savedThirdIssueDraft));
-
-		issueDrafts = new LinkedList<IssueDraft>();
-		umlauteIssueDraft = new IssueDraft(null, "pöö", null);
-		issueDrafts = issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
-		assertTrue(issueDrafts.contains(savedThirdIssueDraft));
+		assertTrue(issueDrafts.contains(savedFirstIssueDraft));
 
 	}
 
 	@Test
 	public void testFilterRightSizedName() {
-		String nameToFilterFor = MyUtil.generateRandomStringWithLength(
-				maxNameLength);
+		String nameToFilterFor = MyUtil.generateSingleCharStringOfLength(
+				maxNameLength,"a");
 		IssueDraft hugeDescriptionIssueDraft = new IssueDraft(nameToFilterFor,
 				"hugeDescription", IssueType.BUG);
 		IssueDraft savedIssueDraft = issueDraftDataService
@@ -218,7 +230,7 @@ public class IssueDraftDataServiceTest {
 	public void testFilterOversizedName() {
 
 		IssueDraft umlauteIssueDraft = new IssueDraft(
-				MyUtil.generateRandomStringWithLength(maxNameLength + 1), null,
+				MyUtil.generateSingleCharStringOfLength(maxNameLength + 1,"a"), null,
 				null);
 		issueDraftDataService.filterIssueDraft(umlauteIssueDraft);
 	}
@@ -241,7 +253,7 @@ public class IssueDraftDataServiceTest {
 
 		IssueDraft issueDraft = new IssueDraft(
 				null,
-				MyUtil.generateRandomStringWithLength(maxDescriptionLength + 1),
+				MyUtil.generateSingleCharStringOfLength(maxDescriptionLength + 1,"a"),
 				null);
 		issueDraftDataService.filterIssueDraft(issueDraft);
 	}

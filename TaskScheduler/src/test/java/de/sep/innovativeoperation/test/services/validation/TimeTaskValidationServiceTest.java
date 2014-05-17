@@ -3,9 +3,6 @@ package de.sep.innovativeoperation.test.services.validation;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,20 +13,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import de.sep.innovativeoperation.taskscheduler.exception.validation.ValidationFailureException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNotValidException;
 import de.sep.innovativeoperation.taskscheduler.exception.validation.ValueIsNullException;
-import de.sep.innovativeoperation.taskscheduler.model.data.Event;
-import de.sep.innovativeoperation.taskscheduler.model.data.EventTask;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueDraft;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueResolution;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueStatus;
-import de.sep.innovativeoperation.taskscheduler.model.data.IssueType;
+
 import de.sep.innovativeoperation.taskscheduler.model.data.TimeTask;
-import de.sep.innovativeoperation.taskscheduler.service.validation.EventTaskValidationService;
-import de.sep.innovativeoperation.taskscheduler.service.validation.EventValidationService;
-import de.sep.innovativeoperation.taskscheduler.service.validation.IssueDraftValidationService;
-import de.sep.innovativeoperation.taskscheduler.service.validation.IssueEntityValidationService;
 import de.sep.innovativeoperation.taskscheduler.service.validation.TimeTaskValidationService;
 import de.sep.innovativeoperation.taskscheduler.test.MyUtil;
 
@@ -41,6 +28,7 @@ public class TimeTaskValidationServiceTest {
 
 	private TimeTask timeTask;
 	private int maxNameLength = 100;
+	
 	@Autowired
 	TimeTaskValidationService timeTaskValidationService;
 
@@ -56,12 +44,10 @@ public class TimeTaskValidationServiceTest {
 	
 	@Test
 	public void testCheckGoodName() {
-		timeTask.setName(MyUtil.generateRandomStringWithLength(maxNameLength));
+		timeTask.setName(MyUtil.generateSingleCharStringOfLength(maxNameLength,"a"));
 		assertTrue(timeTask.getName().length() == maxNameLength);
 		
-		timeTaskValidationService.checkObject(timeTask);
-		
-		
+		timeTaskValidationService.checkObject(timeTask);		
 	}
 	
 	@Test(expected = ValueIsNullException.class)
@@ -72,7 +58,7 @@ public class TimeTaskValidationServiceTest {
 
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckOverlength101Name() {
-		timeTask.setName(MyUtil.generateRandomStringWithLength(maxNameLength+1));
+		timeTask.setName(MyUtil.generateSingleCharStringOfLength(maxNameLength+1,"a"));
 		timeTaskValidationService.checkObject(timeTask);
 	}
 

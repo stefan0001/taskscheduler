@@ -45,7 +45,7 @@ public class IssueDraftValidationServiceTest {
 
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckOverlength101IssueNameObject() {
-		issueDraft.setIssueName(MyUtil.generateRandomStringWithLength(maxNameLenght+1));		
+		issueDraft.setIssueName(MyUtil.generateSingleCharStringOfLength(maxNameLenght+1,"a"));		
 		issueDraftValidationService.checkObject(issueDraft);
 	}
 	
@@ -59,7 +59,7 @@ public class IssueDraftValidationServiceTest {
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckOverlength501IssueDescription() {
 
-		issueDraft.setIssueDescription(MyUtil.generateRandomStringWithLength((maxDescriptionLenght+1)));
+		issueDraft.setIssueDescription(MyUtil.generateSingleCharStringOfLength(maxDescriptionLenght+1 ,"a"));
 
 		issueDraftValidationService.checkObject(issueDraft);
 	}

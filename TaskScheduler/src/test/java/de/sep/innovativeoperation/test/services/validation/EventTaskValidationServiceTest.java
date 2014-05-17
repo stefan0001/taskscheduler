@@ -54,7 +54,7 @@ private int maxNameLength = 100;
 	
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckOverlengthNameObject() {		
-		eventTask.setName(MyUtil.generateRandomStringWithLength(maxNameLength +1));
+		eventTask.setName(MyUtil.generateSingleCharStringOfLength(maxNameLength +1,"a"));
 		eventTaskValidationService.checkObject(eventTask);
 	}	
 	

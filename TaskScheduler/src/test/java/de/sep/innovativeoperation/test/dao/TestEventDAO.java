@@ -34,7 +34,7 @@ public class TestEventDAO {
 
 	private Event event;
 	private Set<EventTask> eventTasksSet;
-	private int maxNameLetters = 100;
+	private int maxNameLength = 100;
 
 	@Before
 	public void setUp() {
@@ -97,9 +97,9 @@ public class TestEventDAO {
 
 	@Test(expected = PersistenceException.class)
 	public void testExceptionAtSave101letterName() {
-		String invalidName = MyUtil.generateRandomStringWithLength(
-				maxNameLetters + 1);
-		assertTrue(invalidName.length() == (maxNameLetters + 1));
+		String invalidName = MyUtil.generateSingleCharStringOfLength(
+				maxNameLength + 1, "a");
+		assertTrue(invalidName.length() == (maxNameLength + 1));
 		event.setName(invalidName);
 		Event savedEvent = eventDAO.save(event);
 		assertNull(savedEvent);

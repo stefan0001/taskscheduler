@@ -42,7 +42,7 @@ public class EventValidationServiceTest {
 
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCheckOverlengthNameObject() {
-		event.setName(MyUtil.generateRandomStringWithLength(maxNameLength+1));		
+		event.setName(MyUtil.generateSingleCharStringOfLength(maxNameLength+1, "a"));		
 		eventValidationService.checkObject(event);
 	}
 

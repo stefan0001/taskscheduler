@@ -76,7 +76,7 @@ public class EventDataServiceTest {
 	@Test
 	public void testCreateMaxNameEvent() {
 
-		String hugeName = MyUtil.generateRandomStringWithLength(maxNameLength);
+		String hugeName = MyUtil.generateSingleCharStringOfLength(maxNameLength,"a");
 		event.setName(hugeName);
 
 		assertTrue(event.getId() == 0);
@@ -91,7 +91,7 @@ public class EventDataServiceTest {
 	@Test(expected = ValueIsNotValidException.class)
 	public void testCreateOverSizedNameEvent() {
 
-		String overSizedeName = MyUtil.generateRandomStringWithLength(maxNameLength + 1
+		String overSizedeName = MyUtil.generateSingleCharStringOfLength(maxNameLength + 1,"a"
 				);
 		event.setName(overSizedeName);
 		eventDataService.createEvent(event);
@@ -101,14 +101,14 @@ public class EventDataServiceTest {
 	public void testCreateMultipleNameEvent() {
 
 		for (int i = 0; i < 101; i++) {
-			event.setName(MyUtil.generateRandomStringWithLength(i));
+			event.setName(MyUtil.generateSingleCharStringOfLength(i,"a"));
 			Event savedEvent = new Event();
 			savedEvent = eventDataService.createEvent(event);
 			assertNotNull(savedEvent);
 			
 			assertTrue(savedEvent.getId() > 0);
 		}
-		event.setName(MyUtil.generateRandomStringWithLength(101));
+		event.setName(MyUtil.generateSingleCharStringOfLength(101,"a"));
 		assertTrue(event.getName().length() == (maxNameLength + 1));
 		eventDataService.createEvent(event);
 	}
@@ -116,13 +116,13 @@ public class EventDataServiceTest {
 	public void testCreateMultipleNameUMLAUTEEvent() {
 
 		for (int i = 0; i < 101; i++) {
-			event.setName(MyUtil.generateRandomStringWithLength(i));
+			event.setName(MyUtil.generateSingleCharStringOfLength(i,"a"));
 			Event savedEvent = new Event();
 			savedEvent = eventDataService.createEvent(event);
 			assertNotNull(savedEvent);
 			assertTrue(savedEvent.getId()>0);			
 		}
-		event.setName(MyUtil.generateRandomStringWithLength(101));
+		event.setName(MyUtil.generateSingleCharStringOfLength(101,"a"));
 		assertTrue(event.getName().length() == (maxNameLength + 1));
 		eventDataService.createEvent(event);
 	}
@@ -131,7 +131,7 @@ public class EventDataServiceTest {
 	public void testCreateMultipleNameWeirdEvent() {
 
 		for (int i = 0; i < 101; i++) {
-			event.setName(MyUtil.generateRandomStringWithLength(i));
+			event.setName(MyUtil.generateSingleCharStringOfLength(i,"a"));
 			Event savedEvent = new Event();
 			savedEvent = eventDataService.createEvent(event);
 			assertNotNull(savedEvent);
@@ -139,7 +139,7 @@ public class EventDataServiceTest {
 			
 			assertTrue(savedEvent.getId() > 0);
 		}
-		event.setName(MyUtil.generateRandomStringWithLength(101));
+		event.setName(MyUtil.generateSingleCharStringOfLength(101,"a"));
 		assertTrue(event.getName().length() == (maxNameLength + 1));
 		eventDataService.createEvent(event);
 	}
@@ -206,10 +206,6 @@ public class EventDataServiceTest {
 	}
 	@Test(expected = ResourceNotFoundException.class)
 	public void testUpdateUnsavedEventWithUnsavedEvent() {
-//		assertTrue(event.getId() == 0);
-//		assertNotNull(otherEvent);
-//		assertNotNull(event);
-//		
 		eventDataService.updateEvent(event.getId(), otherEvent);
 	}
 

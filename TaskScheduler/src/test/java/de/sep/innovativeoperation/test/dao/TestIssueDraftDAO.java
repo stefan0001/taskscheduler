@@ -10,6 +10,7 @@ import javax.validation.ConstraintViolationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.matchers.Contains;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -108,11 +109,6 @@ public class TestIssueDraftDAO {
 		
 		IssueDraft issueDraft3 = new IssueDraft("newIssue3", "WorkToDo3",
 				IssueType.BUG);
-		
-		if (!issueDraftDAO.fetchAll().isEmpty())
-			deleteAllIssuesInIssueDraftDAO();
-
-		assertTrue(issueDraftDAO.fetchAll().isEmpty());
 
 		// SAVE
 		IssueDraft issueDraftSaved = issueDraftDAO.save(issueDraft);
@@ -128,32 +124,9 @@ public class TestIssueDraftDAO {
 		for (IssueDraft actualIssueDraft : issueDrafts) {
 			assertTrue(actualIssueDraft.getId() > 0);
 		}
-
-		// Save the ID for later Check if Entity with ID is deleted
-		int issueDraftSavedID = issueDraftSaved.getId();
-		int issueDraftSavedID2 = issueDraftSaved2.getId();
-		int issueDraftSavedID3 = issueDraftSaved3.getId();
-		
-		issueDraftDAO.remove(issueDraftSaved2);
-		assertNull(issueDraftDAO.findById(issueDraftSavedID2));
-
-		issueDrafts = issueDraftDAO.fetchAll();
-		assertFalse(issueDrafts.contains(issueDraftSaved2));
-
-		assertTrue(issueDrafts.get(0).getId() == (issueDraftSavedID));
-		assertTrue(issueDrafts.get(1).getId() == (issueDraftSavedID3));
-
-	}
-
-	private void deleteAllIssuesInIssueDraftDAO() {
-		List<IssueDraft> issueDrafts = issueDraftDAO.fetchAll();
-		assertFalse(issueDrafts.isEmpty());
-		for (IssueDraft actualIssueDraft : issueDrafts) {
-						issueDraftDAO.remove(issueDraftDAO.findById(actualIssueDraft
-					.getId()));
-						assertNull(issueDraftDAO.findById(actualIssueDraft
-					.getId()));
-		}
+		assertTrue(issueDrafts.contains(issueDraftSaved));
+		assertTrue(issueDrafts.contains(issueDraftSaved2));
+		assertTrue(issueDrafts.contains(issueDraftSaved3));
 
 	}
 
@@ -197,7 +170,8 @@ public class TestIssueDraftDAO {
 
 	@Test(expected = PersistenceException.class)
 	public void testSaveIssueDraft101LetterName() {
-		String invalidName = MyUtil.generateRandomStringWithLength(maxNameLength+1);
+		String invalidName = MyUtil.generateSingleCharStringOfLength(
+				maxNameLength + 1, "a");
 		assertTrue(invalidName.length() == (maxNameLength+1));
 		issueDraft.setIssueName(invalidName);
 		IssueDraft savedIssueDraft = issueDraftDAO.save(issueDraft);
@@ -205,7 +179,8 @@ public class TestIssueDraftDAO {
 	}
 	@Test(expected = PersistenceException.class)
 	public void testSaveIssueDraft501LetterDescription() {
-		String invalidDescription = MyUtil.generateRandomStringWithLength(maxDescriptionLength+1);
+		String invalidDescription = MyUtil.generateSingleCharStringOfLength(
+				maxDescriptionLength + 1, "a");
 		assertTrue(invalidDescription.length() == (maxDescriptionLength+1));
 		issueDraft.setIssueDescription(invalidDescription);
 		issueDraft = issueDraftDAO.save(issueDraft);
