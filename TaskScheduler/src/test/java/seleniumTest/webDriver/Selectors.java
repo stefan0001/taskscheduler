@@ -6,10 +6,11 @@ public interface Selectors {
 	String block_todo = "columnNew";
 	String block_imProgress = "columnInProgress";
 	String block_done = "columnClosed";
-	
+
 	String button_uebersicht = "taskOverviewButton";
 	String button_neuerTask = "newTaskButton";
 	String button_issueErstellen = "newIssueButton";
+	String button_suchen = "filterIssueView";
 	String button_createTaskBreak = "";
 	String button_speichernTask = "";
 	String button_eventAuswaehlen = "";
@@ -19,6 +20,9 @@ public interface Selectors {
 	String button_neuesIssue = "selectNewIssue";
 
 	String eingabefeld_filterIssueName = "filterIssueName";
+	
+	String checkbox_filterIssueTyp = "filterIssueType";
+	String checkbox_filterIssueResolution = "filterIssueResolution";
 	//create task
 	String eingabefeld_taskName = "newTaskName";
 	String eingabefeld_datum = "TaskDate";
