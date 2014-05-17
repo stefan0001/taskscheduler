@@ -2,6 +2,7 @@ package seleniumTest.webDriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
@@ -14,7 +15,7 @@ public abstract class WebDriver_createTaskTest implements Selectors, URL {
 		// test case 2,3
 		// create a new task
 		driver.findElement(By.id(button_neuerTask)).click();
-		driver.findElement(By.id(button_createTaskBreak)).click();
+		driver.findElement((By.xpath("//*[@id=\"modalOneFooter\"]/button[1]")));
 	}
 
 	@Test

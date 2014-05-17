@@ -11,7 +11,7 @@ public interface Selectors {
 	String button_neuerTask = "newTaskButton";
 	String button_issueErstellen = "newIssueButton";
 	String button_suchen = "filterIssueView";
-	String button_createTaskBreak = "";
+	String button_createTaskBreak = "Abbrechen";
 	String button_speichernTask = "";
 	String button_eventAuswaehlen = "";
 	String button_speichernEvent = "";
