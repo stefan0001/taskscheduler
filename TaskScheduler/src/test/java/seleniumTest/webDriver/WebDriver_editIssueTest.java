@@ -91,7 +91,7 @@ public abstract class WebDriver_editIssueTest implements Selectors, URL {
 				// fill name and description
 				driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Event");
 				// based on event
-				driver.findElement(By.id(radioButton_eventbasiertTastErstellen))
+				driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
 						.click();
 				// select a event
 				driver.findElement(By.id(button_eventAuswaehlen)).click();

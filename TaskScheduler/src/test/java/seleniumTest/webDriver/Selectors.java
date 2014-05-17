@@ -11,8 +11,8 @@ public interface Selectors {
 	String button_neuerTask = "newTaskButton";
 	String button_issueErstellen = "newIssueButton";
 	String button_suchen = "filterIssueView";
-	String button_createTaskBreak = "Abbrechen";
-	String button_speichernTask = "";
+	String button_createTaskBreak = "//*[@id=\"modalOneFooter\"]/button[1]";
+	String button_speichernTask = "//*[@id=\"modalOneFooter\"]/button[3]";
 	String button_eventAuswaehlen = "";
 	String button_speichernEvent = "";
 	String button_issueAuswaehlen = "selectSelectIssue";
@@ -33,10 +33,12 @@ public interface Selectors {
 	String eingabe_datum = "";
 	String eingabe_uhrzeit = "";
 
-	String radioButton_eventbasiertTastErstellen = "radioNewEventTask";
+	String radioButton_eventbasiertTaskErstellen = "radioNewEventTask";
 	String radioButton_zeitbasiertTaskErstellen = "radioNewTimeTask";
 	String radioButton_events = "";
 	String radioButton_issues = "";
+	String radioButton_createIssueSelectIssue = "newIssueSelectSelectIssue";
+	String radioButton_createIssueNewIssue = "newIssueSelectCreateNewIssue";
 		
 	//editTask
 	String button_submitActiveTask = "";
