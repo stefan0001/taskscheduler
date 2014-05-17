@@ -21,12 +21,15 @@ import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 import org.springframework.web.context.WebApplicationContext;
 
 import de.sep.innovativeoperation.taskscheduler.controller.DefaultController;
+import de.sep.innovativeoperation.taskscheduler.exception.http.ResourceNotFoundException;
 
 /**
- * Test the DefaultController at the URL: "/" RequestMapping by Spring with
+ * Test the DefaultController at the URL: "/" and it´s RequestMapping by Spring with
  * Mockito and SpringMockMvc
  * 
- * @author Joscha Zander
+ * dependencies: none
+ * 
+ * @author Joscha Zander 
  * 
  */
 @TransactionConfiguration(defaultRollback = true)
@@ -61,21 +64,21 @@ public class TestDefaultController {
 	 * @throws Exception
 	 */
 	@Test
-	public void testPutFrontControllerExpect405() throws Exception {
+	public void testPutDefaultControllerExpect405() throws Exception {
 
 		mockMvc.perform(put(url).accept(appJSON)).andExpect(
 				status().isMethodNotAllowed());
 	}
 
 	@Test
-	public void testPostFrontControllerExpect405() throws Exception {
+	public void testPostDefaultControllerExpect405() throws Exception {
 
 		mockMvc.perform(post(url).accept(appJSON)).andExpect(
 				status().isMethodNotAllowed());
 	}
 
 	@Test
-	public void testDeleteFrontControllerExpect405() throws Exception {
+	public void testDeleteDefaultControllerExpect405()throws Exception  {
 
 		mockMvc.perform(delete(url).accept(appJSON)).andExpect(
 				status().isMethodNotAllowed());
@@ -87,7 +90,7 @@ public class TestDefaultController {
 	 * @throws Exception
 	 */
 	@Test
-	public void testAccessingFrontControllerExpect200AndCheckRedirection()
+	public void testAccessingDefaultControllerExpect200AndCheckRedirection()
 			throws Exception {
 
 		mockMvc.perform(get(url).accept(appJSON)).andExpect(status().isFound())

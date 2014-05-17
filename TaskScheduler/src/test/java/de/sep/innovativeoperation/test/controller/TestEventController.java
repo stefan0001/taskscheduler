@@ -36,6 +36,18 @@ import de.sep.innovativeoperation.taskscheduler.model.resource.EventsResource;
 import de.sep.innovativeoperation.taskscheduler.service.event.EventResourceService;
 import de.sep.innovativeoperation.taskscheduler.service.eventtask.EventTaskResourceService;
 
+/**
+ * Test the EventController at the URL: "/event" and it´s RequestMapping by Spring
+ * with Mockito and SpringMockMvc
+ * 
+ * dependencies: EventResourceService and EventTaskResourceService
+ * 
+ * @author Joscha Zander
+ * @TransactionConfiguration(defaultRollback = true)
+ * @WebAppConfiguration
+ * @ContextConfiguration({ "classpath:applicationContext.xml" })
+ * @RunWith(SpringJUnit4ClassRunner.class)
+ */
 @TransactionConfiguration(defaultRollback = true)
 @WebAppConfiguration
 @ContextConfiguration({ "classpath:applicationContext.xml" })
@@ -143,12 +155,13 @@ public class TestEventController {
 
 		verify(eventResourceService, times(1)).triggerEvent(1);
 	}
-	
+
 	@Test
 	public void testGetAllEventTasksForEvent200() throws Exception {
 		EventTasksResource eventTasksResource = new EventTasksResource();
 
-		when(eventTaskResourceService.getAllEventTasksForEvent(1)).thenReturn(eventTasksResource);
+		when(eventTaskResourceService.getAllEventTasksForEvent(1)).thenReturn(
+				eventTasksResource);
 
 		mockMvc.perform(
 				get(url + "/1/eventtask").accept(appJSON).contentType(appJSON)
@@ -156,17 +169,19 @@ public class TestEventController {
 
 		verify(eventTaskResourceService, times(1)).getAllEventTasksForEvent(1);
 	}
-	
+
 	@Test
 	public void testCreateEventTask200() throws Exception {
 		EventTaskResource eventTaskResource = new EventTaskResource();
 		EventTaskResource returnedEventTaskResource = new EventTaskResource();
-		when(eventTaskResourceService.createEventTask(1,eventTaskResource)).thenReturn(returnedEventTaskResource);
+		when(eventTaskResourceService.createEventTask(1, eventTaskResource))
+				.thenReturn(returnedEventTaskResource);
 
 		mockMvc.perform(
 				post(url + "/1/eventtask").accept(appJSON).contentType(appJSON)
 						.content("{}")).andExpect(status().isOk());
 
-		verify(eventTaskResourceService, times(1)).createEventTask(1,eventTaskResource);
+		verify(eventTaskResourceService, times(1)).createEventTask(1,
+				eventTaskResource);
 	}
 }
