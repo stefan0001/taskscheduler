@@ -2,9 +2,9 @@ package seleniumTest.chromeTest;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import seleniumTest.webDriver.WebDriver_overviewTest;
+import seleniumTest.webDriver.WebDriver_overviewIT;
 
-public class Chrome_overviewTest extends WebDriver_overviewTest {
+public class Chrome_overviewIT extends WebDriver_overviewIT {
 
 	@Override
 	public void initializeWebDriver() {

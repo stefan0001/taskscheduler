@@ -2,13 +2,13 @@ package seleniumTest;
 
 //import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.Test;
 
 public class Open {
 	private String url = "http://localhost:8080/TaskScheduler/static/gui/";
@@ -34,10 +34,9 @@ public class Open {
 		driver.get(url);
 	}
 
-	@AfterTest
+	@After
 	public void closeDriver() {
 		driver.quit();
-
-		// driver.close();
+		 driver.close();
 	}
 }
