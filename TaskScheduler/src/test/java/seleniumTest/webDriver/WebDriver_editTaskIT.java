@@ -88,67 +88,92 @@ public abstract class WebDriver_editTaskIT implements URL, Selectors {
 //		assertEquals(driver.findElement(By.id(text_fireCounter)).getText(), "0");
 //	}
 	public abstract void initializeWebDriver();
-
-	@Before
-	public void beforeMethod(){
-		initializeWebDriver();
-		driver.get(url);
-	}
-
-	@After
-	public void afterMethod() {
-		driver.close();
-		driver.quit();
-	}
-
-//	@BeforeClass
-//	public void beforeClass() {
-//		beforeMethod();
-//		// create a task based on time
-//		driver.findElement(By.id(button_neuerTask)).click();
-//		// fill name and description
-//		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Time");
-//		// based on time
-//		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
-////		driver.findElement(By.id(eingabefeld_datum)).sendKeys(eingabe_datum);
-////		driver.findElement(By.id(eingabefeld_uhrzeit))
-////				.sendKeys(eingabe_uhrzeit);
-//		// create a new issue
-//		driver.findElement(By.id(button_issueAuswaehlen)).click();
-//		driver.findElement(By.className(button_neuesIssue)).click();
-//		driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
-//				"Muster Issue1");
-//		driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask)).sendKeys(
-//				"Ein Issue");
-//		// save the issue
-//		driver.findElement(By.id(button_speichernTask)).click();
 //
-//		// create a task based on event
-//		driver.findElement(By.id(button_neuerTask)).click();
-//		// fill name and description
-//		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Event");
-//		// based on event
-//		driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
-//				.click();
-//		// select a event
-//		driver.findElement(By.id(button_eventAuswaehlen)).click();
-//		driver.findElements(By.className(radioButton_events)).get(0).click();
-//		driver.findElement(By.id(button_speichernEvent)).click();
-//		// create a new issue
-//		driver.findElement(By.id(button_issueAuswaehlen)).click();
-//		driver.findElement(By.className(button_neuesIssue)).click();
-//		driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
-//				"Muster Issue2");
-//		driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask)).sendKeys(
-//				"Ein Issue");
-//		//select type of this issue 
-//		Select issueType = new Select(driver.findElement(By.id(dropdownMenu_issueType)));
-//		issueType.selectByVisibleText("Bug");
-//		//select status of this issue
-//		Select status = new Select(driver.findElement(By.id(dropdownMenu_status)));
-//		status.selectByVisibleText("New");
-//		// save the task
-//		driver.findElement(By.id(button_speichernTask)).click();
+//	@Before
+//	public void beforeMethod(){
+//		initializeWebDriver();
+//		driver.get(url);
 //	}
-
+//
+//	@After
+//	public void afterMethod() {
+//		driver.close();
+//		driver.quit();
+//	}
+//
+	// @BeforeClass
+	// static public void beforeClass() throws Exception{
+	//
+	// WebDriver driver = new FirefoxDriver();
+	// driver.get(url);
+	// // create a task based on time
+	// driver.findElement(By.id(button_neuerTask)).click();
+	//
+	// // fill name and description
+	// Thread.sleep(500);
+	// driver.findElement(By.id(eingabefeld_taskName)).sendKeys("editIssueTest");
+	//
+	// // based on time
+	// Thread.sleep(500);
+	// driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
+	// Thread.sleep(500);
+	// // choose a day
+	// driver.findElement(By.id(eingabefeld_datum)).click();
+	// Thread.sleep(500);
+	// driver.findElements(By.className(date)).get(13).click();
+	// // choose a time
+	// driver.findElement(By.id(eingabefeld_uhrzeit)).click();
+	// Thread.sleep(500);
+	// driver.findElement(
+	// By.xpath("/html/body/div[5]/div[2]/table/tbody/tr/td/span[8]"))
+	// .click();
+	// Thread.sleep(500);
+	// driver.findElement(
+	// By.xpath("/html/body/div[5]/div[1]/table/tbody/tr/td/span[3]"))
+	// .click();
+	// // set repeat
+	// driver.findElement(
+	// By.xpath("//*[@id=\"TaskInput\"]/p[6]/select/option[2]"))
+	// .click();
+	//
+	// // create a new issue
+	// driver.findElement(By.id(button_taskErstellenNeuesIssue)).click();
+	// Thread.sleep(500);
+	// driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
+	// "Muster");
+	// driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask))
+	// .sendKeys("Beispiel");
+	// driver.findElement(By.id(button_speichernTaskNeuesIssue)).click();
+	// Thread.sleep(500);
+	//
+	//
+	// // create a task based on event
+	// driver.findElement(By.id(button_neuerTask)).click();
+	//
+	// // fill name and description
+	// Thread.sleep(500);
+	// driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Event");
+	//
+	// // based on event
+	// driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
+	// .click();
+	// // select a event
+	// driver.findElement(By.id(button_taskErstellenNeuesEvent)).click();
+	// driver.findElement(By.xpath(eingabefeld_taskErstellenNeuesEventName)).sendKeys("Beispielevent");
+	//
+	// // create a new issue
+	// driver.findElement(By.id(button_taskErstellenNeuesIssue)).click();
+	// Thread.sleep(500);
+	// driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
+	// "Muster");
+	// driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask))
+	// .sendKeys("Beispiel");
+	// driver.findElement(By.id(button_speichernTaskNeuesIssue)).click();
+	// Thread.sleep(500);
+	//
+	// // save the task
+	// driver.findElement(By.id(button_speichernTask)).click();
+	// driver.close();
+	// driver.quit();
+	// }
 }

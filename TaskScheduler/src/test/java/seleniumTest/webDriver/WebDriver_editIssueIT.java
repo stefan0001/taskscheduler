@@ -53,6 +53,40 @@ public abstract class WebDriver_editIssueIT implements Selectors, URL {
 	// resolution.selectByVisibleText("Fixed");
 	// }
 
+	@Test
+	public void showAnIssue() throws Exception {
+		//select an issue
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6"))
+				.click();
+		//click edit icon
+		Thread.sleep(500);
+		driver.findElements(By.className(className_editIssue)).get(0).click();
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"editModalIssue\"]")).click();
+		//close the issue
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"editIssueRadioStatusClosed\"]"))
+				.click();
+		//save
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"saveIssueChanges\"]")).click();
+		Thread.sleep(500);
+		driver.findElement(By.xpath("//*[@id=\"saveEditedIssue\"]")).click();
+		Thread.sleep(500);
+		driver.navigate().refresh();
+	}
+
+	@Test
+	public void deleteAnIssue() throws Exception{
+			//select an issue
+			Thread.sleep(5000);
+			driver.findElement(By.xpath("//*[@id=\"accordion3\"]/div[1]/a/div/h6")).click();
+			//click remove icon
+			Thread.sleep(500);
+			driver.findElements(By.className(className_removeIssue)).get(0).click();
+	}
+
 	protected abstract void initializeWebDriver();
 
 	@Before
@@ -60,89 +94,11 @@ public abstract class WebDriver_editIssueIT implements Selectors, URL {
 		initializeWebDriver();
 		driver.get(url);
 	}
-	
-	@Test
-	public void showAIssue(){
-		driver.findElement(By.xpath("//*[@id=\"accordion1\"]/div[1]/a/div/h6")).click();
-	}
 
 	@After
 	public void afterMethod() {
-//		driver.close();
-//		driver.quit();
-	}
-
-	@BeforeClass
-	static public void beforeClass() throws Exception{
-		
-		WebDriver driver = new FirefoxDriver();
-		driver.get(url);
-		// create a task based on time
-		driver.findElement(By.id(button_neuerTask)).click();
-		
-		// fill name and description
-		Thread.sleep(200);
-		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Time");
-		
-		// based on time
-		driver.findElement(By.id(radioButton_zeitbasiertTaskErstellen)).click();
-		Thread.sleep(200);
-		// choose a day
-		driver.findElement(By.id(eingabefeld_datum)).click();
-		Thread.sleep(200);
-		driver.findElements(By.className(date)).get(13).click();
-		// choose a time
-		driver.findElement(By.id(eingabefeld_uhrzeit)).click();
-		Thread.sleep(200);
-		driver.findElement(
-				By.xpath("/html/body/div[5]/div[2]/table/tbody/tr/td/span[8]"))
-				.click();
-		Thread.sleep(200);
-		driver.findElement(
-				By.xpath("/html/body/div[5]/div[1]/table/tbody/tr/td/span[3]"))
-				.click();
-		// set repeat
-		driver.findElement(
-				By.xpath("//*[@id=\"TaskInput\"]/p[6]/select/option[2]"))
-				.click();
-		
-		// create a new issue
-		driver.findElement(By.id(button_taskErstellenNeuesIssue)).click();
-		Thread.sleep(200);
-		driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
-				"Muster");
-		driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask))
-				.sendKeys("Beispiel");
-		driver.findElement(By.id(button_speichernTaskNeuesIssue)).click();
-		Thread.sleep(200);
-
-		
-		// create a task based on event
-		driver.findElement(By.id(button_neuerTask)).click();
-		
-		// fill name and description		
-		Thread.sleep(200);
-		driver.findElement(By.id(eingabefeld_taskName)).sendKeys("Event");
-		
-		// based on event
-		driver.findElement(By.id(radioButton_eventbasiertTaskErstellen))
-				.click();
-		// select a event
-		 driver.findElement(By.id(button_taskErstellenNeuesEvent)).click();
-		 driver.findElement(By.xpath(eingabefeld_taskErstellenNeuesEventName)).sendKeys("Beispielevent");
-		 
-		// create a new issue
-		 driver.findElement(By.id(button_taskErstellenNeuesIssue)).click();
-		 Thread.sleep(200);
-		 driver.findElement(By.id(eingabefeld_issueNameFuerTask)).sendKeys(
-		 "Muster");
-		 driver.findElement(By.id(eingabefeld_issueBeschreibungFuerTask))
-		 .sendKeys("Beispiel");
-		 driver.findElement(By.id(button_speichernTaskNeuesIssue)).click();
-		 Thread.sleep(200);
-		 
-		// save the task
-		driver.findElement(By.id(button_speichernTask)).click();
+		 driver.close();
+		 driver.quit();
 	}
 
 }
