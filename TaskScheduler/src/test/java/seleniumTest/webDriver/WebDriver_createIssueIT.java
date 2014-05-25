@@ -26,7 +26,7 @@ public abstract class WebDriver_createIssueIT implements Selectors, URL {
 
 //	@Test
 //	public void createAnIssue() throws Exception {
-//		// create an new Issue
+//		// create an new issue
 //		Thread.sleep(500);
 //		driver.findElement(By.id(button_issueErstellen)).click();
 //		Thread.sleep(500);
@@ -37,12 +37,10 @@ public abstract class WebDriver_createIssueIT implements Selectors, URL {
 //				"createAnIssueTest");
 //		driver.findElement(By.id(eingabefeld_createIssueDescription)).sendKeys(
 //				"RT");
-//		;
 //		Thread.sleep(500);
 //		// select every type
 //		Select filterTyp = new Select(driver.findElement(By
 //				.id(checkbox_filterIssueTyp)));
-//		// filterTyp.deselectAll();
 //		filterTyp.selectByVisibleText("Bug");
 //		filterTyp.selectByVisibleText("Improvement");
 //		filterTyp.selectByVisibleText("Task");
@@ -52,28 +50,33 @@ public abstract class WebDriver_createIssueIT implements Selectors, URL {
 //
 	// @Test
 	// public void createAnIssueWithoutName(){
-	//
+	// //TODO
 	// }
 	//
 	// @Test
 	// public void createAnIssueWithoutDescription(){
-	//
+	// //TODO
 	// }
 
 	@Test
 	public void createIssueSelectIssue() throws Exception {
-		// create an Issue
+		// create an issue
 		Thread.sleep(500);
 		driver.findElement(By.id(button_issueErstellen)).click();
-		//select an Issue
+		//select ssue option
 		Thread.sleep(500);
 		driver.findElement(By.id(radioButton_createIssueSelectIssue)).click();
-		
+		//select an issue
+		Thread.sleep(500);
+		driver.findElements(By.name(checkbox_selectAnIssue)).get(0).click();
+		//save the issue
+		driver.findElement(By.id(button_createIssueSaveSelectIssue)).click();
+		Thread.sleep(50000);
 	}
 
 //	@Test
 //	public void createAnIssueBreak() throws Exception {
-//		// create an new Issue
+//		// create an new issue
 //		Thread.sleep(500);
 //		driver.findElement(By.id(button_issueErstellen)).click();
 //		// break
@@ -83,7 +86,7 @@ public abstract class WebDriver_createIssueIT implements Selectors, URL {
 //
 //	@Test
 //	public void createIssueNewIssueBreak() throws Exception {
-//		// create an new Issue
+//		// create an new issue
 //		Thread.sleep(500);
 //		driver.findElement(By.id(button_issueErstellen)).click();
 //		Thread.sleep(500);
@@ -95,10 +98,10 @@ public abstract class WebDriver_createIssueIT implements Selectors, URL {
 //
 //	@Test
 //	public void createIssueSelectIssueBreak() throws Exception {
-//		// create an Issue
+//		// create an issue
 //		Thread.sleep(500);
 //		driver.findElement(By.id(button_issueErstellen)).click();
-//		//select an Issue
+//		//select an issue
 //		Thread.sleep(500);
 //		driver.findElement(By.id(radioButton_createIssueSelectIssue)).click();
 //		// break

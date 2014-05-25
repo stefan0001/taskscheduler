@@ -47,6 +47,8 @@ public interface Selectors {
 	String radioButton_createIssueSelectIssue = "newIssueSelectSelectIssue";
 	String radioButton_createIssueNewIssue = "newIssueSelectCreateNewIssue";
 	
+	String checkbox_selectAnIssue = "selectIssuesForTask";//name
+	
 	String eingabefeld_createIssueName = "newIssueName";
 	String eingabefeld_createIssueDescription = "newIssueIssueDescription";	
 		
@@ -64,4 +66,5 @@ public interface Selectors {
 	String eingabefeld_issueBeschreibung = "newIssueIssueDescription";
 	String className_editIssue = "editIssue";
 	String className_removeIssue = "remove";
+	String dropdown_resolution = "editTaskStatusResolution";
 }
